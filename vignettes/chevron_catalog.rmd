@@ -359,7 +359,7 @@ run(cmt02_pt, syn_data)
 5) If there are more than two treatment groups present in the input analysis data, users are also expected to select only two treatment groups. The example below is based on treatment groups `"Arm A"` and `"Arm B"`.
 
 ```{r}
-proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
 run(coxt01, proc_data, time_var = "AVAL", event_var = "EVENT")
 ```
@@ -369,16 +369,16 @@ run(coxt01, proc_data, time_var = "AVAL", event_var = "EVENT")
 To add the interaction term to the model, `interaction = TRUE`, which is passed to `tern::control_coxreg()`, needs to be specified.
 
 ```{r}
-run(coxt01, proc_data, interaction = TRUE)
+run(coxt01, proc_data, covariates = "AAGE", interaction = TRUE)
 ```
 
 #### **3. Cox Regression (specifying covariates)**
 
 1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model.
-2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"ETHNIC"`, `"RACE"`, and `"AAGE"` are used as covariates.
+2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"RACE"` and `"AAGE"` are used as covariates.
 
 ```{r}
-run(coxt01, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
+run(coxt01, proc_data, covariates = c("RACE", "AAGE"))
 ```
 
 #### **4. Cox Regression (setting strata, ties, and alpha level)**
@@ -402,17 +402,17 @@ run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_l
 4) The event variable in the model is specified through the `event_var` argument. By default, `event_var` is set to `"EVENT"`, which is derived based on the censoring indicator `ADTTE.CNSR` in the pre-processing function `coxt01_pre`.
 
 ```{r}
-proc_data <- log_filter(syn_data, PARAMCD == "CRSD", "adtte")
+proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(coxt02, proc_data, time_var = "AVAL", event_var = "EVENT")
 ```
 
 #### **2. Multi-variable Cox Regression (specifying covariates)**
 
 1) By default, `"SEX"`, `"RACE"` and `"AAGE"` are used as the covariates for the model.
-2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"ETHNIC"`, `"RACE"`, and `"AAGE"` are used as covariates.
+2) Users can specify a different set of covariates through the `covariates` argument. In the example below, `"RACE"` and `"AAGE"` are used as covariates.
 
 ```{r}
-run(coxt02, proc_data, covariates = c("ETHNIC", "RACE", "AAGE"))
+run(coxt02, proc_data, covariates = c("RACE", "AAGE"))
 ```
 
 #### **3. Multi-variable Cox Regression (setting strata, ties, and alpha level)**

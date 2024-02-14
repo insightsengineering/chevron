@@ -3,7 +3,8 @@
 #' @describeIn vst01 Main TLG function
 #'
 #' @inherit cfbt01_main
-#' @source `cfbt01.R`
+#' @include cfbt01.R
+#' @returns the main function returns an `rtables` object.
 #'
 #' @export
 #'
@@ -12,7 +13,7 @@ vst01_main <- modify_default_args(cfbt01_main, dataset = "advs")
 #' @describeIn vst01 Preprocessing
 #'
 #' @inherit cfbt01_pre
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 vst01_pre <- modify_default_args(cfbt01_pre, dataset = "advs")

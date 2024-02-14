@@ -104,7 +104,7 @@ pdt02_lyt <- function(arm_var,
 #' @describeIn pdt02 Preprocessing
 #'
 #' @inheritParams pdt02_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 pdt02_pre <- function(adam_db,
@@ -125,7 +125,7 @@ pdt02_pre <- function(adam_db,
 #'
 #' @inheritParams pdt02_main
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = "DVTERM", ...) {

@@ -1,12 +1,15 @@
 # run ----
 
+syn_adv <- syn_data[c("adsl", "adae")]
+syn_adv$adae <- syn_adv$adae[syn_adv$adae$AEBODSYS %in% c("cl A.1", "cl B.1", "cl B.2"), ]
+
 test_that("run works as expected for chevron_t object", {
-  res <- run(aet04, syn_data, prune_0 = TRUE)
+  res <- run(aet04, syn_adv, prune_0 = TRUE)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
-  proc_data <- syn_data
+  proc_data <- syn_adv
   proc_data$adsl <- proc_data$adsl %>%
     mutate(DOMAIN = "ADSL")
   res <- run(dmt01, proc_data, auto_pre = FALSE)
@@ -14,14 +17,14 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
 })
 
 test_that("run works as expected with argument printed", {
-  res <- capture_output(tbl <- run(aet02, syn_data, prune_0 = TRUE, verbose = TRUE))
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
 test_that("run works as expected with argument printed if the user argument is complicated", {
   user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
-  res <- capture_output(tbl <- run(aet02, syn_data, user_args = user_args, verbose = TRUE))
+  res <- capture_output(tbl <- run(aet02, syn_adv, user_args = user_args, verbose = TRUE))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
@@ -31,7 +34,7 @@ test_that("run uses the argument passed through the ellipsis in priority", {
   res <- capture_output(
     tbl <- run(
       aet02,
-      syn_data,
+      syn_adv,
       prune_0 = FALSE,
       another_not_used = iris,
       arm_var = "ARM",
@@ -44,7 +47,7 @@ test_that("run uses the argument passed through the ellipsis in priority", {
 })
 
 test_that("run works as expected with partial match argument", {
-  res <- capture_output(tbl <- run(aet02, syn_data, prune_0 = TRUE, verbose = TRUE, arm_var = "ARM"))
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, arm = "ARM"))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
@@ -55,7 +58,7 @@ test_that("run displays the symbols when available", {
   res <- capture_output(
     tbl <- run(
       aet02,
-      syn_data,
+      syn_adv,
       prune_0 = FALSE,
       not_used = iris,
       another_not_used = "X",
@@ -197,16 +200,16 @@ test_that("script_funs generates a valid script", {
     arm_var = "ARM"
   )
 
-  res_fun <- script_funs(aet04, adam_db = "syn_data", args = "args_list")
+  res_fun <- script_funs(aet04, adam_db = "syn_adv", args = "args_list")
   writeLines(res_fun, tmp)
   res <- capture_output(source(tmp, local = TRUE))
   expect_snapshot(res)
-  expected <- run(aet04, syn_data, arm_var = "ARM")
+  expected <- run(aet04, syn_adv, arm_var = "ARM")
   expect_identical(tlg_output, expected)
 })
 
 test_that("script_funs works for simple template", {
-  res <- expect_silent(script_funs(chevron_simple(), adam_db = "syn_data"))
+  res <- expect_silent(script_funs(chevron_simple(), adam_db = "syn_adv"))
   expect_character(res)
 })
 

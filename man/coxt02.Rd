@@ -8,9 +8,6 @@
 \format{
 An object of class \code{chevron_t} of length 1.
 }
-\source{
-\code{utils.R}
-}
 \usage{
 coxt02_main(
   adam_db,
@@ -44,6 +41,9 @@ coxt02
 \item{multivar}{(\code{flag}) indicator of whether multivariate cox regression is conducted.}
 
 \item{...}{Further arguments passed to \code{tern::control_coxreg()}.}
+}
+\value{
+the main function returns an \code{rtables} object.
 }
 \description{
 The \code{COXT02} table follows the same principles as the general Cox model analysis

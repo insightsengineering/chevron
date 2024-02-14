@@ -4,14 +4,14 @@
       cat(export_as_txt(res1, lpp = 100))
     Output
                                                      Treatment Effect Adjusted for Covariate     
-        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
+        Effect/Covariate Included in the Model    n     Hazard Ratio        95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       264        1.38        (1.02, 1.88)     0.0381 
+          B: Placebo vs control (A: Drug X)       26        2.52         (0.88, 7.20)     0.0842 
         Covariate:                                                                               
-          Sex                                     264        1.38        (1.01, 1.87)     0.0408 
-          RACE                                    264        1.39        (1.02, 1.89)     0.0368 
-          Age (yr)                                264        1.41        (1.04, 1.92)     0.0291 
+          Sex                                     26        3.77        (1.09, 13.09)     0.0365 
+          RACE                                    26        2.69         (0.80, 9.00)     0.1093 
+          Age (yr)                                26        2.43         (0.74, 7.92)     0.1415 
 
 ---
 
@@ -19,14 +19,14 @@
       cat(export_as_txt(res2, lpp = 100))
     Output
                                                      Treatment Effect Adjusted for Covariate     
-        Effect/Covariate Included in the Model     n     Hazard Ratio       90% CI       p-value 
+        Effect/Covariate Included in the Model    n     Hazard Ratio        90% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       264        1.38        (1.07, 1.79)     0.0381 
+          B: Placebo vs control (A: Drug X)       26        2.52         (1.04, 6.08)     0.0842 
         Covariate:                                                                               
-          Sex                                     264        1.38        (1.06, 1.78)     0.0408 
-          RACE                                    264        1.39        (1.07, 1.80)     0.0368 
-          Age (yr)                                264        1.41        (1.09, 1.83)     0.0291 
+          Sex                                     26        3.77        (1.33, 10.71)     0.0365 
+          RACE                                    26        2.69         (0.97, 7.41)     0.1093 
+          Age (yr)                                26        2.43         (0.90, 6.55)     0.1415 
 
 ---
 
@@ -34,13 +34,13 @@
       cat(export_as_txt(res3, lpp = 100))
     Output
                                                      Treatment Effect Adjusted for Covariate     
-        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
+        Effect/Covariate Included in the Model    n     Hazard Ratio        95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       264        1.38        (1.02, 1.88)     0.0381 
+          B: Placebo vs control (A: Drug X)       26        2.52         (0.88, 7.20)     0.0842 
         Covariate:                                                                               
-          Sex                                     264        1.38        (1.01, 1.87)     0.0408 
-          Age (yr)                                264        1.41        (1.04, 1.92)     0.0291 
+          Sex                                     26        3.77        (1.09, 13.09)     0.0365 
+          Age (yr)                                26        2.43         (0.74, 7.92)     0.1415 
 
 ---
 
@@ -48,11 +48,11 @@
       cat(export_as_txt(res4, lpp = 100))
     Output
                                                      Treatment Effect Adjusted for Covariate     
-        Effect/Covariate Included in the Model     n     Hazard Ratio       95% CI       p-value 
+        Effect/Covariate Included in the Model    n     Hazard Ratio        95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       264        1.37        (1.01, 1.87)     0.0459 
+          B: Placebo vs control (A: Drug X)       26        2.14         (0.63, 7.21)     0.2202 
         Covariate:                                                                               
-          Sex                                     264        1.37        (1.00, 1.87)     0.0469 
-          Age (yr)                                264        1.40        (1.02, 1.92)     0.0352 
+          Sex                                     26        2.65        (0.63, 11.21)     0.1846 
+          Age (yr)                                26        2.02         (0.58, 7.03)     0.2669 
 

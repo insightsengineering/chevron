@@ -9,9 +9,6 @@
 \format{
 An object of class \code{chevron_t} of length 1.
 }
-\source{
-\code{cfbt01.R}
-}
 \usage{
 lbt01_main(
   adam_db,
@@ -59,6 +56,11 @@ the value for \code{default} will be used.}
 \item{skip}{Named (\code{list}) of visit values that need to be inhibited.}
 
 \item{...}{additional arguments like \code{.indent_mods}, \code{.labels}.}
+}
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
 }
 \description{
 The \code{LBT01} table provides an

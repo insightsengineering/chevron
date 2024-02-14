@@ -4,6 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @inheritParams rmpt01
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -19,7 +20,7 @@ rmpt04_main <- modify_default_args(rmpt01_main, summaryvars = "ETHNIC")
 #'
 #' @inheritParams gen_args
 #' @inheritParams rmpt04_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 rmpt04_pre <- modify_default_args(

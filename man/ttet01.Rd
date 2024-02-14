@@ -54,6 +54,13 @@ or unstratified analyses, or both, e.g. \code{c("unstrat", "strat")}. Only unstr
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
 }
+\value{
+the main function returns an \code{rtables} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
+
+the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+}
 \description{
 \code{TTET01} template may be used to summarize any binary outcome or response variable at
 a single time point. Typical application for oncology

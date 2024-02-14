@@ -19,6 +19,9 @@ period.}
 
 \item{trt_status_var}{(\code{string}) variable of treatment status.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{dst01} Layout
 }

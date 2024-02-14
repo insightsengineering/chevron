@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param aesi_vars (`character`) the `AESI` variables to be included in the summary. Defaults to `NA`.
 #' @param grade_groups (`list`) the grade groups to be displayed.
+#' @returns the main function returns an `rtables` object.
 #' @details
 #'  * Does not remove rows with zero counts by default.
 #'
@@ -78,7 +79,7 @@ aet01_aesi_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param lbl_aesi_vars (`character`) the labels of the `AESI` variables to be summarized.
-#'
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 aet01_aesi_lyt <- function(arm_var,
@@ -118,6 +119,7 @@ aet01_aesi_lyt <- function(arm_var,
 #' @describeIn aet01_aesi Preprocessing
 #'
 #' @inheritParams aet01_aesi_main
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'
@@ -203,6 +205,7 @@ aet01_aesi_pre <- function(adam_db,
 #' @describeIn aet01_aesi Postprocessing
 #'
 #' @inheritParams gen_args
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #'
 #' @export
 #'

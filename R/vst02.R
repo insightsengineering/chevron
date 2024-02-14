@@ -4,6 +4,7 @@
 #'
 #' @inheritParams gen_args
 #' @param exclude_base_abn (`flag`) whether baseline abnormality should be excluded.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'   * Only count LOW or HIGH values.
@@ -77,7 +78,7 @@ vst02_lyt <- function(arm_var,
 #' @describeIn vst02_1 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 vst02_pre <- function(adam_db, ...) {
@@ -100,7 +101,7 @@ vst02_pre <- function(adam_db, ...) {
 #' @describeIn vst02_1 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 vst02_post <- function(tlg, prune_0 = FALSE, ...) {

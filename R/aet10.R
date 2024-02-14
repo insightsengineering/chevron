@@ -3,7 +3,7 @@
 #' @describeIn aet10 Main TLG function
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the main function returns an `rtables` object
 #' @details
 #'  * Numbers represent absolute numbers of subject and fraction of `N`, or absolute number of event when specified.
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
@@ -47,7 +47,7 @@ aet10_main <- function(adam_db,
 #'
 #' @inheritParams gen_args
 #' @param lbl_aedecod (`character`) text label for `AEDECOD`.
-#'
+#' @returns a `PreDataTableLayouts` object.
 #' @keywords internal
 #'
 aet10_lyt <- function(arm_var,
@@ -65,7 +65,7 @@ aet10_lyt <- function(arm_var,
 #' @describeIn aet10 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 aet10_pre <- function(adam_db, ...) {
@@ -79,7 +79,7 @@ aet10_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams gen_args
 #' @param atleast given cut-off in numeric format, default is `0.05`
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 aet10_post <- function(tlg, atleast = 0.05, ...) {

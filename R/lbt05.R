@@ -3,6 +3,7 @@
 #' @describeIn lbt05 Main TLG function
 #'
 #' @inheritParams gen_args
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Does not remove rows with zero counts by default.
@@ -86,7 +87,7 @@ lbt05_lyt <- function(arm_var,
 #' @describeIn lbt05 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 lbt05_pre <- function(adam_db, ...) {
@@ -115,7 +116,7 @@ lbt05_pre <- function(adam_db, ...) {
 #' @describeIn lbt05 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 lbt05_post <- function(tlg, prune_0 = FALSE, ...) {

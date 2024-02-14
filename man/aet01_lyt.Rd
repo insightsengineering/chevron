@@ -17,6 +17,9 @@ aet01_lyt(arm_var, lbl_overall, anl_vars, anl_lbls, lbl_vars)
 
 \item{lbl_vars}{Named (\code{list}) of analysis labels.}
 }
+\value{
+a \code{PreDataTableLayouts} object.
+}
 \description{
 \code{aet01} Layout
 }

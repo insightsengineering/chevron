@@ -3,97 +3,97 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one condition     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of conditions                                   609           622            703      
-        cl A                                                                                               
-          Total number of patients with at least one condition   78 (58.2%)    75 (56.0%)      89 (67.4%)  
-          Total number of conditions                                 132           130            160      
-          trm A_1/2                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
-          trm A_2/2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
-        cl B                                                                                               
-          Total number of patients with at least one condition   96 (71.6%)    89 (66.4%)      97 (73.5%)  
-          Total number of conditions                                 185           198            205      
-          trm B_3/3                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
-          trm B_2/3                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
-          trm B_1/3                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
-        cl C                                                                                               
-          Total number of patients with at least one condition   67 (50.0%)    75 (56.0%)      79 (59.8%)  
-          Total number of conditions                                 103           116            129      
-          trm C_2/2                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
-          trm C_1/2                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
-        cl D                                                                                               
-          Total number of patients with at least one condition   96 (71.6%)    90 (67.2%)      98 (74.2%)  
-          Total number of conditions                                 189           178            209      
-          trm D_3/3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
-          trm D_1/3                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          trm D_2/3                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        MedDRA System Organ Class                                A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term                                    (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one condition     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of conditions                                   58           59             99      
+        cl A                                                                                             
+          Total number of patients with at least one condition   7 (46.7%)    6 (40.0%)      10 (66.7%)  
+          Total number of conditions                                 8            11             16      
+          trm A_2/2                                              5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          trm A_1/2                                              3 (20.0%)     1 (6.7%)      6 (40.0%)   
+        cl B                                                                                             
+          Total number of patients with at least one condition   12 (80.0%)   11 (73.3%)     12 (80.0%)  
+          Total number of conditions                                 24           21             32      
+          trm B_3/3                                              8 (53.3%)    6 (40.0%)      7 (46.7%)   
+          trm B_1/3                                              5 (33.3%)    6 (40.0%)      8 (53.3%)   
+          trm B_2/3                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
+        cl C                                                                                             
+          Total number of patients with at least one condition   8 (53.3%)    6 (40.0%)      11 (73.3%)  
+          Total number of conditions                                 10           13             22      
+          trm C_2/2                                              6 (40.0%)    4 (26.7%)      8 (53.3%)   
+          trm C_1/2                                              4 (26.7%)    4 (26.7%)      5 (33.3%)   
+        cl D                                                                                             
+          Total number of patients with at least one condition   10 (66.7%)   7 (46.7%)      13 (86.7%)  
+          Total number of conditions                                 16           14             29      
+          trm D_1/3                                              4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          trm D_2/3                                              6 (40.0%)    2 (13.3%)      7 (46.7%)   
+          trm D_3/3                                              2 (13.3%)    5 (33.3%)      7 (46.7%)   
 
 # mht01 works
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one condition     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of conditions                                   609           622            703      
-        cl A                                                                                               
-          Total number of patients with at least one condition   78 (58.2%)    75 (56.0%)      89 (67.4%)  
-          Total number of conditions                                 132           130            160      
-          trm A_1/2                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
-          trm A_2/2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
-        cl B                                                                                               
-          Total number of patients with at least one condition   96 (71.6%)    89 (66.4%)      97 (73.5%)  
-          Total number of conditions                                 185           198            205      
-          trm B_3/3                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
-          trm B_2/3                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
-          trm B_1/3                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
-        cl C                                                                                               
-          Total number of patients with at least one condition   67 (50.0%)    75 (56.0%)      79 (59.8%)  
-          Total number of conditions                                 103           116            129      
-          trm C_2/2                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
-          trm C_1/2                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
-        cl D                                                                                               
-          Total number of patients with at least one condition   96 (71.6%)    90 (67.2%)      98 (74.2%)  
-          Total number of conditions                                 189           178            209      
-          trm D_3/3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
-          trm D_1/3                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          trm D_2/3                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        MedDRA System Organ Class                                A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term                                    (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one condition     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of conditions                                   58           59             99      
+        cl A                                                                                             
+          Total number of patients with at least one condition   7 (46.7%)    6 (40.0%)      10 (66.7%)  
+          Total number of conditions                                 8            11             16      
+          trm A_2/2                                              5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          trm A_1/2                                              3 (20.0%)     1 (6.7%)      6 (40.0%)   
+        cl B                                                                                             
+          Total number of patients with at least one condition   12 (80.0%)   11 (73.3%)     12 (80.0%)  
+          Total number of conditions                                 24           21             32      
+          trm B_3/3                                              8 (53.3%)    6 (40.0%)      7 (46.7%)   
+          trm B_1/3                                              5 (33.3%)    6 (40.0%)      8 (53.3%)   
+          trm B_2/3                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
+        cl C                                                                                             
+          Total number of patients with at least one condition   8 (53.3%)    6 (40.0%)      11 (73.3%)  
+          Total number of conditions                                 10           13             22      
+          trm C_2/2                                              6 (40.0%)    4 (26.7%)      8 (53.3%)   
+          trm C_1/2                                              4 (26.7%)    4 (26.7%)      5 (33.3%)   
+        cl D                                                                                             
+          Total number of patients with at least one condition   10 (66.7%)   7 (46.7%)      13 (86.7%)  
+          Total number of conditions                                 16           14             29      
+          trm D_1/3                                              4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          trm D_2/3                                              6 (40.0%)    2 (13.3%)      7 (46.7%)   
+          trm D_3/3                                              2 (13.3%)    5 (33.3%)      7 (46.7%)   
 
 # mht01 works on NULL in lbl_mhbodsys or lbl_mhdecod
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination
-          MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)    
-        ———————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one condition     122 (91.0%)   123 (91.8%)    120 (90.9%)  
-        Total number of conditions                                   609           622            703      
-        cl A                                                                                               
-          Total number of patients with at least one condition   78 (58.2%)    75 (56.0%)      89 (67.4%)  
-          Total number of conditions                                 132           130            160      
-          trm A_1/2                                              50 (37.3%)    45 (33.6%)      63 (47.7%)  
-          trm A_2/2                                              48 (35.8%)    48 (35.8%)      50 (37.9%)  
-        cl B                                                                                               
-          Total number of patients with at least one condition   96 (71.6%)    89 (66.4%)      97 (73.5%)  
-          Total number of conditions                                 185           198            205      
-          trm B_3/3                                              48 (35.8%)    54 (40.3%)      51 (38.6%)  
-          trm B_2/3                                              49 (36.6%)    44 (32.8%)      52 (39.4%)  
-          trm B_1/3                                              47 (35.1%)    49 (36.6%)      43 (32.6%)  
-        cl C                                                                                               
-          Total number of patients with at least one condition   67 (50.0%)    75 (56.0%)      79 (59.8%)  
-          Total number of conditions                                 103           116            129      
-          trm C_2/2                                              35 (26.1%)    48 (35.8%)      55 (41.7%)  
-          trm C_1/2                                              43 (32.1%)    46 (34.3%)      43 (32.6%)  
-        cl D                                                                                               
-          Total number of patients with at least one condition   96 (71.6%)    90 (67.2%)      98 (74.2%)  
-          Total number of conditions                                 189           178            209      
-          trm D_3/3                                              47 (35.1%)    58 (43.3%)      57 (43.2%)  
-          trm D_1/3                                              50 (37.3%)    42 (31.3%)      51 (38.6%)  
-          trm D_2/3                                              48 (35.8%)    42 (31.3%)      50 (37.9%)  
+        MedDRA System Organ Class                                A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term                                    (N=15)       (N=15)         (N=15)    
+        —————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one condition     13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of conditions                                   58           59             99      
+        cl A                                                                                             
+          Total number of patients with at least one condition   7 (46.7%)    6 (40.0%)      10 (66.7%)  
+          Total number of conditions                                 8            11             16      
+          trm A_2/2                                              5 (33.3%)    6 (40.0%)      6 (40.0%)   
+          trm A_1/2                                              3 (20.0%)     1 (6.7%)      6 (40.0%)   
+        cl B                                                                                             
+          Total number of patients with at least one condition   12 (80.0%)   11 (73.3%)     12 (80.0%)  
+          Total number of conditions                                 24           21             32      
+          trm B_3/3                                              8 (53.3%)    6 (40.0%)      7 (46.7%)   
+          trm B_1/3                                              5 (33.3%)    6 (40.0%)      8 (53.3%)   
+          trm B_2/3                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
+        cl C                                                                                             
+          Total number of patients with at least one condition   8 (53.3%)    6 (40.0%)      11 (73.3%)  
+          Total number of conditions                                 10           13             22      
+          trm C_2/2                                              6 (40.0%)    4 (26.7%)      8 (53.3%)   
+          trm C_1/2                                              4 (26.7%)    4 (26.7%)      5 (33.3%)   
+        cl D                                                                                             
+          Total number of patients with at least one condition   10 (66.7%)   7 (46.7%)      13 (86.7%)  
+          Total number of conditions                                 16           14             29      
+          trm D_1/3                                              4 (26.7%)    4 (26.7%)      7 (46.7%)   
+          trm D_2/3                                              6 (40.0%)    2 (13.3%)      7 (46.7%)   
+          trm D_3/3                                              2 (13.3%)    5 (33.3%)      7 (46.7%)   
 

@@ -46,7 +46,11 @@ Commonly used arguments include \code{col_symbol_size}, \code{col}, \code{vline}
 \code{method}, \code{label_all}, etc.}
 }
 \value{
+the main function returns a \code{grob} object.
+
 a \code{gTree} object.
+
+the preprocessing function returns a \code{list} of \code{data.frame}.
 }
 \description{
 The template produces the subgroup analysis of best overall response graphic.

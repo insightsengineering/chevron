@@ -15,12 +15,10 @@ check_all_colnames(df, x, null_ok = TRUE, qualifier = NULL)
 
 \item{qualifier}{(\code{string}) to be returned if the check fails.}
 }
+\value{
+invisible \code{NULL} or a string if the criteria are not fulfilled.
+}
 \description{
 Check that all names are among column names
-}
-\examples{
-check_all_colnames(mtcars, c("mpg", "cyl"))
-check_all_colnames(mtcars, c("mpg", "x"))
-check_all_colnames(mtcars, c("x", "y"))
 }
 \keyword{internal}

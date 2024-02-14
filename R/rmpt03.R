@@ -3,6 +3,7 @@
 #' @describeIn rmpt03 Main TLG function
 #'
 #' @inheritParams rmpt01
+#' @returns the main function returns an `rtables` object.
 #' @details
 #'   * Person time is the sum of exposure across all patients.
 #'   * Summary statistics are by default based on the number of patients in the corresponding `N` row
@@ -22,7 +23,7 @@ rmpt03_main <- modify_default_args(
 #'
 #' @inheritParams gen_args
 #' @inheritParams rmpt03_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 rmpt03_pre <- modify_default_args(

@@ -3,8 +3,8 @@
 #' @describeIn coxt02 Main TLG function
 #'
 #' @inherit coxt01_main
-#'
-#' @source `utils.R`
+#' @include utils.R
+#' @returns the main function returns an `rtables` object.
 #'
 #' @export
 #'

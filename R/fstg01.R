@@ -17,6 +17,7 @@
 #'  `h_odds_ratio_subgroups_df` and `h_proportion_subgroups_df`). For details, see the documentation in `tern`.
 #'  Commonly used arguments include `col_symbol_size`, `col`, `vline`, `groups_lists`, `conf_level`,
 #'  `method`, `label_all`, etc.
+#' @returns the main function returns a `grob` object.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with `"PARAMCD"`, `"ARM"`,
@@ -25,7 +26,7 @@
 #'  * If the plot is too large to be rendered in the output, please provide `gp`, `width_row_names`,
 #'  `width_columns` and `width_forest` manually to make it fit. See `tern::g_forest` for more details.
 #'
-#' @return a `gTree` object.
+#' @returns a `gTree` object.
 #'
 #' @export
 #'
@@ -74,14 +75,14 @@ fstg01_main <- function(adam_db,
     g_forest,
     tbl = result,
     ...,
-    gp = grid::gpar(fontsize = 7),
-    draw = FALSE
+    font_size = 7
   )
 }
 
 #' @describeIn fstg01 Preprocessing
 #'
 #' @inheritParams fstg01_main
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #'
 #' @export
 #'

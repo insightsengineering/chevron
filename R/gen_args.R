@@ -25,6 +25,7 @@
 #' @param page_var (`string`) variable name prior to which the row split is by page.
 #' @param unique_rows (`flag`) whether to keep only unique rows in listing.
 #' @param ... not used.
+#' @returns invisible `NULL`. This function is for documentation purpose only.
 #'
 #' @details the following arguments are better provided through the study object: `lbl_overall`, `arm_var`.
 #'

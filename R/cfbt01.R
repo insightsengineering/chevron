@@ -12,6 +12,7 @@
 #' @param .stats (`character`) statistics names, see `tern::analyze_vars()`.
 #' @param skip Named (`list`) of visit values that need to be inhibited.
 #' @param ... additional arguments like `.indent_mods`, `.labels`.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * The `Analysis Value` column, displays the number of patients, the mean, standard deviation, median and range of
@@ -116,6 +117,7 @@ cfbt01_main <- function(adam_db,
 #' @param summaryvars_lbls (`character`) the label of the variables to be analyzed.
 #' @param row_split_lbl (`character`) label of further row splits.
 #' @param visitvar (`string`) typically one of `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
+#' @returns a `PreDataTableLayouts` object.
 #'
 #' @keywords internal
 #'
@@ -177,7 +179,7 @@ cfbt01_lyt <- function(arm_var,
 #' @describeIn cfbt01 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 cfbt01_pre <- function(adam_db, dataset, ...) {
@@ -196,7 +198,7 @@ cfbt01_pre <- function(adam_db, dataset, ...) {
 #' @describeIn cfbt01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {

@@ -24,6 +24,7 @@
 #' `diff_pval_method` controls the methods of calculating unstratified p-value for odds ratio,
 #' `strat_diff_pval_method` controls the methods of calculating stratified p-value for odds ratio,
 #' see more details in `tern`
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #' * No overall value.
@@ -135,7 +136,7 @@ rspt01_lyt <- function(arm_var,
 #' @describeIn rspt01 Preprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 rspt01_pre <- function(adam_db, ...) {
@@ -148,7 +149,7 @@ rspt01_pre <- function(adam_db, ...) {
 #' @describeIn rspt01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 rspt01_post <- function(tlg, prune_0 = TRUE, ...) {

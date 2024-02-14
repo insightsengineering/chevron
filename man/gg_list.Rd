@@ -7,7 +7,10 @@
 gg_list(...)
 }
 \arguments{
-\item{...}{(\code{ggplot}) objects}
+\item{...}{(\code{ggplot}) objects.}
+}
+\value{
+a \code{gg_list} object.
 }
 \description{
 List of \code{gg} object

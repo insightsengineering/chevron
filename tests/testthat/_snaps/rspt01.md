@@ -3,22 +3,22 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                             A: Drug X          B: Placebo         C: Combination   
-                                              (N=134)            (N=134)               (N=132)      
-      ——————————————————————————————————————————————————————————————————————————————————————————————
-      Responders                            133 (99.3%)        127 (94.8%)           131 (99.2%)    
-      95% CI (Wald, with correction)       (97.4, 100.0)       (90.6, 98.9)         (97.4, 100.0)   
-      Unstratified Analysis                                                                         
-        Difference in Response rate (%)                            -4.5                 -0.0        
-          95% CI (Wald, with correction)                       (-9.3, 0.3)           (-2.8, 2.8)    
-        p-value (Fisher's Exact Test)                             0.0662               1.0000       
-      Odds Ratio (95% CI)                                   0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-      Complete Response (CR)                119 (88.8%)         97 (72.4%)           120 (90.9%)    
-        95% CI (Wald, with correction)     (83.09, 94.52)     (64.45, 80.33)       (85.63, 96.19)   
-      Partial Response (PR)                  14 (10.4%)         30 (22.4%)            11 (8.3%)     
-        95% CI (Wald, with correction)     (4.90, 16.00)      (14.96, 29.82)        (3.24, 13.43)   
-      Stable Disease (SD)                     1 (0.7%)           7 (5.2%)             1 (0.8%)      
-        95% CI (Wald, with correction)      (0.00, 2.58)       (1.08, 9.36)         (0.00, 2.62)    
+                                             A: Drug X          B: Placebo         C: Combination  
+                                               (N=15)             (N=15)               (N=15)      
+      —————————————————————————————————————————————————————————————————————————————————————————————
+      Responders                             10 (66.7%)         9 (60.0%)            11 (73.3%)    
+      95% CI (Wald, with correction)        (39.5, 93.9)       (31.9, 88.1)         (47.6, 99.0)   
+      Unstratified Analysis                                                                        
+        Difference in Response rate (%)                            -6.7                 6.7        
+          95% CI (Wald, with correction)                      (-47.7, 34.4)        (-32.7, 46.0)   
+        p-value (Fisher's Exact Test)                             1.0000               1.0000      
+      Odds Ratio (95% CI)                                   0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+      Complete Response (CR)                 4 (26.7%)          4 (26.7%)            7 (46.7%)     
+        95% CI (Wald, with correction)     (0.95, 52.38)      (0.95, 52.38)        (18.09, 75.25)  
+      Partial Response (PR)                  6 (40.0%)          5 (33.3%)            4 (26.7%)     
+        95% CI (Wald, with correction)     (11.87, 68.13)     (6.14, 60.52)        (0.95, 52.38)   
+      Stable Disease (SD)                    5 (33.3%)          6 (40.0%)            4 (26.7%)     
+        95% CI (Wald, with correction)     (6.14, 60.52)      (11.87, 68.13)       (0.95, 52.38)   
 
 # rspt01 works as expected for stratified and unstratified analysis
 
@@ -26,51 +26,51 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                      A: Drug X        B: Placebo     C: Combination
-                                                      (N=134)          (N=134)          (N=132)    
+                                                       (N=15)           (N=15)           (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                  133 (99.3%)      127 (94.8%)      131 (99.2%)  
-        95% CI (Wald, with correction)             (97.4, 100.0)     (90.6, 98.9)    (97.4, 100.0) 
+        Responders                                   10 (66.7%)       9 (60.0%)        11 (73.3%)  
+        95% CI (Wald, with correction)              (39.5, 93.9)     (31.9, 88.1)     (47.6, 99.0) 
         Unstratified Analysis                                                                      
-          Difference in Response rate (%)                                -4.5             -0.0     
-            95% CI (Wald, with correction)                           (-9.3, 0.3)      (-2.8, 2.8)  
-          p-value (Fisher's Exact Test)                                 0.0662           1.0000    
+          Difference in Response rate (%)                                -6.7             6.7      
+            95% CI (Wald, with correction)                          (-47.7, 34.4)    (-32.7, 46.0) 
+          p-value (Fisher's Exact Test)                                 1.0000           1.0000    
         Stratified Analysis                                                                        
-          Difference in Response rate (%)                                -4.4             0.1      
-            95% CI (CMH, without correction)                         (-8.5, -0.3)     (-2.2, 2.3)  
-          p-value (Cochran-Mantel-Haenszel Test)                        0.0344           0.9560    
-        Complete Response (CR)                      119 (88.8%)       97 (72.4%)      120 (90.9%)  
-          95% CI (Wald, with correction)           (83.09, 94.52)   (64.45, 80.33)   (85.63, 96.19)
-        Partial Response (PR)                        14 (10.4%)       30 (22.4%)       11 (8.3%)   
-          95% CI (Wald, with correction)           (4.90, 16.00)    (14.96, 29.82)   (3.24, 13.43) 
-        Stable Disease (SD)                           1 (0.7%)         7 (5.2%)         1 (0.8%)   
-          95% CI (Wald, with correction)            (0.00, 2.58)     (1.08, 9.36)     (0.00, 2.62) 
+          Difference in Response rate (%)                                -7.7             9.2      
+            95% CI (CMH, without correction)                        (-41.6, 26.2)    (-19.0, 37.5) 
+          p-value (Cochran-Mantel-Haenszel Test)                        0.6699           0.6257    
+        Complete Response (CR)                       4 (26.7%)        4 (26.7%)        7 (46.7%)   
+          95% CI (Wald, with correction)           (0.95, 52.38)    (0.95, 52.38)    (18.09, 75.25)
+        Partial Response (PR)                        6 (40.0%)        5 (33.3%)        4 (26.7%)   
+          95% CI (Wald, with correction)           (11.87, 68.13)   (6.14, 60.52)    (0.95, 52.38) 
+        Stable Disease (SD)                          5 (33.3%)        6 (40.0%)        4 (26.7%)   
+          95% CI (Wald, with correction)           (6.14, 60.52)    (11.87, 68.13)   (0.95, 52.38) 
 
 ---
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                     A: Drug X          B: Placebo         C: Combination   
-                                                      (N=134)            (N=134)               (N=132)      
-        ————————————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                  133 (99.3%)        127 (94.8%)           131 (99.2%)    
-        95% CI (Wald, with correction)             (97.4, 100.0)       (90.6, 98.9)         (97.4, 100.0)   
-        Stratified Analysis                                                                                 
-          Difference in Response rate (%)                                  -4.4                  0.1        
-            95% CI (CMH, without correction)                           (-8.5, -0.3)          (-2.2, 2.3)    
-          p-value (Cochran-Mantel-Haenszel Test)                          0.0344               0.9560       
-        Odds Ratio (95% CI)                                         0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Unstratified Analysis                                                                               
-          Difference in Response rate (%)                                  -4.5                 -0.0        
-            95% CI (Wald, with correction)                             (-9.3, 0.3)           (-2.8, 2.8)    
-          p-value (Fisher's Exact Test)                                   0.0662               1.0000       
-        Odds Ratio (95% CI)                                         0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Complete Response (CR)                      119 (88.8%)         97 (72.4%)           120 (90.9%)    
-          95% CI (Wald, with correction)           (83.09, 94.52)     (64.45, 80.33)       (85.63, 96.19)   
-        Partial Response (PR)                        14 (10.4%)         30 (22.4%)            11 (8.3%)     
-          95% CI (Wald, with correction)           (4.90, 16.00)      (14.96, 29.82)        (3.24, 13.43)   
-        Stable Disease (SD)                           1 (0.7%)           7 (5.2%)             1 (0.8%)      
-          95% CI (Wald, with correction)            (0.00, 2.58)       (1.08, 9.36)         (0.00, 2.62)    
+                                                     A: Drug X          B: Placebo         C: Combination  
+                                                       (N=15)             (N=15)               (N=15)      
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                   10 (66.7%)         9 (60.0%)            11 (73.3%)    
+        95% CI (Wald, with correction)              (39.5, 93.9)       (31.9, 88.1)         (47.6, 99.0)   
+        Stratified Analysis                                                                                
+          Difference in Response rate (%)                                  -7.7                 9.2        
+            95% CI (CMH, without correction)                          (-41.6, 26.2)        (-19.0, 37.5)   
+          p-value (Cochran-Mantel-Haenszel Test)                          0.6699               0.6257      
+        Odds Ratio (95% CI)                                         0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Unstratified Analysis                                                                              
+          Difference in Response rate (%)                                  -6.7                 6.7        
+            95% CI (Wald, with correction)                            (-47.7, 34.4)        (-32.7, 46.0)   
+          p-value (Fisher's Exact Test)                                   1.0000               1.0000      
+        Odds Ratio (95% CI)                                         0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Complete Response (CR)                       4 (26.7%)          4 (26.7%)            7 (46.7%)     
+          95% CI (Wald, with correction)           (0.95, 52.38)      (0.95, 52.38)        (18.09, 75.25)  
+        Partial Response (PR)                        6 (40.0%)          5 (33.3%)            4 (26.7%)     
+          95% CI (Wald, with correction)           (11.87, 68.13)     (6.14, 60.52)        (0.95, 52.38)   
+        Stable Disease (SD)                          5 (33.3%)          6 (40.0%)            4 (26.7%)     
+          95% CI (Wald, with correction)           (6.14, 60.52)      (11.87, 68.13)       (0.95, 52.38)   
 
 # rspt01 works as expected for unstratified analysis only
 
@@ -78,42 +78,42 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                A: Drug X        B: Placebo     C: Combination
-                                                (N=134)          (N=134)          (N=132)    
+                                                 (N=15)           (N=15)           (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————
-        Responders                            133 (99.3%)      127 (94.8%)      131 (99.2%)  
-        95% CI (Wald, with correction)       (97.4, 100.0)     (90.6, 98.9)    (97.4, 100.0) 
+        Responders                             10 (66.7%)       9 (60.0%)        11 (73.3%)  
+        95% CI (Wald, with correction)        (39.5, 93.9)     (31.9, 88.1)     (47.6, 99.0) 
         Unstratified Analysis                                                                
-          Difference in Response rate (%)                          -4.5             -0.0     
-            95% CI (Wald, with correction)                     (-9.3, 0.3)      (-2.8, 2.8)  
-          p-value (Fisher's Exact Test)                           0.0662           1.0000    
-        Complete Response (CR)                119 (88.8%)       97 (72.4%)      120 (90.9%)  
-          95% CI (Wald, with correction)     (83.09, 94.52)   (64.45, 80.33)   (85.63, 96.19)
-        Partial Response (PR)                  14 (10.4%)       30 (22.4%)       11 (8.3%)   
-          95% CI (Wald, with correction)     (4.90, 16.00)    (14.96, 29.82)   (3.24, 13.43) 
-        Stable Disease (SD)                     1 (0.7%)         7 (5.2%)         1 (0.8%)   
-          95% CI (Wald, with correction)      (0.00, 2.58)     (1.08, 9.36)     (0.00, 2.62) 
+          Difference in Response rate (%)                          -6.7             6.7      
+            95% CI (Wald, with correction)                    (-47.7, 34.4)    (-32.7, 46.0) 
+          p-value (Fisher's Exact Test)                           1.0000           1.0000    
+        Complete Response (CR)                 4 (26.7%)        4 (26.7%)        7 (46.7%)   
+          95% CI (Wald, with correction)     (0.95, 52.38)    (0.95, 52.38)    (18.09, 75.25)
+        Partial Response (PR)                  6 (40.0%)        5 (33.3%)        4 (26.7%)   
+          95% CI (Wald, with correction)     (11.87, 68.13)   (6.14, 60.52)    (0.95, 52.38) 
+        Stable Disease (SD)                    5 (33.3%)        6 (40.0%)        4 (26.7%)   
+          95% CI (Wald, with correction)     (6.14, 60.52)    (11.87, 68.13)   (0.95, 52.38) 
 
 ---
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                               A: Drug X          B: Placebo         C: Combination   
-                                                (N=134)            (N=134)               (N=132)      
-        ——————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                            133 (99.3%)        127 (94.8%)           131 (99.2%)    
-        95% CI (Wald, with correction)       (97.4, 100.0)       (90.6, 98.9)         (97.4, 100.0)   
-        Unstratified Analysis                                                                         
-          Difference in Response rate (%)                            -4.5                 -0.0        
-            95% CI (Wald, with correction)                       (-9.3, 0.3)           (-2.8, 2.8)    
-          p-value (Fisher's Exact Test)                             0.0662               1.0000       
-        Odds Ratio (95% CI)                                   0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Complete Response (CR)                119 (88.8%)         97 (72.4%)           120 (90.9%)    
-          95% CI (Wald, with correction)     (83.09, 94.52)     (64.45, 80.33)       (85.63, 96.19)   
-        Partial Response (PR)                  14 (10.4%)         30 (22.4%)            11 (8.3%)     
-          95% CI (Wald, with correction)     (4.90, 16.00)      (14.96, 29.82)        (3.24, 13.43)   
-        Stable Disease (SD)                     1 (0.7%)           7 (5.2%)             1 (0.8%)      
-          95% CI (Wald, with correction)      (0.00, 2.58)       (1.08, 9.36)         (0.00, 2.62)    
+                                               A: Drug X          B: Placebo         C: Combination  
+                                                 (N=15)             (N=15)               (N=15)      
+        —————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                             10 (66.7%)         9 (60.0%)            11 (73.3%)    
+        95% CI (Wald, with correction)        (39.5, 93.9)       (31.9, 88.1)         (47.6, 99.0)   
+        Unstratified Analysis                                                                        
+          Difference in Response rate (%)                            -6.7                 6.7        
+            95% CI (Wald, with correction)                      (-47.7, 34.4)        (-32.7, 46.0)   
+          p-value (Fisher's Exact Test)                             1.0000               1.0000      
+        Odds Ratio (95% CI)                                   0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Complete Response (CR)                 4 (26.7%)          4 (26.7%)            7 (46.7%)     
+          95% CI (Wald, with correction)     (0.95, 52.38)      (0.95, 52.38)        (18.09, 75.25)  
+        Partial Response (PR)                  6 (40.0%)          5 (33.3%)            4 (26.7%)     
+          95% CI (Wald, with correction)     (11.87, 68.13)     (6.14, 60.52)        (0.95, 52.38)   
+        Stable Disease (SD)                    5 (33.3%)          6 (40.0%)            4 (26.7%)     
+          95% CI (Wald, with correction)     (6.14, 60.52)      (11.87, 68.13)       (0.95, 52.38)   
 
 # rspt01 works as expected for stratified analysis only
 
@@ -121,113 +121,113 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                      A: Drug X        B: Placebo     C: Combination
-                                                      (N=134)          (N=134)          (N=132)    
+                                                       (N=15)           (N=15)           (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                  133 (99.3%)      127 (94.8%)      131 (99.2%)  
-        95% CI (Wald, with correction)             (97.4, 100.0)     (90.6, 98.9)    (97.4, 100.0) 
+        Responders                                   10 (66.7%)       9 (60.0%)        11 (73.3%)  
+        95% CI (Wald, with correction)              (39.5, 93.9)     (31.9, 88.1)     (47.6, 99.0) 
         Stratified Analysis                                                                        
-          Difference in Response rate (%)                                -4.4             0.1      
-            95% CI (CMH, without correction)                         (-8.5, -0.3)     (-2.2, 2.3)  
-          p-value (Cochran-Mantel-Haenszel Test)                        0.0344           0.9560    
-        Complete Response (CR)                      119 (88.8%)       97 (72.4%)      120 (90.9%)  
-          95% CI (Wald, with correction)           (83.09, 94.52)   (64.45, 80.33)   (85.63, 96.19)
-        Partial Response (PR)                        14 (10.4%)       30 (22.4%)       11 (8.3%)   
-          95% CI (Wald, with correction)           (4.90, 16.00)    (14.96, 29.82)   (3.24, 13.43) 
-        Stable Disease (SD)                           1 (0.7%)         7 (5.2%)         1 (0.8%)   
-          95% CI (Wald, with correction)            (0.00, 2.58)     (1.08, 9.36)     (0.00, 2.62) 
+          Difference in Response rate (%)                                -7.7             9.2      
+            95% CI (CMH, without correction)                        (-41.6, 26.2)    (-19.0, 37.5) 
+          p-value (Cochran-Mantel-Haenszel Test)                        0.6699           0.6257    
+        Complete Response (CR)                       4 (26.7%)        4 (26.7%)        7 (46.7%)   
+          95% CI (Wald, with correction)           (0.95, 52.38)    (0.95, 52.38)    (18.09, 75.25)
+        Partial Response (PR)                        6 (40.0%)        5 (33.3%)        4 (26.7%)   
+          95% CI (Wald, with correction)           (11.87, 68.13)   (6.14, 60.52)    (0.95, 52.38) 
+        Stable Disease (SD)                          5 (33.3%)        6 (40.0%)        4 (26.7%)   
+          95% CI (Wald, with correction)           (6.14, 60.52)    (11.87, 68.13)   (0.95, 52.38) 
 
 ---
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                     A: Drug X          B: Placebo         C: Combination   
-                                                      (N=134)            (N=134)               (N=132)      
-        ————————————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                  133 (99.3%)        127 (94.8%)           131 (99.2%)    
-        95% CI (Wald, with correction)             (97.4, 100.0)       (90.6, 98.9)         (97.4, 100.0)   
-        Stratified Analysis                                                                                 
-          Difference in Response rate (%)                                  -4.4                  0.1        
-            95% CI (CMH, without correction)                           (-8.5, -0.3)          (-2.2, 2.3)    
-          p-value (Cochran-Mantel-Haenszel Test)                          0.0344               0.9560       
-        Odds Ratio (95% CI)                                         0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Complete Response (CR)                      119 (88.8%)         97 (72.4%)           120 (90.9%)    
-          95% CI (Wald, with correction)           (83.09, 94.52)     (64.45, 80.33)       (85.63, 96.19)   
-        Partial Response (PR)                        14 (10.4%)         30 (22.4%)            11 (8.3%)     
-          95% CI (Wald, with correction)           (4.90, 16.00)      (14.96, 29.82)        (3.24, 13.43)   
-        Stable Disease (SD)                           1 (0.7%)           7 (5.2%)             1 (0.8%)      
-          95% CI (Wald, with correction)            (0.00, 2.58)       (1.08, 9.36)         (0.00, 2.62)    
+                                                     A: Drug X          B: Placebo         C: Combination  
+                                                       (N=15)             (N=15)               (N=15)      
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                   10 (66.7%)         9 (60.0%)            11 (73.3%)    
+        95% CI (Wald, with correction)              (39.5, 93.9)       (31.9, 88.1)         (47.6, 99.0)   
+        Stratified Analysis                                                                                
+          Difference in Response rate (%)                                  -7.7                 9.2        
+            95% CI (CMH, without correction)                          (-41.6, 26.2)        (-19.0, 37.5)   
+          p-value (Cochran-Mantel-Haenszel Test)                          0.6699               0.6257      
+        Odds Ratio (95% CI)                                         0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Complete Response (CR)                       4 (26.7%)          4 (26.7%)            7 (46.7%)     
+          95% CI (Wald, with correction)           (0.95, 52.38)      (0.95, 52.38)        (18.09, 75.25)  
+        Partial Response (PR)                        6 (40.0%)          5 (33.3%)            4 (26.7%)     
+          95% CI (Wald, with correction)           (11.87, 68.13)     (6.14, 60.52)        (0.95, 52.38)   
+        Stable Disease (SD)                          5 (33.3%)          6 (40.0%)            4 (26.7%)     
+          95% CI (Wald, with correction)           (6.14, 60.52)      (11.87, 68.13)       (0.95, 52.38)   
 
 # rspt01 works if change reference group
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                  A: Drug X          B: Placebo       C: Combination   
-                                                   (N=134)            (N=134)             (N=132)      
-        ———————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                               133 (99.3%)        127 (94.8%)         131 (99.2%)    
-        95% CI (Wald, with correction)          (97.4, 100.0)       (90.6, 98.9)       (97.4, 100.0)   
-        Unstratified Analysis                                                                          
-          Difference in Response rate (%)            4.5                                    4.5        
-            95% CI (Wald, with correction)       (-0.3, 9.3)                            (-0.3, 9.3)    
-          p-value (Fisher's Exact Test)            0.0662                                 0.0663       
-        Odds Ratio (95% CI)                  7.33 (0.89 - 60.42)                    7.22 (0.88 - 59.52)
-        Complete Response (CR)                   119 (88.8%)         97 (72.4%)         120 (90.9%)    
-          95% CI (Wald, with correction)       (83.09, 94.52)      (64.45, 80.33)     (85.63, 96.19)   
-        Partial Response (PR)                    14 (10.4%)          30 (22.4%)          11 (8.3%)     
-          95% CI (Wald, with correction)        (4.90, 16.00)      (14.96, 29.82)      (3.24, 13.43)   
-        Stable Disease (SD)                       1 (0.7%)            7 (5.2%)           1 (0.8%)      
-          95% CI (Wald, with correction)        (0.00, 2.58)        (1.08, 9.36)       (0.00, 2.62)    
+                                                 A: Drug X          B: Placebo       C: Combination  
+                                                   (N=15)             (N=15)             (N=15)      
+        —————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                               10 (66.7%)         9 (60.0%)          11 (73.3%)    
+        95% CI (Wald, with correction)          (39.5, 93.9)       (31.9, 88.1)       (47.6, 99.0)   
+        Unstratified Analysis                                                                        
+          Difference in Response rate (%)           6.7                                   13.3       
+            95% CI (Wald, with correction)     (-34.4, 47.7)                         (-26.7, 53.4)   
+          p-value (Fisher's Exact Test)            1.0000                                0.6999      
+        Odds Ratio (95% CI)                  1.33 (0.30 - 5.91)                    1.83 (0.39 - 8.57)
+        Complete Response (CR)                   4 (26.7%)          4 (26.7%)          7 (46.7%)     
+          95% CI (Wald, with correction)       (0.95, 52.38)      (0.95, 52.38)      (18.09, 75.25)  
+        Partial Response (PR)                    6 (40.0%)          5 (33.3%)          4 (26.7%)     
+          95% CI (Wald, with correction)       (11.87, 68.13)     (6.14, 60.52)      (0.95, 52.38)   
+        Stable Disease (SD)                      5 (33.3%)          6 (40.0%)          4 (26.7%)     
+          95% CI (Wald, with correction)       (6.14, 60.52)      (11.87, 68.13)     (0.95, 52.38)   
 
 ---
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                        A: Drug X          B: Placebo       C: Combination   
-                                                         (N=134)            (N=134)             (N=132)      
-        —————————————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                     133 (99.3%)        127 (94.8%)         131 (99.2%)    
-        95% CI (Wald, with correction)                (97.4, 100.0)       (90.6, 98.9)       (97.4, 100.0)   
-        Unstratified Analysis                                                                                
-          Difference in Response rate (%)                  4.5                                    4.5        
-            95% CI (Wald, with correction)             (-0.3, 9.3)                            (-0.3, 9.3)    
-          p-value (Fisher's Exact Test)                  0.0662                                 0.0663       
-        Odds Ratio (95% CI)                        7.33 (0.89 - 60.42)                    7.22 (0.88 - 59.52)
-        Stratified Analysis                                                                                  
-          Difference in Response rate (%)                  4.4                                    4.6        
-            95% CI (CMH, without correction)           (0.3, 8.5)                             (0.5, 8.6)     
-          p-value (Cochran-Mantel-Haenszel Test)         0.0344                                 0.0319       
-        Odds Ratio (95% CI)                        7.33 (0.89 - 60.42)                    7.22 (0.88 - 59.52)
-        Complete Response (CR)                         119 (88.8%)         97 (72.4%)         120 (90.9%)    
-          95% CI (Wald, with correction)             (83.09, 94.52)      (64.45, 80.33)     (85.63, 96.19)   
-        Partial Response (PR)                          14 (10.4%)          30 (22.4%)          11 (8.3%)     
-          95% CI (Wald, with correction)              (4.90, 16.00)      (14.96, 29.82)      (3.24, 13.43)   
-        Stable Disease (SD)                             1 (0.7%)            7 (5.2%)           1 (0.8%)      
-          95% CI (Wald, with correction)              (0.00, 2.58)        (1.08, 9.36)       (0.00, 2.62)    
+                                                       A: Drug X          B: Placebo       C: Combination  
+                                                         (N=15)             (N=15)             (N=15)      
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                     10 (66.7%)         9 (60.0%)          11 (73.3%)    
+        95% CI (Wald, with correction)                (39.5, 93.9)       (31.9, 88.1)       (47.6, 99.0)   
+        Unstratified Analysis                                                                              
+          Difference in Response rate (%)                 6.7                                   13.3       
+            95% CI (Wald, with correction)           (-34.4, 47.7)                         (-26.7, 53.4)   
+          p-value (Fisher's Exact Test)                  1.0000                                0.6999      
+        Odds Ratio (95% CI)                        1.33 (0.30 - 5.91)                    1.83 (0.39 - 8.57)
+        Stratified Analysis                                                                                
+          Difference in Response rate (%)                 7.7                                   16.7       
+            95% CI (CMH, without correction)         (-26.2, 41.6)                         (-14.0, 47.4)   
+          p-value (Cochran-Mantel-Haenszel Test)         0.6699                                0.3760      
+        Odds Ratio (95% CI)                        1.33 (0.30 - 5.91)                    1.83 (0.39 - 8.57)
+        Complete Response (CR)                         4 (26.7%)          4 (26.7%)          7 (46.7%)     
+          95% CI (Wald, with correction)             (0.95, 52.38)      (0.95, 52.38)      (18.09, 75.25)  
+        Partial Response (PR)                          6 (40.0%)          5 (33.3%)          4 (26.7%)     
+          95% CI (Wald, with correction)             (11.87, 68.13)     (6.14, 60.52)      (0.95, 52.38)   
+        Stable Disease (SD)                            5 (33.3%)          6 (40.0%)          4 (26.7%)     
+          95% CI (Wald, with correction)             (6.14, 60.52)      (11.87, 68.13)     (0.95, 52.38)   
 
 # rspt01 works if change statistic methods
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                  A: Drug X          B: Placebo         C: Combination   
-                                                   (N=134)            (N=134)               (N=132)      
-        —————————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                               133 (99.3%)        127 (94.8%)           131 (99.2%)    
-        95% CI (Wald, without correction)       (97.8, 100.0)       (91.0, 98.5)         (97.8, 100.0)   
-        Unstratified Analysis                                                                            
-          Difference in Response rate (%)                               -4.5                 -0.0        
-            95% CI (Wald, without correction)                       (-8.5, -0.4)          (-2.1, 2.1)    
-          p-value (Fisher's Exact Test)                                0.0662               1.0000       
-        Odds Ratio (95% CI)                                      0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Complete Response (CR)                   119 (88.8%)         97 (72.4%)           120 (90.9%)    
-          95% CI (Wald, without correction)     (83.47, 94.14)     (64.82, 79.96)       (86.00, 95.81)   
-        Partial Response (PR)                     14 (10.4%)         30 (22.4%)            11 (8.3%)     
-          95% CI (Wald, without correction)     (5.27, 15.63)      (15.33, 29.45)        (3.62, 13.05)   
-        Stable Disease (SD)                        1 (0.7%)           7 (5.2%)             1 (0.8%)      
-          95% CI (Wald, without correction)      (0.00, 2.20)       (1.46, 8.99)         (0.00, 2.24)    
+                                                  A: Drug X          B: Placebo         C: Combination  
+                                                    (N=15)             (N=15)               (N=15)      
+        ————————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                10 (66.7%)         9 (60.0%)            11 (73.3%)    
+        95% CI (Wald, without correction)        (42.8, 90.5)       (35.2, 84.8)         (51.0, 95.7)   
+        Unstratified Analysis                                                                           
+          Difference in Response rate (%)                               -6.7                 6.7        
+            95% CI (Wald, without correction)                      (-41.1, 27.7)        (-26.0, 39.4)   
+          p-value (Fisher's Exact Test)                                1.0000               1.0000      
+        Odds Ratio (95% CI)                                      0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Complete Response (CR)                    4 (26.7%)          4 (26.7%)            7 (46.7%)     
+          95% CI (Wald, without correction)     (4.29, 49.05)      (4.29, 49.05)        (21.42, 71.91)  
+        Partial Response (PR)                     6 (40.0%)          5 (33.3%)            4 (26.7%)     
+          95% CI (Wald, without correction)     (15.21, 64.79)     (9.48, 57.19)        (4.29, 49.05)   
+        Stable Disease (SD)                       5 (33.3%)          6 (40.0%)            4 (26.7%)     
+          95% CI (Wald, without correction)     (9.48, 57.19)      (15.21, 64.79)       (4.29, 49.05)   
 
 ---
 
@@ -235,94 +235,94 @@
       cat(export_as_txt(res, lpp = 100))
     Output
                                                                   A: Drug X          B: Placebo    
-                                                                   (N=134)            (N=134)      
+                                                                    (N=15)             (N=15)      
         ———————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                               133 (99.3%)        127 (94.8%)    
-        95% CI (Wald, without correction)                       (97.8, 100.0)       (91.0, 98.5)   
+        Responders                                                10 (66.7%)         9 (60.0%)     
+        95% CI (Wald, without correction)                        (42.8, 90.5)       (35.2, 84.8)   
         Unstratified Analysis                                                                      
-          Difference in Response rate (%)                                               -4.5       
-            95% CI (Wald, without correction)                                       (-8.5, -0.4)   
-          p-value (Fisher's Exact Test)                                                0.0662      
-        Odds Ratio (95% CI)                                                      0.14 (0.02 - 1.12)
+          Difference in Response rate (%)                                               -6.7       
+            95% CI (Wald, without correction)                                      (-41.1, 27.7)   
+          p-value (Fisher's Exact Test)                                                1.0000      
+        Odds Ratio (95% CI)                                                      0.75 (0.17 - 3.33)
         Stratified Analysis                                                                        
-          Difference in Response rate (%)                                               -4.5       
-            95% CI (Anderson-Hauck)                                                 (-8.9, -0.0)   
-          p-value (Chi-Squared Test with Schouten Correction)                          0.0488      
-        Odds Ratio (95% CI)                                                      0.14 (0.02 - 1.12)
-        Complete Response (CR)                                   119 (88.8%)         97 (72.4%)    
-          95% CI (Wald, without correction)                     (83.47, 94.14)     (64.82, 79.96)  
-        Partial Response (PR)                                     14 (10.4%)         30 (22.4%)    
-          95% CI (Wald, without correction)                     (5.27, 15.63)      (15.33, 29.45)  
-        Stable Disease (SD)                                        1 (0.7%)           7 (5.2%)     
-          95% CI (Wald, without correction)                      (0.00, 2.20)       (1.46, 8.99)   
-      \s\n                                                            C: Combination   
-                                                                      (N=132)      
-        ———————————————————————————————————————————————————————————————————————————
-        Responders                                                  131 (99.2%)    
-        95% CI (Wald, without correction)                          (97.8, 100.0)   
-        Unstratified Analysis                                                      
-          Difference in Response rate (%)                              -0.0        
-            95% CI (Wald, without correction)                       (-2.1, 2.1)    
-          p-value (Fisher's Exact Test)                               1.0000       
-        Odds Ratio (95% CI)                                     0.98 (0.06 - 15.91)
-        Stratified Analysis                                                        
-          Difference in Response rate (%)                              -0.0        
-            95% CI (Anderson-Hauck)                                 (-2.5, 2.5)    
-          p-value (Chi-Squared Test with Schouten Correction)         0.7332       
-        Odds Ratio (95% CI)                                     0.98 (0.06 - 15.91)
-        Complete Response (CR)                                      120 (90.9%)    
-          95% CI (Wald, without correction)                       (86.00, 95.81)   
-        Partial Response (PR)                                        11 (8.3%)     
-          95% CI (Wald, without correction)                        (3.62, 13.05)   
-        Stable Disease (SD)                                          1 (0.8%)      
-          95% CI (Wald, without correction)                        (0.00, 2.24)    
+          Difference in Response rate (%)                                               -6.7       
+            95% CI (Anderson-Hauck)                                                (-45.6, 32.3)   
+          p-value (Chi-Squared Test with Schouten Correction)                          0.8522      
+        Odds Ratio (95% CI)                                                      0.75 (0.17 - 3.33)
+        Complete Response (CR)                                    4 (26.7%)          4 (26.7%)     
+          95% CI (Wald, without correction)                     (4.29, 49.05)      (4.29, 49.05)   
+        Partial Response (PR)                                     6 (40.0%)          5 (33.3%)     
+          95% CI (Wald, without correction)                     (15.21, 64.79)     (9.48, 57.19)   
+        Stable Disease (SD)                                       5 (33.3%)          6 (40.0%)     
+          95% CI (Wald, without correction)                     (9.48, 57.19)      (15.21, 64.79)  
+      \s\n                                                            C: Combination  
+                                                                      (N=15)      
+        ——————————————————————————————————————————————————————————————————————————
+        Responders                                                  11 (73.3%)    
+        95% CI (Wald, without correction)                          (51.0, 95.7)   
+        Unstratified Analysis                                                     
+          Difference in Response rate (%)                              6.7        
+            95% CI (Wald, without correction)                     (-26.0, 39.4)   
+          p-value (Fisher's Exact Test)                               1.0000      
+        Odds Ratio (95% CI)                                     1.37 (0.29 - 6.60)
+        Stratified Analysis                                                       
+          Difference in Response rate (%)                              6.7        
+            95% CI (Anderson-Hauck)                               (-30.5, 43.9)   
+          p-value (Chi-Squared Test with Schouten Correction)         0.8447      
+        Odds Ratio (95% CI)                                     1.37 (0.29 - 6.60)
+        Complete Response (CR)                                      7 (46.7%)     
+          95% CI (Wald, without correction)                       (21.42, 71.91)  
+        Partial Response (PR)                                       4 (26.7%)     
+          95% CI (Wald, without correction)                       (4.29, 49.05)   
+        Stable Disease (SD)                                         4 (26.7%)     
+          95% CI (Wald, without correction)                       (4.29, 49.05)   
 
 # rspt01 works if change confidence interval
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                               A: Drug X          B: Placebo         C: Combination   
-                                                (N=134)            (N=134)               (N=132)      
-        ——————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                            133 (99.3%)        127 (94.8%)           131 (99.2%)    
-        90% CI (Wald, with correction)       (97.7, 100.0)       (91.2, 98.3)         (97.6, 100.0)   
-        Unstratified Analysis                                                                         
-          Difference in Response rate (%)                            -4.5                 -0.0        
-            90% CI (Wald, with correction)                       (-8.6, -0.3)          (-2.5, 2.5)    
-          p-value (Fisher's Exact Test)                             0.0662               1.0000       
-        Odds Ratio (95% CI)                                   0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Complete Response (CR)                119 (88.8%)         97 (72.4%)           120 (90.9%)    
-          90% CI (Wald, with correction)     (83.95, 93.66)     (65.66, 79.11)       (86.41, 95.40)   
-        Partial Response (PR)                  14 (10.4%)         30 (22.4%)            11 (8.3%)     
-          90% CI (Wald, with correction)     (5.73, 15.17)      (16.09, 28.68)        (4.00, 12.67)   
-        Stable Disease (SD)                     1 (0.7%)           7 (5.2%)             1 (0.8%)      
-          90% CI (Wald, with correction)      (0.00, 2.34)       (1.69, 8.76)         (0.00, 2.38)    
+                                               A: Drug X          B: Placebo         C: Combination  
+                                                 (N=15)             (N=15)               (N=15)      
+        —————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                             10 (66.7%)         9 (60.0%)            11 (73.3%)    
+        90% CI (Wald, with correction)        (43.3, 90.0)       (35.9, 84.1)         (51.2, 95.4)   
+        Unstratified Analysis                                                                        
+          Difference in Response rate (%)                            -6.7                 6.7        
+            90% CI (Wald, with correction)                      (-42.2, 28.9)        (-27.5, 40.8)   
+          p-value (Fisher's Exact Test)                             1.0000               1.0000      
+        Odds Ratio (95% CI)                                   0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Complete Response (CR)                 4 (26.7%)          4 (26.7%)            7 (46.7%)     
+          90% CI (Wald, with correction)     (4.55, 48.78)      (4.55, 48.78)        (22.15, 71.19)  
+        Partial Response (PR)                  6 (40.0%)          5 (33.3%)            4 (26.7%)     
+          90% CI (Wald, with correction)     (15.86, 64.14)     (9.98, 56.69)        (4.55, 48.78)   
+        Stable Disease (SD)                    5 (33.3%)          6 (40.0%)            4 (26.7%)     
+          90% CI (Wald, with correction)     (9.98, 56.69)      (15.86, 64.14)       (4.55, 48.78)   
 
 ---
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                     A: Drug X          B: Placebo         C: Combination   
-                                                      (N=134)            (N=134)               (N=132)      
-        ————————————————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                  133 (99.3%)        127 (94.8%)           131 (99.2%)    
-        90% CI (Wald, with correction)             (97.7, 100.0)       (91.2, 98.3)         (97.6, 100.0)   
-        Unstratified Analysis                                                                               
-          Difference in Response rate (%)                                  -4.5                 -0.0        
-            90% CI (Wald, with correction)                             (-8.6, -0.3)          (-2.5, 2.5)    
-          p-value (Fisher's Exact Test)                                   0.0662               1.0000       
-        Odds Ratio (95% CI)                                         0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Stratified Analysis                                                                                 
-          Difference in Response rate (%)                                  -4.4                  0.1        
-            90% CI (CMH, without correction)                           (-7.9, -0.9)          (-1.8, 2.0)    
-          p-value (Cochran-Mantel-Haenszel Test)                          0.0344               0.9560       
-        Odds Ratio (95% CI)                                         0.14 (0.02 - 1.12)   0.98 (0.06 - 15.91)
-        Complete Response (CR)                      119 (88.8%)         97 (72.4%)           120 (90.9%)    
-          90% CI (Wald, with correction)           (83.95, 93.66)     (65.66, 79.11)       (86.41, 95.40)   
-        Partial Response (PR)                        14 (10.4%)         30 (22.4%)            11 (8.3%)     
-          90% CI (Wald, with correction)           (5.73, 15.17)      (16.09, 28.68)        (4.00, 12.67)   
-        Stable Disease (SD)                           1 (0.7%)           7 (5.2%)             1 (0.8%)      
-          90% CI (Wald, with correction)            (0.00, 2.34)       (1.69, 8.76)         (0.00, 2.38)    
+                                                     A: Drug X          B: Placebo         C: Combination  
+                                                       (N=15)             (N=15)               (N=15)      
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                   10 (66.7%)         9 (60.0%)            11 (73.3%)    
+        90% CI (Wald, with correction)              (43.3, 90.0)       (35.9, 84.1)         (51.2, 95.4)   
+        Unstratified Analysis                                                                              
+          Difference in Response rate (%)                                  -6.7                 6.7        
+            90% CI (Wald, with correction)                            (-42.2, 28.9)        (-27.5, 40.8)   
+          p-value (Fisher's Exact Test)                                   1.0000               1.0000      
+        Odds Ratio (95% CI)                                         0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Stratified Analysis                                                                                
+          Difference in Response rate (%)                                  -7.7                 9.2        
+            90% CI (CMH, without correction)                          (-36.1, 20.8)        (-14.5, 32.9)   
+          p-value (Cochran-Mantel-Haenszel Test)                          0.6699               0.6257      
+        Odds Ratio (95% CI)                                         0.75 (0.17 - 3.33)   1.37 (0.29 - 6.60)
+        Complete Response (CR)                       4 (26.7%)          4 (26.7%)            7 (46.7%)     
+          90% CI (Wald, with correction)           (4.55, 48.78)      (4.55, 48.78)        (22.15, 71.19)  
+        Partial Response (PR)                        6 (40.0%)          5 (33.3%)            4 (26.7%)     
+          90% CI (Wald, with correction)           (15.86, 64.14)     (9.98, 56.69)        (4.55, 48.78)   
+        Stable Disease (SD)                          5 (33.3%)          6 (40.0%)            4 (26.7%)     
+          90% CI (Wald, with correction)           (9.98, 56.69)      (15.86, 64.14)       (4.55, 48.78)   
 

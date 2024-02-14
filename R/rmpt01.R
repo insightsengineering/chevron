@@ -9,6 +9,7 @@
 #' @param row_split_var (`string`) the name of the column that containing variable to split exposure by.
 #' @param col_split_var (`string`) additional column splitting variable.
 #' @param overall_col_lbl (`string`) name of the overall column. If `NULL`, no overall level is added.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'   * Person time is the sum of exposure across all patients.
@@ -104,7 +105,7 @@ rmpt01_lyt <- function(summaryvars,
 #'
 #' @inheritParams gen_args
 #' @inheritParams rmpt01_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 rmpt01_pre <- function(adam_db,
@@ -123,7 +124,7 @@ rmpt01_pre <- function(adam_db,
 #' @describeIn rmpt01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 rmpt01_post <- function(tlg, prune_0 = FALSE, ...) {

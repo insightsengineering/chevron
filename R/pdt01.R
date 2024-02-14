@@ -5,6 +5,7 @@
 #' @inheritParams gen_args
 #' @param dvcode_var (`string`) the variable defining the protocol deviation coded term. By default `DVDECOD`.
 #' @param dvterm_var (`string`) the variable defining the protocol deviation term. By default `DVTERM`.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #'  * Data should be filtered for major protocol deviations. `(DVCAT == "MAJOR")`.
@@ -97,7 +98,7 @@ pdt01_lyt <- function(arm_var,
 #' @describeIn pdt01 Preprocessing
 #'
 #' @inheritParams pdt01_main
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 pdt01_pre <- function(adam_db, ...) {
@@ -116,7 +117,7 @@ pdt01_pre <- function(adam_db, ...) {
 #'
 #' @inheritParams pdt01_main
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var = "DVTERM", ...) {

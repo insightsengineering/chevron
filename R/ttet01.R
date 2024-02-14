@@ -14,6 +14,7 @@
 #' @param ... Further arguments passed to `control_surv_time()`, `control_coxph()`, `control_survtp()`, and
 #'  `surv_timepoint()`. For details, see the documentation in `tern`. Commonly used arguments include `pval_method`,
 #'  `conf_level`, `conf_type`, `quantiles`, `ties`, `time_point`, `method`, etc.
+#' @returns the main function returns an `rtables` object.
 #'
 #' @details
 #' * No overall value.
@@ -167,7 +168,7 @@ ttet01_lyt <- function(arm_var,
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#'
+#' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
 ttet01_pre <- function(adam_db, dataset = "adtte",
@@ -194,7 +195,7 @@ ttet01_pre <- function(adam_db, dataset = "adtte",
 #' @describeIn ttet01 Postprocessing
 #'
 #' @inheritParams gen_args
-#'
+#' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
 ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
