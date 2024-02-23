@@ -142,7 +142,7 @@ ttet01_lyt <- function(arm_var,
         vars = "AVAL",
         is_event = "IS_EVENT",
         var_labels = if (perform == "strat") "Stratified Analysis" else "Unstratified Analysis",
-        strat = if (perform == "strat") strata else NULL,
+        strata = if (perform == "strat") strata else NULL,
         control = control_cox_ph,
         table_names = if (perform == "strat") "coxph_stratified" else "coxph_unstratified"
       )
