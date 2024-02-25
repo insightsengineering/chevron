@@ -38,7 +38,7 @@ kmg01_main <- function(adam_db,
   )
   assert_single_value(adam_db[[dataset]]$PARAMCD, label = paste0(df_lbl, "$PARAMCD"))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  variables <- list(tte = "AVAL", is_event = "IS_EVENT", arm = arm_var, strat = strat)
+  variables <- list(tte = "AVAL", is_event = "IS_EVENT", arm = arm_var, strata = strat)
   control_cox <- execute_with_args(control_coxph, ...)
   control_surv <- execute_with_args(control_surv_timepoint, ...)
   execute_with_args(
