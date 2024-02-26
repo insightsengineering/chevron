@@ -50,7 +50,7 @@ test_that("kmg01 works for stratified anlaysis", {
   res <- expect_silent(run(kmg01, filter_data,
     dataset = "adtte", annot_surv_med = FALSE,
     position_coxph = c(0.4, 0.5), position_surv_med = c(1, 0.7),
-    strat = c("STRATA1", "STRATA2")
+    strata = c("STRATA1", "STRATA2")
   ))
   expect_true(grid::is.grob(res))
 })

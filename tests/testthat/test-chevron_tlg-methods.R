@@ -47,7 +47,7 @@ test_that("run uses the argument passed through the ellipsis in priority", {
 })
 
 test_that("run works as expected with partial match argument", {
-  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, arm = "ARM"))
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, arm_var = "ARM"))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
