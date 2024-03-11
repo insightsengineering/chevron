@@ -83,6 +83,8 @@ jobs:
     if: github.event_name != 'push'
     name: Style Check 👗
     uses: insightsengineering/r.pkg.template/.github/workflows/style.yaml@main
+    secrets:
+      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
   grammar:
     if: github.event_name != 'push'
     name: Grammar Check 🔤
