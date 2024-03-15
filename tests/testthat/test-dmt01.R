@@ -15,6 +15,20 @@ test_that("dmt01 can handle numeric NA values", {
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
+test_that("dmt01 returns an error when variables are of the wrong type", {
+  proc_data <- syn_data
+  proc_data$adsl <- proc_data$adsl %>%
+    mutate(
+      AGEGR1 = as.character(AGEGR1)
+    )
+
+  expect_error(
+    run(dmt01, proc_data),
+    "`adam_db$adsl$AGEGR1` is not of type numeric, factor, logical",
+    fixed = TRUE
+  )
+})
+
 test_that("dmt01 works as expected with setting default precision", {
   res <- expect_silent(run(dmt01, syn_data, summaryvars = c("RACE", "AAGE", "BBMISI"), precision = list(default = 3)))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
