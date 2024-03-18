@@ -1,6 +1,6 @@
 # chevron 0.2.5.9005
 
-* Assert `summaryvars` class in `dmt01`.
+* Added assertion on class of `summaryvars` argument of `dmt01()`.
 
 # chevron 0.2.5
 
