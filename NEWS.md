@@ -1,4 +1,4 @@
-# chevron 0.2.5.9005
+# chevron 0.2.5.9006
 
 * Added assertion on class of `summaryvars` argument of `dmt01()`.
 
