@@ -1155,54 +1155,53 @@ head(l_ae_nollt, 10)
 3) Users are expected to select the treatment groups to compare, otherwise, all treatment groups available in the input datasets will be plotted.
 4) The comparative statistics are not included by default.
 5) The estimation of median survival time per treatment group by default.
-6) By default, the `run` function will not render the plot. For viewing and testing purpose, the users can include the argument `draw = TRUE` to view the plot in the `Plots` tab.
-7) More arguments in the `g_km` and `control_coxph` functions can be passed through, please use the Help to find out more information.
+6) More arguments in the `g_km` and `control_coxph` functions can be passed through, please use the Help to find out more information.
 
-```{r}
+```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE)
+run(kmg01, proc_data, dataset = "adtte")
 ```
 
 #### **2. Kaplan-Meier Plot (with comparative statistics)**
 
 To enable the comparative statistics (hazard ratio and p-value), the argument `annot_coxph` needs to be set to TRUE. The compare group is determined by the levels in the factorized variable of treatment group and the first level is used as reference group in the statistics.
 
-```{r}
+```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_coxph = TRUE)
+run(kmg01, proc_data, dataset = "adtte", annot_coxph = TRUE, control_annot_coxph = tern::control_coxph_annot(x = 0.33, y = 0.42))
 ```
 
 #### **3. Kaplan-Meier Plot (without censoring marks)**
 
 To suppress the censoring marks, set the argument `cencor_show` to FALSE.
 
-```{r}
+```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE, censor_show = FALSE)
+run(kmg01, proc_data, dataset = "adtte", censor_show = FALSE)
 ```
 
 #### **4. Kaplan-Meier Plot (without estimation of median survival time)**
 
-```{r}
+```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_surv_method = FALSE)
+run(kmg01, proc_data, dataset = "adtte", annot_surv_med = FALSE)
 ```
 
 #### **5. Kaplan-Meier Plot (with statistical annotation of either median or min of survival time)**
 
 To add the statistics annotation, use the function `annot_stats`. Options are `min` or `median`.
 
-```{r}
+```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_stats = "median")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_stats = c("min", "median"))
+run(kmg01, proc_data, dataset = "adtte", annot_stats = "median")
+run(kmg01, proc_data, dataset = "adtte", annot_stats = c("min", "median"))
 ```
 
-#### **6. Kaplan-Meier Plot (without the table of patient at risk)**
+#### **6. Kaplan-Meier Plot (without the table of patients at risk)**
 
-```{r}
+```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_at_risk = FALSE)
+run(kmg01, proc_data, dataset = "adtte", annot_at_risk = FALSE)
 ```
 
 ### **Mean Plot (`MNG01`)**
@@ -1215,57 +1214,57 @@ run(kmg01, proc_data, dataset = "adtte", draw = TRUE, annot_at_risk = FALSE)
 4) The variable Analysis Value `AVAL` is used for plotting by default.
 5) If the input dataset contains results of the same analyses in multiple units,(e.g. SI/CV units in `ADLB`), please make sure that the parameters in appropriate units are selected in advance.
 
-```{r}
+```{r, fig.height = 8}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"))
 ```
 
 #### **2. Plot of Mean and Confidence Interval of Change from Baseline of Vital Signs**
 
-```{r}
+```{r, fig.height = 8}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), y_var = "CHG", draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), y_var = "CHG")
 ```
 
 #### **3. Plot of Mean (+/-SD) (Changing the Statistics)**
 
 To change the statistics, use the argument `interval_fun`. Options are `mean_ci`, `mean_sei`, `mean_sdi`, `median_ci`, `quantiles`,`range`.
 
-```{r}
+```{r, fig.height = 8}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), interval_fun = "mean_sdi", draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), interval_fun = "mean_sdi")
 ```
 
 #### **4. Plot of Mean and Confidence Interval (Modify Alpha Level)**
 
 To change the alpha level of the confidence interval, use the argument `control = control_analyze_vars(conf_level = <0.xx>)`. Note that this is only in effect when `interval_fun` is set to `mean_ci`.
 
-```{r}
+```{r, fig.height = 8}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(
   mng01, proc_data,
   dataset = "advs", x_var = c("AVISIT", "AVISITN"),
-  interval_fun = "mean_ci", draw = TRUE, control = tern::control_analyze_vars(conf_level = 0.80)
+  interval_fun = "mean_ci", control = tern::control_analyze_vars(conf_level = 0.80)
 )
 ```
 
 #### **5. Plot of Mean and Confidence Interval （With Number of Patients Only)**
 
-```{r}
+```{r, fig.height = 8}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = "n", draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = "n")
 ```
 
 #### **6. Plot of Mean and Confidence Interval (without Table Section)**
 
-```{r}
+```{r, fig.height = 8}
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
-run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = NULL, draw = TRUE)
+run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = NULL)
 ```
 
 A new argument has been added to control the theme (e.g. setting the angle of the axis); see an example below:
 
-```{r}
+```{r, fig.height = 8}
 ggtheme <- ggplot2::theme(
   panel.grid = ggplot2::element_line(colour = "black", linetype = 3),
   panel.background = ggplot2::element_rect(fill = "white"),
