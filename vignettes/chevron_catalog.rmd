@@ -1169,10 +1169,10 @@ To enable the comparative statistics (hazard ratio and p-value), the argument `a
 ```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(
-  kmg01, 
-  proc_data, 
-  dataset = "adtte", 
-  annot_coxph = TRUE, 
+  kmg01,
+  proc_data,
+  dataset = "adtte",
+  annot_coxph = TRUE,
   control_annot_coxph = tern::control_coxph_annot(x = 0.33, y = 0.42)
 )
 ```
