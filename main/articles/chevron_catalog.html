@@ -27,7 +27,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5.9006</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,33 +51,6 @@
 <li class="nav-item">
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
-<!-- start dropdown for versions --> <li class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle"
-          data-bs-toggle="dropdown" role="button"
-          aria-expanded="false" aria-haspopup="true"
-          id="dropdown-versions">Versions</a> <div class="dropdown-menu" aria-labelledby="dropdown-versions"> <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc6">v0.2.5-rc6</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc5">v0.2.5-rc5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc4">v0.2.5-rc4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc3">v0.2.5-rc3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc2">v0.2.5-rc2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5-rc1">v0.2.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.2-rc1">v0.2.2-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0-rc1">v0.2.0-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.5-rc1">v0.1.5-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4-rc1">v0.1.4-rc1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.5">v0.2.5</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.4">v0.2.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.3">v0.2.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.1">v0.2.1</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.0">v0.2.0</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.4">v0.1.4</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.3">v0.1.3</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
-<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a> </div></li>
-<!-- end dropdown for versions -->
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-reports">Reports</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-reports">
@@ -4833,19 +4806,14 @@ plotted.</li>
 <li>The comparative statistics are not included by default.</li>
 <li>The estimation of median survival time per treatment group by
 default.</li>
-<li>By default, the <code>run</code> function will not render the plot.
-For viewing and testing purpose, the users can include the argument
-<code>draw = TRUE</code> to view the plot in the <code>Plots</code>
-tab.</li>
 <li>More arguments in the <code>g_km</code> and
 <code>control_coxph</code> functions can be passed through, please use
 the Help to find out more information.</li>
 </ol>
 <div class="sourceCode" id="cb91"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"OS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-92-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; gTree[GRID.gTree.129]</span></span></code></pre>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-92-1.png" width="960"></p>
 </div>
 <div class="section level4">
 <h4 id="kaplan-meier-plot-with-comparative-statistics">
@@ -4857,11 +4825,16 @@ argument <code>annot_coxph</code> needs to be set to TRUE. The compare
 group is determined by the levels in the factorized variable of
 treatment group and the first level is used as reference group in the
 statistics.</p>
-<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"OS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span>, annot_coxph <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-93-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; gTree[GRID.gTree.272]</span></span></code></pre>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span></span>
+<span>  <span class="va">kmg01</span>,</span>
+<span>  <span class="va">proc_data</span>,</span>
+<span>  dataset <span class="op">=</span> <span class="st">"adtte"</span>,</span>
+<span>  annot_coxph <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  control_annot_coxph <span class="op">=</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/control_annot.html" class="external-link">control_coxph_annot</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fl">0.33</span>, y <span class="op">=</span> <span class="fl">0.42</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-93-1.png" width="960"></p>
 </div>
 <div class="section level4">
 <h4 id="kaplan-meier-plot-without-censoring-marks">
@@ -4869,22 +4842,20 @@ statistics.</p>
 </h4>
 <p>To suppress the censoring marks, set the argument
 <code>cencor_show</code> to FALSE.</p>
-<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"OS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span>, censor_show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-94-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; gTree[GRID.gTree.377]</span></span></code></pre>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, censor_show <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-94-1.png" width="960"></p>
 </div>
 <div class="section level4">
 <h4 id="kaplan-meier-plot-without-estimation-of-median-survival-time">
 <strong>4. Kaplan-Meier Plot (without estimation of median survival
 time)</strong><a class="anchor" aria-label="anchor" href="#kaplan-meier-plot-without-estimation-of-median-survival-time"></a>
 </h4>
-<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb94"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"OS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span>, annot_surv_method <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-95-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; gTree[GRID.gTree.494]</span></span></code></pre>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, annot_surv_med <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-95-1.png" width="960"></p>
 </div>
 <div class="section level4">
 <h4 id="kaplan-meier-plot-with-statistical-annotation-of-either-median-or-min-of-survival-time">
@@ -4894,25 +4865,23 @@ median or min of survival time)</strong><a class="anchor" aria-label="anchor" hr
 <p>To add the statistics annotation, use the function
 <code>annot_stats</code>. Options are <code>min</code> or
 <code>median</code>.</p>
-<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"OS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span>, annot_stats <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-96-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; gTree[GRID.gTree.612]</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span>, annot_stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min"</span>, <span class="st">"median"</span><span class="op">)</span><span class="op">)</span></span></code></pre>
-<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-96-2.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; gTree[GRID.gTree.731]</span></span></code></pre>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, annot_stats <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span></span></code></pre></div>
+<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-96-1.png" width="960"></p>
+<div class="sourceCode" id="cb96"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, annot_stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min"</span>, <span class="st">"median"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-96-2.png" width="960"></p>
 </div>
 <div class="section level4">
-<h4 id="kaplan-meier-plot-without-the-table-of-patient-at-risk">
-<strong>6. Kaplan-Meier Plot (without the table of patient at
-risk)</strong><a class="anchor" aria-label="anchor" href="#kaplan-meier-plot-without-the-table-of-patient-at-risk"></a>
+<h4 id="kaplan-meier-plot-without-the-table-of-patients-at-risk">
+<strong>6. Kaplan-Meier Plot (without the table of patients at
+risk)</strong><a class="anchor" aria-label="anchor" href="#kaplan-meier-plot-without-the-table-of-patients-at-risk"></a>
 </h4>
-<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"OS"</span>, <span class="st">"adtte"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span>, annot_at_risk <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-97-1.png" width="700"></p>
-<pre><code><span><span class="co">#&gt; gTree[GRID.gTree.833]</span></span></code></pre>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">kmg01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"adtte"</span>, annot_at_risk <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p><img src="chevron_catalog_files/figure-html/unnamed-chunk-97-1.png" width="960"></p>
 </div>
 </div>
 <div class="section level3">
@@ -4938,9 +4907,9 @@ by default.</li>
 multiple units,(e.g. SI/CV units in <code>ADLB</code>), please make sure
 that the parameters in appropriate units are selected in advance.</li>
 </ol>
-<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb98"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"DIABP"</span>, <span class="st">"advs"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $`Diastolic Blood Pressure`</span></span></code></pre></div>
 <p><img src="chevron_catalog_files/figure-html/unnamed-chunk-98-1.png" width="700"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
@@ -4952,9 +4921,9 @@ that the parameters in appropriate units are selected in advance.</li>
 <strong>2. Plot of Mean and Confidence Interval of Change from
 Baseline of Vital Signs</strong><a class="anchor" aria-label="anchor" href="#plot-of-mean-and-confidence-interval-of-change-from-baseline-of-vital-signs"></a>
 </h4>
-<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb100"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"DIABP"</span>, <span class="st">"advs"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, y_var <span class="op">=</span> <span class="st">"CHG"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, y_var <span class="op">=</span> <span class="st">"CHG"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; `geom_line()`: Each group consists of only one observation.</span></span>
 <span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Do you need to adjust the <span style="color: #00BB00;">group</span> aesthetic?</span></span>
 <span><span class="co">#&gt; $`Diastolic Blood Pressure`</span></span></code></pre></div>
@@ -4972,9 +4941,9 @@ Statistics)</strong><a class="anchor" aria-label="anchor" href="#plot-of-mean--s
 Options are <code>mean_ci</code>, <code>mean_sei</code>,
 <code>mean_sdi</code>, <code>median_ci</code>,
 <code>quantiles</code>,<code>range</code>.</p>
-<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb102"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"DIABP"</span>, <span class="st">"advs"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, interval_fun <span class="op">=</span> <span class="st">"mean_sdi"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, interval_fun <span class="op">=</span> <span class="st">"mean_sdi"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $`Diastolic Blood Pressure`</span></span></code></pre></div>
 <p><img src="chevron_catalog_files/figure-html/unnamed-chunk-100-1.png" width="700"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
@@ -4991,12 +4960,12 @@ argument
 <code>control = control_analyze_vars(conf_level = &lt;0.xx&gt;)</code>.
 Note that this is only in effect when <code>interval_fun</code> is set
 to <code>mean_ci</code>.</p>
-<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"DIABP"</span>, <span class="st">"advs"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span></span>
 <span>  <span class="va">mng01</span>, <span class="va">proc_data</span>,</span>
 <span>  dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>,</span>
-<span>  interval_fun <span class="op">=</span> <span class="st">"mean_ci"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span>, control <span class="op">=</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/control_analyze_vars.html" class="external-link">control_analyze_vars</a></span><span class="op">(</span>conf_level <span class="op">=</span> <span class="fl">0.80</span><span class="op">)</span></span>
+<span>  interval_fun <span class="op">=</span> <span class="st">"mean_ci"</span>, control <span class="op">=</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/control_analyze_vars.html" class="external-link">control_analyze_vars</a></span><span class="op">(</span>conf_level <span class="op">=</span> <span class="fl">0.80</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; $`Diastolic Blood Pressure`</span></span></code></pre></div>
 <p><img src="chevron_catalog_files/figure-html/unnamed-chunk-101-1.png" width="700"></p>
@@ -5009,9 +4978,9 @@ to <code>mean_ci</code>.</p>
 <strong>5. Plot of Mean and Confidence Interval （With Number of
 Patients Only)</strong><a class="anchor" aria-label="anchor" href="#plot-of-mean-and-confidence-interval-with-number-of-patients-only"></a>
 </h4>
-<div class="sourceCode" id="cb112"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"DIABP"</span>, <span class="st">"advs"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, table <span class="op">=</span> <span class="st">"n"</span>, draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, table <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $`Diastolic Blood Pressure`</span></span></code></pre></div>
 <p><img src="chevron_catalog_files/figure-html/unnamed-chunk-102-1.png" width="700"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
@@ -5023,9 +4992,9 @@ Patients Only)</strong><a class="anchor" aria-label="anchor" href="#plot-of-mean
 <strong>6. Plot of Mean and Confidence Interval (without Table
 Section)</strong><a class="anchor" aria-label="anchor" href="#plot-of-mean-and-confidence-interval-without-table-section"></a>
 </h4>
-<div class="sourceCode" id="cb114"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">proc_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://insightsengineering.github.io/dunlin/latest-tag/reference/log_filter.html" class="external-link">log_filter</a></span><span class="op">(</span><span class="va">syn_data</span>, <span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"DIABP"</span>, <span class="st">"advs"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, table <span class="op">=</span> <span class="cn">NULL</span>, draw <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">mng01</span>, <span class="va">proc_data</span>, dataset <span class="op">=</span> <span class="st">"advs"</span>, x_var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVISIT"</span>, <span class="st">"AVISITN"</span><span class="op">)</span>, table <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $`Diastolic Blood Pressure`</span></span></code></pre></div>
 <p><img src="chevron_catalog_files/figure-html/unnamed-chunk-103-1.png" width="700"></p>
 <pre><code><span><span class="co">#&gt; </span></span>
@@ -5033,7 +5002,7 @@ Section)</strong><a class="anchor" aria-label="anchor" href="#plot-of-mean-and-c
 <span><span class="co">#&gt; [1] "gg_list" "list"</span></span></code></pre>
 <p>A new argument has been added to control the theme (e.g. setting the
 angle of the axis); see an example below:</p>
-<div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb110"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ggtheme</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span></span>
 <span>  panel.grid <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_line</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="st">"black"</span>, linetype <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
 <span>  panel.background <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"white"</span><span class="op">)</span>,</span>
