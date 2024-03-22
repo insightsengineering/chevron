@@ -47,8 +47,7 @@ kmg01_main <- function(adam_db,
     variables = variables,
     control_surv = control_surv,
     control_coxph_pw = control_cox,
-    ...,
-    draw = FALSE
+    ...
   )
 }
 
@@ -82,7 +81,7 @@ kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
 #' )
 #'
 #' pre_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-#' run(kmg01, pre_data, dataset = "adtte", line_col = col)
+#' run(kmg01, pre_data, dataset = "adtte", col = col)
 kmg01 <- chevron_g(
   main = kmg01_main,
   preprocess = kmg01_pre
