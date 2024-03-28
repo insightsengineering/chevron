@@ -44,6 +44,7 @@ dmt01_main <- function(adam_db,
   assert_string(lbl_overall, null.ok = TRUE)
   assert_character(summaryvars, null.ok = TRUE)
   assert_valid_variable(adam_db$adsl, summaryvars, na_ok = TRUE)
+  assert_valid_variable(adam_db$adsl, summaryvars, types = list(c("numeric", "factor", "logical")))
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")))
   assert_list(stats, types = "character")
   assert_list(precision, types = "integerish", names = "unique")

@@ -78,6 +78,6 @@ col <- c(
 )
 
 pre_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, pre_data, dataset = "adtte", line_col = col)
+run(kmg01, pre_data, dataset = "adtte", col = col)
 }
 \keyword{datasets}
