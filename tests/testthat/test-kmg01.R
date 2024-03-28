@@ -49,7 +49,9 @@ test_that("kmg01 works for stratified analysis", {
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
   res <- expect_silent(run(kmg01, filter_data,
     dataset = "adtte", annot_surv_med = FALSE,
-    strat = c("STRATA1", "STRATA2")
+    position_coxph = c(0.4, 0.5),
+    position_surv_med = c(1, 0.7),
+    strata = c("STRATA1", "STRATA2")
   ))
   expect_true(ggplot2::is.ggplot(res))
 })

@@ -2,6 +2,8 @@
 
 * Added assertion on class of `summaryvars` argument of `dmt01()`.
 
+* Soft deprecated `strat` argument of `kmg01_main` - use `strata` instead.
+
 # chevron 0.2.5
 
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.

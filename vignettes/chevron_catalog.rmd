@@ -1102,7 +1102,7 @@ Note that `ttet01` has been modified in the previous example (i.e., `preprocess(
 ```{r}
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
-run(chevron::ttet01, proc_data, pval_method = "wald")
+run(ttet01, proc_data, pval_method = "wald")
 ```
 
 ### **Vital Signs (`VST01`)**
