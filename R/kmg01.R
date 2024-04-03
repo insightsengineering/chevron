@@ -7,7 +7,9 @@
 #'
 #' @inheritParams gen_args
 #' @param dataset (`string`) the name of a table in the `adam_db` object.
-#' @param strat (`character`) the variable name of stratification variables.
+#' @param strata (`character`) the variable name of stratification variables.
+#' @param strat (`character`) `r lifecycle::badge("deprecated")`; for backwards compatibility only.
+#' Use `strata` instead.
 #' @param ... Further arguments passed to `g_km` and `control_coxph`. For details, see
 #' the documentation in `tern`.
 #' Commonly used arguments include `col`, `pval_method`, `ties`, `conf_level`, `conf_type`,
@@ -22,13 +24,22 @@
 kmg01_main <- function(adam_db,
                        dataset = "adtte",
                        arm_var = "ARM",
-                       strat = NULL,
+                       strata = NULL,
+                       strat = lifecycle::deprecated(),
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", dataset))
   df_lbl <- paste0("adam_db$", dataset)
   assert_valid_variable(adam_db[[dataset]], "AVAL", types = list("numeric"), lower = 0, label = df_lbl)
   assert_valid_variable(adam_db[[dataset]], "IS_EVENT", types = list("logical"), label = df_lbl)
-  assert_valid_variable(adam_db[[dataset]], strat, types = list(c("character", "factor")), label = df_lbl)
+  if (lifecycle::is_present(strat)) {
+    lifecycle::deprecate_warn(
+      when = "0.2.6",
+      what = "kmg01_main(strat)",
+      with = "km01_main(strata)"
+    )
+    strata <- strat
+  }
+  assert_valid_variable(adam_db[[dataset]], strata, types = list(c("character", "factor")), label = df_lbl)
   assert_valid_variable(
     adam_db[[dataset]],
     c("PARAMCD", arm_var),
@@ -38,7 +49,7 @@ kmg01_main <- function(adam_db,
   )
   assert_single_value(adam_db[[dataset]]$PARAMCD, label = paste0(df_lbl, "$PARAMCD"))
   assert_valid_variable(adam_db[[dataset]], "USUBJID", empty_ok = TRUE, types = list(c("character", "factor")))
-  variables <- list(tte = "AVAL", is_event = "IS_EVENT", arm = arm_var, strata = strat)
+  variables <- list(tte = "AVAL", is_event = "IS_EVENT", arm = arm_var, strata = strata)
   control_cox <- execute_with_args(control_coxph, ...)
   control_surv <- execute_with_args(control_surv_timepoint, ...)
   execute_with_args(
@@ -47,8 +58,7 @@ kmg01_main <- function(adam_db,
     variables = variables,
     control_surv = control_surv,
     control_coxph_pw = control_cox,
-    ...,
-    draw = FALSE
+    ...
   )
 }
 
@@ -82,7 +92,7 @@ kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
 #' )
 #'
 #' pre_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-#' run(kmg01, pre_data, dataset = "adtte", line_col = col)
+#' run(kmg01, pre_data, dataset = "adtte", col = col)
 kmg01 <- chevron_g(
   main = kmg01_main,
   preprocess = kmg01_pre

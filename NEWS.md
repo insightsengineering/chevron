@@ -1,4 +1,8 @@
-# chevron 0.2.5.9005
+# chevron 0.2.5.9009
+
+* Added assertion on class of `summaryvars` argument of `dmt01()`.
+
+* Soft deprecated `strat` argument of `kmg01_main` - use `strata` instead.
 
 # chevron 0.2.5
 

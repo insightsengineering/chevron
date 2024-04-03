@@ -10,7 +10,14 @@
 An object of class \code{chevron_g} of length 1.
 }
 \usage{
-kmg01_main(adam_db, dataset = "adtte", arm_var = "ARM", strat = NULL, ...)
+kmg01_main(
+  adam_db,
+  dataset = "adtte",
+  arm_var = "ARM",
+  strata = NULL,
+  strat = lifecycle::deprecated(),
+  ...
+)
 
 kmg01_pre(adam_db, dataset = "adtte", ...)
 
@@ -23,7 +30,10 @@ kmg01
 
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
-\item{strat}{(\code{character}) the variable name of stratification variables.}
+\item{strata}{(\code{character}) the variable name of stratification variables.}
+
+\item{strat}{(\code{character}) \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}; for backwards compatibility only.
+Use \code{strata} instead.}
 
 \item{...}{Further arguments passed to \code{g_km} and \code{control_coxph}. For details, see
 the documentation in \code{tern}.
@@ -68,6 +78,6 @@ col <- c(
 )
 
 pre_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
-run(kmg01, pre_data, dataset = "adtte", line_col = col)
+run(kmg01, pre_data, dataset = "adtte", col = col)
 }
 \keyword{datasets}
