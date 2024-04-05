@@ -1,8 +1,8 @@
 # chevron 0.2.5.9009
 
 * Added assertion on class of `summaryvars` argument of `dmt01()`.
-
 * Soft deprecated `strat` argument of `kmg01_main` - use `strata` instead.
+* Additional arguments can be passed to `ael01_nollt` run method, for instance to split the resulting listing.
 
 # chevron 0.2.5
 

@@ -137,6 +137,20 @@ gg_list <- function(...) {
   )
 }
 
+#' List of `rlistings` object
+#'
+#' @param ... (`rlistings`) objects.
+#' @returns a `rl_list` object.
+#' @export
+rl_list <- function(...) {
+  ret <- list(...)
+  assert_list(ret, types = c("listing_df"))
+  structure(
+    ret,
+    class = c("rl_list", "list")
+  )
+}
+
 #' @export
 droplevels.character <- function(x, ...) {
   x

@@ -293,3 +293,30 @@ test_that("get_section_div works", {
     expect_identical(get_section_div(), c("", NA_character_, ""))
   )
 })
+
+# gg_list ----
+
+test_that("gg_list works as expected", {
+  p <- ggplot(mtcars, aes(x = hp, y = mpg)) +
+    geom_point()
+  p_ls <- list(a = p, b = p)
+
+  res <- expect_silent(gg_list(p))
+  expect_class(res, "gg_list")
+
+  res <- expect_silent(do_call(gg_list, p_ls))
+  expect_class(res, "gg_list")
+})
+
+# rl_list ----
+
+test_that("rl_list works as expected", {
+  l <- as_listing(iris, key_cols = "Species")
+  l_ls <- list(a = l, b = l)
+
+  res <- expect_silent(rl_list(l))
+  expect_class(res, "rl_list")
+
+  res <- expect_silent(do_call(rl_list, l_ls))
+  expect_class(res, "rl_list")
+})

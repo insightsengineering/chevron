@@ -51,12 +51,12 @@ Key columns allow you to group repeat occurrences.}
 
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
-\item{...}{not used.}
+\item{...}{additional arguments passed to \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
-the main function returns an \code{rlistings} object.
+the main function returns an \code{rlistings} or a \code{rl_list} object.
 
 the preprocessing function returns a \code{list} of \code{data.frame}.
 
