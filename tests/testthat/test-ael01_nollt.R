@@ -30,7 +30,7 @@ test_that("ael01_nollt can handle all missing values", {
     )
 
   res <- expect_silent(run(ael01_nollt, proc_data))
-  expect_identical(nrow(res), 1L)
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("ael01_nollt can handle some missing values", {
