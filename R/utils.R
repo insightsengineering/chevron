@@ -147,7 +147,7 @@ gg_list <- function(...) {
 #' @rdname gg_list
 #'
 #' @export
-as.gg_list <- function(obj) {
+as.gg_list <- function(obj) { # nolint
   UseMethod("as.gg_list")
 }
 
@@ -189,7 +189,7 @@ rl_list <- function(...) {
 #' @rdname rl_list
 #'
 #' @export
-as.rl_list <- function(obj) {
+as.rl_list <- function(obj) { # nolint
   UseMethod("as.rl_list")
 }
 
