@@ -133,7 +133,7 @@ mng01_main <- function(adam_db,
     subtitle_add_unit = !is.na(y_unit),
     ...
   )
-  do_call(gg_list, ret)
+  as.gg_list(ret)
 }
 
 #' @describeIn mng01 Preprocessing

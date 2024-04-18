@@ -59,6 +59,6 @@ test_that("ael01_nollt listing can be split by an additional variable", {
       split_into_pages_by_var = "SEX"
     )
   )
-  expect_list(res, type = "listing_df")
+  expect_list(res, types = "listing_df")
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

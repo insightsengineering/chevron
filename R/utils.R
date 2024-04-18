@@ -123,10 +123,13 @@ grob_list <- function(...) {
   )
 }
 
+# gg_list ----
+
 #' List of `gg` object
 #'
 #' @param ... (`ggplot`) objects.
 #' @returns a `gg_list` object.
+#' @rdname gg_list
 #' @export
 gg_list <- function(...) {
   ret <- list(...)
@@ -137,10 +140,38 @@ gg_list <- function(...) {
   )
 }
 
+#' Convert Object to List of `gg_list`.
+#'
+#' @param obj (`ggplot` or `list` of `ggplot`)
+#' @return a `gg_list` object.
+#' @rdname gg_list
+#'
+#' @export
+as.gg_list <- function(obj) {
+  UseMethod("as.gg_list")
+}
+
+#' @rdname gg_list
+#' @export
+as.gg_list.list <- function(obj) {
+  assert_list(obj, types = "ggplot")
+  do_call(gg_list, obj)
+}
+
+#' @rdname rl_list
+#' @export
+as.gg_list.ggplot <- function(obj) {
+  do_call(gg_list, list(obj))
+}
+
+# rl_list ----
+
 #' List of `rlistings` object
 #'
 #' @param ... (`rlistings`) objects.
 #' @returns a `rl_list` object.
+#' @rdname rl_list
+#'
 #' @export
 rl_list <- function(...) {
   ret <- list(...)
@@ -150,6 +181,32 @@ rl_list <- function(...) {
     class = c("rl_list", "list")
   )
 }
+
+#' Convert Object to List of `rl_list`.
+#'
+#' @param obj (`rlisting` or `list` of `rlistings`)
+#' @return a `rl_list` object.
+#' @rdname rl_list
+#'
+#' @export
+as.rl_list <- function(obj) {
+  UseMethod("as.rl_list")
+}
+
+#' @rdname rl_list
+#' @export
+as.rl_list.list <- function(obj) {
+  assert_list(obj, types = "listing_df")
+  do_call(rl_list, obj)
+}
+
+#' @rdname rl_list
+#' @export
+as.rl_list.listing_df <- function(obj) {
+  do_call(rl_list, list(obj))
+}
+
+# lvl ----
 
 #' @export
 droplevels.character <- function(x, ...) {

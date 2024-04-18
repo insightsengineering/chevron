@@ -63,3 +63,29 @@
       No Coding Available         No Coding Available     trm C.1.1.1.3                      
                                                           trm D.1.1.4.2                      
 
+# ael01_nollt listing can be split by an additional variable
+
+    Code
+      cat(export_as_txt(res, lpp = 100))
+    Output
+      SEX: F
+      
+      —————————————————————————————————————————————————————————————————————————————————————————
+      MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Medical History
+      —————————————————————————————————————————————————————————————————————————————————————————
+      cl A                        trm A_1/2               trm A_1/2                            
+      cl D                        trm D_3/3               trm D_3/3                            
+      \s\nSEX: M
+      
+      —————————————————————————————————————————————————————————————————————————————————————————
+      MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Medical History
+      —————————————————————————————————————————————————————————————————————————————————————————
+      cl A                        trm A_2/2               trm A_2/2                            
+      cl B                        trm B_1/3               trm B_1/3                            
+                                  trm B_2/3               trm B_2/3                            
+                                  trm B_3/3               trm B_3/3                            
+      cl C                        trm C_1/2               trm C_1/2                            
+                                  trm C_2/2               trm C_2/2                            
+      cl D                        trm D_1/3               trm D_1/3                            
+                                  trm D_2/3               trm D_2/3                            
+

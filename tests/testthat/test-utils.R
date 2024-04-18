@@ -297,8 +297,8 @@ test_that("get_section_div works", {
 # gg_list ----
 
 test_that("gg_list works as expected", {
-  p <- ggplot(mtcars, aes(x = hp, y = mpg)) +
-    geom_point()
+  p <- ggplot2::ggplot(mtcars, ggplot2::aes(x = hp, y = mpg)) +
+    ggplot2::geom_point()
   p_ls <- list(a = p, b = p)
 
   res <- expect_silent(gg_list(p))

@@ -49,7 +49,7 @@ ael01_nollt_main <- function(adam_db,
   )
 
   if (is(ret, "list")) {
-    do_call(rl_list, ret)
+    as.rl_list(ret)
   } else {
     ret
   }
