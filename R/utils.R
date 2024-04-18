@@ -185,7 +185,7 @@ rl_list <- function(...) {
 #' Convert Object to List of `rl_list`.
 #'
 #' @param obj (`rlisting` or `list` of `rlistings`)
-#' @return a `rl_list` object.
+#' @returns a `rl_list` object.
 #' @rdname rl_list
 #'
 #' @export
