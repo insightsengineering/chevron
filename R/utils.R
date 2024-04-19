@@ -155,13 +155,19 @@ as.gg_list <- function(obj) { # nolint
 #' @export
 as.gg_list.list <- function(obj) {
   assert_list(obj, types = "ggplot")
-  do_call(gg_list, obj)
+  structure(
+    obj,
+    class = c("gg_list", "list")
+  )
 }
 
 #' @rdname rl_list
 #' @export
 as.gg_list.ggplot <- function(obj) {
-  do_call(gg_list, list(obj))
+  structure(
+    list(obj),
+    class = c("gg_list", "list")
+  )
 }
 
 # rl_list ----
@@ -197,13 +203,19 @@ as.rl_list <- function(obj) { # nolint
 #' @export
 as.rl_list.list <- function(obj) {
   assert_list(obj, types = "listing_df")
-  do_call(rl_list, obj)
+  structure(
+    obj,
+    class = c("rl_list", "list")
+  )
 }
 
 #' @rdname rl_list
 #' @export
 as.rl_list.listing_df <- function(obj) {
-  do_call(rl_list, list(obj))
+  structure(
+    list(obj),
+    class = c("rl_list", "list")
+  )
 }
 
 # lvl ----
