@@ -55,18 +55,6 @@ test_that("fuse_sequentially works", {
   )
 })
 
-# grob_list ----
-
-test_that("grob_list works", {
-  grob <- grid::grob()
-  grobs <- expect_silent(
-    grob_list(grob, grob, grob)
-  )
-  expect_s3_class(grobs, "grob_list")
-  expect_identical(length(grobs), 3L)
-  expect_identical(grobs[[1]], grob)
-})
-
 # ifneeded_split_row ----
 
 test_that("ifneeded_split_row works as expected", {
@@ -292,54 +280,4 @@ test_that("get_section_div works", {
     list(chevron.section_div = c(1, 3)),
     expect_identical(get_section_div(), c("", NA_character_, ""))
   )
-})
-
-# gg_list ----
-
-test_that("gg_list works as expected", {
-  p <- ggplot2::ggplot(mtcars, ggplot2::aes(x = hp, y = mpg)) +
-    ggplot2::geom_point()
-  p_ls <- list(a = p, b = p)
-
-  res <- expect_silent(gg_list(p))
-  expect_class(res, "gg_list")
-
-  res <- expect_silent(do.call(gg_list, p_ls))
-  expect_class(res, "gg_list")
-})
-
-test_that("as.gg_list works as expected", {
-  p <- ggplot2::ggplot(mtcars, ggplot2::aes(x = hp, y = mpg)) +
-    ggplot2::geom_point()
-  p_ls <- list(a = p, b = p)
-
-  res <- expect_silent(as.gg_list(p))
-  expect_class(res, "gg_list")
-
-  res <- expect_silent(as.gg_list(p_ls))
-  expect_class(res, "gg_list")
-})
-
-# rl_list ----
-
-test_that("rl_list works as expected", {
-  l <- as_listing(iris, key_cols = "Species")
-  l_ls <- list(a = l, b = l)
-
-  res <- expect_silent(rl_list(l))
-  expect_class(res, "rl_list")
-
-  res <- expect_silent(do.call(rl_list, l_ls))
-  expect_class(res, "rl_list")
-})
-
-test_that("as.rl_list works as expected", {
-  l <- as_listing(iris, key_cols = "Species")
-  l_ls <- list(a = l, b = l)
-
-  res <- expect_silent(as.rl_list(l))
-  expect_class(res, "rl_list")
-
-  res <- expect_silent(as.rl_list(l_ls))
-  expect_class(res, "rl_list")
 })

@@ -56,7 +56,7 @@ Key columns allow you to group repeat occurrences.}
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
-the main function returns an \code{rlistings} or a \code{rl_list} object.
+the main function returns an \code{rlistings} or a \code{list} object.
 
 the preprocessing function returns a \code{list} of \code{data.frame}.
 
