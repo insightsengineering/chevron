@@ -281,3 +281,37 @@ test_that("get_section_div works", {
     expect_identical(get_section_div(), c("", NA_character_, ""))
   )
 })
+
+# Deprecated Functions ----
+
+test_that("grob_list is deprecated", {
+  withr::with_options(
+    list(lifecycle_verbosity = "warning"),
+    {
+      graph <- run(chevron::mng01, syn_data, dataset = "adlb")
+      graph <- ggplot2::ggplotGrob(graph[[3]])
+      class(graph) <- "grob"
+
+      expect_warning(
+        grob_list(graph),
+        "`grob_list()` was deprecated in chevron 0.2.5.9009.",
+        fixed = TRUE
+      )
+    }
+  )
+})
+
+test_that("gg_list is deprecated", {
+  withr::with_options(
+    list(lifecycle_verbosity = "warning"),
+    {
+      graph <- run(chevron::mng01, syn_data, dataset = "adlb")
+
+      expect_warning(
+        gg_list(graph),
+        "`gg_list()` was deprecated in chevron 0.2.5.9009.",
+        fixed = TRUE
+      )
+    }
+  )
+})
