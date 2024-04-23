@@ -114,10 +114,7 @@ reference:
       - report_null
       - smart_prune
       - var_labels_for
-      - gg_list
-      - rl_list
       - gg_theme_chevron
-      - grob_list
       - h_format_dec
       - lvls
       - convert_to_month
@@ -129,8 +126,11 @@ reference:
       - missing_rule
       - empty_rule
       - get_grade_rule
-
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
       - gen_args
       - fuse_sequentially
+  - title: Deprecated Functions
+    contents:
+      - grob_list
+      - gg_list

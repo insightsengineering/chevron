@@ -2,28 +2,16 @@
 % Please edit documentation in R/utils.R
 \name{gg_list}
 \alias{gg_list}
-\alias{as.gg_list}
-\alias{as.gg_list.list}
 \title{List of \code{gg} object}
 \usage{
 gg_list(...)
-
-as.gg_list(obj)
-
-\method{as.gg_list}{list}(obj)
 }
 \arguments{
 \item{...}{(\code{ggplot}) objects.}
-
-\item{obj}{(\code{ggplot} or \code{list} of \code{ggplot})}
 }
 \value{
 a \code{gg_list} object.
-
-a \code{gg_list} object.
 }
 \description{
-List of \code{gg} object
-
-Convert Object to List of \code{gg_list}.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
