@@ -64,7 +64,7 @@ mng01
 \item{...}{passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
 }
 \value{
-the main function returns a \code{gg_list} object.
+the main function returns a \code{list} of \code{ggplot} objects.
 
 a list of \code{ggplot} objects.
 
