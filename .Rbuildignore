@@ -16,6 +16,6 @@ SECURITY\.md
 ^\.vscode$
 ^pkgdown$
 LICENSE
-^revdeprefs\.yaml$
+^.revdeprefs\.yaml$
 ^revdep$
 ^\.covrignore$
