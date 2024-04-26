@@ -109,33 +109,7 @@ fuse_sequentially <- function(x, y) {
   c(x, y[sel_names_y])
 }
 
-#' List of `grob` object
-#'
-#' @param ... (`grob`) objects.
-#' @returns a `grob_list` object.
-#' @export
-grob_list <- function(...) {
-  ret <- list(...)
-  assert_list(ret, types = c("grob"))
-  structure(
-    ret,
-    class = c("grob_list", "list")
-  )
-}
-
-#' List of `gg` object
-#'
-#' @param ... (`ggplot`) objects.
-#' @returns a `gg_list` object.
-#' @export
-gg_list <- function(...) {
-  ret <- list(...)
-  assert_list(ret, types = c("ggplot"))
-  structure(
-    ret,
-    class = c("gg_list", "list")
-  )
-}
+# lvl ----
 
 #' @export
 droplevels.character <- function(x, ...) {
@@ -389,4 +363,30 @@ to_list <- function(x) {
   }
   x <- as.list(x)
   lapply(x, to_list)
+}
+
+# Deprecated functions ----
+
+#' List of `grob` object
+#'
+#' `r lifecycle::badge("deprecated")`
+#'
+#' @param ... (`grob`) objects.
+#' @returns a `grob_list` object.
+#' @export
+grob_list <- function(...) {
+  lifecycle::deprecate_warn("0.2.5.9009", "grob_list()", "list()")
+  list(...)
+}
+
+#' List of `gg` object
+#'
+#' `r lifecycle::badge("deprecated")`
+#'
+#' @param ... (`ggplot`) objects.
+#' @returns a `gg_list` object.
+#' @export
+gg_list <- function(...) {
+  lifecycle::deprecate_warn("0.2.5.9009", "gg_list()", "list()")
+  list(...)
 }

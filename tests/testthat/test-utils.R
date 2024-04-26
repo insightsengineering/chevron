@@ -55,18 +55,6 @@ test_that("fuse_sequentially works", {
   )
 })
 
-# grob_list ----
-
-test_that("grob_list works", {
-  grob <- grid::grob()
-  grobs <- expect_silent(
-    grob_list(grob, grob, grob)
-  )
-  expect_s3_class(grobs, "grob_list")
-  expect_identical(length(grobs), 3L)
-  expect_identical(grobs[[1]], grob)
-})
-
 # ifneeded_split_row ----
 
 test_that("ifneeded_split_row works as expected", {
@@ -291,5 +279,39 @@ test_that("get_section_div works", {
   withr::with_options(
     list(chevron.section_div = c(1, 3)),
     expect_identical(get_section_div(), c("", NA_character_, ""))
+  )
+})
+
+# Deprecated Functions ----
+
+test_that("grob_list is deprecated", {
+  withr::with_options(
+    list(lifecycle_verbosity = "warning"),
+    {
+      graph <- run(chevron::mng01, syn_data, dataset = "adlb")
+      graph <- ggplot2::ggplotGrob(graph[[3]])
+      class(graph) <- "grob"
+
+      expect_warning(
+        grob_list(graph),
+        "`grob_list()` was deprecated in chevron 0.2.5.9009.",
+        fixed = TRUE
+      )
+    }
+  )
+})
+
+test_that("gg_list is deprecated", {
+  withr::with_options(
+    list(lifecycle_verbosity = "warning"),
+    {
+      graph <- run(chevron::mng01, syn_data, dataset = "adlb")
+
+      expect_warning(
+        gg_list(graph),
+        "`gg_list()` was deprecated in chevron 0.2.5.9009.",
+        fixed = TRUE
+      )
+    }
   )
 })

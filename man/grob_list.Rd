@@ -13,5 +13,5 @@ grob_list(...)
 a \code{grob_list} object.
 }
 \description{
-List of \code{grob} object
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }

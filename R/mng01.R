@@ -22,7 +22,7 @@
 #' @param ggtheme (`theme`) passed to [tern::g_lineplot()].
 #' @param table (`character`) names of the statistics to be displayed in the table. If `NULL`, no table is displayed.
 #' @param ... passed to [tern::g_lineplot()].
-#' @returns the main function returns a `gg_list` object.
+#' @returns the main function returns a `list` of `ggplot` objects.
 #'
 #' @note
 #'  * `adam_db` object must contain the table specified by `dataset` with the columns specified by `x_var`, `y_var`,
@@ -117,7 +117,7 @@ mng01_main <- function(adam_db,
     col <- line_col
   }
 
-  ret <- lapply(
+  lapply(
     data_ls,
     tern::g_lineplot,
     alt_counts_df = adam_db[["adsl"]],
@@ -133,7 +133,6 @@ mng01_main <- function(adam_db,
     subtitle_add_unit = !is.na(y_unit),
     ...
   )
-  do_call(gg_list, ret)
 }
 
 #' @describeIn mng01 Preprocessing

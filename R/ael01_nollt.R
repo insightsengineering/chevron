@@ -6,7 +6,8 @@
 #' @param dataset (`character`) the name of a table in the `adam_db` object.
 #' @param default_formatting (`list`) the default format of the listing columns. See [`rlistings::as_listing`].
 #' @param col_formatting (`list`) the format of specific listing columns. See [`rlistings::as_listing`].
-#' @returns the main function returns an `rlistings` object.
+#' @param ... additional arguments passed to [`rlistings::as_listing`].
+#' @returns the main function returns an `rlistings` or a `list` object.
 #'
 #' @details
 #'  * Removes duplicate rows.
@@ -35,13 +36,16 @@ ael01_nollt_main <- function(adam_db,
   assert_list(default_formatting, types = "fmt_config", names = "unique")
   assert_list(col_formatting, null.ok = TRUE, types = "fmt_config", names = "unique")
   assert_flag(unique_rows)
-  as_listing(
-    adam_db[[dataset]],
+
+  execute_with_args(
+    as_listing,
+    df = adam_db[[dataset]],
     key_cols = key_cols,
     disp_cols = disp_cols,
     default_formatting = default_formatting,
     col_formatting = col_formatting,
-    unique_rows = unique_rows
+    unique_rows = unique_rows,
+    ...
   )
 }
 
@@ -72,7 +76,11 @@ ael01_nollt_pre <- function(adam_db,
 #' @returns the postprocessing function returns an `rlistings` object or an `ElementaryTable` (null report).
 #'
 ael01_nollt_post <- function(tlg, ...) {
-  if (nrow(tlg) == 0) tlg <- null_report
+  if (is(tlg, "list")) {
+    if (length(tlg) == 0) tlg <- null_report
+  } else {
+    if (nrow(tlg) == 0) tlg <- null_report
+  }
 
   tlg
 }
