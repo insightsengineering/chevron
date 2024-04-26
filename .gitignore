@@ -12,5 +12,6 @@ temp
 .vscode
 doc/
 Meta/
-*pdftests/testthat/_snaps/**/*.new.md
+*pdf
+tests/testthat/_snaps/**/*.new.md
 tests/testthat/_snaps/**/*.new.svg
