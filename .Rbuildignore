@@ -16,3 +16,5 @@ SECURITY\.md
 ^\.vscode$
 ^pkgdown$
 LICENSE
+^revdeprefs\.yaml$
+^revdep$
