@@ -18,3 +18,4 @@ SECURITY\.md
 LICENSE
 ^revdeprefs\.yaml$
 ^revdep$
+^\.covrignore$
