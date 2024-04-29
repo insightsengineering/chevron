@@ -13,3 +13,5 @@ temp
 doc/
 Meta/
 *pdf
+tests/testthat/_snaps/**/*.new.md
+tests/testthat/_snaps/**/*.new.svg
