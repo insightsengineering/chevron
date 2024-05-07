@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE coverage SYSTEM "https://raw.githubusercontent.com/cobertura/cobertura/master/cobertura/src/site/htdocs/xml/coverage-04.dtd">
-<coverage line-rate="0.966220328667072" branch-rate="0" lines-covered="3175" lines-valid="3286" branches-covered="0" branches-valid="0" complexity="0" version="3.6.4" timestamp="2024-05-07 08:38:43.098919">
+<coverage line-rate="0.966220328667072" branch-rate="0" lines-covered="3175" lines-valid="3286" branches-covered="0" branches-valid="0" complexity="0" version="3.6.4" timestamp="2024-05-07 08:46:27.752265">
   <sources>
     <source>/__w/chevron/chevron/chevron</source>
   </sources>
@@ -45,6 +45,8 @@
           <methods>
             <method name="ael02_pre" signature="" line-rate="1" branch-rate="0" complexity="0">
               <lines>
+                <line number="29" hits="1" branch="false"/>
+                <line number="30" hits="1" branch="false"/>
                 <line number="31" hits="1" branch="false"/>
                 <line number="32" hits="1" branch="false"/>
                 <line number="33" hits="1" branch="false"/>
@@ -69,13 +71,13 @@
                 <line number="52" hits="1" branch="false"/>
                 <line number="53" hits="1" branch="false"/>
                 <line number="54" hits="1" branch="false"/>
-                <line number="55" hits="1" branch="false"/>
                 <line number="56" hits="1" branch="false"/>
-                <line number="58" hits="1" branch="false"/>
               </lines>
             </method>
           </methods>
           <lines>
+            <line number="29" hits="1" branch="false"/>
+            <line number="30" hits="1" branch="false"/>
             <line number="31" hits="1" branch="false"/>
             <line number="32" hits="1" branch="false"/>
             <line number="33" hits="1" branch="false"/>
@@ -100,9 +102,7 @@
             <line number="52" hits="1" branch="false"/>
             <line number="53" hits="1" branch="false"/>
             <line number="54" hits="1" branch="false"/>
-            <line number="55" hits="1" branch="false"/>
             <line number="56" hits="1" branch="false"/>
-            <line number="58" hits="1" branch="false"/>
           </lines>
         </class>
         <class name="aet01.R" filename="R/aet01.R" line-rate="0.989795918367347" branch-rate="0" complexity="0">
