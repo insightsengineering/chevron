@@ -62,12 +62,12 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
 #' @param ... additional arguments passed to [`rlistings::as_listing`].
 #' @returns the main function returns an `rlistings` or a `list` object.
 #'
-#' @export
+#' @keywords internal
 std_listing <- function(adam_db,
-                             dataset,
-                             key_cols,
-                             disp_cols,
-                             ...) {
+                        dataset,
+                        key_cols,
+                        disp_cols,
+                        ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
 

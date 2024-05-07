@@ -7,14 +7,13 @@
 #' @export
 #'
 ael02_main <- modify_default_args(std_listing,
-                       dataset = "adae",
-                       key_cols = c("ID", "ASR", "ACTARM"),
-                       disp_cols = c(
-                         "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER",
-                         "ASEV", "AREL", "AEOUT", "AECONTRT", "AEACN"
-                       )
+  dataset = "adae",
+  key_cols = c("ID", "ASR", "ACTARM"),
+  disp_cols = c(
+    "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER",
+    "ASEV", "AREL", "AEOUT", "AECONTRT", "AEACN"
+  )
 )
-
 
 #' @describeIn ael02 Preprocessing
 #'
@@ -27,7 +26,6 @@ ael02_pre <- function(adam_db,
                       dataset = "adae",
                       arm_var = "ACTARM",
                       ...) {
-
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(

@@ -24,3 +24,4 @@ the main function returns an \code{rlistings} or a \code{list} object.
 \description{
 Standard Main Listing Function
 }
+\keyword{internal}

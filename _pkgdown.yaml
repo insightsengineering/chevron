@@ -51,6 +51,7 @@ reference:
   - title: chevron_tlg objects
     contents:
       - ael01_nollt
+      - ael02
       - aet01
       - aet01_aesi
       - aet02
@@ -111,11 +112,14 @@ reference:
       - assert_valid_var
       - assert_valid_var_pair
       - assert_valid_variable
+      - create_id_listings
       - report_null
       - smart_prune
       - var_labels_for
+      - format_date
       - gg_theme_chevron
       - h_format_dec
+      - listing_format_chevron
       - lvls
       - convert_to_month
       - get_section_div
@@ -126,6 +130,9 @@ reference:
       - missing_rule
       - empty_rule
       - get_grade_rule
+      - dose_change_rule
+      - outcome_rule
+      - yes_no_rule
   - title: Non-exported Documented Functions for Packagage Developers
     contents:
       - gen_args
