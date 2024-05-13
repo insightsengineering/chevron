@@ -48,9 +48,9 @@ ael02_pre <- function(adam_db,
       AESER = with_label(reformat(.data$AESER, yes_no_rule), "Serious"),
       ASEV = with_label(.data$ASEV, "Most\nExtreme\nIntensity"),
       AREL = with_label(reformat(.data$AREL, yes_no_rule), "Caused by\nStudy\nDrug"),
-      AEOUT = with_label(as.numeric(reformat(.data$AEOUT, outcome_rule)), "Outcome\n(1)"),
+      AEOUT = with_label(reformat(.data$AEOUT, outcome_rule), "Outcome\n(1)"),
       AECONTRT = with_label(reformat(.data$AECONTRT, yes_no_rule), "Treatment\nfor AE"),
-      AEACN = with_label(as.numeric(reformat(.data$AEACN, dose_change_rule)), "Action\nTaken\n(2)")
+      AEACN = with_label(reformat(.data$AEACN, dose_change_rule), "Action\nTaken\n(2)")
     )
 
   adam_db

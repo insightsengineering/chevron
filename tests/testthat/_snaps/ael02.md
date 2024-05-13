@@ -118,111 +118,111 @@
                                                                               Extreme      Study     Outcome
       Center/Patients ID            Age/Sex/Race              Treatment      Intensity     Drug        (1)  
       ——————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        MODERATE    No             5   
-                                                                             SEVERE      Yes            3   
-                                                                             MODERATE    No             3   
-      BRA-11/9             40/M/ASIAN                       C: Combination   MODERATE    No             2   
-                                                                             MILD        No             5   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            1   
-                                                                             MILD        No             5   
-                                                                             MODERATE    Yes            4   
-                                                                             MODERATE    Yes            3   
-                                                                             MODERATE    No             3   
-      CAN-1/341            43/F/ASIAN                       B: Placebo       MODERATE    No             5   
-                                                                             MODERATE    No             5   
-                                                                             SEVERE      Yes            1   
-                                                                             MODERATE    No             6   
-                                                                             MODERATE    No             3   
-                                                                             MILD        No             2   
-                                                                             MODERATE    Yes            2   
-                                                                             MODERATE    No             5   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       SEVERE      Yes            3   
-                                                                             MODERATE    No             2   
-                                                                             SEVERE      Yes            3   
-                                                                             SEVERE      Yes            5   
-                                                                             MODERATE    No             6   
-                                                                             MILD        No             6   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   MODERATE    No             6   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            5   
-                                                                             MILD        Yes            3   
-                                                                             MODERATE    No             5   
-                                                                             MODERATE    No             5   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            1   
-                                                                             MILD        Yes            2   
-      CHN-11/220           26/F/ASIAN                       B: Placebo       MODERATE    Yes            3   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            1   
-                                                                             MILD        Yes            4   
-      CHN-11/263           34/F/ASIAN                       C: Combination   SEVERE      Yes            5   
-                                                                             MODERATE    Yes            6   
-                                                                             MILD        Yes            3   
-                                                                             MILD        Yes            6   
-                                                                             SEVERE      Yes            2   
-                                                                             SEVERE      Yes            3   
-                                                                             SEVERE      Yes            2   
-      CHN-11/38            25/F/WHITE                       B: Placebo       MODERATE    No             2   
-      CHN-13/102           37/M/ASIAN                       B: Placebo       SEVERE      Yes            1   
-                                                                             MODERATE    No             2   
-                                                                             MODERATE    No             3   
-                                                                             SEVERE      Yes            1   
+      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        MODERATE    No          5      
+                                                                             SEVERE      Yes         3      
+                                                                             MODERATE    No          3      
+      BRA-11/9             40/M/ASIAN                       C: Combination   MODERATE    No          2      
+                                                                             MILD        No          5      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         1      
+                                                                             MILD        No          5      
+                                                                             MODERATE    Yes         4      
+                                                                             MODERATE    Yes         3      
+                                                                             MODERATE    No          3      
+      CAN-1/341            43/F/ASIAN                       B: Placebo       MODERATE    No          5      
+                                                                             MODERATE    No          5      
+                                                                             SEVERE      Yes         1      
+                                                                             MODERATE    No          6      
+                                                                             MODERATE    No          3      
+                                                                             MILD        No          2      
+                                                                             MODERATE    Yes         2      
+                                                                             MODERATE    No          5      
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       SEVERE      Yes         3      
+                                                                             MODERATE    No          2      
+                                                                             SEVERE      Yes         3      
+                                                                             SEVERE      Yes         5      
+                                                                             MODERATE    No          6      
+                                                                             MILD        No          6      
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   MODERATE    No          6      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         5      
+                                                                             MILD        Yes         3      
+                                                                             MODERATE    No          5      
+                                                                             MODERATE    No          5      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         1      
+                                                                             MILD        Yes         2      
+      CHN-11/220           26/F/ASIAN                       B: Placebo       MODERATE    Yes         3      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         1      
+                                                                             MILD        Yes         4      
+      CHN-11/263           34/F/ASIAN                       C: Combination   SEVERE      Yes         5      
+                                                                             MODERATE    Yes         6      
+                                                                             MILD        Yes         3      
+                                                                             MILD        Yes         6      
+                                                                             SEVERE      Yes         2      
+                                                                             SEVERE      Yes         3      
+                                                                             SEVERE      Yes         2      
+      CHN-11/38            25/F/WHITE                       B: Placebo       MODERATE    No          2      
+      CHN-13/102           37/M/ASIAN                       B: Placebo       SEVERE      Yes         1      
+                                                                             MODERATE    No          2      
+                                                                             MODERATE    No          3      
+                                                                             SEVERE      Yes         1      
       \s\n                                                                                         
                                                                                          Action
                                                                              Treatment   Taken 
       Center/Patients ID            Age/Sex/Race              Treatment       for AE      (2)  
       —————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        No            5   
-                                                                             No            7   
-                                                                             Yes           2   
-      BRA-11/9             40/M/ASIAN                       C: Combination   No            3   
-                                                                             No            2   
-                                                                             No            6   
-                                                                             No            6   
-                                                                             Yes           2   
-                                                                             No            3   
-                                                                             No            6   
-                                                                             No            2   
-      CAN-1/341            43/F/ASIAN                       B: Placebo       Yes           2   
-                                                                             Yes           2   
-                                                                             No            6   
-                                                                             No            1   
-                                                                             Yes           3   
-                                                                             Yes           2   
-                                                                             No            2   
-                                                                             No            2   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       No            7   
-                                                                             No            2   
-                                                                             No            1   
-                                                                             No            3   
-                                                                             Yes           2   
-                                                                             No            6   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   No            1   
-                                                                             No            6   
-                                                                             No            2   
-                                                                             No            2   
-                                                                             Yes           3   
-                                                                             Yes           3   
-                                                                             No            6   
-                                                                             No            6   
-                                                                             No            3   
-      CHN-11/220           26/F/ASIAN                       B: Placebo       No            3   
-                                                                             No            6   
-                                                                             No            6   
-                                                                             No            3   
-      CHN-11/263           34/F/ASIAN                       C: Combination   Yes           1   
-                                                                             Yes           6   
-                                                                             No            2   
-                                                                             No            2   
-                                                                             Yes           6   
-                                                                             Yes           2   
-                                                                             Yes           2   
-      CHN-11/38            25/F/WHITE                       B: Placebo       No            2   
-      CHN-13/102           37/M/ASIAN                       B: Placebo       No            6   
-                                                                             No            2   
-                                                                             No            3   
-                                                                             Yes           6   
+      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        No          5     
+                                                                             No          7     
+                                                                             Yes         2     
+      BRA-11/9             40/M/ASIAN                       C: Combination   No          3     
+                                                                             No          2     
+                                                                             No          6     
+                                                                             No          6     
+                                                                             Yes         2     
+                                                                             No          3     
+                                                                             No          6     
+                                                                             No          2     
+      CAN-1/341            43/F/ASIAN                       B: Placebo       Yes         2     
+                                                                             Yes         2     
+                                                                             No          6     
+                                                                             No          1     
+                                                                             Yes         3     
+                                                                             Yes         2     
+                                                                             No          2     
+                                                                             No          2     
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       No          7     
+                                                                             No          2     
+                                                                             No          1     
+                                                                             No          3     
+                                                                             Yes         2     
+                                                                             No          6     
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   No          1     
+                                                                             No          6     
+                                                                             No          2     
+                                                                             No          2     
+                                                                             Yes         3     
+                                                                             Yes         3     
+                                                                             No          6     
+                                                                             No          6     
+                                                                             No          3     
+      CHN-11/220           26/F/ASIAN                       B: Placebo       No          3     
+                                                                             No          6     
+                                                                             No          6     
+                                                                             No          3     
+      CHN-11/263           34/F/ASIAN                       C: Combination   Yes         1     
+                                                                             Yes         6     
+                                                                             No          2     
+                                                                             No          2     
+                                                                             Yes         6     
+                                                                             Yes         2     
+                                                                             Yes         2     
+      CHN-11/38            25/F/WHITE                       B: Placebo       No          2     
+      CHN-13/102           37/M/ASIAN                       B: Placebo       No          6     
+                                                                             No          2     
+                                                                             No          3     
+                                                                             Yes         6     
 
 # ael02 can handle all missing values
 
@@ -344,111 +344,111 @@
                                                                          Extreme      Study     Outcome
       Center/Patients ID            Age/Sex/Race            Treatment   Intensity     Drug        (1)  
       —————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>   No             5   
-                                                                        <Missing>   Yes            3   
-                                                                        <Missing>   No             3   
-      BRA-11/9             40/M/ASIAN                       <Missing>   <Missing>   No             2   
-                                                                        <Missing>   No             5   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   No             5   
-                                                                        <Missing>   Yes            4   
-                                                                        <Missing>   Yes            3   
-                                                                        <Missing>   No             3   
-      CAN-1/341            43/F/ASIAN                       <Missing>   <Missing>   No             5   
-                                                                        <Missing>   No             5   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   No             6   
-                                                                        <Missing>   No             3   
-                                                                        <Missing>   No             2   
-                                                                        <Missing>   Yes            2   
-                                                                        <Missing>   No             5   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>   Yes            3   
-                                                                        <Missing>   No             2   
-                                                                        <Missing>   Yes            3   
-                                                                        <Missing>   Yes            5   
-                                                                        <Missing>   No             6   
-                                                                        <Missing>   No             6   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>   No             6   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   Yes            5   
-                                                                        <Missing>   Yes            3   
-                                                                        <Missing>   No             5   
-                                                                        <Missing>   No             5   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   Yes            2   
-      CHN-11/220           26/F/ASIAN                       <Missing>   <Missing>   Yes            3   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   Yes            1   
-                                                                        <Missing>   Yes            4   
-      CHN-11/263           34/F/ASIAN                       <Missing>   <Missing>   Yes            5   
-                                                                        <Missing>   Yes            6   
-                                                                        <Missing>   Yes            3   
-                                                                        <Missing>   Yes            6   
-                                                                        <Missing>   Yes            2   
-                                                                        <Missing>   Yes            3   
-                                                                        <Missing>   Yes            2   
-      CHN-11/38            25/F/WHITE                       <Missing>   <Missing>   No             2   
-      CHN-13/102           37/M/ASIAN                       <Missing>   <Missing>   Yes            1   
-                                                                        <Missing>   No             2   
-                                                                        <Missing>   No             3   
-                                                                        <Missing>   Yes            1   
+      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>   No          5      
+                                                                        <Missing>   Yes         3      
+                                                                        <Missing>   No          3      
+      BRA-11/9             40/M/ASIAN                       <Missing>   <Missing>   No          2      
+                                                                        <Missing>   No          5      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   No          5      
+                                                                        <Missing>   Yes         4      
+                                                                        <Missing>   Yes         3      
+                                                                        <Missing>   No          3      
+      CAN-1/341            43/F/ASIAN                       <Missing>   <Missing>   No          5      
+                                                                        <Missing>   No          5      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   No          6      
+                                                                        <Missing>   No          3      
+                                                                        <Missing>   No          2      
+                                                                        <Missing>   Yes         2      
+                                                                        <Missing>   No          5      
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>   Yes         3      
+                                                                        <Missing>   No          2      
+                                                                        <Missing>   Yes         3      
+                                                                        <Missing>   Yes         5      
+                                                                        <Missing>   No          6      
+                                                                        <Missing>   No          6      
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   <Missing>   <Missing>   No          6      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   Yes         5      
+                                                                        <Missing>   Yes         3      
+                                                                        <Missing>   No          5      
+                                                                        <Missing>   No          5      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   Yes         2      
+      CHN-11/220           26/F/ASIAN                       <Missing>   <Missing>   Yes         3      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   Yes         1      
+                                                                        <Missing>   Yes         4      
+      CHN-11/263           34/F/ASIAN                       <Missing>   <Missing>   Yes         5      
+                                                                        <Missing>   Yes         6      
+                                                                        <Missing>   Yes         3      
+                                                                        <Missing>   Yes         6      
+                                                                        <Missing>   Yes         2      
+                                                                        <Missing>   Yes         3      
+                                                                        <Missing>   Yes         2      
+      CHN-11/38            25/F/WHITE                       <Missing>   <Missing>   No          2      
+      CHN-13/102           37/M/ASIAN                       <Missing>   <Missing>   Yes         1      
+                                                                        <Missing>   No          2      
+                                                                        <Missing>   No          3      
+                                                                        <Missing>   Yes         1      
       \s\n                                                                                    
                                                                                     Action
                                                                         Treatment   Taken 
       Center/Patients ID            Age/Sex/Race            Treatment    for AE      (2)  
       ————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   <Missing>   No            5   
-                                                                        No            7   
-                                                                        Yes           2   
-      BRA-11/9             40/M/ASIAN                       <Missing>   No            3   
-                                                                        No            2   
-                                                                        No            6   
-                                                                        No            6   
-                                                                        Yes           2   
-                                                                        No            3   
-                                                                        No            6   
-                                                                        No            2   
-      CAN-1/341            43/F/ASIAN                       <Missing>   Yes           2   
-                                                                        Yes           2   
-                                                                        No            6   
-                                                                        No            1   
-                                                                        Yes           3   
-                                                                        Yes           2   
-                                                                        No            2   
-                                                                        No            2   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   <Missing>   No            7   
-                                                                        No            2   
-                                                                        No            1   
-                                                                        No            3   
-                                                                        Yes           2   
-                                                                        No            6   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   <Missing>   No            1   
-                                                                        No            6   
-                                                                        No            2   
-                                                                        No            2   
-                                                                        Yes           3   
-                                                                        Yes           3   
-                                                                        No            6   
-                                                                        No            6   
-                                                                        No            3   
-      CHN-11/220           26/F/ASIAN                       <Missing>   No            3   
-                                                                        No            6   
-                                                                        No            6   
-                                                                        No            3   
-      CHN-11/263           34/F/ASIAN                       <Missing>   Yes           1   
-                                                                        Yes           6   
-                                                                        No            2   
-                                                                        No            2   
-                                                                        Yes           6   
-                                                                        Yes           2   
-                                                                        Yes           2   
-      CHN-11/38            25/F/WHITE                       <Missing>   No            2   
-      CHN-13/102           37/M/ASIAN                       <Missing>   No            6   
-                                                                        No            2   
-                                                                        No            3   
-                                                                        Yes           6   
+      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   <Missing>   No          5     
+                                                                        No          7     
+                                                                        Yes         2     
+      BRA-11/9             40/M/ASIAN                       <Missing>   No          3     
+                                                                        No          2     
+                                                                        No          6     
+                                                                        No          6     
+                                                                        Yes         2     
+                                                                        No          3     
+                                                                        No          6     
+                                                                        No          2     
+      CAN-1/341            43/F/ASIAN                       <Missing>   Yes         2     
+                                                                        Yes         2     
+                                                                        No          6     
+                                                                        No          1     
+                                                                        Yes         3     
+                                                                        Yes         2     
+                                                                        No          2     
+                                                                        No          2     
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   <Missing>   No          7     
+                                                                        No          2     
+                                                                        No          1     
+                                                                        No          3     
+                                                                        Yes         2     
+                                                                        No          6     
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   <Missing>   No          1     
+                                                                        No          6     
+                                                                        No          2     
+                                                                        No          2     
+                                                                        Yes         3     
+                                                                        Yes         3     
+                                                                        No          6     
+                                                                        No          6     
+                                                                        No          3     
+      CHN-11/220           26/F/ASIAN                       <Missing>   No          3     
+                                                                        No          6     
+                                                                        No          6     
+                                                                        No          3     
+      CHN-11/263           34/F/ASIAN                       <Missing>   Yes         1     
+                                                                        Yes         6     
+                                                                        No          2     
+                                                                        No          2     
+                                                                        Yes         6     
+                                                                        Yes         2     
+                                                                        Yes         2     
+      CHN-11/38            25/F/WHITE                       <Missing>   No          2     
+      CHN-13/102           37/M/ASIAN                       <Missing>   No          6     
+                                                                        No          2     
+                                                                        No          3     
+                                                                        Yes         6     
 
 # ael02 functions work as expected
 
@@ -570,109 +570,109 @@
                                                                               Extreme      Study     Outcome
       Center/Patients ID            Age/Sex/Race              Treatment      Intensity     Drug        (1)  
       ——————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        MODERATE    No             5   
-                                                                             SEVERE      Yes            3   
-                                                                             MODERATE    No             3   
-      BRA-11/9             40/M/ASIAN                       C: Combination   MODERATE    No             2   
-                                                                             MILD        No             5   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            1   
-                                                                             MILD        No             5   
-                                                                             MODERATE    Yes            4   
-                                                                             MODERATE    Yes            3   
-                                                                             MODERATE    No             3   
-      CAN-1/341            43/F/ASIAN                       B: Placebo       MODERATE    No             5   
-                                                                             MODERATE    No             5   
-                                                                             SEVERE      Yes            1   
-                                                                             MODERATE    No             6   
-                                                                             MODERATE    No             3   
-                                                                             MILD        No             2   
-                                                                             MODERATE    Yes            2   
-                                                                             MODERATE    No             5   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       SEVERE      Yes            3   
-                                                                             MODERATE    No             2   
-                                                                             SEVERE      Yes            3   
-                                                                             SEVERE      Yes            5   
-                                                                             MODERATE    No             6   
-                                                                             MILD        No             6   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   MODERATE    No             6   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            5   
-                                                                             MILD        Yes            3   
-                                                                             MODERATE    No             5   
-                                                                             MODERATE    No             5   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            1   
-                                                                             MILD        Yes            2   
-      CHN-11/220           26/F/ASIAN                       B: Placebo       MODERATE    Yes            3   
-                                                                             SEVERE      Yes            1   
-                                                                             SEVERE      Yes            1   
-                                                                             MILD        Yes            4   
-      CHN-11/263           34/F/ASIAN                       C: Combination   SEVERE      Yes            5   
-                                                                             MODERATE    Yes            6   
-                                                                             MILD        Yes            3   
-                                                                             MILD        Yes            6   
-                                                                             SEVERE      Yes            2   
-                                                                             SEVERE      Yes            3   
-                                                                             SEVERE      Yes            2   
-      CHN-11/38            25/F/WHITE                       B: Placebo       MODERATE    No             2   
-      CHN-13/102           37/M/ASIAN                       B: Placebo       SEVERE      Yes            1   
-                                                                             MODERATE    No             2   
-                                                                             MODERATE    No             3   
-                                                                             SEVERE      Yes            1   
+      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        MODERATE    No          5      
+                                                                             SEVERE      Yes         3      
+                                                                             MODERATE    No          3      
+      BRA-11/9             40/M/ASIAN                       C: Combination   MODERATE    No          2      
+                                                                             MILD        No          5      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         1      
+                                                                             MILD        No          5      
+                                                                             MODERATE    Yes         4      
+                                                                             MODERATE    Yes         3      
+                                                                             MODERATE    No          3      
+      CAN-1/341            43/F/ASIAN                       B: Placebo       MODERATE    No          5      
+                                                                             MODERATE    No          5      
+                                                                             SEVERE      Yes         1      
+                                                                             MODERATE    No          6      
+                                                                             MODERATE    No          3      
+                                                                             MILD        No          2      
+                                                                             MODERATE    Yes         2      
+                                                                             MODERATE    No          5      
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       SEVERE      Yes         3      
+                                                                             MODERATE    No          2      
+                                                                             SEVERE      Yes         3      
+                                                                             SEVERE      Yes         5      
+                                                                             MODERATE    No          6      
+                                                                             MILD        No          6      
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   MODERATE    No          6      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         5      
+                                                                             MILD        Yes         3      
+                                                                             MODERATE    No          5      
+                                                                             MODERATE    No          5      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         1      
+                                                                             MILD        Yes         2      
+      CHN-11/220           26/F/ASIAN                       B: Placebo       MODERATE    Yes         3      
+                                                                             SEVERE      Yes         1      
+                                                                             SEVERE      Yes         1      
+                                                                             MILD        Yes         4      
+      CHN-11/263           34/F/ASIAN                       C: Combination   SEVERE      Yes         5      
+                                                                             MODERATE    Yes         6      
+                                                                             MILD        Yes         3      
+                                                                             MILD        Yes         6      
+                                                                             SEVERE      Yes         2      
+                                                                             SEVERE      Yes         3      
+                                                                             SEVERE      Yes         2      
+      CHN-11/38            25/F/WHITE                       B: Placebo       MODERATE    No          2      
+      CHN-13/102           37/M/ASIAN                       B: Placebo       SEVERE      Yes         1      
+                                                                             MODERATE    No          2      
+                                                                             MODERATE    No          3      
+                                                                             SEVERE      Yes         1      
       \s\n                                                                                         
                                                                                          Action
                                                                              Treatment   Taken 
       Center/Patients ID            Age/Sex/Race              Treatment       for AE      (2)  
       —————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        No            5   
-                                                                             No            7   
-                                                                             Yes           2   
-      BRA-11/9             40/M/ASIAN                       C: Combination   No            3   
-                                                                             No            2   
-                                                                             No            6   
-                                                                             No            6   
-                                                                             Yes           2   
-                                                                             No            3   
-                                                                             No            6   
-                                                                             No            2   
-      CAN-1/341            43/F/ASIAN                       B: Placebo       Yes           2   
-                                                                             Yes           2   
-                                                                             No            6   
-                                                                             No            1   
-                                                                             Yes           3   
-                                                                             Yes           2   
-                                                                             No            2   
-                                                                             No            2   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       No            7   
-                                                                             No            2   
-                                                                             No            1   
-                                                                             No            3   
-                                                                             Yes           2   
-                                                                             No            6   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   No            1   
-                                                                             No            6   
-                                                                             No            2   
-                                                                             No            2   
-                                                                             Yes           3   
-                                                                             Yes           3   
-                                                                             No            6   
-                                                                             No            6   
-                                                                             No            3   
-      CHN-11/220           26/F/ASIAN                       B: Placebo       No            3   
-                                                                             No            6   
-                                                                             No            6   
-                                                                             No            3   
-      CHN-11/263           34/F/ASIAN                       C: Combination   Yes           1   
-                                                                             Yes           6   
-                                                                             No            2   
-                                                                             No            2   
-                                                                             Yes           6   
-                                                                             Yes           2   
-                                                                             Yes           2   
-      CHN-11/38            25/F/WHITE                       B: Placebo       No            2   
-      CHN-13/102           37/M/ASIAN                       B: Placebo       No            6   
-                                                                             No            2   
-                                                                             No            3   
-                                                                             Yes           6   
+      BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   A: Drug X        No          5     
+                                                                             No          7     
+                                                                             Yes         2     
+      BRA-11/9             40/M/ASIAN                       C: Combination   No          3     
+                                                                             No          2     
+                                                                             No          6     
+                                                                             No          6     
+                                                                             Yes         2     
+                                                                             No          3     
+                                                                             No          6     
+                                                                             No          2     
+      CAN-1/341            43/F/ASIAN                       B: Placebo       Yes         2     
+                                                                             Yes         2     
+                                                                             No          6     
+                                                                             No          1     
+                                                                             Yes         3     
+                                                                             Yes         2     
+                                                                             No          2     
+                                                                             No          2     
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   B: Placebo       No          7     
+                                                                             No          2     
+                                                                             No          1     
+                                                                             No          3     
+                                                                             Yes         2     
+                                                                             No          6     
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   C: Combination   No          1     
+                                                                             No          6     
+                                                                             No          2     
+                                                                             No          2     
+                                                                             Yes         3     
+                                                                             Yes         3     
+                                                                             No          6     
+                                                                             No          6     
+                                                                             No          3     
+      CHN-11/220           26/F/ASIAN                       B: Placebo       No          3     
+                                                                             No          6     
+                                                                             No          6     
+                                                                             No          3     
+      CHN-11/263           34/F/ASIAN                       C: Combination   Yes         1     
+                                                                             Yes         6     
+                                                                             No          2     
+                                                                             No          2     
+                                                                             Yes         6     
+                                                                             Yes         2     
+                                                                             Yes         2     
+      CHN-11/38            25/F/WHITE                       B: Placebo       No          2     
+      CHN-13/102           37/M/ASIAN                       B: Placebo       No          6     
+                                                                             No          2     
+                                                                             No          3     
+                                                                             Yes         6     
 
