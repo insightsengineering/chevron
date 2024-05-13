@@ -12,7 +12,7 @@ empty_rule <- rule(.to_NA = "")
 
 #' Yes/No rule in title case
 #' @export
-yes_no_rule <- rule("Yes" = c("Y", "y", "yes"), "No" = c("N", "n", "no")) # nolint
+yes_no_rule <- rule("Yes" = c("Y", "YES", "y", "yes"), "No" = c("N", "NO", "n", "no")) # nolint
 
 #' Outcome Rule
 #' @export
