@@ -5,7 +5,7 @@
 \alias{yes_no_rule}
 \title{Yes/No rule in title case}
 \format{
-An object of class \code{rule} (inherits from \code{character}) of length 6.
+An object of class \code{rule} (inherits from \code{character}) of length 8.
 }
 \usage{
 yes_no_rule
