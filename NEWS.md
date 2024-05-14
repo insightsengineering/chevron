@@ -1,5 +1,7 @@
 # chevron 0.2.6.9000
 
+* Add `AEL02` template.
+
 # chevron 0.2.6
 
 * Added assertion on class of `summaryvars` argument of `dmt01()`.
@@ -10,7 +12,7 @@
 # chevron 0.2.5
 
 * `MNG01` plot can now be displayed without error bars and can display a continuous temporal scale on the `x` axis.
-* Add a `chevron_simple` class only contain main function.
+* Add a `chevron_simple` class which only contains main function.
 * Remove `details` argument in `script_funs`, add `name` argument.
 * In the `run` method, the argument passed through `...` are combined with the one passed through `user_arg`. `...` arguments have priority.
 * `AET05` preprocessing now filters on `"(AE|CQ|SMQ)TTE"` rather than `"AETTE"`.

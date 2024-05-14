@@ -56,6 +56,32 @@ std_postprocess <- function(tlg, ind = 2L, ...) {
   res
 }
 
+#' Standard Main Listing Function
+#'
+#' @inheritParams gen_args
+#' @param ... additional arguments passed to [`rlistings::as_listing`].
+#' @returns the main function returns an `rlistings` or a `list` object.
+#'
+#' @keywords internal
+std_listing <- function(adam_db,
+                        dataset,
+                        key_cols,
+                        disp_cols,
+                        ...) {
+  assert_all_tablenames(adam_db, dataset)
+  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
+
+  execute_with_args(
+    as_listing,
+    df = adam_db[[dataset]],
+    key_cols = key_cols,
+    disp_cols = disp_cols,
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = TRUE
+  )
+}
+
 # Special formats ----
 
 #' Decimal formatting
@@ -389,4 +415,56 @@ grob_list <- function(...) {
 gg_list <- function(...) {
   lifecycle::deprecate_warn("0.2.5.9009", "gg_list()", "list()")
   list(...)
+}
+
+
+#' Format for Chevron Listings
+#'
+#' @return a `list` of `fmt_config`.
+#'
+listing_format_chevron <- function() {
+  list(
+    all = fmt_config(align = "left"),
+    numeric = fmt_config(align = "center"),
+    Date = fmt_config(format = format_date(), align = "left"),
+    POSIXct = fmt_config(format = format_date(), align = "left"),
+    POSIXt = fmt_config(format = format_date(), align = "left")
+  )
+}
+
+#' Formatting of date
+#'
+#' @param date_format (`string`) the output format.
+#'
+#' @return a `function` converting a date into `string`.
+#'
+#' @export
+#'
+format_date <- function(date_format = "%d%b%Y") {
+  function(x, ...) {
+    toupper(strftime(as.Date(x, tz = ""), format = date_format))
+  }
+}
+
+# listing_id ----
+
+#' Concatenate Site and Subject ID
+#'
+#' @param site (`string`)
+#' @param subject (`string`)
+#' @param sep (`string`)
+#'
+#' @note the `{Patient_label}` whisker placeholder will be used in the label.
+#'
+#' @export
+#' @examples
+#' create_id_listings("BRA-1", "xxx-1234")
+create_id_listings <- function(site, subject, sep = "/") {
+  assert_character(site)
+  assert_character(subject)
+  assert_string(sep)
+
+  subject_id <- stringr::str_split_i(subject, pattern = "-", i = -1)
+
+  with_label(paste(site, subject_id, sep = sep), render_safe("Center/{Patient_label} ID"))
 }
