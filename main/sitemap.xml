@@ -40,6 +40,9 @@
     <loc>https://insightsengineering.github.io/chevron/reference/ael01_nollt.html</loc>
   </url>
   <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/ael02.html</loc>
+  </url>
+  <url>
     <loc>https://insightsengineering.github.io/chevron/reference/aet01.html</loc>
   </url>
   <url>
@@ -151,6 +154,9 @@
     <loc>https://insightsengineering.github.io/chevron/reference/coxt02.html</loc>
   </url>
   <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/create_id_listings.html</loc>
+  </url>
+  <url>
     <loc>https://insightsengineering.github.io/chevron/reference/ctcv4_dir.html</loc>
   </url>
   <url>
@@ -167,6 +173,9 @@
   </url>
   <url>
     <loc>https://insightsengineering.github.io/chevron/reference/do_call.html</loc>
+  </url>
+  <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/dose_change_rule.html</loc>
   </url>
   <url>
     <loc>https://insightsengineering.github.io/chevron/reference/dst01.html</loc>
@@ -221,6 +230,9 @@
   </url>
   <url>
     <loc>https://insightsengineering.github.io/chevron/reference/ext01_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/format_date.html</loc>
   </url>
   <url>
     <loc>https://insightsengineering.github.io/chevron/reference/fstg01.html</loc>
@@ -313,6 +325,9 @@
     <loc>https://insightsengineering.github.io/chevron/reference/lbt15.html</loc>
   </url>
   <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/listing_format_chevron.html</loc>
+  </url>
+  <url>
     <loc>https://insightsengineering.github.io/chevron/reference/lvls.html</loc>
   </url>
   <url>
@@ -341,6 +356,9 @@
   </url>
   <url>
     <loc>https://insightsengineering.github.io/chevron/reference/occurrence_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/outcome_rule.html</loc>
   </url>
   <url>
     <loc>https://insightsengineering.github.io/chevron/reference/pdt01.html</loc>
@@ -421,6 +439,9 @@
     <loc>https://insightsengineering.github.io/chevron/reference/split_rows_by_recursive.html</loc>
   </url>
   <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/std_listing.html</loc>
+  </url>
+  <url>
     <loc>https://insightsengineering.github.io/chevron/reference/std_postprocess.html</loc>
   </url>
   <url>
@@ -449,5 +470,8 @@
   </url>
   <url>
     <loc>https://insightsengineering.github.io/chevron/reference/vst02_lyt.html</loc>
+  </url>
+  <url>
+    <loc>https://insightsengineering.github.io/chevron/reference/yes_no_rule.html</loc>
   </url>
 </urlset>
