@@ -1,6 +1,6 @@
 # chevron 0.2.6.9001
 
-* Add `AEL02` template.
+* Add `AEL02`, `AEL03` templates.
 
 # chevron 0.2.6
 
