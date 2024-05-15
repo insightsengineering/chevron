@@ -442,7 +442,13 @@ listing_format_chevron <- function() {
 #'
 format_date <- function(date_format = "%d%b%Y") {
   function(x, ...) {
-    toupper(strftime(x, format = date_format))
+    toupper(
+      format(
+        # Extract the date at the location of the measure, not at the location of the System.
+        lubridate::date(x),
+        date_format
+      )
+    )
   }
 }
 
