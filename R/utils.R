@@ -450,9 +450,9 @@ format_date <- function(date_format = "%d%b%Y") {
     toupper(
       format(
         # Extract the date at the location of the measure, not at the location of the system.
-        lubridate::force_tz(x, tzone = "NZ"),
+        lubridate::force_tz(x, tzone = "UTC"),
         date_format,
-        tz = "NZ"
+        tz = "UTC"
       )
     )
   }

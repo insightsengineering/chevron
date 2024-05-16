@@ -6,6 +6,7 @@
 \alias{assert_valid_var.factor}
 \alias{assert_valid_var.logical}
 \alias{assert_valid_var.numeric}
+\alias{assert_valid_var.POSIXct}
 \alias{assert_valid_var.default}
 \title{Check whether var is valid}
 \usage{
@@ -46,6 +47,15 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
   ...
 )
 
+\method{assert_valid_var}{POSIXct}(
+  x,
+  label = deparse(substitute(x)),
+  na_ok = TRUE,
+  empty_ok = FALSE,
+  tzs = OlsonNames(),
+  ...
+)
+
 \method{assert_valid_var}{default}(
   x,
   label = deparse(substitute(x)),
@@ -68,6 +78,8 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
 \item{min_chars}{(\code{integer}) the minimum length of the characters.}
 
 \item{integerish}{(\code{flag}) whether the number should be treated as \code{integerish}.}
+
+\item{tzs}{(\code{character}) timezones.}
 }
 \value{
 invisible \code{NULL} or an error message if the criteria are not fulfilled.
