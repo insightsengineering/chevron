@@ -96,19 +96,20 @@ test_that("chevron_g object can be constructed with custom values", {
     .chevron_g(
       preprocess = function(adam_db, ...) adam_db[c("adsl, adlb")],
       main = function(adam_db, x, ...) {
-        ggplot(adam_db$adsl, aes_string(x = x)) +
+        ggplot(adam_db$adsl, aes(x = .data$x)) +
           geom_histogram()
       },
       postprocess = function(tlg, ...) tlg
     )
   )
+
   expect_true(validObject(obj))
 
   obj <- expect_silent(
     chevron_g(
       preprocess = function(adam_db, ...) adam_db[c("adsl, adlb")],
       main = function(adam_db, x, ...) {
-        ggplot(adam_db$adsl, aes_string(x = x)) +
+        ggplot(adam_db$adsl, aes(x = .data$x)) +
           geom_histogram()
       }
     )
@@ -121,7 +122,7 @@ test_that("chevron_g constructor returns an error when expected", {
     .chevron_g(
       preprocess = function(z) z[c("adsl, adlb")],
       main = function(dat, x) {
-        ggplot(dat$adsl, aes_string(x = x)) +
+        ggplot(dat$adsl, aes(x = .data$x)) +
           geom_histogram()
       },
       postprocess = function(w) w
