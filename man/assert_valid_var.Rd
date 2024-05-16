@@ -79,7 +79,7 @@ assert_valid_var(x, label, na_ok, empty_ok, ...)
 
 \item{integerish}{(\code{flag}) whether the number should be treated as \code{integerish}.}
 
-\item{tzs}{(\code{character}) timezones.}
+\item{tzs}{(\code{character}) time zones.}
 }
 \value{
 invisible \code{NULL} or an error message if the criteria are not fulfilled.

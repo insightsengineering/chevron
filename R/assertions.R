@@ -98,7 +98,7 @@ assert_valid_var.numeric <- function(
 }
 
 #' @rdname assert_valid_var
-#' @param tzs (`character`) timezones.
+#' @param tzs (`character`) time zones.
 #' @export
 assert_valid_var.POSIXct <- function(x,
                                      label = deparse(substitute(x)),
