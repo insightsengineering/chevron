@@ -23,6 +23,6 @@ test_that("mht01 works on NULL in lbl_mhbodsys or lbl_mhdecod", {
 
 test_that("mht01 works with other row_split_var", {
   proc_data <- syn_data
-  res <- run(mht01, proc_data, row_split_var = "SEX")
+  res <- run(mht01, proc_data, row_split_var = c("SEX", "ETHNIC"))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })

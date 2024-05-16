@@ -102,35 +102,63 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        Sex                                                      A: Drug X    B: Placebo   C: Combination
-          MedDRA Preferred Term                                    (N=15)       (N=15)         (N=15)    
-        —————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one condition     13 (86.7%)   14 (93.3%)     15 (100%)   
-        Total number of conditions                                   58           59             99      
-        F                                                                                                
-          Total number of patients with at least one condition   10 (66.7%)   8 (53.3%)      10 (66.7%)  
-          Total number of conditions                                 50           41             61      
-          trm B_3/3                                              8 (53.3%)    4 (26.7%)      4 (26.7%)   
-          trm B_1/3                                              5 (33.3%)    3 (20.0%)      5 (33.3%)   
-          trm C_2/2                                              5 (33.3%)    4 (26.7%)      4 (26.7%)   
-          trm A_2/2                                              4 (26.7%)    5 (33.3%)      3 (20.0%)   
-          trm D_1/3                                              3 (20.0%)    3 (20.0%)      5 (33.3%)   
-          trm D_2/3                                              5 (33.3%)     1 (6.7%)      4 (26.7%)   
-          trm D_3/3                                              2 (13.3%)    4 (26.7%)      4 (26.7%)   
-          trm B_2/3                                              3 (20.0%)    4 (26.7%)      2 (13.3%)   
-          trm C_1/2                                              2 (13.3%)    3 (20.0%)      4 (26.7%)   
-          trm A_1/2                                              3 (20.0%)     1 (6.7%)      4 (26.7%)   
-        M                                                                                                
-          Total number of patients with at least one condition   3 (20.0%)    6 (40.0%)      5 (33.3%)   
-          Total number of conditions                                 8            18             38      
-          trm B_2/3                                              2 (13.3%)    2 (13.3%)      3 (20.0%)   
-          trm B_1/3                                                  0        3 (20.0%)      3 (20.0%)   
-          trm A_2/2                                               1 (6.7%)     1 (6.7%)      3 (20.0%)   
-          trm B_3/3                                                  0        2 (13.3%)      3 (20.0%)   
-          trm C_2/2                                               1 (6.7%)        0          4 (26.7%)   
-          trm D_2/3                                               1 (6.7%)     1 (6.7%)      3 (20.0%)   
-          trm C_1/2                                              2 (13.3%)     1 (6.7%)       1 (6.7%)   
-          trm D_1/3                                               1 (6.7%)     1 (6.7%)      2 (13.3%)   
-          trm D_3/3                                                  0         1 (6.7%)      3 (20.0%)   
-          trm A_1/2                                                  0            0          2 (13.3%)   
+        Sex                                                                                                
+          Ethnicity                                                A: Drug X    B: Placebo   C: Combination
+            MedDRA Preferred Term                                    (N=15)       (N=15)         (N=15)    
+        ———————————————————————————————————————————————————————————————————————————————————————————————————
+        Total number of patients with at least one condition       13 (86.7%)   14 (93.3%)     15 (100%)   
+        Total number of conditions                                     58           59             99      
+        F                                                                                                  
+          Total number of patients with at least one condition     10 (66.7%)   8 (53.3%)      10 (66.7%)  
+          Total number of conditions                                   50           41             61      
+           NOT REPORTED                                                                                    
+            Total number of patients with at least one condition       0            0          2 (13.3%)   
+            Total number of conditions                                 0            0              9       
+            trm D_2/3                                                  0            0          2 (13.3%)   
+            trm A_1/2                                                  0            0           1 (6.7%)   
+            trm A_2/2                                                  0            0           1 (6.7%)   
+            trm B_1/3                                                  0            0           1 (6.7%)   
+            trm C_1/2                                                  0            0           1 (6.7%)   
+            trm C_2/2                                                  0            0           1 (6.7%)   
+          HISPANIC OR LATINO                                                                               
+            Total number of patients with at least one condition    1 (6.7%)        0              0       
+            Total number of conditions                                 5            0              0       
+            trm A_2/2                                               1 (6.7%)        0              0       
+            trm B_1/3                                               1 (6.7%)        0              0       
+            trm B_2/3                                               1 (6.7%)        0              0       
+            trm D_1/3                                               1 (6.7%)        0              0       
+          NOT HISPANIC OR LATINO                                                                           
+            Total number of patients with at least one condition   9 (60.0%)    8 (53.3%)      8 (53.3%)   
+            Total number of conditions                                 45           41             52      
+            trm B_3/3                                              8 (53.3%)    4 (26.7%)      4 (26.7%)   
+            trm C_2/2                                              5 (33.3%)    4 (26.7%)      3 (20.0%)   
+            trm B_1/3                                              4 (26.7%)    3 (20.0%)      4 (26.7%)   
+            trm A_2/2                                              3 (20.0%)    5 (33.3%)      2 (13.3%)   
+            trm D_1/3                                              2 (13.3%)    3 (20.0%)      5 (33.3%)   
+            trm D_3/3                                              2 (13.3%)    4 (26.7%)      4 (26.7%)   
+            trm B_2/3                                              2 (13.3%)    4 (26.7%)      2 (13.3%)   
+            trm C_1/2                                              2 (13.3%)    3 (20.0%)      3 (20.0%)   
+            trm D_2/3                                              5 (33.3%)     1 (6.7%)      2 (13.3%)   
+            trm A_1/2                                              3 (20.0%)     1 (6.7%)      3 (20.0%)   
+        M                                                                                                  
+          Total number of patients with at least one condition     3 (20.0%)    6 (40.0%)      5 (33.3%)   
+          Total number of conditions                                   8            18             38      
+          HISPANIC OR LATINO                                                                               
+            Total number of patients with at least one condition    1 (6.7%)        0              0       
+            Total number of conditions                                 2            0              0       
+            trm B_2/3                                               1 (6.7%)        0              0       
+            trm C_1/2                                               1 (6.7%)        0              0       
+          NOT HISPANIC OR LATINO                                                                           
+            Total number of patients with at least one condition   2 (13.3%)    6 (40.0%)      5 (33.3%)   
+            Total number of conditions                                 6            18             38      
+            trm B_1/3                                                  0        3 (20.0%)      3 (20.0%)   
+            trm B_2/3                                               1 (6.7%)    2 (13.3%)      3 (20.0%)   
+            trm A_2/2                                               1 (6.7%)     1 (6.7%)      3 (20.0%)   
+            trm B_3/3                                                  0        2 (13.3%)      3 (20.0%)   
+            trm C_2/2                                               1 (6.7%)        0          4 (26.7%)   
+            trm D_2/3                                               1 (6.7%)     1 (6.7%)      3 (20.0%)   
+            trm D_1/3                                               1 (6.7%)     1 (6.7%)      2 (13.3%)   
+            trm D_3/3                                                  0         1 (6.7%)      3 (20.0%)   
+            trm C_1/2                                               1 (6.7%)     1 (6.7%)       1 (6.7%)   
+            trm A_1/2                                                  0            0          2 (13.3%)   
 

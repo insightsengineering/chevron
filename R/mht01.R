@@ -110,9 +110,11 @@ mht01_post <- function(tlg, row_split_var = "MHBODSYS", prune_0 = TRUE, ...) {
     tlg <- smart_prune(tlg)
   }
 
+  row_split_var <- c(rbind(row_split_var, "*"))
+
   tbl_sorted <- tlg %>%
     sort_at_path(
-      path = c(row_split_var, "*", "MHDECOD"),
+      path = c(row_split_var, "MHDECOD"),
       scorefun = score_occurrences
     )
 
