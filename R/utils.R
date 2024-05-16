@@ -438,19 +438,28 @@ listing_format_chevron <- function() {
 #'
 #' @return a `function` converting a date into `string`.
 #'
-#' @export
+#' @note The date is extracted at the location of the measure, not at the location of the system.
 #'
+#' @export
+#' @examples
+#' format_date("%d%b%Y")("2021-01-01")
+#' format_date("%d%b%Y")(as.Date("2021-01-01"))
+#' format_date("%d%b%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "NZ"))
+#' format_date("%d%b%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "US/Pacific"))
 format_date <- function(date_format = "%d%b%Y") {
   function(x, ...) {
     toupper(
       format(
-        # Extract the date at the location of the measure, not at the location of the System.
-        lubridate::date(x),
+        # Extract the date at the location of the measure, not at the location of the system.
+        as.Date(x, tz = attr(x, "tzone")),
         date_format
       )
     )
   }
 }
+
+
+
 
 # listing_id ----
 
