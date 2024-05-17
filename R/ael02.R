@@ -26,7 +26,6 @@ ael02_pre <- function(adam_db,
                       dataset = "adae",
                       arm_var = "ACTARM",
                       ...) {
-
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
