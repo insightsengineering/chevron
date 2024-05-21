@@ -80,6 +80,7 @@ assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = 
     ...
   )
 }
+
 #' @rdname assert_valid_var
 #' @param integerish (`flag`) whether the number should be treated as `integerish`.
 #' @export
@@ -94,6 +95,35 @@ assert_valid_var.numeric <- function(
     .var.name = label,
     ...
   )
+}
+
+#' @rdname assert_valid_var
+#' @param tzs (`character`) time zones.
+#' @export
+assert_valid_var.POSIXct <- function(x,
+                                     label = deparse(substitute(x)),
+                                     na_ok = TRUE,
+                                     empty_ok = FALSE,
+                                     tzs = OlsonNames(),
+                                     ...) {
+  assert_posixct(
+    x,
+    min.len = as.integer(!empty_ok),
+    any.missing = na_ok,
+    .var.name = label,
+    ...
+  )
+
+  extra_args <- list(...)
+
+  # Test if time zone of x is in OlsonNames
+  if (lubridate::tz(x) %in% tzs) {
+    return(invisible(NULL))
+  } else if (is(extra_args$add, "AssertCollection")) {
+    extra_args$add$push(paste("Non standard timezone detected for", label, "!"))
+  } else {
+    abort(paste("Non standard timezone detected for", label, "!"))
+  }
 }
 
 #' @rdname assert_valid_var
