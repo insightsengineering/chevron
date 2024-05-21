@@ -195,6 +195,7 @@ syn_test_data <- function() {
     mutate(AREL = .data$AEREL) %>%
     mutate(ATOXGR = .data$AETOXGR)
 
+  sd$adae$TRTSDTM <- lubridate::force_tz(sd$adae$TRTSDTM, tzone = "UTC")
   sd$adae$ADURN <- sd$adae$AENDY - sd$adae$ASTDY + 1
   # dsl01
   sd$adsl$TRTDURD <- as.numeric(ceiling(difftime(sd$adsl$TRTEDTM, sd$adsl$TRTSDTM, units = "days")))

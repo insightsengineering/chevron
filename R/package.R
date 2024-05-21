@@ -12,6 +12,7 @@
 #' @importFrom grid stringWidth unit
 #' @importFrom glue glue
 #' @importFrom lifecycle deprecated
+#' @importFrom lubridate force_tz
 #' @importFrom magrittr %>%
 #' @importFrom methods is setValidity
 #' @importFrom nestcolor color_palette

@@ -15,3 +15,11 @@ a \code{function} converting a date into \code{string}.
 \description{
 Formatting of date
 }
+\note{
+The date is extracted at the location of the measure, not at the location of the system.
+}
+\examples{
+format_date("\%d\%b\%Y")(as.Date("2021-01-01"))
+format_date("\%d\%b\%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "NZ"))
+format_date("\%d\%b\%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "US/Pacific"))
+}

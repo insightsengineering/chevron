@@ -61,6 +61,14 @@ test_that("assert_valid_var.numeric works as expected", {
   expect_silent(assert_valid_var(x, integerish = TRUE))
 })
 
+test_that("assert_valid_var.POSIXct works as expected", {
+  x <- as.POSIXct("2020-01-01", "UTC")
+  expect_silent(assert_valid_var(x, na_ok = TRUE))
+
+  x <- as.POSIXct("2020-01-01", "")
+  expect_error(assert_valid_var(x), "Non standard timezone detected for x !")
+})
+
 
 # assert_valid_variable ----
 
