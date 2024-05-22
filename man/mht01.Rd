@@ -27,7 +27,7 @@ mht01_main(
 
 mht01_pre(adam_db, ...)
 
-mht01_post(tlg, prune_0 = TRUE, ...)
+mht01_post(tlg, row_split_var = "MHBODSYS", prune_0 = TRUE, ...)
 
 mht01
 }
@@ -65,7 +65,7 @@ history by SOC and Preferred Term.
 \item Remove zero-count rows unless overridden with \code{prune_0 = FALSE}.
 \item Split columns by arm.
 \item Does not include a total column by default.
-\item Order by body system alphabetically and within body system and medical condition by decreasing total number of
+\item Order by \code{row_split_var} alphabetically and medical condition by decreasing total number of
 patients with the specific condition.
 \code{summary_labels} is used to control the summary for each level. If "all" is used, then each split will have that
 summary statistic with the labels. One special case is "TOTAL", this is for the overall population.

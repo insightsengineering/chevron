@@ -18,7 +18,7 @@ mht01_label <- c(
 #'  * Remove zero-count rows unless overridden with `prune_0 = FALSE`.
 #'  * Split columns by arm.
 #'  * Does not include a total column by default.
-#'  * Order by body system alphabetically and within body system and medical condition by decreasing total number of
+#'  * Order by `row_split_var` alphabetically and medical condition by decreasing total number of
 #'  patients with the specific condition.
 #'  `summary_labels` is used to control the summary for each level. If "all" is used, then each split will have that
 #'  summary statistic with the labels. One special case is "TOTAL", this is for the overall population.
@@ -105,14 +105,16 @@ mht01_pre <- function(adam_db, ...) {
 #' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
-mht01_post <- function(tlg, prune_0 = TRUE, ...) {
+mht01_post <- function(tlg, row_split_var = "MHBODSYS", prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
 
+  row_split_var <- c(rbind(row_split_var, "*"))
+
   tbl_sorted <- tlg %>%
     sort_at_path(
-      path = c("MHBODSYS", "*", "MHDECOD"),
+      path = c(row_split_var, "MHDECOD"),
       scorefun = score_occurrences
     )
 
