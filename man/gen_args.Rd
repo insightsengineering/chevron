@@ -76,6 +76,8 @@ Key columns allow you to group repeat occurrences.}
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
+
+\item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
 }
 \value{
 invisible \code{NULL}. This function is for documentation purpose only.

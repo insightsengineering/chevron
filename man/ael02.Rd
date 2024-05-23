@@ -13,9 +13,10 @@ An object of class \code{chevron_l} of length 1.
 ael02_main(
   adam_db,
   dataset = "adae",
-  key_cols = c("ID", "ASR", "ACTARM"),
+  key_cols = c("ID", "ASR"),
   disp_cols = c("AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER", "ASEV", "AREL", "AEOUT",
     "AECONTRT", "AEACN"),
+  split_into_pages_by_var = "ACTARM",
   ...
 )
 
@@ -32,6 +33,8 @@ ael02
 Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
+
+\item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
 
 \item{...}{not used.}
 

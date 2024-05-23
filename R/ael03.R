@@ -9,11 +9,12 @@
 ael03_main <- modify_default_args(
   std_listing,
   dataset = "adae",
-  key_cols = c("ID", "ASR", "ACTARM"),
+  key_cols = c("ID", "ASR"),
   disp_cols = c(
     "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "ASEV",
     "AREL", "AEOUT", "AECONTRT", "AEACN", "SERREAS"
-  )
+  ),
+  split_into_pages_by_var = "ACTARM"
 )
 
 #' @describeIn ael03 Preprocessing

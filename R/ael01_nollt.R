@@ -20,7 +20,8 @@ ael01_nollt_main <- modify_default_args(
   std_listing,
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
-  disp_cols = "AETERM"
+  disp_cols = "AETERM",
+  split_into_pages_by_var = NULL
 )
 
 #' @describeIn ael01_nollt Preprocessing

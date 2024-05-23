@@ -22,6 +22,7 @@
 #'   Key columns allow you to group repeat occurrences.
 #' @param disp_cols (`character`) names of non-key columns which should be displayed when the listing is rendered.
 #' @param row_split_var (`character`) additional row split variables.
+#' @param split_into_pages_by_var (`character` or `NULL`) the name of the variable to split the listing by.
 #' @param page_var (`string`) variable name prior to which the row split is by page.
 #' @param unique_rows (`flag`) whether to keep only unique rows in listing.
 #' @param ... not used.
