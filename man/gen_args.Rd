@@ -24,6 +24,7 @@ gen_args(
   key_cols,
   disp_cols,
   row_split_var,
+  split_into_pages_by_var,
   page_var,
   unique_rows,
   ...
@@ -70,6 +71,8 @@ Key columns allow you to group repeat occurrences.}
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{row_split_var}{(\code{character}) additional row split variables.}
+
+\item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 

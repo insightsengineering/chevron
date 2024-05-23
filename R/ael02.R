@@ -8,11 +8,12 @@
 #'
 ael02_main <- modify_default_args(std_listing,
   dataset = "adae",
-  key_cols = c("ID", "ASR", "ACTARM"),
+  key_cols = c("ID", "ASR"),
   disp_cols = c(
     "AEDECOD", "TRTSDTM", "ASTDY", "ADURN", "AESER",
     "ASEV", "AREL", "AEOUT", "AECONTRT", "AEACN"
-  )
+  ),
+  split_into_pages_by_var = "ACTARM"
 )
 
 #' @describeIn ael02 Preprocessing
