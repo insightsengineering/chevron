@@ -4,7 +4,14 @@
 \alias{std_listing}
 \title{Standard Main Listing Function}
 \usage{
-std_listing(adam_db, dataset, key_cols, disp_cols, ...)
+std_listing(
+  adam_db,
+  dataset,
+  key_cols,
+  disp_cols,
+  split_into_pages_by_var,
+  ...
+)
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
@@ -15,6 +22,8 @@ std_listing(adam_db, dataset, key_cols, disp_cols, ...)
 Key columns allow you to group repeat occurrences.}
 
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
+
+\item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
 
 \item{...}{additional arguments passed to \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }

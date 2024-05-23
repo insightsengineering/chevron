@@ -1,15 +1,15 @@
-# ael02 ----
+# ael03 ----
 
-test_that("ael02 works with adae dataset", {
+test_that("ael03 works with adae dataset", {
   res <- expect_silent(
-    run(ael02, syn_data, dataset = "adae")
+    run(ael03, syn_data, dataset = "adae")
   )
   expect_list(res, len = 3)
   res <- lapply(res, "[", 1:10, )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
-test_that("ael02 can handle all missing values", {
+test_that("ael03 can handle all missing values", {
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
@@ -18,17 +18,18 @@ test_that("ael02 can handle all missing values", {
       ASEV = NA_character_
     )
 
-  res <- expect_silent(run(ael02, proc_data))
+  res <- expect_silent(run(ael03, proc_data))
   expect_list(res, len = 1)
+
   expect_snapshot(cat(export_as_txt(res[[1]][1:50, ], lpp = 100)))
 })
 
-# ael02 functions ----
+# ael03 functions ----
 
-test_that("ael02 functions work as expected", {
+test_that("ael03 functions work as expected", {
   res <- expect_silent(
-    ael02_pre(syn_data) %>%
-      ael02_main()
+    ael03_pre(syn_data) %>%
+      ael03_main()
   )
 
   expect_list(res, len = 3)
