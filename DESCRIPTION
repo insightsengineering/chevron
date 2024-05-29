@@ -98,6 +98,7 @@ Collate:
     'cfbt01.R'
     'checks.R'
     'chevron_tlg-S4methods.R'
+    'cml02a_gl.R'
     'cmt01a.R'
     'cmt02_pt.R'
     'coxt01.R'
