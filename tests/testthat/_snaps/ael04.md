@@ -27,28 +27,16 @@
       CHN-15/245           Yes       
       \s\nACTARM: B: Placebo
       
-      ————————————————————————————————————————————————————————————————————————————————————————————————
-                                             Date of                                                  
-                                           First Study      Day of Last                               
-                                               Drug          Study Drug     Day of                    
-      Center/Patients ID   Age/Sex/Race   Administration   Administration   Death     Cause of Death  
-      ————————————————————————————————————————————————————————————————————————————————————————————————
-      CAN-1/341            43/F/ASIAN     23MAY2019             998          1014    SUICIDE          
-      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1122    LOST TO FOLLOW UP
-      CHN-13/240           42/M/ASIAN     08APR2019             1044         1087    ADVERSE EVENT    
-      CHN-7/126            27/M/WHITE     02MAY2019             1025         1066    ADVERSE EVENT    
-      \s\nACTARM: B: Placebo
-      
-      ———————————————————————————————
-                                     
-                                     
-                            Autopsy  
-      Center/Patients ID   Performed?
-      ———————————————————————————————
-      CAN-1/341            Yes       
-      CHN-1/307            <Missing> 
-      CHN-13/240           Yes       
-      CHN-7/126            Yes       
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————————
+                                             Date of                                                               
+                                           First Study      Day of Last                                            
+                                               Drug          Study Drug     Day of                        Autopsy  
+      Center/Patients ID   Age/Sex/Race   Administration   Administration   Death     Cause of Death     Performed?
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      CAN-1/341            43/F/ASIAN     23MAY2019             998          1014    SUICIDE             Yes       
+      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1122    LOST TO FOLLOW UP   <Missing> 
+      CHN-13/240           42/M/ASIAN     08APR2019             1044         1087    ADVERSE EVENT       Yes       
+      CHN-7/126            27/M/WHITE     02MAY2019             1025         1066    ADVERSE EVENT       Yes       
       \s\nACTARM: A: Drug X
       
       ——————————————————————————————————————————————————————————————————————————————————————————————————
@@ -122,28 +110,16 @@
       CHN-15/245           Yes       
       \s\nACTARM: B: Placebo
       
-      ————————————————————————————————————————————————————————————————————————————————————————————————
-                                             Date of                                                  
-                                           First Study      Day of Last                               
-                                               Drug          Study Drug     Day of                    
-      Center/Patients ID   Age/Sex/Race   Administration   Administration   Death     Cause of Death  
-      ————————————————————————————————————————————————————————————————————————————————————————————————
-      CAN-1/341            43/F/ASIAN     23MAY2019             998          1014    SUICIDE          
-      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1122    LOST TO FOLLOW UP
-      CHN-13/240           42/M/ASIAN     08APR2019             1044         1087    ADVERSE EVENT    
-      CHN-7/126            27/M/WHITE     02MAY2019             1025         1066    ADVERSE EVENT    
-      \s\nACTARM: B: Placebo
-      
-      ———————————————————————————————
-                                     
-                                     
-                            Autopsy  
-      Center/Patients ID   Performed?
-      ———————————————————————————————
-      CAN-1/341            Yes       
-      CHN-1/307            <Missing> 
-      CHN-13/240           Yes       
-      CHN-7/126            Yes       
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————————
+                                             Date of                                                               
+                                           First Study      Day of Last                                            
+                                               Drug          Study Drug     Day of                        Autopsy  
+      Center/Patients ID   Age/Sex/Race   Administration   Administration   Death     Cause of Death     Performed?
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————————
+      CAN-1/341            43/F/ASIAN     23MAY2019             998          1014    SUICIDE             Yes       
+      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1122    LOST TO FOLLOW UP   <Missing> 
+      CHN-13/240           42/M/ASIAN     08APR2019             1044         1087    ADVERSE EVENT       Yes       
+      CHN-7/126            27/M/WHITE     02MAY2019             1025         1066    ADVERSE EVENT       Yes       
       \s\nACTARM: A: Drug X
       
       ——————————————————————————————————————————————————————————————————————————————————————————————————
