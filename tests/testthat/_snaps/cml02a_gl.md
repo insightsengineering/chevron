@@ -1,7 +1,7 @@
 # cml02a_gl works with adcm dataset
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100, cpp = 110))
     Output
                                                    Investigator-Specified
       ATC Class Level 2   WHODrug Preferred Name       Treatment Term    
@@ -27,7 +27,7 @@
 # cml02a_gl works with missing data
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100, cpp = 110))
     Output
                                                      Investigator-Specified
        ATC Class Level 2    WHODrug Preferred Name       Treatment Term    
@@ -45,7 +45,7 @@
 # cml02a_gl functions work as expected
 
     Code
-      cat(export_as_txt(res, lpp = 100))
+      cat(export_as_txt(res, lpp = 100, cpp = 110))
     Output
                                                    Investigator-Specified
       ATC Class Level 2   WHODrug Preferred Name       Treatment Term    
