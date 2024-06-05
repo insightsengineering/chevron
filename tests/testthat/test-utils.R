@@ -286,7 +286,10 @@ test_that("get_section_div works", {
 
 test_that("grob_list is deprecated", {
   withr::with_options(
-    list(lifecycle_verbosity = "warning"),
+    c(
+      opts_partial_match_old,
+      list(lifecycle_verbosity = "warning")
+    ),
     {
       graph <- run(chevron::mng01, syn_data, dataset = "adlb")
       graph <- ggplot2::ggplotGrob(graph[[3]])
@@ -303,7 +306,10 @@ test_that("grob_list is deprecated", {
 
 test_that("gg_list is deprecated", {
   withr::with_options(
-    list(lifecycle_verbosity = "warning"),
+    c(
+      opts_partial_match_old,
+      list(lifecycle_verbosity = "warning")
+    ),
     {
       graph <- run(chevron::mng01, syn_data, dataset = "adlb")
 
