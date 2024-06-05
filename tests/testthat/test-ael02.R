@@ -6,7 +6,7 @@ test_that("ael02 works with adae dataset", {
   )
   expect_list(res, len = 3)
   res <- lapply(res, "[", 1:10, )
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 110)))
 })
 
 test_that("ael02 can handle all missing values", {
@@ -20,10 +20,11 @@ test_that("ael02 can handle all missing values", {
 
   res <- expect_silent(run(ael02, proc_data))
   expect_list(res, len = 1)
-  expect_snapshot(cat(export_as_txt(res[[1]][1:50, ], lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res[[1]][1:50, ], lpp = 100, cpp = 110)))
 })
 
 # ael02 functions ----
+
 
 test_that("ael02 functions work as expected", {
   res <- expect_silent(
@@ -33,5 +34,5 @@ test_that("ael02 functions work as expected", {
 
   expect_list(res, len = 3)
   res <- lapply(res, "[", 1:10, )
-  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 110)))
 })
