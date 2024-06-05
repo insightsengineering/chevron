@@ -1,4 +1,4 @@
-# chevron 0.2.6.9005
+# chevron 0.2.6.9006
 
 * Add `AEL02`, `AEL03`, `AEL04` templates.
 * Modify the post processing of `MHT01` to allow multiple `row_split_var`.
