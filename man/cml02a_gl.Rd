@@ -14,7 +14,7 @@ An object of class \code{chevron_l} of length 1.
 cml02a_gl_main(
   adam_db,
   dataset = "adcm",
-  key_cols = c("ATC2", "CMDECOD", "CMTRT"),
+  key_cols = c("ATC2", "CMDECOD"),
   disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
   split_into_pages_by_var = NULL,
   ...
