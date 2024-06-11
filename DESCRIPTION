@@ -36,7 +36,7 @@ Imports:
     glue (>= 1.0.0),
     grid,
     lifecycle (>= 0.2.0),
-    lubridate,
+    lubridate (>= 1.7.8),
     magrittr (>= 1.5),
     methods,
     nestcolor (>= 0.1.1),
@@ -50,7 +50,7 @@ Imports:
     utils
 Suggests:
     knitr (>= 1.42),
-    rmarkdown (>= 2.19),
+    rmarkdown (>= 2.23),
     testthat (>= 3.0.4),
     tidyr (>= 0.8.3),
     vdiffr (>= 1.0.0),
