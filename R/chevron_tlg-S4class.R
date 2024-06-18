@@ -1,4 +1,5 @@
 #' @include utils.R
+#' @include report_null.R
 
 # Chevron_tlg ----
 
@@ -141,7 +142,7 @@ methods::setValidity("chevron_simple", function(object) {
 #'
 chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
                       preprocess = function(adam_db, ...) adam_db,
-                      postprocess = report_null,
+                      postprocess = std_postprocess,
                       ...) {
   res <- .chevron_t(
     main = main,
@@ -166,7 +167,7 @@ chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), a
 #'
 chevron_l <- function(main = function(adam_db, ...) data.frame(),
                       preprocess = function(adam_db, ...) adam_db,
-                      postprocess = function(tlg, ...) tlg,
+                      postprocess = std_postprocess,
                       ...) {
   res <- .chevron_l(
     main = main,
@@ -195,7 +196,7 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 #'
 chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
                       preprocess = function(adam_db, ...) adam_db,
-                      postprocess = function(tlg, ...) tlg,
+                      postprocess = std_postprocess,
                       ...) {
   res <- .chevron_g(
     main = main,
