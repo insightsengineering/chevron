@@ -141,7 +141,7 @@ lbt06_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' `LBT06` Table 1 (Default) Laboratory Abnormalities by Visit and Baseline Status Table 1.

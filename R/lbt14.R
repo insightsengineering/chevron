@@ -138,7 +138,7 @@ lbt14_pre <- function(adam_db,
 #'
 lbt14_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- tlg %>% trim_rows()
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' `LBT14` Laboratory Test Results Shift Table – Highest `NCI-CTCAE` Grade Post-Baseline by

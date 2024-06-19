@@ -118,7 +118,7 @@ mht01_post <- function(tlg, row_split_var = "MHBODSYS", prune_0 = TRUE, ...) {
       scorefun = score_occurrences
     )
 
-  std_postprocess(tbl_sorted)
+  report_null(tbl_sorted)
 }
 
 #' `MHT01` Medical History Table.

@@ -170,7 +170,7 @@ dst01_post <- function(tlg, prune_0 = TRUE, ...) {
     tlg <- tlg %>%
       smart_prune()
   }
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' DST01 Table 1 (Default) Patient Disposition Table 1.

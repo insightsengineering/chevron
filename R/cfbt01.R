@@ -204,7 +204,7 @@ cfbt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' `CFBT01` Change from Baseline By Visit Table.

@@ -48,7 +48,7 @@ setMethod("report_null", "listing_df", function(tlg, ind = 2L, ...) {
 })
 
 #' @rdname report_null
-setMethod("report_null", "list", function(tlg, ...) {
+setMethod("report_null", "list", function(tlg, ind = 2L, ...) {
   if (length(tlg) == 0) {
     res <- null_report
     table_inset(res) <- ind
@@ -69,19 +69,3 @@ null_report <- rtables::rtable(
   header = "",
   rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
 )
-
-#' Standard Post Processing
-#'
-#' @param tlg to convert to null report.
-#' @param ind (`integer`) indentation for the outputs of class `VTableTree`.
-#' @param ... not used.
-#'
-#' @export
-#' @returns a post processed `tlg` or a `NULL` report.
-#'
-std_postprocess <- function(tlg, ind = 2L, ...) {
-  assert_int(ind, lower = 0L)
-
-  res <- report_null(tlg, ind = ind)
-  res
-}

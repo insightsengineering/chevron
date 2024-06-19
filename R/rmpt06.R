@@ -210,7 +210,7 @@ rmpt06_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' `RMPT06` Table 1 (Default) Seriousness, Outcomes, Severity, Frequency with 95% CI for Risk Management Plan.

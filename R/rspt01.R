@@ -156,7 +156,7 @@ rspt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' `RSPT01` Binary Outcomes Summary.

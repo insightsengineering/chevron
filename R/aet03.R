@@ -138,7 +138,7 @@ aet03_post <- function(tlg, prune_0 = TRUE, ...) {
       scorefun = cont_n_allcols
     )
   if (prune_0) tlg <- trim_rows(tlg)
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' `AET03` Table 1 (Default) Advert Events by Greatest Intensity Table 1.

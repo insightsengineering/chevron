@@ -131,7 +131,7 @@ pdt01_post <- function(tlg, prune_0 = TRUE, dvcode_var = "DVDECOD", dvterm_var =
       scorefun = score_occurrences
     )
 
-  std_postprocess(tbl_sorted)
+  report_null(tbl_sorted)
 }
 
 #' `pdt01` Major Protocol Deviations Table.

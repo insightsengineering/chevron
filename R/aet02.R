@@ -105,7 +105,7 @@ aet02_post <- function(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  report_null(tlg)
 }
 
 #' `AET02` Table 1 (Default) Adverse Events by System Organ Class and Preferred Term Table 1.

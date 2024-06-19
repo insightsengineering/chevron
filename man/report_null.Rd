@@ -22,7 +22,7 @@ report_null(tlg, ...)
 
 \S4method{report_null}{listing_df}(tlg, ind = 2L, ...)
 
-\S4method{report_null}{list}(tlg, ...)
+\S4method{report_null}{list}(tlg, ind = 2L, ...)
 
 \S4method{report_null}{ANY}(tlg, ...)
 

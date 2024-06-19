@@ -24,21 +24,21 @@
 chevron_t(
   main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = std_postprocess,
+  postprocess = report_null,
   ...
 )
 
 chevron_l(
   main = function(adam_db, ...) data.frame(),
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = std_postprocess,
+  postprocess = report_null,
   ...
 )
 
 chevron_g(
   main = function(adam_db, ...) ggplot2::ggplot(),
   preprocess = function(adam_db, ...) adam_db,
-  postprocess = std_postprocess,
+  postprocess = report_null,
   ...
 )
 
