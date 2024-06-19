@@ -8,7 +8,6 @@ test_that("report_null works as expected with `NULL`", {
 })
 
 test_that("report_null works as expected with `VTableTree`", {
-
   lyt <- basic_table() %>% analyze("Species")
   tab <- build_table(lyt, iris)
   rtables::table_inset(tab) <- 2L
