@@ -67,5 +67,6 @@ setMethod("report_null", "ANY", function(tlg, ...) {
 #' @rdname report_null
 null_report <- rtables::rtable(
   header = "",
-  rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
+  rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output."),
+  inset = 2L
 )

@@ -2,9 +2,7 @@
 
 test_that("report_null works as expected with `NULL`", {
   expect_silent(res <- report_null(NULL))
-  rep <- null_report
-  rtables::table_inset(rep) <- 2L
-  expect_identical(res, rep)
+  expect_identical(res, null_report)
 })
 
 test_that("report_null works as expected with `VTableTree`", {
@@ -15,9 +13,7 @@ test_that("report_null works as expected with `VTableTree`", {
 
   tab <- build_table(basic_table(), data.frame())
   expect_silent(res <- report_null(tab))
-  rep <- null_report
-  rtables::table_inset(rep) <- 2L
-  expect_identical(res, rep)
+  expect_identical(res, null_report)
 })
 
 test_that("report_null works as expected with `listing_df`", {
@@ -26,9 +22,7 @@ test_that("report_null works as expected with `listing_df`", {
 
   lst <- rlistings::as_listing(iris[NULL, ], "Species", "Sepal.Length")
   expect_silent(lst <- report_null(lst))
-  rep <- null_report
-  rtables::table_inset(rep) <- 2L
-  expect_identical(lst, rep)
+  expect_identical(lst, null_report)
 })
 
 test_that("report_null works as expected with `list`", {
@@ -36,10 +30,8 @@ test_that("report_null works as expected with `list`", {
   expect_identical(lst, report_null(lst))
 
   lst <- rlistings::as_listing(iris[NULL, ], "Species", "Sepal.Length", split_into_pages_by_var = "Species")
-  expect_silent(lst <- report_null(lst))
-  rep <- null_report
-  rtables::table_inset(rep) <- 2L
-  expect_identical(lst, rep)
+  lst <- report_null(lst)
+  expect_identical(lst, null_report)
 })
 
 test_that("report_null works as expected with by default", {
