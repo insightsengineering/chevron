@@ -83,7 +83,6 @@ null_report <- rtables::rtable(
 #' std_postprocessing(build_table(basic_table() |> analyze("Species"), iris), ind = 10L)
 #'
 std_postprocessing <- function(tlg, ...) {
-
   tlg <- report_null(tlg, ...)
   tlg
 }
