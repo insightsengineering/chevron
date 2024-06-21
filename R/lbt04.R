@@ -163,7 +163,7 @@ lbt04_pre <- function(adam_db, ...) {
 #' @export
 #'
 lbt04_post <- function(tlg, ...) {
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `LBT04` Laboratory Abnormalities Not Present at Baseline Table.

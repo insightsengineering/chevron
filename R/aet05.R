@@ -115,7 +115,7 @@ aet05_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `AET05` Table 1 (Default) Adverse Event Rate Adjusted for Patient-Years at Risk - First Occurrence.

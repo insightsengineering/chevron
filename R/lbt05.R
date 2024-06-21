@@ -130,7 +130,7 @@ lbt05_post <- function(tlg, prune_0 = FALSE, ...) {
     }
   }
 
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `LBT05` Table 1 (Default) Laboratory Abnormalities with Single and Replicated Marked.

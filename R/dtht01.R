@@ -180,7 +180,7 @@ dtht01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `DTHT01` Table 1 (Default) Death Table.

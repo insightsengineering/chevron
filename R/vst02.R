@@ -108,7 +108,7 @@ vst02_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `VST02` Vital Sign Abnormalities Table.

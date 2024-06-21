@@ -139,7 +139,7 @@ pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = 
       scorefun = score_occurrences
     )
 
-  report_null(tbl_sorted)
+  std_postprocessing(tbl_sorted)
 }
 
 #' `pdt02` Major Protocol Deviations Related to Epidemic/Pandemic Table.

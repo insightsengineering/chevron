@@ -115,7 +115,7 @@ dmt01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `DMT01` Table 1 (Default) Demographics and Baseline Characteristics Table 1.

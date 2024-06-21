@@ -97,7 +97,7 @@ egt02_pre <- function(adam_db, ...) {
 #' @export
 #'
 egt02_post <- function(tlg, ...) {
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `EGT02` ECG Abnormalities Table.

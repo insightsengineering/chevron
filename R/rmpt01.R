@@ -131,7 +131,7 @@ rmpt01_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  report_null(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `RMPT01`Duration of Exposure for Risk Management Plan Table.

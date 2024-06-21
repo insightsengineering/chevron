@@ -2,7 +2,8 @@
 
 * Add `AEL02`, `AEL03` templates.
 * Modify the post processing of `MHT01` to allow multiple `row_split_var`.
-* Improve the `report_null` to facilitate the creation of null reports.
+* Improve the `report_null` method to facilitate the creation of null reports
+* Export the `std_postprocessing` function to simplify post processing logic.
 
 # chevron 0.2.6
 

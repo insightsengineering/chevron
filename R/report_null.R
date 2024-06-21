@@ -70,3 +70,20 @@ null_report <- rtables::rtable(
   rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output."),
   inset = 2L
 )
+
+#' Standard Post Processing
+#'
+#' @param tlg to post process.
+#' @param ... additional arguments passed to [report_null].
+#'
+#' @returns a processed `tlg` or a null report.
+#' @export
+#' @examples
+#' library(rtables)
+#' std_postprocessing(build_table(basic_table() |> analyze("Species"), iris), ind = 10L)
+#'
+std_postprocessing <- function(tlg, ...) {
+
+  tlg <- report_null(tlg, ...)
+  tlg
+}
