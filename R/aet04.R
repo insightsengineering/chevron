@@ -156,7 +156,7 @@ aet04_post <- function(tlg, prune_0 = TRUE, ...) {
   tlg <- tlg %>%
     tlg_sort_by_vars(c("AEBODSYS", "AEDECOD"), score_all_sum, decreasing = TRUE)
   if (prune_0) tlg <- trim_rows(tlg)
-  std_postprocess(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `AET04` Table 1 (Default) Adverse Events by Highest `NCI` `CTACAE` `AE` Grade Table 1.

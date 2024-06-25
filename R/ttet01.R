@@ -202,7 +202,7 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `TTET01` Binary Outcomes Summary.

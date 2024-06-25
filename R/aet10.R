@@ -99,7 +99,7 @@ aet10_post <- function(tlg, atleast = 0.05, ...) {
     )
   )
 
-  std_postprocess(tlg_prune)
+  std_postprocessing(tlg_prune)
 }
 
 #' `AET10` Table 1 (Default) Most Common (xx%) Adverse Events Preferred Terms Table 1.

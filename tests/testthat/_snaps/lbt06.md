@@ -1,7 +1,7 @@
 # lbt06 can handle some NA values
 
     Code
-      cat(export_as_txt(std_postprocess(res), lpp = 100))
+      cat(export_as_txt(res, lpp = 100))
     Output
       
       Parameter: Alanine Aminotransferase Measurement

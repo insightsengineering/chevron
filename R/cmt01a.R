@@ -122,7 +122,7 @@ cmt01a_post <- function(
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `CMT01A` Concomitant Medication by Medication Class and Preferred Name.
