@@ -2,7 +2,6 @@
 #' @export
 #' @rdname syn_test_data
 syn_test_data <- function() {
-
   sd <- list()
   sd$adsl <- random.cdisc.data::cadsl
   sd$adae <- random.cdisc.data::cadae
