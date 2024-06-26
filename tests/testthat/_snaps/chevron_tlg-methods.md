@@ -74,9 +74,9 @@
           M                                  3 (20.0%)    7 (46.7%)      5 (33.3%)       15 (33.3%) 
         Ethnicity                                                                                   
           n                                      15           15             15              45     
-          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
           HISPANIC OR LATINO                 2 (13.3%)        0              0            2 (4.4%)  
           NOT HISPANIC OR LATINO             13 (86.7%)   15 (100%)      13 (86.7%)      41 (91.1%) 
+          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
         RACE                                                                                        
           n                                      15           15             15              45     
           AMERICAN INDIAN OR ALASKA NATIVE       0        2 (13.3%)       1 (6.7%)        3 (6.7%)  

@@ -13,12 +13,12 @@
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
       BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   dcd D.1.1.4.2    28APR2019         108        67   
                                                             dcd C.1.1.1.3    28APR2019         437        39   
-                                                            dcd A.1.1.1.2    28APR2019         1008       68   
-      CHN-14/1             27/F/ASIAN                       dcd D.1.1.4.2    07MAY2019         193       526   
+                                                            dcd A.1.1.1.2    28APR2019         1007       68   
+      CHN-14/1             27/F/ASIAN                       dcd D.1.1.4.2    07MAY2019         193       525   
                                                             dcd A.1.1.1.1    07MAY2019         194       414   
-                                                            dcd A.1.1.1.2    07MAY2019         259       657   
-                                                            dcd C.1.1.1.3    07MAY2019         367       646   
-                                                            dcd C.2.1.2.1    07MAY2019         372       214   
+                                                            dcd A.1.1.1.2    07MAY2019         258       657   
+                                                            dcd C.1.1.1.3    07MAY2019         367       645   
+                                                            dcd C.2.1.2.1    07MAY2019         371       214   
                                                             dcd B.2.2.3.1    07MAY2019         385        20   
                                                             dcd B.1.1.1.1    07MAY2019         517       280   
       \s\nACTARM: A: Drug X
@@ -65,15 +65,15 @@
                                                              Event MedDRA         Drug        Day of   Duration
       Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    26MAR2019         342       700   
-                                                            dcd B.2.2.3.1    26MAR2019         441        53   
-                                                            dcd D.1.1.1.1    26MAR2019         445       598   
-                                                            dcd B.1.1.1.1    26MAR2019         644        42   
-                                                            dcd B.2.2.3.1    26MAR2019         669       100   
-                                                            dcd C.2.1.2.1    26MAR2019         744       185   
-                                                            dcd C.2.1.2.1    26MAR2019         808       166   
-                                                            dcd B.2.1.2.1    26MAR2019         970        15   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       679   
+      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    25MAR2019         342       700   
+                                                            dcd B.2.2.3.1    25MAR2019         441        53   
+                                                            dcd D.1.1.1.1    25MAR2019         445       598   
+                                                            dcd B.1.1.1.1    25MAR2019         644        42   
+                                                            dcd B.2.2.3.1    25MAR2019         669       100   
+                                                            dcd C.2.1.2.1    25MAR2019         744       185   
+                                                            dcd C.2.1.2.1    25MAR2019         808       166   
+                                                            dcd B.2.1.2.1    25MAR2019         970        15   
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       678   
                                                             dcd D.1.1.1.1    28APR2019          92       254   
       \s\nACTARM: C: Combination
       
@@ -119,16 +119,16 @@
                                                              Event MedDRA         Drug        Day of   Duration
       Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
-      CAN-1/341            43/F/ASIAN                       dcd A.1.1.1.2    23MAY2019          57       327   
+      CAN-1/341            43/F/ASIAN                       dcd A.1.1.1.2    23MAY2019          57       326   
                                                             dcd B.2.1.2.1    23MAY2019         253        72   
-                                                            dcd B.1.1.1.1    23MAY2019         434       410   
-                                                            dcd A.1.1.1.2    23MAY2019         455       506   
-                                                            dcd A.1.1.1.2    23MAY2019         523       392   
-                                                            dcd A.1.1.1.1    23MAY2019         629       265   
+                                                            dcd B.1.1.1.1    23MAY2019         434       409   
+                                                            dcd A.1.1.1.2    23MAY2019         454       506   
+                                                            dcd A.1.1.1.2    23MAY2019         523       391   
+                                                            dcd A.1.1.1.1    23MAY2019         628       265   
                                                             dcd C.2.1.2.1    23MAY2019         750       128   
-                                                            dcd A.1.1.1.2    23MAY2019         770        73   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   dcd C.1.1.1.3    10APR2019         253       202   
-                                                            dcd B.2.1.2.1    10APR2019         311       298   
+                                                            dcd A.1.1.1.2    23MAY2019         769        73   
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   dcd C.1.1.1.3    09APR2019         253       202   
+                                                            dcd B.2.1.2.1    09APR2019         311       297   
       \s\nACTARM: B: Placebo
       
       ———————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -181,50 +181,50 @@
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
       BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   <Missing>        28APR2019         108        67   
                                                             <Missing>        28APR2019         437        39   
-                                                            <Missing>        28APR2019         1008       68   
-      BRA-11/9             40/M/ASIAN                       <Missing>        26MAR2019         342       700   
-                                                            <Missing>        26MAR2019         441        53   
-                                                            <Missing>        26MAR2019         445       598   
-                                                            <Missing>        26MAR2019         644        42   
-                                                            <Missing>        26MAR2019         669       100   
-                                                            <Missing>        26MAR2019         744       185   
-                                                            <Missing>        26MAR2019         808       166   
-                                                            <Missing>        26MAR2019         970        15   
-      CAN-1/341            43/F/ASIAN                       <Missing>        23MAY2019          57       327   
+                                                            <Missing>        28APR2019         1007       68   
+      BRA-11/9             40/M/ASIAN                       <Missing>        25MAR2019         342       700   
+                                                            <Missing>        25MAR2019         441        53   
+                                                            <Missing>        25MAR2019         445       598   
+                                                            <Missing>        25MAR2019         644        42   
+                                                            <Missing>        25MAR2019         669       100   
+                                                            <Missing>        25MAR2019         744       185   
+                                                            <Missing>        25MAR2019         808       166   
+                                                            <Missing>        25MAR2019         970        15   
+      CAN-1/341            43/F/ASIAN                       <Missing>        23MAY2019          57       326   
                                                             <Missing>        23MAY2019         253        72   
-                                                            <Missing>        23MAY2019         434       410   
-                                                            <Missing>        23MAY2019         455       506   
-                                                            <Missing>        23MAY2019         523       392   
-                                                            <Missing>        23MAY2019         629       265   
+                                                            <Missing>        23MAY2019         434       409   
+                                                            <Missing>        23MAY2019         454       506   
+                                                            <Missing>        23MAY2019         523       391   
+                                                            <Missing>        23MAY2019         628       265   
                                                             <Missing>        23MAY2019         750       128   
-                                                            <Missing>        23MAY2019         770        73   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   <Missing>        10APR2019         253       202   
-                                                            <Missing>        10APR2019         311       298   
-                                                            <Missing>        10APR2019         401       424   
-                                                            <Missing>        10APR2019         449       301   
-                                                            <Missing>        10APR2019         686       309   
-                                                            <Missing>        10APR2019         803       130   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   <Missing>        28APR2019          31       679   
+                                                            <Missing>        23MAY2019         769        73   
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   <Missing>        09APR2019         253       202   
+                                                            <Missing>        09APR2019         311       297   
+                                                            <Missing>        09APR2019         400       424   
+                                                            <Missing>        09APR2019         449       300   
+                                                            <Missing>        09APR2019         685       309   
+                                                            <Missing>        09APR2019         803       129   
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   <Missing>        28APR2019          31       678   
                                                             <Missing>        28APR2019          92       254   
                                                             <Missing>        28APR2019         239       213   
-                                                            <Missing>        28APR2019         366       353   
-                                                            <Missing>        28APR2019         449       517   
-                                                            <Missing>        28APR2019         594        51   
+                                                            <Missing>        28APR2019         365       353   
+                                                            <Missing>        28APR2019         449       516   
+                                                            <Missing>        28APR2019         593        51   
                                                             <Missing>        28APR2019         671        32   
-                                                            <Missing>        28APR2019         938        36   
-                                                            <Missing>        28APR2019         997        9    
+                                                            <Missing>        28APR2019         937        36   
+                                                            <Missing>        28APR2019         996        9    
       CHN-11/220           26/F/ASIAN                       <Missing>        01MAR2019         406       422   
-                                                            <Missing>        01MAR2019         876       176   
-                                                            <Missing>        01MAR2019         911       162   
-                                                            <Missing>        01MAR2019         980       118   
+                                                            <Missing>        01MAR2019         876       175   
+                                                            <Missing>        01MAR2019         910       162   
+                                                            <Missing>        01MAR2019         979       118   
       CHN-11/263           34/F/ASIAN                       <Missing>        03APR2019         140        43   
                                                             <Missing>        03APR2019         263       147   
-                                                            <Missing>        03APR2019         524       520   
+                                                            <Missing>        03APR2019         524       519   
                                                             <Missing>        03APR2019         714       163   
-                                                            <Missing>        03APR2019         769       277   
-                                                            <Missing>        03APR2019         877       194   
-                                                            <Missing>        03APR2019         956       106   
-      CHN-11/38            25/F/WHITE                       <Missing>        17JUN2019         524       536   
+                                                            <Missing>        03APR2019         768       277   
+                                                            <Missing>        03APR2019         876       194   
+                                                            <Missing>        03APR2019         955       106   
+      CHN-11/38            25/F/WHITE                       <Missing>        17JUN2019         523       536   
       CHN-13/102           37/M/ASIAN                       <Missing>        23MAR2019          34       555   
                                                             <Missing>        23MAR2019          55        73   
                                                             <Missing>        23MAR2019          57        57   
@@ -361,12 +361,12 @@
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
       BRA-11/50            26/M/BLACK OR AFRICAN AMERICAN   dcd D.1.1.4.2    28APR2019         108        67   
                                                             dcd C.1.1.1.3    28APR2019         437        39   
-                                                            dcd A.1.1.1.2    28APR2019         1008       68   
-      CHN-14/1             27/F/ASIAN                       dcd D.1.1.4.2    07MAY2019         193       526   
+                                                            dcd A.1.1.1.2    28APR2019         1007       68   
+      CHN-14/1             27/F/ASIAN                       dcd D.1.1.4.2    07MAY2019         193       525   
                                                             dcd A.1.1.1.1    07MAY2019         194       414   
-                                                            dcd A.1.1.1.2    07MAY2019         259       657   
-                                                            dcd C.1.1.1.3    07MAY2019         367       646   
-                                                            dcd C.2.1.2.1    07MAY2019         372       214   
+                                                            dcd A.1.1.1.2    07MAY2019         258       657   
+                                                            dcd C.1.1.1.3    07MAY2019         367       645   
+                                                            dcd C.2.1.2.1    07MAY2019         371       214   
                                                             dcd B.2.2.3.1    07MAY2019         385        20   
                                                             dcd B.1.1.1.1    07MAY2019         517       280   
       \s\nACTARM: A: Drug X
@@ -413,15 +413,15 @@
                                                              Event MedDRA         Drug        Day of   Duration
       Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    26MAR2019         342       700   
-                                                            dcd B.2.2.3.1    26MAR2019         441        53   
-                                                            dcd D.1.1.1.1    26MAR2019         445       598   
-                                                            dcd B.1.1.1.1    26MAR2019         644        42   
-                                                            dcd B.2.2.3.1    26MAR2019         669       100   
-                                                            dcd C.2.1.2.1    26MAR2019         744       185   
-                                                            dcd C.2.1.2.1    26MAR2019         808       166   
-                                                            dcd B.2.1.2.1    26MAR2019         970        15   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       679   
+      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    25MAR2019         342       700   
+                                                            dcd B.2.2.3.1    25MAR2019         441        53   
+                                                            dcd D.1.1.1.1    25MAR2019         445       598   
+                                                            dcd B.1.1.1.1    25MAR2019         644        42   
+                                                            dcd B.2.2.3.1    25MAR2019         669       100   
+                                                            dcd C.2.1.2.1    25MAR2019         744       185   
+                                                            dcd C.2.1.2.1    25MAR2019         808       166   
+                                                            dcd B.2.1.2.1    25MAR2019         970        15   
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       678   
                                                             dcd D.1.1.1.1    28APR2019          92       254   
       \s\nACTARM: C: Combination
       
@@ -467,16 +467,16 @@
                                                              Event MedDRA         Drug        Day of   Duration
       Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
-      CAN-1/341            43/F/ASIAN                       dcd A.1.1.1.2    23MAY2019          57       327   
+      CAN-1/341            43/F/ASIAN                       dcd A.1.1.1.2    23MAY2019          57       326   
                                                             dcd B.2.1.2.1    23MAY2019         253        72   
-                                                            dcd B.1.1.1.1    23MAY2019         434       410   
-                                                            dcd A.1.1.1.2    23MAY2019         455       506   
-                                                            dcd A.1.1.1.2    23MAY2019         523       392   
-                                                            dcd A.1.1.1.1    23MAY2019         629       265   
+                                                            dcd B.1.1.1.1    23MAY2019         434       409   
+                                                            dcd A.1.1.1.2    23MAY2019         454       506   
+                                                            dcd A.1.1.1.2    23MAY2019         523       391   
+                                                            dcd A.1.1.1.1    23MAY2019         628       265   
                                                             dcd C.2.1.2.1    23MAY2019         750       128   
-                                                            dcd A.1.1.1.2    23MAY2019         770        73   
-      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   dcd C.1.1.1.3    10APR2019         253       202   
-                                                            dcd B.2.1.2.1    10APR2019         311       298   
+                                                            dcd A.1.1.1.2    23MAY2019         769        73   
+      CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   dcd C.1.1.1.3    09APR2019         253       202   
+                                                            dcd B.2.1.2.1    09APR2019         311       297   
       \s\nACTARM: B: Placebo
       
       ———————————————————————————————————————————————————————————————————————————————————————————————————————————
