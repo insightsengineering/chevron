@@ -298,13 +298,13 @@
         Time to first occurrence of a grade 3-5 adverse event                                     
           Total patient-years at risk                                10.3               6.3       
           Number of adverse events observed                           12                 14       
-          AE rate per 100 patient-years                             116.36             223.84     
-          95% CI                                                (50.53, 182.20)   (106.59, 341.09)
+          AE rate per 100 patient-years                             116.36             223.74     
+          95% CI                                                (50.53, 182.20)   (106.54, 340.94)
         Time to first occurrence of any adverse event                                             
           Total patient-years at risk                                31.0               9.0       
           Number of adverse events observed                            5                 13       
-          AE rate per 100 patient-years                              16.13             143.84     
-          95% CI                                                 (1.99, 30.27)    (65.65, 222.03) 
+          AE rate per 100 patient-years                              16.13             143.75     
+          95% CI                                                 (1.99, 30.27)    (65.61, 221.89) 
         Time to first occurrence of any serious adverse event                                     
           Total patient-years at risk                                32.9               7.6       
           Number of adverse events observed                            4                 14       
@@ -322,7 +322,7 @@
           Total patient-years at risk                                22.0      
           Number of adverse events observed                            8       
           AE rate per 100 patient-years                              36.30     
-          95% CI                                                (11.15, 61.46) 
+          95% CI                                                (11.15, 61.45) 
         Time to first occurrence of any serious adverse event                  
           Total patient-years at risk                                 9.4      
           Number of adverse events observed                           13       
@@ -340,36 +340,36 @@
         Number of occurrences of a grade 3-5 adverse event                                     
           Total patient-years at risk                              44.4              44.2      
           Number of adverse events observed                         65                54       
-          AE rate per 100 patient-years                           146.41            122.08     
-          95% CI                                             (110.81, 182.00)   (89.52, 154.64)
+          AE rate per 100 patient-years                           146.40            122.06     
+          95% CI                                             (110.81, 181.99)   (89.50, 154.61)
         Number of occurrences of any adverse event                                             
           Total patient-years at risk                              44.4              44.2      
           Number of adverse events observed                         29                49       
-          AE rate per 100 patient-years                           65.32             110.78     
-          95% CI                                              (41.55, 89.09)    (79.76, 141.79)
+          AE rate per 100 patient-years                           65.32             110.76     
+          95% CI                                              (41.54, 89.09)    (79.75, 141.77)
         Number of occurrences of any serious adverse event                                     
           Total patient-years at risk                              44.4              44.2      
           Number of adverse events observed                         9                 36       
-          AE rate per 100 patient-years                           20.27              81.39     
-          95% CI                                              (7.03, 33.52)     (54.80, 107.97)
+          AE rate per 100 patient-years                           20.27              81.37     
+          95% CI                                              (7.03, 33.51)     (54.79, 107.95)
       \s\n                                                        C: Combination 
                                                                   (N=15)     
         —————————————————————————————————————————————————————————————————————
         Number of occurrences of a grade 3-5 adverse event                   
           Total patient-years at risk                              44.4      
           Number of adverse events observed                         95       
-          AE rate per 100 patient-years                           214.02     
-          95% CI                                             (170.98, 257.05)
+          AE rate per 100 patient-years                           214.00     
+          95% CI                                             (170.97, 257.04)
         Number of occurrences of any adverse event                           
           Total patient-years at risk                              44.4      
           Number of adverse events observed                         56       
-          AE rate per 100 patient-years                           126.16     
-          95% CI                                             (93.12, 159.20) 
+          AE rate per 100 patient-years                           126.15     
+          95% CI                                             (93.11, 159.19) 
         Number of occurrences of any serious adverse event                   
           Total patient-years at risk                              44.4      
           Number of adverse events observed                         60       
-          AE rate per 100 patient-years                           135.17     
-          95% CI                                             (100.97, 169.37)
+          AE rate per 100 patient-years                           135.16     
+          95% CI                                             (100.96, 169.36)
 
 # aet10 functions with default argument value return expected result with test data
 
@@ -419,32 +419,32 @@
         Effect/Covariate Included in the Model    n      Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       30         2.55        (0.97, 6.75)     0.0588 
+          B: Placebo vs control (A: Drug X)       30         0.68        (0.25, 1.89)     0.4638 
         Covariate:                                                                               
-          Sex                                     30         2.94        (0.99, 8.71)     0.0511 
-          RACE                                    30         2.63        (0.89, 7.72)     0.0792 
-          Age (yr)                                30         2.54        (0.86, 7.44)     0.0902 
+          Sex                                     30         0.53        (0.18, 1.58)     0.2553 
+          RACE                                    30         0.79        (0.28, 2.17)     0.6415 
+          Age (yr)                                30         0.67        (0.24, 1.89)     0.4526 
 
 # coxt02 functions with default argument value return expected result with test data
 
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
-        —————————————————————————————————————————————————————————————————————————————————————————————
-        Treatment:                                                                                   
-          Description of Planned Arm (reference = A: Drug X)                                  0.1107 
-            B: Placebo                                              3.16       (1.05, 9.53)   0.0414 
-            C: Combination                                          2.23       (0.81, 6.17)   0.1215 
-        Covariate:                                                                                   
-          Sex (reference = F)                                                                        
-            M                                                       0.63       (0.23, 1.73)   0.3665 
-          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                 0.9055 
-            ASIAN                                                   0.86       (0.18, 4.10)   0.8534 
-            BLACK OR AFRICAN AMERICAN                               1.35       (0.21, 8.44)   0.7511 
-            WHITE                                                   1.06       (0.18, 6.36)   0.9463 
-          Age (yr)                                                                                   
-            All                                                     1.03       (0.95, 1.13)   0.4598 
+        Effect/Covariate Included in the Model                  Hazard Ratio      95% CI       p-value
+        ——————————————————————————————————————————————————————————————————————————————————————————————
+        Treatment:                                                                                    
+          Description of Planned Arm (reference = A: Drug X)                                   0.6859 
+            B: Placebo                                              0.77       (0.29, 2.08)    0.6113 
+            C: Combination                                          0.62       (0.21, 1.82)    0.3853 
+        Covariate:                                                                                    
+          Sex (reference = F)                                                                         
+            M                                                       1.41       (0.61, 3.23)    0.4194 
+          RACE (reference = AMERICAN INDIAN OR ALASKA NATIVE)                                  0.8938 
+            ASIAN                                                   1.69       (0.36, 7.99)    0.5055 
+            BLACK OR AFRICAN AMERICAN                               1.86       (0.29, 11.72)   0.5109 
+            WHITE                                                   2.03       (0.34, 12.25)   0.4414 
+          Age (yr)                                                                                    
+            All                                                     1.00       (0.94, 1.08)    0.8951 
 
 # dmt01 functions with default argument value return expected result with test data
 
@@ -468,9 +468,9 @@
           Female                             12 (80.0%)   8 (53.3%)      10 (66.7%)      30 (66.7%) 
         Ethnicity                                                                                   
           n                                      15           15             15              45     
-          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
           HISPANIC OR LATINO                 2 (13.3%)        0              0            2 (4.4%)  
           NOT HISPANIC OR LATINO             13 (86.7%)   15 (100%)      13 (86.7%)      41 (91.1%) 
+          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
         RACE                                                                                        
           n                                      15           15             15              45     
           AMERICAN INDIAN OR ALASKA NATIVE       0        2 (13.3%)       1 (6.7%)        3 (6.7%)  

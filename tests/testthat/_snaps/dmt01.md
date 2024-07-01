@@ -15,9 +15,9 @@
           Female                             12 (80.0%)   8 (53.3%)      10 (66.7%)      30 (66.7%) 
         Ethnicity                                                                                   
           n                                      15           15             15              45     
-          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
           HISPANIC OR LATINO                 2 (13.3%)        0              0            2 (4.4%)  
           NOT HISPANIC OR LATINO             13 (86.7%)   15 (100%)      13 (86.7%)      41 (91.1%) 
+          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
         RACE                                                                                        
           n                                      15           15             15              45     
           AMERICAN INDIAN OR ALASKA NATIVE       0        2 (13.3%)       1 (6.7%)        3 (6.7%)  
@@ -47,9 +47,9 @@
           Female                             12 (80.0%)   8 (53.3%)      10 (66.7%)      30 (66.7%) 
         Ethnicity                                                                                   
           n                                      15           15             15              45     
-          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
           HISPANIC OR LATINO                 2 (13.3%)        0              0            2 (4.4%)  
           NOT HISPANIC OR LATINO             13 (86.7%)   15 (100%)      13 (86.7%)      41 (91.1%) 
+          NOT REPORTED                           0            0          2 (13.3%)        2 (4.4%)  
         RACE                                                                                        
           n                                      15           15             15              45     
           AMERICAN INDIAN OR ALASKA NATIVE       0        2 (13.3%)       1 (6.7%)        3 (6.7%)  
