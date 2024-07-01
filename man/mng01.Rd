@@ -109,7 +109,14 @@ lt <- c(
   "C: Combination" = "solid"
 )
 
-run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, line_type = lt)
+run(
+  mng01,
+  syn_data,
+  dataset = "adlb",
+  x_var = c("AVISIT", "AVISITN"),
+  line_col = col,
+  line_type = lt
+)
 }
 \seealso{
 \code{\link[=gg_theme_chevron]{gg_theme_chevron()}}, \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.

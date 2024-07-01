@@ -199,7 +199,14 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #'   "C: Combination" = "solid"
 #' )
 #'
-#' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col, line_type = lt)
+#' run(
+#'   mng01,
+#'   syn_data,
+#'   dataset = "adlb",
+#'   x_var = c("AVISIT", "AVISITN"),
+#'   line_col = col,
+#'   line_type = lt
+#' )
 mng01 <- chevron_g(
   main = mng01_main,
   preprocess = mng01_pre
