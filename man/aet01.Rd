@@ -18,6 +18,7 @@ aet01_main(
   anl_vars = list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD",
     "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   anl_lbls = "Total number of {patient_label} with at least one",
+  show_death_wd = TRUE,
   ...
 )
 
