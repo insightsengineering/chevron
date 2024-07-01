@@ -7,11 +7,11 @@
         Effect/Covariate Included in the Model    n      Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       26         0.92        (0.31, 2.67)     0.8708 
+          B: Placebo vs control (A: Drug X)       28         0.77        (0.26, 2.23)     0.6257 
         Covariate:                                                                               
-          Sex                                     26         0.67        (0.20, 2.28)     0.5229 
-          RACE                                    26         1.48        (0.46, 4.69)     0.5094 
-          Age (yr)                                26         0.96        (0.32, 2.85)     0.9422 
+          Sex                                     28         0.55        (0.16, 1.85)     0.3349 
+          RACE                                    28         0.90        (0.31, 2.63)     0.8487 
+          Age (yr)                                28         0.76        (0.26, 2.22)     0.6106 
 
 ---
 
@@ -22,11 +22,11 @@
         Effect/Covariate Included in the Model    n      Hazard Ratio       90% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       26         0.92        (0.37, 2.25)     0.8708 
+          B: Placebo vs control (A: Drug X)       28         0.77        (0.31, 1.88)     0.6257 
         Covariate:                                                                               
-          Sex                                     26         0.67        (0.24, 1.87)     0.5229 
-          RACE                                    26         1.48        (0.56, 3.90)     0.5094 
-          Age (yr)                                26         0.96        (0.39, 2.40)     0.9422 
+          Sex                                     28         0.55        (0.20, 1.52)     0.3349 
+          RACE                                    28         0.90        (0.37, 2.22)     0.8487 
+          Age (yr)                                28         0.76        (0.31, 1.87)     0.6106 
 
 ---
 
@@ -37,10 +37,10 @@
         Effect/Covariate Included in the Model    n      Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       26         0.92        (0.31, 2.67)     0.8708 
+          B: Placebo vs control (A: Drug X)       28         0.77        (0.26, 2.23)     0.6257 
         Covariate:                                                                               
-          Sex                                     26         0.67        (0.20, 2.28)     0.5229 
-          Age (yr)                                26         0.96        (0.32, 2.85)     0.9422 
+          Sex                                     28         0.55        (0.16, 1.85)     0.3349 
+          Age (yr)                                28         0.76        (0.26, 2.22)     0.6106 
 
 ---
 
@@ -51,8 +51,8 @@
         Effect/Covariate Included in the Model    n      Hazard Ratio       95% CI       p-value 
         —————————————————————————————————————————————————————————————————————————————————————————
         Treatment:                                                                               
-          B: Placebo vs control (A: Drug X)       26         1.61        (0.50, 5.15)     0.4227 
+          B: Placebo vs control (A: Drug X)       28         1.17        (0.40, 3.41)     0.7785 
         Covariate:                                                                               
-          Sex                                     26         1.18        (0.30, 4.67)     0.8121 
-          Age (yr)                                26         1.62        (0.50, 5.24)     0.4220 
+          Sex                                     28         0.85        (0.24, 3.02)     0.8075 
+          Age (yr)                                28         1.16        (0.39, 3.40)     0.7908 
 

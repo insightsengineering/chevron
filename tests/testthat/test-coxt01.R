@@ -1,11 +1,11 @@
 test_that("coxt01 can handle some NA values", {
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "CRSD", "adtte")
   proc_data <- dunlin::log_filter(proc_data, ARM != "C: Combination", "adsl")
-  proc_data$adtte[1:4, c("SEX", "RACE", "CNSR", "AVAL", "AAGE")] <- NA
-  expect_warning(res1 <- run(coxt01, proc_data))
+  proc_data$adtte[1:2, c("SEX", "RACE", "CNSR", "AVAL", "AAGE")] <- NA
+  expect_silent(res1 <- run(coxt01, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
 
-  expect_warning(res2 <- run(coxt01, proc_data, conf_level = .90))
+  expect_silent(res2 <- run(coxt01, proc_data, conf_level = .90))
   expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 
   res3 <- expect_silent(run(coxt01, proc_data, covariates = c("SEX", "AAGE")))
