@@ -58,8 +58,8 @@ mng01
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} associating values of
 \code{arm_var} with color names.}
 
-\item{line_type}{(\code{character}) describing the line type to use for the lines or a named \code{character} associating values of
-\code{arm_var} with line types.}
+\item{line_type}{(\code{character}) describing the line type to use for the lines or a named \code{character} associating
+values of \code{arm_var} with line types.}
 
 \item{ggtheme}{(\code{theme}) passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
 

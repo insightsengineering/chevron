@@ -19,8 +19,8 @@
 #'   `jitter`), with a default of 0.3 (slight `jitter`).
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
 #'   `arm_var` with color names.
-#' @param line_type (`character`) describing the line type to use for the lines or a named `character` associating values of
-#'   `arm_var` with line types.
+#' @param line_type (`character`) describing the line type to use for the lines or a named `character` associating
+#'   values of `arm_var` with line types.
 #' @param ggtheme (`theme`) passed to [tern::g_lineplot()].
 #' @param table (`character`) names of the statistics to be displayed in the table. If `NULL`, no table is displayed.
 #' @param ... passed to [tern::g_lineplot()].
