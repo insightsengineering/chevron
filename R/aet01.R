@@ -4,8 +4,8 @@
 #'
 #' @inheritParams gen_args
 #' @param anl_vars Named (`list`) of (`character`) variables the safety variables to be summarized.
-#' @param show_wd (`flag`) whether to display the number of patients withdrawn from study due to an AE and the number of
-#'   death.
+#' @param show_wd (`flag`) whether to display the number of patients withdrawn from study due to an adverse event and
+#'   the number of death.
 #' @param anl_lbls (`character`) of analysis labels.
 #' @returns the main function returns an `rtables` object.
 #'

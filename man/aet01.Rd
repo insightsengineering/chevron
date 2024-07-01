@@ -39,8 +39,8 @@ aet01
 
 \item{anl_lbls}{(\code{character}) of analysis labels.}
 
-\item{show_wd}{(\code{flag}) whether to display the number of patients withdrawn from study due to an AE and the number of
-death.}
+\item{show_wd}{(\code{flag}) whether to display the number of patients withdrawn from study due to an adverse event and
+the number of death.}
 
 \item{...}{not used.}
 
