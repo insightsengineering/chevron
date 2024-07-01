@@ -11,14 +11,14 @@
             Direction of Abnormality               (N=15)        (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                               
-          Low                                    1/7 (14.3%)   1/3 (33.3%)        0/8      
-          High                                   2/7 (28.6%)       0/2        1/9 (11.1%)  
+          Low                                        0/7           0/2        1/7 (14.3%)  
+          High                                       0/7           0/3            0/8      
         C-Reactive Protein Measurement                                                     
-          Low                                        0/8           0/2        2/7 (28.6%)  
-          High                                       0/8           0/3            0/7      
+          Low                                        0/8       1/2 (50.0%)        0/6      
+          High                                   3/8 (37.5%)       0/2            0/7      
         Immunoglobulin A Measurement                                                       
-          Low                                    2/5 (40.0%)   1/8 (12.5%)    1/6 (16.7%)  
-          High                                   2/5 (40.0%)   1/9 (11.1%)        0/6      
+          Low                                        0/5           0/8            0/7      
+          High                                   1/3 (33.3%)   1/8 (12.5%)        0/6      
       \s\n
       PARCAT1: COAGULATION
       
@@ -27,14 +27,14 @@
             Direction of Abnormality               (N=15)        (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                               
-          Low                                        0/5       1/5 (20.0%)        0/5      
-          High                                       0/6       1/6 (16.7%)    1/5 (20.0%)  
+          Low                                        0/3           0/6            0/4      
+          High                                       0/5           0/7            0/4      
         C-Reactive Protein Measurement                                                     
-          Low                                    1/6 (16.7%)       0/5        1/4 (25.0%)  
-          High                                   1/5 (20.0%)   1/6 (16.7%)        0/3      
+          Low                                        0/5           0/5        1/3 (33.3%)  
+          High                                       0/5       1/6 (16.7%)    1/4 (25.0%)  
         Immunoglobulin A Measurement                                                       
-          Low                                        0/7           0/9            0/7      
-          High                                   1/7 (14.3%)      0/10            0/6      
+          Low                                        0/8           0/9            0/6      
+          High                                       0/8           0/9        1/6 (16.7%)  
       \s\n
       PARCAT1: HEMATOLOGY
       
@@ -43,14 +43,14 @@
             Direction of Abnormality               (N=15)        (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                               
-          Low                                    1/5 (20.0%)   1/5 (20.0%)        0/4      
-          High                                       0/5           0/4            0/4      
+          Low                                        0/4           0/5            0/4      
+          High                                       0/6           0/5            0/4      
         C-Reactive Protein Measurement                                                     
-          Low                                    1/4 (25.0%)       0/2        3/9 (33.3%)  
-          High                                       0/4           0/5            0/9      
+          Low                                        0/5           0/4            0/3      
+          High                                       0/5           0/4            0/5      
         Immunoglobulin A Measurement                                                       
-          Low                                        0/2           0/3        2/8 (25.0%)  
-          High                                       0/4       1/4 (25.0%)        0/7      
+          Low                                        0/3           0/4            0/8      
+          High                                       0/3           0/4            0/7      
 
 # lbt04 can handle all NA values
 
@@ -74,14 +74,14 @@
             Direction of Abnormality              (N=15)       (N=15)         (N=15)    
         ————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                            
-          Low                                       0/7         0/3            0/8      
-          High                                      0/7         0/2            0/9      
+          Low                                       0/7         0/2            0/7      
+          High                                      0/7         0/3            0/8      
         C-Reactive Protein Measurement                                                  
-          Low                                       0/8         0/2            0/7      
-          High                                      0/8         0/3            0/7      
+          Low                                       0/8         0/2            0/6      
+          High                                      0/8         0/2            0/7      
         Immunoglobulin A Measurement                                                    
-          Low                                       0/5         0/8            0/6      
-          High                                      0/5         0/9            0/6      
+          Low                                       0/5         0/8            0/7      
+          High                                      0/3         0/8            0/6      
       \s\n
       PARCAT1: COAGULATION
       
@@ -90,14 +90,14 @@
             Direction of Abnormality              (N=15)       (N=15)         (N=15)    
         ————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                            
-          Low                                       0/5         0/5            0/5      
-          High                                      0/6         0/6            0/5      
+          Low                                       0/3         0/6            0/4      
+          High                                      0/5         0/7            0/4      
         C-Reactive Protein Measurement                                                  
-          Low                                       0/6         0/5            0/4      
-          High                                      0/5         0/6            0/3      
+          Low                                       0/5         0/5            0/3      
+          High                                      0/5         0/6            0/4      
         Immunoglobulin A Measurement                                                    
-          Low                                       0/7         0/9            0/7      
-          High                                      0/7         0/10           0/6      
+          Low                                       0/8         0/9            0/6      
+          High                                      0/8         0/9            0/6      
       \s\n
       PARCAT1: HEMATOLOGY
       
@@ -106,14 +106,14 @@
             Direction of Abnormality              (N=15)       (N=15)         (N=15)    
         ————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                            
-          Low                                       0/5         0/5            0/4      
-          High                                      0/5         0/4            0/4      
+          Low                                       0/4         0/5            0/4      
+          High                                      0/6         0/5            0/4      
         C-Reactive Protein Measurement                                                  
-          Low                                       0/4         0/2            0/9      
-          High                                      0/4         0/5            0/9      
+          Low                                       0/5         0/4            0/3      
+          High                                      0/5         0/4            0/5      
         Immunoglobulin A Measurement                                                    
-          Low                                       0/2         0/3            0/8      
-          High                                      0/4         0/4            0/7      
+          Low                                       0/3         0/4            0/8      
+          High                                      0/3         0/4            0/7      
 
 # lbt04 can handle some NA values
 
@@ -128,14 +128,14 @@
             Direction of Abnormality               (N=15)        (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                               
-          Low                                    1/7 (14.3%)   1/3 (33.3%)        0/8      
-          High                                   2/7 (28.6%)       0/2        1/9 (11.1%)  
+          Low                                        0/7           0/2        1/7 (14.3%)  
+          High                                       0/7           0/3            0/8      
         C-Reactive Protein Measurement                                                     
-          Low                                        0/8           0/2        2/7 (28.6%)  
-          High                                       0/8           0/3            0/7      
+          Low                                        0/8       1/2 (50.0%)        0/6      
+          High                                   3/8 (37.5%)       0/2            0/7      
         Immunoglobulin A Measurement                                                       
-          Low                                    2/5 (40.0%)   1/8 (12.5%)    1/6 (16.7%)  
-          High                                   2/5 (40.0%)   1/9 (11.1%)        0/6      
+          Low                                        0/5           0/8            0/7      
+          High                                   1/3 (33.3%)   1/8 (12.5%)        0/6      
       \s\n
       PARCAT1: COAGULATION
       
@@ -144,14 +144,14 @@
             Direction of Abnormality               (N=15)        (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                               
-          Low                                        0/5       1/5 (20.0%)        0/5      
-          High                                       0/6       1/6 (16.7%)    1/5 (20.0%)  
+          Low                                        0/3           0/6            0/4      
+          High                                       0/5           0/7            0/4      
         C-Reactive Protein Measurement                                                     
-          Low                                    1/6 (16.7%)       0/5        1/4 (25.0%)  
-          High                                   1/5 (20.0%)   1/6 (16.7%)        0/3      
+          Low                                        0/5           0/5        1/3 (33.3%)  
+          High                                       0/5       1/6 (16.7%)    1/4 (25.0%)  
         Immunoglobulin A Measurement                                                       
-          Low                                        0/7           0/9            0/7      
-          High                                   1/7 (14.3%)      0/10            0/6      
+          Low                                        0/8           0/9            0/6      
+          High                                       0/8           0/9        1/6 (16.7%)  
       \s\n
       PARCAT1: HEMATOLOGY
       
@@ -160,12 +160,12 @@
             Direction of Abnormality               (N=15)        (N=15)          (N=15)    
         ———————————————————————————————————————————————————————————————————————————————————
         Alanine Aminotransferase Measurement                                               
-          Low                                    1/5 (20.0%)   1/5 (20.0%)        0/4      
-          High                                       0/5           0/4            0/4      
+          Low                                        0/4           0/5            0/4      
+          High                                       0/6           0/5            0/4      
         C-Reactive Protein Measurement                                                     
-          Low                                    1/4 (25.0%)       0/2        3/9 (33.3%)  
-          High                                       0/4           0/5            0/9      
+          Low                                        0/5           0/4            0/3      
+          High                                       0/5           0/4            0/5      
         Immunoglobulin A Measurement                                                       
-          Low                                        0/2           0/3        2/8 (25.0%)  
-          High                                       0/4       1/4 (25.0%)        0/7      
+          Low                                        0/3           0/4            0/8      
+          High                                       0/3           0/4            0/7      
 

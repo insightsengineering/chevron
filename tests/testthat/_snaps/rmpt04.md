@@ -6,9 +6,9 @@
                                              Patients     Person time
         ETHNIC                                (N=45)        (N=45)   
         —————————————————————————————————————————————————————————————
-        NOT REPORTED                         2 (4.4%)         49     
         HISPANIC OR LATINO                   2 (4.4%)         309    
         NOT HISPANIC OR LATINO              41 (91.1%)       5555    
+        NOT REPORTED                         2 (4.4%)         49     
         Total patients number/person time   45 (100.0%)      5913    
 
 # rmpt04 can handle NA values
@@ -19,9 +19,9 @@
                                             Patients   Person time
         ETHNIC                               (N=45)      (N=45)   
         ——————————————————————————————————————————————————————————
-        NOT REPORTED                        0 (0.0%)        0     
         HISPANIC OR LATINO                  0 (0.0%)        0     
         NOT HISPANIC OR LATINO              0 (0.0%)        0     
+        NOT REPORTED                        0 (0.0%)        0     
         Total patients number/person time   0 (0.0%)        0     
 
 ---
@@ -32,9 +32,9 @@
                                             Patients   Person time
         ETHNIC                               (N=45)      (N=45)   
         ——————————————————————————————————————————————————————————
-        NOT REPORTED                        0 (0.0%)        0     
         HISPANIC OR LATINO                  0 (0.0%)        0     
         NOT HISPANIC OR LATINO              0 (0.0%)        0     
+        NOT REPORTED                        0 (0.0%)        0     
         Total patients number/person time   0 (0.0%)        0     
 
 # rmpt04 can handle some NA values
@@ -45,9 +45,9 @@
                                              Patients    Person time
         ETHNIC                                (N=45)       (N=45)   
         ————————————————————————————————————————————————————————————
-        NOT REPORTED                         2 (4.4%)        49     
         HISPANIC OR LATINO                   0 (0.0%)         0     
         NOT HISPANIC OR LATINO              41 (91.1%)      5555    
+        NOT REPORTED                         2 (4.4%)        49     
         Total patients number/person time   43 (95.6%)      5604    
 
 ---
