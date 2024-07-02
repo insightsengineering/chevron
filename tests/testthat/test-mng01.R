@@ -70,6 +70,27 @@ test_that("mng01 works as expected with custom color set", {
   })
 })
 
+test_that("mng01 works as expected with custom line type set", {
+  withr::with_options(opts_partial_match_old, {
+    lty <- c(
+      "B: Placebo" = "99",
+      "A: Drug X" = "92",
+      "C: Combination" = "solid"
+    )
+    proc_data <- syn_data
+
+    res <- run(mng01, proc_data, dataset = "adlb", line_type = lty)
+    expect_list(res, len = 3, types = "ggplot")
+
+    res2 <- run(mng01, proc_data, dataset = "adlb", line_type = unname(lty))
+    expect_list(res, len = 3, types = "ggplot")
+
+    skip_on_ci()
+    vdiffr::expect_doppelganger("run mng01 with custom line type set", res[[1]])
+    vdiffr::expect_doppelganger("run mng01 with custom unnamed line type set", res2[[1]])
+  })
+})
+
 test_that("mng01 works with table = NULL", {
   withr::with_options(opts_partial_match_old, {
     proc_data <- syn_data
