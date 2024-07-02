@@ -4,6 +4,8 @@
 #'
 #' @inheritParams gen_args
 #' @param anl_vars Named (`list`) of (`character`) variables the safety variables to be summarized.
+#' @param show_wd (`flag`) whether to display the number of patients withdrawn from study due to an adverse event and
+#'   the number of death.
 #' @param anl_lbls (`character`) of analysis labels.
 #' @returns the main function returns an `rtables` object.
 #'
@@ -26,12 +28,14 @@ aet01_main <- function(adam_db,
                          )
                        ),
                        anl_lbls = "Total number of {patient_label} with at least one",
+                       show_wd = TRUE,
                        ...) {
   assert_all_tablenames(adam_db, "adsl", "adae")
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
   assert_list(anl_vars, types = "character", names = "unique")
   assert_character(anl_lbls, min.chars = 1L)
+  assert_flag(show_wd)
   assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(
     adam_db$adsl,
@@ -63,11 +67,18 @@ aet01_main <- function(adam_db,
     lbl_vars = lbl_vars
   )
 
-  rbind(
-    build_table(lyts$ae1, adam_db$adae, alt_counts_df = adam_db$adsl),
-    build_table(lyts$adsl, adam_db$adsl, alt_counts_df = adam_db$adsl),
-    build_table(lyts$ae2, adam_db$adae, alt_counts_df = adam_db$adsl)
-  )
+  if (show_wd) {
+    rbind(
+      build_table(lyts$ae1, adam_db$adae, alt_counts_df = adam_db$adsl),
+      build_table(lyts$adsl, adam_db$adsl, alt_counts_df = adam_db$adsl),
+      build_table(lyts$ae2, adam_db$adae, alt_counts_df = adam_db$adsl)
+    )
+  } else {
+    rbind(
+      build_table(lyts$ae1, adam_db$adae, alt_counts_df = adam_db$adsl),
+      build_table(lyts$ae2, adam_db$adae, alt_counts_df = adam_db$adsl)
+    )
+  }
 }
 
 #' `aet01` Layout
