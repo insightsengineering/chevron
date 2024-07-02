@@ -108,15 +108,16 @@ mng01_main <- function(adam_db,
 
 
   arm_lvl <- sort(unique(df[[arm_var]]))
-  col <- if (!is.null(names(line_col))) {
-    col <- line_col[as.character(arm_lvl)]
 
-    if (anyNA(col)) {
-      missing_col <- setdiff(arm_lvl, names(col))
+  col <- if (!is.null(names(line_col))) {
+    col_sel <- line_col[as.character(arm_lvl)]
+
+    if (anyNA(col_sel)) {
+      missing_col <- setdiff(arm_lvl, names(col_sel))
       stop(paste("Missing color matching for", toString(missing_col)))
     }
 
-    unname(col)
+    unname(col_sel)
   } else {
     line_col
   }
