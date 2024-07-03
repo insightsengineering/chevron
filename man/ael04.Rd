@@ -19,7 +19,7 @@ ael04_main(
   ...
 )
 
-ael04_pre(adam_db, dataset = "adsl", arm_var = "ACTARM", ...)
+ael04_pre(adam_db, dataset = "adsl", split_into_pages_by_var = "ACTARM", ...)
 
 ael04
 }
@@ -36,8 +36,6 @@ Key columns allow you to group repeat occurrences.}
 \item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
 
 \item{...}{not used.}
-
-\item{arm_var}{(\code{string}) variable used for column splitting}
 }
 \value{
 the main function returns an \code{rlistings} or a \code{list} object.

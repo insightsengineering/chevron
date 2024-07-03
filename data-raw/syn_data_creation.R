@@ -2,15 +2,20 @@
 #' @export
 #' @rdname syn_test_data
 syn_test_data <- function() {
-  sd <- scda::synthetic_cdisc_data("rcd_2022_06_27")
-  sd$adhy <- NULL
-  sd$adpp <- NULL
-  sd$adqs <- NULL
-  sd$adtr <- NULL
-  sd$adpc <- NULL
-  sd$adab <- NULL
-  # to avoid bug
-  attr(sd, "data_from") <- NULL
+  sd <- list()
+  sd$adsl <- random.cdisc.data::cadsl
+  sd$adae <- random.cdisc.data::cadae
+  sd$adaette <- random.cdisc.data::cadaette
+  sd$adcm <- random.cdisc.data::cadcm
+  sd$addv <- random.cdisc.data::caddv
+  sd$adeg <- random.cdisc.data::cadeg
+  sd$adex <- random.cdisc.data::cadex
+  sd$adlb <- random.cdisc.data::cadlb
+  sd$admh <- random.cdisc.data::cadmh
+  sd$adrs <- random.cdisc.data::cadrs
+  sd$adsub <- random.cdisc.data::cadsub
+  sd$adtte <- random.cdisc.data::cadtte
+  sd$advs <- random.cdisc.data::cadvs
 
   # useful for ext01
   group <- list(

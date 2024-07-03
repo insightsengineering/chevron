@@ -16,7 +16,7 @@
 #'     - `adsub`
 #'     - `adtte`
 #'     - `advs`
-#' @source based on `scda::synthetic_cdisc_data("rcd_2022_06_27")`
+#' @source based on package `random.cdisc.data`
 "syn_data"
 
 

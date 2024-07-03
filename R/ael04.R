@@ -24,13 +24,13 @@ ael04_main <- modify_default_args(
 #'
 ael04_pre <- function(adam_db,
                       dataset = "adsl",
-                      arm_var = "ACTARM",
+                      split_into_pages_by_var = "ACTARM",
                       ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(!is.na(.data$DTHADY)) %>%
     mutate(
       across(
-        all_of(c(arm_var, "DTHCAUS", "ADTHAUT")),
+        all_of(c(split_into_pages_by_var, "DTHCAUS", "ADTHAUT")),
         ~ reformat(.x, missing_rule)
       )
     ) %>%
@@ -41,7 +41,7 @@ ael04_pre <- function(adam_db,
         .data$TRTSDTM,
         "Date of\nFirst Study\nDrug\nAdministration"
       ),
-      !!arm_var := with_label(.data[[arm_var]], "Treatment"),
+      !!split_into_pages_by_var := with_label(.data[[split_into_pages_by_var]], "Treatment"),
       EOSDY = with_label(.data$EOSDY, "Day of Last\nStudy Drug\nAdministration"),
       DTHADY = with_label(.data$DTHADY, "Day of\nDeath"),
       DTHCAUS = with_label(.data$DTHCAUS, "Cause of Death"),

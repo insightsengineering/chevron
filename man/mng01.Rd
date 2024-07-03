@@ -22,6 +22,7 @@ mng01_main(
   interval_fun = "mean_ci",
   jitter = 0.3,
   line_col = nestcolor::color_palette(),
+  line_type = NULL,
   ggtheme = gg_theme_chevron(),
   table = c("n", center_fun, interval_fun),
   ...
@@ -56,6 +57,9 @@ mng01
 
 \item{line_col}{(\code{character}) describing the colors to use for the lines or a named \code{character} associating values of
 \code{arm_var} with color names.}
+
+\item{line_type}{(\code{character}) describing the line type to use for the lines or a named \code{character} associating
+values of \code{arm_var} with line types.}
 
 \item{ggtheme}{(\code{theme}) passed to \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.}
 
@@ -99,7 +103,20 @@ col <- c(
   "C: Combination" = "gray"
 )
 
-run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
+lt <- c(
+  "A: Drug X" = "29",
+  "B: Placebo" = "99",
+  "C: Combination" = "solid"
+)
+
+run(
+  mng01,
+  syn_data,
+  dataset = "adlb",
+  x_var = c("AVISIT", "AVISITN"),
+  line_col = col,
+  line_type = lt
+)
 }
 \seealso{
 \code{\link[=gg_theme_chevron]{gg_theme_chevron()}}, \code{\link[tern:g_lineplot]{tern::g_lineplot()}}.

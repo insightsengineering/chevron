@@ -64,3 +64,8 @@ test_that("aet01 can use custom medconcept_var", {
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
+
+test_that("aet01 can conditionally show the number of withdrawal", {
+  expect_silent(res <- run(aet01, syn_data, arm_var = "ARM", show_wd = FALSE))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})

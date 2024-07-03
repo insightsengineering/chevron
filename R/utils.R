@@ -34,28 +34,6 @@ smart_prune <- function(tlg) {
   res
 }
 
-#' Standard post processing
-#'
-#' @param tlg (`TableTree`) object.
-#' @param ind (`integer`) the indentation of the table.
-#' @param ... not used at the moment.
-#'
-#' @note Standard post processing includes:
-#' * `NULL` report creation if necessary
-#' * indentation
-#'
-#' @returns a post-processed `tlg`.
-#'
-#' @keywords internal
-std_postprocess <- function(tlg, ind = 2L, ...) {
-  assert_int(ind, lower = 0L)
-
-  res <- report_null(tlg)
-  table_inset(res) <- ind
-
-  res
-}
-
 #' Standard Main Listing Function
 #'
 #' @inheritParams gen_args

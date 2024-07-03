@@ -18,6 +18,7 @@ aet01_main(
   anl_vars = list(safety_var = c("FATAL", "SER", "SERWD", "SERDSM", "RELSER", "WD",
     "DSM", "REL", "RELWD", "RELDSM", "SEV")),
   anl_lbls = "Total number of {patient_label} with at least one",
+  show_wd = TRUE,
   ...
 )
 
@@ -37,6 +38,9 @@ aet01
 \item{anl_vars}{Named (\code{list}) of (\code{character}) variables the safety variables to be summarized.}
 
 \item{anl_lbls}{(\code{character}) of analysis labels.}
+
+\item{show_wd}{(\code{flag}) whether to display the number of patients withdrawn from study due to an adverse event and
+the number of death.}
 
 \item{...}{not used.}
 

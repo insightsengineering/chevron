@@ -11,9 +11,9 @@
                                                Drug          Study Drug     Day of                      
       Center/Patients ID   Age/Sex/Race   Administration   Administration   Death      Cause of Death   
       ——————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN     26MAR2019             1056         1091    DISEASE PROGRESSION
-      CHN-15/201           49/M/ASIAN     05MAR2019             1082         1085    ADVERSE EVENT      
-      CHN-15/245           34/F/WHITE     29MAR2019             1057         1057    DISEASE PROGRESSION
+      BRA-11/9             40/M/ASIAN     25MAR2019             1056         1091    DISEASE PROGRESSION
+      CHN-15/201           49/M/ASIAN     05MAR2019             1082         1084    ADVERSE EVENT      
+      CHN-15/245           34/F/WHITE     29MAR2019             1057         1056    DISEASE PROGRESSION
       \s\nACTARM: C: Combination
       
       ———————————————————————————————
@@ -33,9 +33,9 @@
                                                Drug          Study Drug     Day of                        Autopsy  
       Center/Patients ID   Age/Sex/Race   Administration   Administration   Death     Cause of Death     Performed?
       —————————————————————————————————————————————————————————————————————————————————————————————————————————————
-      CAN-1/341            43/F/ASIAN     23MAY2019             998          1014    SUICIDE             Yes       
-      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1122    LOST TO FOLLOW UP   <Missing> 
-      CHN-13/240           42/M/ASIAN     08APR2019             1044         1087    ADVERSE EVENT       Yes       
+      CAN-1/341            43/F/ASIAN     23MAY2019             998          1013    SUICIDE             Yes       
+      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1121    LOST TO FOLLOW UP   <Missing> 
+      CHN-13/240           42/M/ASIAN     08APR2019             1044         1086    ADVERSE EVENT       Yes       
       CHN-7/126            27/M/WHITE     02MAY2019             1025         1066    ADVERSE EVENT       Yes       
       \s\nACTARM: A: Drug X
       
@@ -45,8 +45,8 @@
                                                Drug          Study Drug     Day of                      
       Center/Patients ID   Age/Sex/Race   Administration   Administration   Death      Cause of Death   
       ——————————————————————————————————————————————————————————————————————————————————————————————————
-      CHN-3/128            32/M/ASIAN     24FEB2019             1084         1106    ADVERSE EVENT      
-      RUS-1/52             40/F/ASIAN     18MAR2019             1064         1070    DISEASE PROGRESSION
+      CHN-3/128            32/M/ASIAN     24FEB2019             1084         1105    ADVERSE EVENT      
+      RUS-1/52             40/F/ASIAN     18MAR2019             1064         1069    DISEASE PROGRESSION
       \s\nACTARM: A: Drug X
       
       ———————————————————————————————
@@ -71,15 +71,15 @@
                                                Drug          Study Drug     Day of                     Autopsy  
       Center/Patients ID   Age/Sex/Race   Administration   Administration   Death    Cause of Death   Performed?
       ——————————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN     26MAR2019             1056         1091    <Missing>        Yes       
-      CAN-1/341            43/F/ASIAN     23MAY2019             998          1014    <Missing>        Yes       
-      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1122    <Missing>        <Missing> 
-      CHN-13/240           42/M/ASIAN     08APR2019             1044         1087    <Missing>        Yes       
-      CHN-15/201           49/M/ASIAN     05MAR2019             1082         1085    <Missing>        Yes       
-      CHN-15/245           34/F/WHITE     29MAR2019             1057         1057    <Missing>        Yes       
-      CHN-3/128            32/M/ASIAN     24FEB2019             1084         1106    <Missing>        Yes       
+      BRA-11/9             40/M/ASIAN     25MAR2019             1056         1091    <Missing>        Yes       
+      CAN-1/341            43/F/ASIAN     23MAY2019             998          1013    <Missing>        Yes       
+      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1121    <Missing>        <Missing> 
+      CHN-13/240           42/M/ASIAN     08APR2019             1044         1086    <Missing>        Yes       
+      CHN-15/201           49/M/ASIAN     05MAR2019             1082         1084    <Missing>        Yes       
+      CHN-15/245           34/F/WHITE     29MAR2019             1057         1056    <Missing>        Yes       
+      CHN-3/128            32/M/ASIAN     24FEB2019             1084         1105    <Missing>        Yes       
       CHN-7/126            27/M/WHITE     02MAY2019             1025         1066    <Missing>        Yes       
-      RUS-1/52             40/F/ASIAN     18MAR2019             1064         1070    <Missing>        Yes       
+      RUS-1/52             40/F/ASIAN     18MAR2019             1064         1069    <Missing>        Yes       
 
 # ael04 functions work as expected
 
@@ -94,9 +94,9 @@
                                                Drug          Study Drug     Day of                      
       Center/Patients ID   Age/Sex/Race   Administration   Administration   Death      Cause of Death   
       ——————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN     26MAR2019             1056         1091    DISEASE PROGRESSION
-      CHN-15/201           49/M/ASIAN     05MAR2019             1082         1085    ADVERSE EVENT      
-      CHN-15/245           34/F/WHITE     29MAR2019             1057         1057    DISEASE PROGRESSION
+      BRA-11/9             40/M/ASIAN     25MAR2019             1056         1091    DISEASE PROGRESSION
+      CHN-15/201           49/M/ASIAN     05MAR2019             1082         1084    ADVERSE EVENT      
+      CHN-15/245           34/F/WHITE     29MAR2019             1057         1056    DISEASE PROGRESSION
       \s\nACTARM: C: Combination
       
       ———————————————————————————————
@@ -116,9 +116,9 @@
                                                Drug          Study Drug     Day of                        Autopsy  
       Center/Patients ID   Age/Sex/Race   Administration   Administration   Death     Cause of Death     Performed?
       —————————————————————————————————————————————————————————————————————————————————————————————————————————————
-      CAN-1/341            43/F/ASIAN     23MAY2019             998          1014    SUICIDE             Yes       
-      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1122    LOST TO FOLLOW UP   <Missing> 
-      CHN-13/240           42/M/ASIAN     08APR2019             1044         1087    ADVERSE EVENT       Yes       
+      CAN-1/341            43/F/ASIAN     23MAY2019             998          1013    SUICIDE             Yes       
+      CHN-1/307            24/M/ASIAN     11MAR2019             1076         1121    LOST TO FOLLOW UP   <Missing> 
+      CHN-13/240           42/M/ASIAN     08APR2019             1044         1086    ADVERSE EVENT       Yes       
       CHN-7/126            27/M/WHITE     02MAY2019             1025         1066    ADVERSE EVENT       Yes       
       \s\nACTARM: A: Drug X
       
@@ -128,8 +128,8 @@
                                                Drug          Study Drug     Day of                      
       Center/Patients ID   Age/Sex/Race   Administration   Administration   Death      Cause of Death   
       ——————————————————————————————————————————————————————————————————————————————————————————————————
-      CHN-3/128            32/M/ASIAN     24FEB2019             1084         1106    ADVERSE EVENT      
-      RUS-1/52             40/F/ASIAN     18MAR2019             1064         1070    DISEASE PROGRESSION
+      CHN-3/128            32/M/ASIAN     24FEB2019             1084         1105    ADVERSE EVENT      
+      RUS-1/52             40/F/ASIAN     18MAR2019             1064         1069    DISEASE PROGRESSION
       \s\nACTARM: A: Drug X
       
       ———————————————————————————————

@@ -19,6 +19,8 @@
 #'   `jitter`), with a default of 0.3 (slight `jitter`).
 #' @param line_col (`character`) describing the colors to use for the lines or a named `character` associating values of
 #'   `arm_var` with color names.
+#' @param line_type (`character`) describing the line type to use for the lines or a named `character` associating
+#'   values of `arm_var` with line types.
 #' @param ggtheme (`theme`) passed to [tern::g_lineplot()].
 #' @param table (`character`) names of the statistics to be displayed in the table. If `NULL`, no table is displayed.
 #' @param ... passed to [tern::g_lineplot()].
@@ -45,6 +47,7 @@ mng01_main <- function(adam_db,
                        interval_fun = "mean_ci",
                        jitter = 0.3,
                        line_col = nestcolor::color_palette(),
+                       line_type = NULL,
                        ggtheme = gg_theme_chevron(),
                        table = c("n", center_fun, interval_fun),
                        ...) {
@@ -64,6 +67,7 @@ mng01_main <- function(adam_db,
   assert_number(jitter, lower = 0, upper = 1)
   assert_class(ggtheme, "theme")
   assert_character(line_col, null.ok = TRUE)
+  assert_character(line_type, null.ok = TRUE)
   assert_valid_variable(adam_db[[dataset]], x_var)
   assert_valid_variable(adam_db[[dataset]], y_var, types = list(c("numeric")))
   assert_valid_variable(adam_db[[dataset]], y_unit, types = list(c("character", "factor")))
@@ -74,7 +78,6 @@ mng01_main <- function(adam_db,
   assert_subset(table, c("n", center_fun_choice, interval_fun_choice))
 
   df <- adam_db[[dataset]]
-  line_col <- unlist(line_col)
 
   data_ls <- split(df, df$PARAM, drop = TRUE)
   x_var <- paste(x_var, collapse = "_")
@@ -103,19 +106,37 @@ mng01_main <- function(adam_db,
     subject_var = "USUBJID"
   )
 
-  if (!is.null(names(line_col))) {
-    color_lvl <- sort(unique(df[[arm_var]]))
-    col <- line_col[as.character(color_lvl)]
 
-    if (anyNA(col)) {
-      missing_col <- setdiff(color_lvl, names(col))
+  arm_lvl <- sort(unique(df[[arm_var]]))
+
+  col <- if (!is.null(names(line_col))) {
+    col_sel <- line_col[as.character(arm_lvl)]
+
+    if (anyNA(col_sel)) {
+      missing_col <- setdiff(arm_lvl, names(col_sel))
       stop(paste("Missing color matching for", toString(missing_col)))
     }
 
-    col <- unname(col)
+    unname(col_sel)
   } else {
-    col <- line_col
+    line_col
   }
+
+  line_type <- if (!is.null(names(line_type))) {
+    tp <- line_type[as.character(arm_lvl)]
+
+    if (anyNA(tp)) {
+      missing_tp <- setdiff(arm_lvl, names(tp))
+      stop(paste("Missing line type matching for", toString(missing_tp)))
+    }
+
+    unname(tp)
+  } else {
+    line_type
+  }
+
+
+
 
   lapply(
     data_ls,
@@ -130,6 +151,7 @@ mng01_main <- function(adam_db,
     table = table,
     ggtheme = ggtheme,
     col = col,
+    linetype = line_type,
     subtitle_add_unit = !is.na(y_unit),
     ...
   )
@@ -172,7 +194,20 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 #'   "C: Combination" = "gray"
 #' )
 #'
-#' run(mng01, syn_data, dataset = "adlb", x_var = c("AVISIT", "AVISITN"), line_col = col)
+#' lt <- c(
+#'   "A: Drug X" = "29",
+#'   "B: Placebo" = "99",
+#'   "C: Combination" = "solid"
+#' )
+#'
+#' run(
+#'   mng01,
+#'   syn_data,
+#'   dataset = "adlb",
+#'   x_var = c("AVISIT", "AVISITN"),
+#'   line_col = col,
+#'   line_type = lt
+#' )
 mng01 <- chevron_g(
   main = mng01_main,
   preprocess = mng01_pre
