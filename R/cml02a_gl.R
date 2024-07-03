@@ -10,7 +10,8 @@ cml02a_gl_main <- modify_default_args(std_listing,
   dataset = "adcm",
   key_cols = c("ATC2", "CMDECOD"),
   disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
-  split_into_pages_by_var = NULL
+  split_into_pages_by_var = NULL,
+  unique_rows = TRUE
 )
 
 #' @describeIn cml02a_gl Preprocessing
@@ -23,10 +24,10 @@ cml02a_gl_main <- modify_default_args(std_listing,
 #'
 cml02a_gl_pre <- function(adam_db,
                           dataset = "adcm",
-                          key_cols = c("ATC2", "CMDECOD", "CMTRT"),
+                          disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
                           ...) {
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
-    mutate(across(all_of(key_cols), ~ reformat(.x, nocoding))) %>%
+    mutate(across(all_of(disp_cols), ~ reformat(.x, nocoding))) %>%
     mutate(
       ATC2 = with_label(.data$ATC2, "ATC Class Level 2"),
       CMDECOD = with_label(.data$CMDECOD, "WHODrug Preferred Name"),

@@ -17,13 +17,14 @@ cml02a_gl_main(
   key_cols = c("ATC2", "CMDECOD"),
   disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
   split_into_pages_by_var = NULL,
+  unique_rows = TRUE,
   ...
 )
 
 cml02a_gl_pre(
   adam_db,
   dataset = "adcm",
-  key_cols = c("ATC2", "CMDECOD", "CMTRT"),
+  disp_cols = c("ATC2", "CMDECOD", "CMTRT"),
   ...
 )
 
@@ -40,6 +41,8 @@ Key columns allow you to group repeat occurrences.}
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
+
+\item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{not used.}
 }
