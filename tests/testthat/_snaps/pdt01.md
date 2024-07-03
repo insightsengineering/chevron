@@ -6,14 +6,15 @@
         Category                                                              A: Drug X   B: Placebo   C: Combination
           Description                                                          (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one major protocol deviation   3 (20.0%)   3 (20.0%)          0       
-        Total number of major protocol deviations                                 3           4              0       
+        Total number of patients with at least one major protocol deviation   2 (13.3%)   4 (26.7%)          0       
+        Total number of major protocol deviations                                 2           5              0       
         EXCLUSION CRITERIA                                                                                           
           Active or untreated or other excluded cns metastases                    0        1 (6.7%)          0       
           Pregnancy criteria                                                      0        1 (6.7%)          0       
         INCLUSION CRITERIA                                                                                           
-          Ineligible cancer type or current cancer stage                      2 (13.3%)       0              0       
+          Ineligible cancer type or current cancer stage                      1 (6.7%)        0              0       
         MEDICATION                                                                                                   
+          Discontinued study drug for unspecified reason                          0        1 (6.7%)          0       
           Received prohibited concomitant medication                              0        1 (6.7%)          0       
         PROCEDURAL                                                                                                   
           Eligibility-related test not done/out of window                         0        1 (6.7%)          0       
@@ -27,10 +28,10 @@
         Category                                                              A: Drug X   B: Placebo   C: Combination
           Description                                                          (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one major protocol deviation   3 (20.0%)   3 (20.0%)          0       
-        Total number of major protocol deviations                                 3           4              0       
+        Total number of patients with at least one major protocol deviation   2 (13.3%)   4 (26.7%)          0       
+        Total number of major protocol deviations                                 2           5              0       
         No Coding Available                                                                                          
-          No Coding Available                                                 3 (20.0%)   3 (20.0%)          0       
+          No Coding Available                                                 2 (13.3%)   4 (26.7%)          0       
 
 # pdt01 can handle some NA values
 
@@ -40,13 +41,14 @@
         Category                                                              A: Drug X   B: Placebo   C: Combination
           Description                                                          (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————————————
-        Total number of patients with at least one major protocol deviation   3 (20.0%)   3 (20.0%)          0       
-        Total number of major protocol deviations                                 3           4              0       
+        Total number of patients with at least one major protocol deviation   2 (13.3%)   4 (26.7%)          0       
+        Total number of major protocol deviations                                 2           5              0       
         EXCLUSION CRITERIA                                                                                           
           Active or untreated or other excluded cns metastases                    0        1 (6.7%)          0       
         INCLUSION CRITERIA                                                                                           
-          Ineligible cancer type or current cancer stage                      2 (13.3%)       0              0       
+          Ineligible cancer type or current cancer stage                      1 (6.7%)        0              0       
         MEDICATION                                                                                                   
+          Discontinued study drug for unspecified reason                          0        1 (6.7%)          0       
           Received prohibited concomitant medication                              0        1 (6.7%)          0       
         PROCEDURAL                                                                                                   
           Eligibility-related test not done/out of window                         0        1 (6.7%)          0       

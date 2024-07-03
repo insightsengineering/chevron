@@ -353,28 +353,6 @@ ifneeded_split_col <- function(lyt, var, ...) {
   }
 }
 
-#' Create a Null Report
-#'
-#' @rdname report_null
-#' @aliases null_report
-#' @param tlg (`TableTree`) object.
-#' @param ... not used. Important to be used directly as post processing function.
-#'
-#' @export
-#'
-#' @returns original `TableTree` or a null report if no observation are found in the table.
-report_null <- function(tlg, ...) {
-  assert_true(is.null(tlg) || rtables::is_rtable(tlg))
-
-  if (is.null(tlg) || nrow(tlg) == 0L) {
-    return(null_report)
-  }
-  if (count_children(tlg) == 0) {
-    return(null_report)
-  }
-  tlg
-}
-
 #' Count Children
 #'
 #' @keywords internal
@@ -389,21 +367,6 @@ count_children <- function(x) {
     FUN.VALUE = 0
   ))
 }
-
-#' @export
-#' @rdname report_null
-null_report <- rtables::rtable(
-  header = "",
-  rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output.")
-)
-
-#' @export
-#' @rdname report_null
-null_listing <- rlistings::as_listing(
-  df = data.frame(x = formatters::with_label(
-    "Null Report: No observations met the reporting criteria for inclusion in this output.", ""
-  ))
-)
 
 has_overall_col <- function(lbl_overall) {
   !is.null(lbl_overall) && !identical(lbl_overall, "")

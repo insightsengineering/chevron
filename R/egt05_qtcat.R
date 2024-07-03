@@ -160,7 +160,7 @@ egt05_qtcat_pre <- function(adam_db, ...) {
 #'
 egt05_qtcat_post <- function(tlg, prune_0 = TRUE, ...) {
   if (prune_0) tlg <- smart_prune(tlg)
-  std_postprocess(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `EGT05_QTCAT` ECG Actual Values and Changes from Baseline by Visit Table.

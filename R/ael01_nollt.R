@@ -45,21 +45,6 @@ ael01_nollt_pre <- function(adam_db,
   adam_db
 }
 
-#' @describeIn ael01_nollt Postprocessing
-#'
-#' @inheritParams gen_args
-#' @returns the postprocessing function returns an `rlistings` object or an `ElementaryTable` (null report).
-#'
-ael01_nollt_post <- function(tlg, ...) {
-  if (is(tlg, "list")) {
-    if (length(tlg) == 0) tlg <- null_report
-  } else {
-    if (nrow(tlg) == 0) tlg <- null_report
-  }
-
-  tlg
-}
-
 #' `AEL01_NOLLT` Listing 1 (Default) Glossary of Preferred Terms and Investigator-Specified Terms.
 #'
 #' @include chevron_tlg-S4class.R
@@ -69,6 +54,5 @@ ael01_nollt_post <- function(tlg, ...) {
 #' run(ael01_nollt, syn_data)
 ael01_nollt <- chevron_l(
   main = ael01_nollt_main,
-  preprocess = ael01_nollt_pre,
-  postprocess = ael01_nollt_post
+  preprocess = ael01_nollt_pre
 )

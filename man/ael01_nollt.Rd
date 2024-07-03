@@ -4,7 +4,6 @@
 \name{ael01_nollt_main}
 \alias{ael01_nollt_main}
 \alias{ael01_nollt_pre}
-\alias{ael01_nollt_post}
 \alias{ael01_nollt}
 \title{\code{AEL01_NOLLT} Listing 1 (Default) Glossary of Preferred Terms and Investigator-Specified Terms.}
 \format{
@@ -28,8 +27,6 @@ ael01_nollt_pre(
   ...
 )
 
-ael01_nollt_post(tlg, ...)
-
 ael01_nollt
 }
 \arguments{
@@ -45,15 +42,11 @@ Key columns allow you to group repeat occurrences.}
 \item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
 
 \item{...}{additional arguments passed to \code{\link[rlistings:listings]{rlistings::as_listing}}.}
-
-\item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 }
 \value{
 the main function returns an \code{rlistings} or a \code{list} object.
 
 the preprocessing function returns a \code{list} of \code{data.frame}.
-
-the postprocessing function returns an \code{rlistings} object or an \code{ElementaryTable} (null report).
 }
 \description{
 \code{AEL01_NOLLT} Listing 1 (Default) Glossary of Preferred Terms and Investigator-Specified Terms.
@@ -71,8 +64,6 @@ the postprocessing function returns an \code{rlistings} object or an \code{Eleme
 \item \code{ael01_nollt_main()}: Main TLG function
 
 \item \code{ael01_nollt_pre()}: Preprocessing
-
-\item \code{ael01_nollt_post()}: Postprocessing
 
 }}
 \note{

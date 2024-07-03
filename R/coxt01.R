@@ -129,7 +129,7 @@ coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
   if (prune_0) {
     tlg <- smart_prune(tlg)
   }
-  std_postprocess(tlg)
+  std_postprocessing(tlg)
 }
 
 #' `COXT01` (Default) Cox Regression Model Table.

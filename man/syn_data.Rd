@@ -21,7 +21,7 @@ A named \code{list} of 13 \code{data.frames}:
 - \code{advs}
 }
 \source{
-based on \code{scda::synthetic_cdisc_data("rcd_2022_06_27")}
+based on package \code{random.cdisc.data}
 }
 \usage{
 syn_data
