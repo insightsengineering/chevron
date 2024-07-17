@@ -365,7 +365,7 @@ setMethod(
     c(
       "# Edit Preprocessing Function.",
       glue::glue("preprocess({name}) <- "),
-      deparse(preprocess(x)),
+      deparse1(preprocess(x), collapse = "\n", width.cutoff = 100L),
       "",
       "# Create TLG",
       glue::glue(
