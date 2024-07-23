@@ -16,6 +16,7 @@ ael01_nollt_main(
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
   split_into_pages_by_var = NULL,
+  unique_rows = TRUE,
   ...
 )
 
@@ -40,6 +41,8 @@ Key columns allow you to group repeat occurrences.}
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
+
+\item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{additional arguments passed to \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }

@@ -46,6 +46,7 @@ std_listing <- function(adam_db,
                         key_cols,
                         disp_cols,
                         split_into_pages_by_var,
+                        unique_rows = FALSE,
                         ...) {
   assert_all_tablenames(adam_db, dataset)
   assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
@@ -58,7 +59,7 @@ std_listing <- function(adam_db,
     split_into_pages_by_var = split_into_pages_by_var,
     ...,
     default_formatting = listing_format_chevron(),
-    unique_rows = TRUE
+    unique_rows = unique_rows
   )
 }
 
