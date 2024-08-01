@@ -21,3 +21,6 @@ jobs:
       strategy: ${{ matrix.test-strategy }}
       additional-env-vars: |
         PKG_SYSREQS_DRY_RUN=true
+  revdepcheck:
+    name: revdepcheck ↩️
+    uses: insightsengineering/r.pkg.template/.github/workflows/revdepcheck.yaml@main
