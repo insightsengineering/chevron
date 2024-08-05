@@ -21,3 +21,14 @@ jobs:
       strategy: ${{ matrix.test-strategy }}
       additional-env-vars: |
         PKG_SYSREQS_DRY_RUN=true
+  branch-cleanup:
+    name: Branch Cleanup 🧹
+    uses: insightsengineering/r.pkg.template/.github/workflows/branch-cleanup.yaml@main
+    secrets:
+      REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
+  revdepcheck:
+    name: revdepcheck ↩️
+    uses: insightsengineering/r.pkg.template/.github/workflows/revdepcheck.yaml@main
+  rhub:
+    name: R-hub 🌐
+    uses: insightsengineering/r.pkg.template/.github/workflows/rhub.yaml@main
