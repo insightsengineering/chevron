@@ -1,0 +1,27 @@
+# ael04 ----
+
+test_that("ael04 works with adsl dataset", {
+  expect_silent(
+    res <- run(ael04, syn_data, dataset = "adsl")
+  )
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 110)))
+})
+
+test_that("ael04 can handle all missing values", {
+  proc_data <- syn_data
+  proc_data$adsl <- proc_data$adsl %>%
+    mutate(
+      ACTARM = NA_character_,
+      DTHCAUS = NA_character_
+    )
+
+  expect_silent(res <- run(ael04, proc_data))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 110)))
+})
+
+# ael04 functions ----
+
+test_that("ael04 functions work as expected", {
+  expect_silent(res <- ael04_pre(syn_data) %>% ael04_main())
+  expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 110)))
+})
