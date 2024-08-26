@@ -10,6 +10,8 @@
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
 #' @param verbose (`flag`) whether to print argument information.
+#' @param unwrap (`flag`)  whether to print the preprocessing postprocessing and main function to gether with the
+#'   associated layout function.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
 #' @param user_args (`list`) arguments from `...`.
 #' @returns an `rtables` (for `chevron_t`), `rlistings` (for `chevron_l`), `grob` (for `chevron_g`) or `ElementaryTable`
@@ -62,11 +64,9 @@ setMethod(
       cat(paste(deparse(main(object)), collapse = "\n"), "\n")
       cat("\n")
 
-      # add some rapply stuff to get "name" objects form the body of the main funtion with the "_lyt" pattern.
-
-
-
-
+      cat("Layout function:\n")
+      unwrap_layout(main(object))
+      cat("\n")
 
       cat("Postprocessing function:\n")
       cat(paste(deparse(postprocess(object)), collapse = "\n"), "\n")
@@ -393,7 +393,7 @@ setMethod(
       "# Create TLG",
       glue::glue(
         "tlg_output <- run(object = {name}, adam_db = {adam_db}",
-        ", verbose = TRUE, user_args = {args})"
+        ", verbose = TRUE, unwrap = TRUE, user_args = {args})"
       )
     )
   }

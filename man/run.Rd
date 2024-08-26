@@ -36,6 +36,9 @@ run(
 \item{...}{extra arguments to pass to the pre-processing, main and post-processing functions.}
 
 \item{user_args}{(\code{list}) arguments from \code{...}.}
+
+\item{unwrap}{(\code{flag})  whether to print the preprocessing postprocessing and main function to gether with the
+associated layout function.}
 }
 \value{
 an \code{rtables} (for \code{chevron_t}), \code{rlistings} (for \code{chevron_l}), \code{grob} (for \code{chevron_g}) or \code{ElementaryTable}
