@@ -19,6 +19,7 @@ run(
   adam_db,
   auto_pre = TRUE,
   verbose = FALSE,
+  unwrap = FALSE,
   ...,
   user_args = list(...)
 )

@@ -30,10 +30,11 @@ setGeneric(
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) {
+  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, unwrap = FALSE, ..., user_args = list(...)) {
     assert_list(adam_db, types = "data.frame", names = "unique")
     assert_flag(auto_pre)
     assert_flag(verbose)
+    assert_flag(unwrap)
     assert_list(user_args, names = "unique")
     args <- list(...)
     assert_list(args, names = "unique", .var.name = "...")
@@ -49,6 +50,28 @@ setMethod(
         auto_pre = auto_pre
       )
     }
+
+    if (unwrap) {
+      if (auto_pre) {
+        cat("Preprocessing function:\n")
+        cat(paste(deparse(preprocess(object)), collapse = "\n"), "\n")
+        cat("\n")
+      }
+
+      cat("Main function:\n")
+      cat(paste(deparse(main(object)), collapse = "\n"), "\n")
+      cat("\n")
+
+      # add some rapply stuff to get "name" objects form the body of the main funtion with the "_lyt" pattern.
+
+
+
+
+
+      cat("Postprocessing function:\n")
+      cat(paste(deparse(postprocess(object)), collapse = "\n"), "\n")
+    }
+
     proc_data <- if (auto_pre) {
       list(adam_db = do_call(object@preprocess, c(list(adam_db), user_args)))
     } else {
