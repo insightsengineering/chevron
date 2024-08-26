@@ -54,7 +54,7 @@ unwrap_layout <- function(x, pattern = "_lyt$") {
       res,
       function(x){
         cat(sprintf("  %s:\n", names(x)))
-        #cat(paste(deparse(eval(x[[1]])), collapse = "\n"), "\n")
+        cat(paste(deparse(eval(x[[1]])), collapse = "\n"), "\n")
         list()
       }
     )
