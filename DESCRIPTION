@@ -67,7 +67,7 @@ Remotes:
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
-    r-lib/lifecycle, tidyverse/magrittr, insightsengineering/nestcolor,
+    r-lib/lifecycle, tidyverse/lubridate, tidyverse/magrittr, insightsengineering/nestcolor,
     tidyverse/purrr, r-lib/rlang, insightsengineering/rlistings,
     insightsengineering/rtables, tidyverse/stringr,
     insightsengineering/tern, tidyverse/tibble, yihui/knitr,
