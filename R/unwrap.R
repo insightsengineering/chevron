@@ -50,6 +50,7 @@ unwrap_layout <- function(x, pattern = "_lyt$") {
   res <- unlist(h_unwrap_layout(body(x)[-1], pattern))
 
   if (length(res) > 0L) {
+    cat("Layout function:\n")
     purrr::lmap(
       res,
       function(x){
@@ -58,6 +59,7 @@ unwrap_layout <- function(x, pattern = "_lyt$") {
         list()
       }
     )
+    cat("\n")
   }
 
   invisible(NULL)

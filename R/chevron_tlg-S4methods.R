@@ -64,9 +64,8 @@ setMethod(
       cat(paste(deparse(main(object)), collapse = "\n"), "\n")
       cat("\n")
 
-      cat("Layout function:\n")
+      # Show layout function from main if it exists.
       unwrap_layout(main(object))
-      cat("\n")
 
       cat("Postprocessing function:\n")
       cat(paste(deparse(postprocess(object)), collapse = "\n"), "\n")
