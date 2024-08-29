@@ -1224,15 +1224,7 @@ proc_data <- log_filter(
 run(fstg02, proc_data)
 ```
 
-#### **2. Forest Plot for Hazard Ratio (with a user-defined confidence level)**
-
-The confidence level of the confidence interval can be set using the `control` argument. More details about the control options are available in `[tern::extract_survival_subgroups]` 
-
-```{r, fig.width = 10, fig.height = 6}
-run(fstg02, proc_data, control = list(conf_level = 0.90))
-```
-
-#### **3. Forest Plot for Hazard Ratio (with p-values and/or different statistics)**
+#### **2. Forest Plot for Hazard Ratio (with p-values and/or different statistics)**
 
 The interaction p-values and a different set of statistics can be displayed using the `control` argument. More details about the control options are available in `[tern::extract_survival_subgroups]` 
 
@@ -1240,7 +1232,7 @@ The interaction p-values and a different set of statistics can be displayed usin
 run(fstg02, proc_data, stat_var = c("n_tot", "n", "ci", "hr", "pval"), control = list(conf_level = 0.9, pval_method = "likelihood"))
 ```
 
-#### **4. Forest Plot for Hazard Ratio (with user-defined subgroup analysis)**
+#### **3. Forest Plot for Hazard Ratio (with user-defined subgroup analysis)**
 
 The `subgroups` arguments controls which variables are used for subgroup analysis. If `NULL`the subgroup analysis is removed.
 
@@ -1248,7 +1240,7 @@ The `subgroups` arguments controls which variables are used for subgroup analysi
 run(fstg02, proc_data, subgroups = NULL)
 ```
 
-#### **5. Forest Plot for Hazard Ratio (with stratified analysis)**
+#### **4. Forest Plot for Hazard Ratio (with stratified analysis)**
 
 The `strata_var` argument is used to pass the columns used for stratified analysis.
 
@@ -1256,7 +1248,7 @@ The `strata_var` argument is used to pass the columns used for stratified analys
 run(fstg02, proc_data, strata_var = "STRATA1")
 ```
 
-#### **6. Forest Plot for Hazard Ratio (without proportional sizing of the hazard ratio symbol)**
+#### **5. Forest Plot for Hazard Ratio (without proportional sizing of the hazard ratio symbol)**
 
 The `col_symbol_size` argument controls the size of the hazard ratio symbols which are by default proportional in size to the number of events in the subgroup. If `NULL` the same symbol size is used for all subgroups.
 
