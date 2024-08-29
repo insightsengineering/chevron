@@ -1159,8 +1159,8 @@ head(l_ae_nollt, 10)
 
 ```{r, fig.width = 10, fig.height = 6}
 proc_data <- log_filter(
-   syn_data,
-   PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
+  syn_data,
+  PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
 )
 run(fstg01, proc_data)
 ```
@@ -1229,7 +1229,12 @@ run(fstg02, proc_data)
 The interaction p-values and a different set of statistics can be displayed using the `control` argument. More details about the control options are available in `[tern::extract_survival_subgroups]` 
 
 ```{r, fig.width = 10, fig.height = 6}
-run(fstg02, proc_data, stat_var = c("n_tot", "n", "ci", "hr", "pval"), control = list(conf_level = 0.9, pval_method = "likelihood"))
+run(
+  fstg02,
+  proc_data,
+  stat_var = c("n_tot", "n", "ci", "hr", "pval"),
+  control = list(conf_level = 0.9, pval_method = "likelihood")
+)
 ```
 
 #### **3. Forest Plot for Hazard Ratio (with user-defined subgroup analysis)**
