@@ -1146,6 +1146,124 @@ head(l_ae_nollt, 10)
 
 ## **Graphics**
 
+### **Forest Plot for Odds Ratio (`FSTG01`)**
+
+#### **1. Forest Plot for Odds Ratio (with subgroup analysis)**
+
+1) The **`fstg01`** template produces the standard forest plot for odds ratio.
+2) Users are expected to subset the parameter of interest (e.g. `PARAMCD == "BESRSPI"`) in pre-processing.
+3) Users are expected to subset the arm variable to keep only the two arms to compare (e.g. `ARM %in% c("A: Drug X", "B: Placebo")`).
+4) By default, the plots displays a subgroup analysis for `"SEX"`, `"AGEGR1"` and `"RACE"`.
+5) Unstratified analysis is provided by default.
+6) The plots displays by default the Total number of subjects, the odd ratio and the 95% confidence interval, and, for each arm, the number of subject, the number of responders and the proportion of responders.
+
+```{r, fig.width = 10, fig.height = 6}
+proc_data <- log_filter(
+   syn_data,
+   PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
+)
+run(fstg01, proc_data)
+```
+
+#### **2. Forest Plot for Odds Ratio (with a user-defined confidence level)**
+
+The confidence level of the confidence interval can be adjusted by the `conf_level` argument.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg01, proc_data, conf_level = 0.90)
+```
+
+#### **3. Forest Plot for Odds Ratio (with p-values and/or different statistics)**
+
+The interaction p-values and a different set of statistics can be displayed using the `stat_var` argument. Note that the users are expected to select a method for p-value computation. see `[tern::prop_diff_test]`.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg01, proc_data, method = "fisher", stat_var = c("n_tot", "n", "ci", "or", "pval"))
+```
+
+#### **4. Forest Plot for Odds Ratio (with user-defined subgroup analysis)**
+
+The `subgroups` arguments controls which variables are used for subgroup analysis. If `NULL`the subgroup analysis is removed.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg01, proc_data, subgroups = NULL)
+```
+
+#### **5. Forest Plot for Odds Ratio (with stratified analysis)**
+
+The `strata_var` argument is used to pass the columns used for stratified analysis.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg01, proc_data, strata_var = "STRATA1")
+```
+
+#### **6. Forest Plot for Odds Ratio (without proportional sizing of the odds ratio symbol)**
+
+The `col_symbol_size` argument controls the size of the odds ratio symbols which are by default proportional in size to the sample size of the subgroup. If `NULL` the same symbol size is used for all subgroups.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg01, proc_data, col_symbol_size = NULL)
+```
+
+### **Forest Plot for Hazard Ratio (`FSTG02`)**
+
+#### **1. Forest Plot for Hazard Ratio (with subgroup analysis)**
+
+1) The **`fstg02`** template produces the standard forest plot for hazard ratio.
+2) Users are expected to subset the parameter of interest (e.g. `PARAMCD == "OS"`) in pre-processing.
+3) Users are expected to subset the arm variable to keep only the two arms to compare (e.g. `ARM %in% c("A: Drug X", "B: Placebo")`).
+4) By default, the plots displays a subgroup analysis for `"SEX"`, `"AGEGR1"` and `"RACE"`.
+5) Unstratified analysis is provided by default.
+6) The plots displays by default the Total number of events, the hazard ratio and the 95% confidence interval, and, for each arm, the number of events and the median time to event in month.
+
+```{r, fig.width = 10, fig.height = 6}
+proc_data <- log_filter(
+  syn_data,
+  PARAMCD == "OS" & ARM %in% c("A: Drug X", "B: Placebo"), "adtte"
+)
+run(fstg02, proc_data)
+```
+
+#### **2. Forest Plot for Hazard Ratio (with a user-defined confidence level)**
+
+The confidence level of the confidence interval can be set using the `control` argument. More details about the control options are available in `[tern::extract_survival_subgroups]` 
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg02, proc_data, control = list(conf_level = 0.90))
+```
+
+#### **3. Forest Plot for Hazard Ratio (with p-values and/or different statistics)**
+
+The interaction p-values and a different set of statistics can be displayed using the `control` argument. More details about the control options are available in `[tern::extract_survival_subgroups]` 
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg02, proc_data, stat_var = c("n_tot", "n", "ci", "hr", "pval"), control = list(conf_level = 0.9, pval_method = "likelihood"))
+```
+
+#### **4. Forest Plot for Hazard Ratio (with user-defined subgroup analysis)**
+
+The `subgroups` arguments controls which variables are used for subgroup analysis. If `NULL`the subgroup analysis is removed.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg02, proc_data, subgroups = NULL)
+```
+
+#### **5. Forest Plot for Hazard Ratio (with stratified analysis)**
+
+The `strata_var` argument is used to pass the columns used for stratified analysis.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg02, proc_data, strata_var = "STRATA1")
+```
+
+#### **6. Forest Plot for Hazard Ratio (without proportional sizing of the hazard ratio symbol)**
+
+The `col_symbol_size` argument controls the size of the hazard ratio symbols which are by default proportional in size to the number of events in the subgroup. If `NULL` the same symbol size is used for all subgroups.
+
+```{r, fig.width = 10, fig.height = 6}
+run(fstg02, proc_data, col_symbol_size = NULL)
+```
+
 ### **Kaplan-Meier Plot (`KMG01`)**
 
 #### **1. Kaplan-Meier Plot (without comparative statistics)**
