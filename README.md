@@ -63,23 +63,24 @@ If you need more flexibility please refer to [`tern`](https://insightsengineerin
 
 ## Installation
 
-```r
-install.packages("chevron", repos = c("https://insightsengineering.r-universe.dev", getOption("repos")))
+`chevron` is available on CRAN and you can install the latest released version with:
 
-# install.packages("pak")
-pak::pak("insightsengineering/chevron@*release")
+```r
+install.packages("chevron")
 ```
 
 Alternatively, you might also use the development version.
 
 ```r
-install.packages("chevron", repos = c("https://pharmaverse.r-universe.dev", getOption("repos")))
-
 # install.packages("pak")
 pak::pak("insightsengineering/chevron")
 ```
 
 ## Usage
+
+To understand how to use this package, please refer to the [Introduction to `chevron`](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron.html) article, which provides multiple examples of code implementation.
+
+Below is the showcase of the example usage.
 
 ```r
 library(chevron)
