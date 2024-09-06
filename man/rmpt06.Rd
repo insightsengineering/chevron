@@ -38,8 +38,7 @@ rmpt06
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{method}{(\code{string}) the method used to construct the confidence interval.
-See \code{\link[tern:estimate_proportion]{tern::estimate_proportion}}.}
+\item{method}{(\code{string}) the method used to construct the confidence interval. See \code{\link[tern:estimate_proportion]{tern::estimate_proportion}}.}
 
 \item{conf_level}{(\code{proportion}) the confidence level of the interval. See \code{\link[tern:estimate_proportion]{tern::estimate_proportion}}.}
 
