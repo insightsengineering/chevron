@@ -3,9 +3,8 @@
 #' @describeIn rmpt06 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param method (`string`) the method used to construct the confidence interval.
-#' See [`tern::estimate_proportions`].
-#' @param conf_level (`proportion`) the confidence level of the interval. See [`tern::estimate_proportions`].
+#' @param method (`string`) the method used to construct the confidence interval. See [`tern::estimate_proportion`].
+#' @param conf_level (`proportion`) the confidence level of the interval. See [`tern::estimate_proportion`].
 #' @param show_diff (`flag`) whether to show the difference of patient with at least one adverse event  between groups.
 #' @param ref_group (`string`) the reference group for the difference.
 #' @param method_diff (`string`) the method used to construct the confidence interval for the difference between groups.
