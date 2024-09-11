@@ -31,7 +31,7 @@ cml02a_gl_pre <- function(adam_db,
     mutate(
       ATC2 = with_label(.data$ATC2, "ATC Class Level 2"),
       CMDECOD = with_label(.data$CMDECOD, "WHODrug Preferred Name"),
-      CMTRT = with_label(.data$CMTRT, "Investigator-Specified\nTreatment Term")
+      CMTRT = with_label(.data$CMTRT, "Investigator-Specified Treatment Term")
     )
 
   adam_db
