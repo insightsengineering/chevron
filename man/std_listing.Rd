@@ -10,6 +10,7 @@ std_listing(
   key_cols,
   disp_cols,
   split_into_pages_by_var,
+  unique_rows = FALSE,
   ...
 )
 }
@@ -24,6 +25,8 @@ Key columns allow you to group repeat occurrences.}
 \item{disp_cols}{(\code{character}) names of non-key columns which should be displayed when the listing is rendered.}
 
 \item{split_into_pages_by_var}{(\code{character} or \code{NULL}) the name of the variable to split the listing by.}
+
+\item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
 \item{...}{additional arguments passed to \code{\link[rlistings:listings]{rlistings::as_listing}}.}
 }
