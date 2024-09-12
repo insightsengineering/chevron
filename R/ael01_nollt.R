@@ -21,7 +21,8 @@ ael01_nollt_main <- modify_default_args(
   dataset = "adae",
   key_cols = c("AEBODSYS", "AEDECOD"),
   disp_cols = "AETERM",
-  split_into_pages_by_var = NULL
+  split_into_pages_by_var = NULL,
+  unique_rows = TRUE
 )
 
 #' @describeIn ael01_nollt Preprocessing

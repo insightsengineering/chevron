@@ -194,24 +194,26 @@ test_that("script_funs works as expected", {
 
 
 test_that("script_funs generates a valid script", {
-  tmp <- tempfile()
+  withr::with_tempfile("tmp", fileext = ".R", {
+    args_list <- list(
+      arm_var = "ARM"
+    )
 
-  args_list <- list(
-    arm_var = "ARM"
-  )
-
-  res_fun <- script_funs(aet04, adam_db = "syn_adv", args = "args_list")
-  writeLines(res_fun, tmp)
-  res <- capture_output(source(tmp, local = TRUE))
-  expect_snapshot(res)
-  expected <- run(aet04, syn_adv, arm_var = "ARM")
-  expect_identical(tlg_output, expected)
+    res_fun <- script_funs(aet04, adam_db = "syn_adv", args = "args_list")
+    writeLines(res_fun, tmp)
+    # Creating the object tlg_output in the script.
+    res <- capture_output(source(tmp, local = TRUE))
+    expect_snapshot(res)
+    expected <- run(aet04, syn_adv, arm_var = "ARM")
+    expect_identical(tlg_output, expected)
+  })
 })
 
 test_that("script_funs works for simple template", {
   res <- expect_silent(script_funs(chevron_simple(), adam_db = "syn_adv"))
   expect_character(res)
 })
+
 
 # print_list ----
 

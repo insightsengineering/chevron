@@ -365,7 +365,7 @@ setMethod(
     c(
       "# Edit Preprocessing Function.",
       glue::glue("preprocess({name}) <- "),
-      deparse(preprocess(x), control = c("useSource")),
+      deparse(preprocess(x)),
       "",
       "# Create TLG",
       glue::glue(
