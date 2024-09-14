@@ -37,7 +37,7 @@ run(
 
 \item{user_args}{(\code{list}) arguments from \code{...}.}
 
-\item{unwrap}{(\code{flag})  whether to print the preprocessing postprocessing and main function to gether with the
+\item{unwrap}{(\code{flag})  whether to print the preprocessing postprocessing and main function together with the
 associated layout function.}
 }
 \value{

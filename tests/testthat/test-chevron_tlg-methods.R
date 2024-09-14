@@ -71,6 +71,40 @@ test_that("run displays the symbols when available", {
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
+test_that("run print internal functions when unwrap is TRUE", {
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, unwrap = TRUE))
+  expect_snapshot(cat(res))
+})
+
+test_that("run print internal functions when unwrap is TRUE and standard chevron_tlg has no layout", {
+  res <- capture_output(tbl <- run(mng01, syn_data, dataset = "adlb", verbose = TRUE, unwrap = TRUE))
+  expect_snapshot(cat(res))
+})
+
+test_that("run print internal functions when unwrap is TRUE and the chevron_tlg object is customized", {
+  custom_chevron <- chevron_t(
+    main = function(adam_db, ...) {
+      ggplot2::ggplot(adam_db$iris, ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) +
+        ggplot2::geom_point()
+    }
+  )
+
+  res <- capture_output(tbl <- run(custom_chevron, list(iris = iris), verbose = TRUE, unwrap = TRUE))
+  expect_snapshot(cat(res))
+})
+
+test_that("run print main and postprocessing functions when unwrap is TRUE and auto_pre is FALSE", {
+  custom_chevron <- chevron_t(
+    main = function(adam_db, ...) {
+      ggplot2::ggplot(adam_db$iris, ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) +
+        ggplot2::geom_point()
+    }
+  )
+
+  res <- capture_output(tbl <- run(custom_chevron, list(iris = iris), verbose = FALSE, unwrap = TRUE, auto_pre = FALSE))
+  expect_snapshot(cat(res))
+})
+
 # args_ls ----
 
 test_that("args_ls works as expected", {

@@ -10,7 +10,7 @@
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
 #' @param verbose (`flag`) whether to print argument information.
-#' @param unwrap (`flag`)  whether to print the preprocessing postprocessing and main function to gether with the
+#' @param unwrap (`flag`)  whether to print the preprocessing postprocessing and main function together with the
 #'   associated layout function.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
 #' @param user_args (`list`) arguments from `...`.

@@ -9,9 +9,4 @@ h_unwrap_layout(x, pattern)
 \description{
 Helper Function Extracting Layout Functions
 }
-\examples{
-h_unwrap_layout(body(aet01_main)[-1], "lyt")
-
-
-}
 \keyword{internal}
