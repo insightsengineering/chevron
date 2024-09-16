@@ -155,6 +155,10 @@ syn_test_data <- function() {
   sd$adsl$ETHNIC <- factor(trimws(sd$adsl$ETHNIC), levels = trimws(levels(sd$adsl$ETHNIC)))
   attr(sd$adsl$ETHNIC, "label") <- "Ethnicity"
 
+  # useful for ael04
+  sd$adsl$TRTSDTM <- lubridate::force_tz(sd$adsl$TRTSDTM, tzone = "UTC")
+
+
   adsub <- sd$adsub
   adsub_wide_ls <- dunlin::poly_pivot_wider(
     adsub,
