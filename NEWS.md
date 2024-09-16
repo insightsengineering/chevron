@@ -7,6 +7,7 @@
 * `AET01` can now additionally display the number of death and withdrawal using the `show_wd` argument.
 * `MNG01` line type can now be controlled with the `line_type` argument.
 * `script_funs` doesn't rely anymore on source code of pre processing functions.
+* New `unwrap` argument prints `preprocessing`, `main`, `postprocessing` and `layout` function upon execution of the `run` method.
 
 # chevron 0.2.6
 
