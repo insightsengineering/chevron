@@ -100,8 +100,8 @@ test_that("run print main and postprocessing functions when unwrap is TRUE and a
         ggplot2::geom_point()
     }
   )
-
-  res <- capture_output(tbl <- run(custom_chevron, list(iris = iris), verbose = FALSE, unwrap = TRUE, auto_pre = FALSE))
+  iris_ls <- list(iris = iris)
+  res <- capture_output(tbl <- run(custom_chevron, iris_ls, verbose = FALSE, unwrap = TRUE, auto_pre = FALSE))
   expect_snapshot(cat(res))
 })
 

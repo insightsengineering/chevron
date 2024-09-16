@@ -21,7 +21,7 @@
 #' @export
 setGeneric(
   "run",
-  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) standardGeneric("run")
+  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, unwrap = FALSE, ..., user_args = list(...)) standardGeneric("run")
 )
 
 #' Run the pipeline
@@ -93,7 +93,7 @@ print_args <- function(run_call, additional_args, args, auto_pre = TRUE) {
   run_call[[1]] <- NULL
   run_call <- as.list(run_call)
 
-  run_call[c("auto_pre", "verbose", "user_args")] <- NULL
+  run_call[c("auto_pre", "verbose", "user_args", "unwrap")] <- NULL
   if (!is.null(additional_args)) {
     run_call <- c(run_call, additional_args)
   }
