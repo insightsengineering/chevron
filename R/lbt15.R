@@ -1,5 +1,11 @@
 # lbt15 ----
 
+#' @describeIn lbt15 Main TLG function
+#' @source `lbt04.R`
+#' @inheritParams lbt04_main
+#' @export
+lbt15_main <- lbt04_main
+
 #' @describeIn lbt15 Preprocessing
 #'
 #' @inheritParams gen_args
@@ -31,8 +37,13 @@ lbt15_pre <- function(adam_db, ...) {
   adam_db
 }
 
-#' `LBT15` Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline Table.
+#' @describeIn lbt15 Postprocessing
 #' @source `lbt04.R`
+#' @inheritParams lbt04_post
+#' @export
+lbt15_post <- lbt04_post
+
+#' `LBT15` Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline Table.
 #'
 #' @include chevron_tlg-S4class.R
 #' @export
@@ -40,7 +51,7 @@ lbt15_pre <- function(adam_db, ...) {
 #' @examples
 #' run(lbt15, syn_data)
 lbt15 <- chevron_t(
-  main = lbt04_main,
+  main = lbt15_main,
   preprocess = lbt15_pre,
-  postprocess = lbt04_post
+  postprocess = lbt15_post
 )

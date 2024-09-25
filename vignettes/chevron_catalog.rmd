@@ -748,6 +748,13 @@ To display all possible grades even if they do not occur in the data, set the ar
 run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
 ```
 
+### **Laboratory test shifts to `NCI-CTCAE` Grade 3-4 Post Baseline (`LBT15`)**
+
+
+
+
+
+
 ### **Medical History (`MHT01`)**
 
 #### **1. Medical History**
