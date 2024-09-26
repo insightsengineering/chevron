@@ -32,10 +32,13 @@ setGeneric(
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, unwrap = FALSE, ..., user_args = list(...)) {
+  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE,
+                        unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", FALSE),
+                        ..., user_args = list(...)) {
     assert_list(adam_db, types = "data.frame", names = "unique")
     assert_flag(auto_pre)
     assert_flag(verbose)
+    unwrap <- as.logical(unwrap)
     assert_flag(unwrap)
     assert_list(user_args, names = "unique")
     args <- list(...)

@@ -10,6 +10,7 @@ run(
   adam_db,
   auto_pre = TRUE,
   verbose = FALSE,
+  unwrap = FALSE,
   ...,
   user_args = list(...)
 )
@@ -19,7 +20,7 @@ run(
   adam_db,
   auto_pre = TRUE,
   verbose = FALSE,
-  unwrap = FALSE,
+  unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", FALSE),
   ...,
   user_args = list(...)
 )
@@ -33,12 +34,12 @@ run(
 
 \item{verbose}{(\code{flag}) whether to print argument information.}
 
+\item{unwrap}{(\code{flag})  whether to print the preprocessing postprocessing and main function together with the
+associated layout function.}
+
 \item{...}{extra arguments to pass to the pre-processing, main and post-processing functions.}
 
 \item{user_args}{(\code{list}) arguments from \code{...}.}
-
-\item{unwrap}{(\code{flag})  whether to print the preprocessing postprocessing and main function together with the
-associated layout function.}
 }
 \value{
 an \code{rtables} (for \code{chevron_t}), \code{rlistings} (for \code{chevron_l}), \code{grob} (for \code{chevron_g}) or \code{ElementaryTable}
