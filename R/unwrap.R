@@ -5,9 +5,9 @@ h_unwrap_layout <- function(x, pattern) {
   assert_string(pattern)
 
   # If x is a list or a call, apply the function on each element
-  if (class(x) %in% c("list", "call", "<-", "if")) {
+  if (inherits(x, c("list", "call", "<-", "if"))) {
     lapply(x, \(x) h_unwrap_layout(x, pattern))
-  } else if (class(x) == "name") {
+  } else if (is(x, "name")) {
     # Return if name match pattern.
     if (grepl(pattern, x)) {
       res <- list(x)
