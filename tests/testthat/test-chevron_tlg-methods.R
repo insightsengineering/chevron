@@ -4,7 +4,7 @@ syn_adv <- syn_data[c("adsl", "adae")]
 syn_adv$adae <- syn_adv$adae[syn_adv$adae$AEBODSYS %in% c("cl A.1", "cl B.1", "cl B.2"), ]
 
 test_that("run works as expected for chevron_t object", {
-  res <- run(aet04, syn_adv, prune_0 = TRUE)
+  expect_silent(res <- run(aet04, syn_adv, prune_0 = TRUE))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
@@ -17,14 +17,14 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
 })
 
 test_that("run works as expected with argument printed", {
-  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE))
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, unwrap = FALSE))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
 test_that("run works as expected with argument printed if the user argument is complicated", {
   user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
-  res <- capture_output(tbl <- run(aet02, syn_adv, user_args = user_args, verbose = TRUE))
+  res <- capture_output(tbl <- run(aet02, syn_adv, user_args = user_args, verbose = TRUE, unwrap = FALSE))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
@@ -39,7 +39,8 @@ test_that("run uses the argument passed through the ellipsis in priority", {
       another_not_used = iris,
       arm_var = "ARM",
       user_args = user_args,
-      verbose = TRUE
+      verbose = TRUE,
+      unwrap = FALSE
     )
   )
   expect_snapshot(cat(res))
@@ -47,7 +48,7 @@ test_that("run uses the argument passed through the ellipsis in priority", {
 })
 
 test_that("run works as expected with partial match argument", {
-  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, arm_var = "ARM"))
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE,  unwrap = FALSE, arm_var = "ARM"))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
@@ -64,7 +65,8 @@ test_that("run displays the symbols when available", {
       another_not_used = "X",
       arm_var = arm_param,
       user_args = user_args,
-      verbose = TRUE
+      verbose = TRUE,
+      unwrap = FALSE
     )
   )
   expect_snapshot(cat(res))

@@ -3,7 +3,7 @@
 \name{run}
 \alias{run}
 \alias{run,chevron_tlg-method}
-\title{Run the pipeline}
+\title{Run the TLG-generating pipeline}
 \usage{
 run(
   object,
@@ -19,8 +19,8 @@ run(
   object,
   adam_db,
   auto_pre = TRUE,
-  verbose = FALSE,
-  unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", FALSE),
+  verbose = get_arg("chevron.run.verbose", "R_CHEVRON_RUN_VERBOSE", FALSE),
+  unwrap = verbose,
   ...,
   user_args = list(...)
 )
@@ -46,7 +46,7 @@ an \code{rtables} (for \code{chevron_t}), \code{rlistings} (for \code{chevron_l}
 (null report) depending on the class of \code{chevron_tlg} object passed as \code{object} argument.
 }
 \description{
-Run the pipeline
+Run the TLG-generating pipeline
 }
 \examples{
 run(mng01, syn_data, auto_pre = TRUE, dataset = "adlb")

@@ -2,7 +2,7 @@
 
 # run ----
 
-#' Run the pipeline
+#' Run the TLG-generating pipeline
 #'
 #' Execute the pre-processing, main and post-processing functions in a single run.
 #'
@@ -21,10 +21,12 @@
 #' @export
 setGeneric(
   "run",
-  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, unwrap = FALSE, ..., user_args = list(...)) standardGeneric("run")
+  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, unwrap = FALSE, ..., user_args = list(...)) {
+    standardGeneric("run")
+  }
 )
 
-#' Run the pipeline
+#' Run the TLG-generating pipeline
 #' @rdname run
 #' @export
 #' @examples
@@ -32,9 +34,13 @@ setGeneric(
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE,
-                        unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", FALSE),
-                        ..., user_args = list(...)) {
+  definition = function(object,
+                        adam_db,
+                        auto_pre = TRUE,
+                        verbose = get_arg("chevron.run.verbose", "R_CHEVRON_RUN_VERBOSE", FALSE),
+                        unwrap = verbose,
+                        ...,
+                        user_args = list(...)) {
     assert_list(adam_db, types = "data.frame", names = "unique")
     assert_flag(auto_pre)
     assert_flag(verbose)

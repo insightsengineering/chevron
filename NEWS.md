@@ -1,6 +1,6 @@
 # chevron 0.2.6.9021
 
-* Add `AEL02`, `AEL03`, `CML02A_gl` templates.
+* New `AEL02`, `AEL03`, `CML02A_gl` listing templates.
 * Modify the post processing of `MHT01` to allow multiple `row_split_var`.
 * Improve the `report_null` method to facilitate the creation of null reports
 * Export the `std_postprocessing` function to simplify post processing logic.
@@ -8,6 +8,7 @@
 * `MNG01` line type can now be controlled with the `line_type` argument.
 * `script_funs` doesn't rely anymore on source code of pre processing functions.
 * New `unwrap` argument prints `preprocessing`, `main`, `postprocessing` and `layout` function upon execution of the `run` method.
+* The `chevron.run.verbose` option and `R_CHEVRON_RUN_VERBOSE` environment variable control the `verbose` argument of the `run` method.
 
 # chevron 0.2.6
 
