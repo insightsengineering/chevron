@@ -239,7 +239,7 @@ test_that("script_funs generates a valid script", {
     writeLines(res_fun, tmp)
     # Creating the object tlg_output in the script.
     res <- capture_output(source(tmp, local = TRUE))
-    expect_snapshot(res)
+    expect_snapshot(cat(paste(res, collapse = "\n")))
     expected <- run(aet04, syn_adv, arm_var = "ARM")
     expect_identical(tlg_output, expected)
   })

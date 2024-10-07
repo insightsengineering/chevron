@@ -508,8 +508,7 @@
               0, .indent_mods = unname(tail(split_indent, 1L))) %>% 
               append_topleft(paste0(stringr::str_dup(" ", 2 * length(row_split_var)), 
                   lbl_medname_var))
-      } 
-      
+      }
       Postprocessing function:
       function (tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) 
       {
@@ -654,6 +653,7 @@
               ...)
       } 
       
+      
       Postprocessing function:
       function (tlg, ...) 
       {
@@ -690,6 +690,7 @@
               y = Sepal.Width)) + ggplot2::geom_point()
       } 
       
+      
       Postprocessing function:
       function (tlg, ...) 
       {
@@ -709,6 +710,7 @@
               y = Sepal.Width)) + ggplot2::geom_point()
       } 
       
+      
       Postprocessing function:
       function (tlg, ...) 
       {
@@ -719,9 +721,95 @@
 # script_funs generates a valid script
 
     Code
-      res
+      cat(paste(res, collapse = "\n"))
     Output
-      [1] "Using template:  aet04 \nUsing data:      syn_adv \n\nPre args:\n  No mapped argument.\n\nMain args:\n  arm_var       : \"ARM\"\n  lbl_overall   : NULL\n  grade_groups  : NULL\n\nPost args:\n  prune_0  : TRUE\n\n\nPreprocessing function:\nfunction (adam_db, ...) \n{\n    atoxgr_lvls <- c(\"1\", \"2\", \"3\", \"4\", \"5\")\n    adam_db$adae <- adam_db$adae %>% filter(.data$ANL01FL == \n        \"Y\") %>% mutate(AEBODSYS = reformat(.data$AEBODSYS, nocoding), \n        AEDECOD = reformat(.data$AEDECOD, nocoding), ATOXGR = factor(.data$ATOXGR, \n            levels = atoxgr_lvls))\n    adam_db\n} \n\nMain function:\nfunction (adam_db, arm_var = \"ACTARM\", lbl_overall = NULL, grade_groups = NULL, \n    ...) \n{\n    assert_all_tablenames(adam_db, \"adsl\", \"adae\")\n    assert_string(arm_var)\n    assert_string(lbl_overall, null.ok = TRUE)\n    assert_list(grade_groups, types = \"character\", null.ok = TRUE)\n    assert_valid_variable(adam_db$adsl, c(\"USUBJID\", arm_var), \n        types = list(c(\"character\", \"factor\")))\n    assert_valid_variable(adam_db$adae, c(arm_var, \"AEBODSYS\", \n        \"AEDECOD\"), types = list(c(\"character\", \"factor\")))\n    assert_valid_variable(adam_db$adae, \"USUBJID\", empty_ok = TRUE, \n        types = list(c(\"character\", \"factor\")))\n    assert_valid_variable(adam_db$adae, \"ATOXGR\", na_ok = TRUE, \n        types = list(\"factor\"))\n    assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)\n    lbl_overall <- render_safe(lbl_overall)\n    lbl_aebodsys <- var_labels_for(adam_db$adae, \"AEBODSYS\")\n    lbl_aedecod <- var_labels_for(adam_db$adae, \"AEDECOD\")\n    if (is.null(grade_groups)) {\n        grade_groups <- list(`Grade 1-2` = c(\"1\", \"2\"), `Grade 3-4` = c(\"3\", \n            \"4\"), `Grade 5` = c(\"5\"))\n    }\n    lyt <- aet04_lyt(arm_var = arm_var, total_var = \"TOTAL_VAR\", \n        lbl_overall = lbl_overall, lbl_aebodsys = lbl_aebodsys, \n        lbl_aedecod = lbl_aedecod, grade_groups = grade_groups)\n    adam_db$adae$TOTAL_VAR <- \"- Any adverse events - \"\n    tbl <- build_table(lyt, df = adam_db$adae, alt_counts_df = adam_db$adsl)\n    tbl\n} \n\nLayout function:\n  aet04_lyt:\nfunction (arm_var, total_var, lbl_overall, lbl_aebodsys, lbl_aedecod, \n    grade_groups) \n{\n    basic_table(show_colcounts = TRUE) %>% split_cols_by_with_overall(arm_var, \n        lbl_overall) %>% split_rows_by(var = total_var, label_pos = \"hidden\", \n        child_labels = \"visible\", indent_mod = -1L) %>% summarize_num_patients(var = \"USUBJID\", \n        .stats = \"unique\", .labels = \"- Any Grade -\", .indent_mods = 7L) %>% \n        count_occurrences_by_grade(var = \"ATOXGR\", grade_groups = grade_groups, \n            .indent_mods = 6L) %>% split_rows_by(\"AEBODSYS\", \n        child_labels = \"visible\", nested = FALSE, split_fun = drop_split_levels, \n        label_pos = \"topleft\", split_label = lbl_aebodsys) %>% \n        split_rows_by(\"AEDECOD\", child_labels = \"visible\", split_fun = add_overall_level(\"- Overall -\", \n            trim = TRUE), label_pos = \"topleft\", split_label = lbl_aedecod) %>% \n        summarize_num_patients(var = \"USUBJID\", .stats = \"unique\", \n            .labels = \"- Any Grade -\", .indent_mods = 6L) %>% \n        count_occurrences_by_grade(var = \"ATOXGR\", grade_groups = grade_groups, \n            .indent_mods = 5L) %>% append_topleft(\"                            Grade\")\n} \n\nPostprocessing function:\nfunction (tlg, prune_0 = TRUE, ...) \n{\n    tlg <- tlg %>% tlg_sort_by_vars(c(\"AEBODSYS\", \"AEDECOD\"), \n        score_all_sum, decreasing = TRUE)\n    if (prune_0) \n        tlg <- trim_rows(tlg)\n    std_postprocessing(tlg)\n} "
+      Using template:  aet04 
+      Using data:      syn_adv 
+      
+      Pre args:
+        No mapped argument.
+      
+      Main args:
+        arm_var       : "ARM"
+        lbl_overall   : NULL
+        grade_groups  : NULL
+      
+      Post args:
+        prune_0  : TRUE
+      
+      
+      Preprocessing function:
+      function (adam_db, ...) 
+      {
+          atoxgr_lvls <- c("1", "2", "3", "4", "5")
+          adam_db$adae <- adam_db$adae %>% filter(.data$ANL01FL == 
+              "Y") %>% mutate(AEBODSYS = reformat(.data$AEBODSYS, nocoding), 
+              AEDECOD = reformat(.data$AEDECOD, nocoding), ATOXGR = factor(.data$ATOXGR, 
+                  levels = atoxgr_lvls))
+          adam_db
+      } 
+      
+      Main function:
+      function (adam_db, arm_var = "ACTARM", lbl_overall = NULL, grade_groups = NULL, 
+          ...) 
+      {
+          assert_all_tablenames(adam_db, "adsl", "adae")
+          assert_string(arm_var)
+          assert_string(lbl_overall, null.ok = TRUE)
+          assert_list(grade_groups, types = "character", null.ok = TRUE)
+          assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), 
+              types = list(c("character", "factor")))
+          assert_valid_variable(adam_db$adae, c(arm_var, "AEBODSYS", 
+              "AEDECOD"), types = list(c("character", "factor")))
+          assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, 
+              types = list(c("character", "factor")))
+          assert_valid_variable(adam_db$adae, "ATOXGR", na_ok = TRUE, 
+              types = list("factor"))
+          assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
+          lbl_overall <- render_safe(lbl_overall)
+          lbl_aebodsys <- var_labels_for(adam_db$adae, "AEBODSYS")
+          lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
+          if (is.null(grade_groups)) {
+              grade_groups <- list(`Grade 1-2` = c("1", "2"), `Grade 3-4` = c("3", 
+                  "4"), `Grade 5` = c("5"))
+          }
+          lyt <- aet04_lyt(arm_var = arm_var, total_var = "TOTAL_VAR", 
+              lbl_overall = lbl_overall, lbl_aebodsys = lbl_aebodsys, 
+              lbl_aedecod = lbl_aedecod, grade_groups = grade_groups)
+          adam_db$adae$TOTAL_VAR <- "- Any adverse events - "
+          tbl <- build_table(lyt, df = adam_db$adae, alt_counts_df = adam_db$adsl)
+          tbl
+      } 
+      
+      Layout function:
+        aet04_lyt:
+      function (arm_var, total_var, lbl_overall, lbl_aebodsys, lbl_aedecod, 
+          grade_groups) 
+      {
+          basic_table(show_colcounts = TRUE) %>% split_cols_by_with_overall(arm_var, 
+              lbl_overall) %>% split_rows_by(var = total_var, label_pos = "hidden", 
+              child_labels = "visible", indent_mod = -1L) %>% summarize_num_patients(var = "USUBJID", 
+              .stats = "unique", .labels = "- Any Grade -", .indent_mods = 7L) %>% 
+              count_occurrences_by_grade(var = "ATOXGR", grade_groups = grade_groups, 
+                  .indent_mods = 6L) %>% split_rows_by("AEBODSYS", 
+              child_labels = "visible", nested = FALSE, split_fun = drop_split_levels, 
+              label_pos = "topleft", split_label = lbl_aebodsys) %>% 
+              split_rows_by("AEDECOD", child_labels = "visible", split_fun = add_overall_level("- Overall -", 
+                  trim = TRUE), label_pos = "topleft", split_label = lbl_aedecod) %>% 
+              summarize_num_patients(var = "USUBJID", .stats = "unique", 
+                  .labels = "- Any Grade -", .indent_mods = 6L) %>% 
+              count_occurrences_by_grade(var = "ATOXGR", grade_groups = grade_groups, 
+                  .indent_mods = 5L) %>% append_topleft("                            Grade")
+      }
+      Postprocessing function:
+      function (tlg, prune_0 = TRUE, ...) 
+      {
+          tlg <- tlg %>% tlg_sort_by_vars(c("AEBODSYS", "AEDECOD"), 
+              score_all_sum, decreasing = TRUE)
+          if (prune_0) 
+              tlg <- trim_rows(tlg)
+          std_postprocessing(tlg)
+      } 
 
 # print_list works
 

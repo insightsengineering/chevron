@@ -9,6 +9,7 @@ h_unwrap_layout <- function(x, pattern) {
     lapply(x, \(x) h_unwrap_layout(x, pattern))
   } else if (is(x, "name")) {
     # Return if name match pattern.
+
     if (grepl(pattern, x)) {
       res <- list(x)
       names(res) <- as.character(x)
@@ -34,23 +35,38 @@ h_unwrap_layout <- function(x, pattern) {
 #' unwrap_layout(aet01_main)
 #'
 unwrap_layout <- function(x, pattern = "_lyt$") {
-  assert_function(x)
-  assert_string(pattern)
+  checkmate::assert_function(x)
+  checkmate::assert_string(pattern)
 
+  # Identify environment of the parent function.
+  env_x <- tryCatch(
+    rlang::get_env(x),
+    error = function(e) NULL
+  )
+
+  # Get the associated layout functions as name objects
   res <- unlist(h_unwrap_layout(body(x)[-1], pattern))
 
   if (length(res) > 0L) {
-    cat("Layout function:\n")
+    cat("Layout function:")
     purrr::lmap(
       res,
       function(x) {
-        cat(sprintf("  %s:\n", names(x)))
-        cat(paste(deparse(eval(x[[1]])), collapse = "\n"), "\n")
+        # Evaluate layout function symbol in the environment of the parent function.
+        tryCatch(
+          {
+            cat("\n")
+            layout_code <- paste(deparse(eval(x[[1]], envir = env_x)), collapse = "\n")
+            cat(sprintf("  %s:\n", names(x)))
+            cat(layout_code)
+          },
+          error = function(e) cat("\n  Unable to print layout function!")
+        )
+
         list()
       }
     )
-    cat("\n")
   }
-
+  cat("\n")
   invisible(NULL)
 }

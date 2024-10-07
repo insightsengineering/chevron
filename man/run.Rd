@@ -20,7 +20,7 @@ run(
   adam_db,
   auto_pre = TRUE,
   verbose = get_arg("chevron.run.verbose", "R_CHEVRON_RUN_VERBOSE", FALSE),
-  unwrap = verbose,
+  unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", verbose),
   ...,
   user_args = list(...)
 )
@@ -47,6 +47,16 @@ an \code{rtables} (for \code{chevron_t}), \code{rlistings} (for \code{chevron_l}
 }
 \description{
 Run the TLG-generating pipeline
+}
+\details{
+The functions stored in the \code{preprocess}, \code{main} and \code{postprocess} slots of the \code{chevron_tlg} objects are called
+respectively, \code{preprocessing}, \code{main} and \code{postprocessing} functions.
+
+When executing the \code{run} method on a \code{chevron_tlg} object, if \code{auto_pre} is \code{TRUE}, the \code{adam_bd} list is first
+passed to the \code{preprocessing} function. The resulting list is then passed to the \code{main} function which produces a
+table, graph or listings or a list of these objects. This output is then passed to the \code{postprocessing} function
+which performed the final modifications before returning the output. Additional arguments specified in \code{...} or
+\code{user_args} are passed to each of the three functions.
 }
 \examples{
 run(mng01, syn_data, auto_pre = TRUE, dataset = "adlb")

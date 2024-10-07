@@ -4,7 +4,17 @@
 
 #' Run the TLG-generating pipeline
 #'
-#' Execute the pre-processing, main and post-processing functions in a single run.
+#' Execute sequential the pre-processing, main and post-processing functions.
+#'
+#' @details
+#' The functions stored in the `preprocess`, `main` and `postprocess` slots of the `chevron_tlg` objects are called
+#' respectively, `preprocessing`, `main` and `postprocessing` functions.
+#'
+#' When executing the `run` method on a `chevron_tlg` object, if `auto_pre` is `TRUE`, the `adam_bd` list is first
+#' passed to the `preprocessing` function. The resulting list is then passed to the `main` function which produces a
+#' table, graph or listings or a list of these objects. This output is then passed to the `postprocessing` function
+#' which performed the final modifications before returning the output. Additional arguments specified in `...` or
+#' `user_args` are passed to each of the three functions.
 #'
 #' @inheritParams gen_args
 #' @param object (`chevron_tlg`) input.
@@ -38,11 +48,12 @@ setMethod(
                         adam_db,
                         auto_pre = TRUE,
                         verbose = get_arg("chevron.run.verbose", "R_CHEVRON_RUN_VERBOSE", FALSE),
-                        unwrap = verbose,
+                        unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", verbose),
                         ...,
                         user_args = list(...)) {
     assert_list(adam_db, types = "data.frame", names = "unique")
     assert_flag(auto_pre)
+    verbose <- as.logical(verbose)
     assert_flag(verbose)
     unwrap <- as.logical(unwrap)
     assert_flag(unwrap)
@@ -401,7 +412,7 @@ setMethod(
       "# Create TLG",
       glue::glue(
         "tlg_output <- run(object = {name}, adam_db = {adam_db}",
-        ", verbose = TRUE, unwrap = TRUE, user_args = {args})"
+        ", verbose = TRUE, user_args = {args})"
       )
     )
   }
