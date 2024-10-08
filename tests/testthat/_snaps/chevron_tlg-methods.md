@@ -555,6 +555,7 @@
       Preprocessing function:
       function (adam_db, dataset, x_var = "AVISIT", ...) 
       {
+          assert_character(dataset)
           dunlin::assert_all_tablenames(adam_db, dataset)
           adam_db[[dataset]] <- adam_db[[dataset]] %>% filter(.data$ANL01FL == 
               "Y") %>% mutate(AVISIT = reorder(.data$AVISIT, .data$AVISITN), 
