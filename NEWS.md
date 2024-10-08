@@ -8,7 +8,7 @@
 * `MNG01` line type can now be controlled with the `line_type` argument.
 * `script_funs` doesn't rely anymore on source code of pre processing functions.
 * New `unwrap` argument prints `preprocessing`, `main`, `postprocessing` and `layout` function upon execution of the `run` method.
-* The `chevron.run.verbose` option and `R_CHEVRON_RUN_VERBOSE` environment variable control the `verbose` argument of the `run` method, while the `chevron.run.unwrap` option and `R_CHEVRON_RUN_UNWRAP` environment variable control the `unwrap` argument of the `run` method.
+* The `chevron.run.verbose` option and `R_CHEVRON_RUN_VERBOSE` environment variable control the `verbose` argument of the `run` method, while the `chevron.run.unwrap` option and `R_CHEVRON_RUN_UNWRAP` environment variable control the `unwrap` argument.
 
 # chevron 0.2.6
 
