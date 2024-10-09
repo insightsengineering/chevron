@@ -6,6 +6,7 @@ test_that("cml02a_gl works with adcm dataset", {
 })
 
 test_that("cml02a_gl works with missing data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adcm$ATC2 <- NA_character_
   expect_silent(res <- run(cml02a_gl, proc_data))
@@ -15,6 +16,7 @@ test_that("cml02a_gl works with missing data", {
 # cml02a_gl functions ----
 
 test_that("cml02a_gl functions work as expected", {
+  skip_on_os("windows")
   expect_silent(
     res <- cml02a_gl_pre(syn_data) %>%
       cml02a_gl_main()

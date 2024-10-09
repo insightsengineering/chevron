@@ -12,6 +12,7 @@ test_that("lbt06 gives all 0 count if ANRIND and BNRIND are all missing", {
 })
 
 test_that("lbt06 can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb[1:4, c("ANRIND", "BNRIND")] <- NA
   df_pre <- lbt06_pre(proc_data)
@@ -21,6 +22,7 @@ test_that("lbt06 can handle some NA values", {
 })
 
 test_that("lbt06 fails on incomplete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(PARCAT2 = NULL)

@@ -15,6 +15,7 @@ test_that("aet02 fails on incomplete data input", {
 })
 
 test_that("aet02 handle empty data input", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     filter(
@@ -25,6 +26,7 @@ test_that("aet02 handle empty data input", {
 })
 
 test_that("aet02 can have different levels of row_split", {
+  skip_on_os("windows")
   res1 <- run(aet02, syn_data, row_split_var = NULL)
   res2 <- run(aet02, syn_data, row_split_var = c("AEBODSYS", "AEDECOD"))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))

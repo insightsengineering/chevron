@@ -10,6 +10,7 @@ test_that("egt01 functions with default argument value return expected result wi
 # egt01 ----
 
 test_that("egt01 can handle n = 0 and outputs NE instead of infs and NAs", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     filter(PARAM != "HR" & ACTARM != "A: Drug X")

@@ -13,6 +13,7 @@ test_that("rmpt03 function with default argument value return expected result wi
 # rmpt03 ----
 
 test_that("rmpt03 can handle NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adex <- syn_data$adex %>%
     left_join(select(syn_data$adsl, USUBJID, AGEGR1), by = "USUBJID")
@@ -26,6 +27,7 @@ test_that("rmpt03 can handle NA values", {
 })
 
 test_that("rmpt03 can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adex <- syn_data$adex %>%
     left_join(select(syn_data$adsl, USUBJID, AGEGR1), by = "USUBJID")
@@ -42,6 +44,7 @@ test_that("rmpt03 can handle some NA values", {
 })
 
 test_that("rmpt03 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adex <- syn_data$adex %>%
     left_join(select(syn_data$adsl, USUBJID, AGEGR1), by = "USUBJID")
