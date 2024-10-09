@@ -3,13 +3,14 @@
 \name{run}
 \alias{run}
 \alias{run,chevron_tlg-method}
-\title{Run the pipeline}
+\title{Run the TLG-generating pipeline}
 \usage{
 run(
   object,
   adam_db,
   auto_pre = TRUE,
   verbose = FALSE,
+  unwrap = FALSE,
   ...,
   user_args = list(...)
 )
@@ -18,7 +19,8 @@ run(
   object,
   adam_db,
   auto_pre = TRUE,
-  verbose = FALSE,
+  verbose = get_arg("chevron.run.verbose", "R_CHEVRON_RUN_VERBOSE", FALSE),
+  unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", verbose),
   ...,
   user_args = list(...)
 )
@@ -32,6 +34,9 @@ run(
 
 \item{verbose}{(\code{flag}) whether to print argument information.}
 
+\item{unwrap}{(\code{flag})  whether to print the preprocessing postprocessing and main function together with the
+associated layout function.}
+
 \item{...}{extra arguments to pass to the pre-processing, main and post-processing functions.}
 
 \item{user_args}{(\code{list}) arguments from \code{...}.}
@@ -41,7 +46,17 @@ an \code{rtables} (for \code{chevron_t}), \code{rlistings} (for \code{chevron_l}
 (null report) depending on the class of \code{chevron_tlg} object passed as \code{object} argument.
 }
 \description{
-Run the pipeline
+Run the TLG-generating pipeline
+}
+\details{
+The functions stored in the \code{preprocess}, \code{main} and \code{postprocess} slots of the \code{chevron_tlg} objects are called
+respectively, \code{preprocessing}, \code{main} and \code{postprocessing} functions.
+
+When executing the \code{run} method on a \code{chevron_tlg} object, if \code{auto_pre} is \code{TRUE}, the \code{adam_bd} list is first
+passed to the \code{preprocessing} function. The resulting list is then passed to the \code{main} function which produces a
+table, graph or listings or a list of these objects. This output is then passed to the \code{postprocessing} function
+which performed the final modifications before returning the output. Additional arguments specified in \code{...} or
+\code{user_args} are passed to each of the three functions.
 }
 \examples{
 run(mng01, syn_data, auto_pre = TRUE, dataset = "adlb")

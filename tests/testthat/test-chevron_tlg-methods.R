@@ -4,7 +4,7 @@ syn_adv <- syn_data[c("adsl", "adae")]
 syn_adv$adae <- syn_adv$adae[syn_adv$adae$AEBODSYS %in% c("cl A.1", "cl B.1", "cl B.2"), ]
 
 test_that("run works as expected for chevron_t object", {
-  res <- run(aet04, syn_adv, prune_0 = TRUE)
+  expect_silent(res <- run(aet04, syn_adv, prune_0 = TRUE))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
@@ -19,7 +19,8 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
 
 test_that("run works as expected with argument printed", {
   skip_on_os("windows")
-  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE))
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, unwrap = FALSE))
+
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
@@ -27,7 +28,7 @@ test_that("run works as expected with argument printed", {
 test_that("run works as expected with argument printed if the user argument is complicated", {
   skip_on_os("windows")
   user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
-  res <- capture_output(tbl <- run(aet02, syn_adv, user_args = user_args, verbose = TRUE))
+  res <- capture_output(tbl <- run(aet02, syn_adv, user_args = user_args, verbose = TRUE, unwrap = FALSE))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
@@ -43,7 +44,8 @@ test_that("run uses the argument passed through the ellipsis in priority", {
       another_not_used = iris,
       arm_var = "ARM",
       user_args = user_args,
-      verbose = TRUE
+      verbose = TRUE,
+      unwrap = FALSE
     )
   )
   expect_snapshot(cat(res))
@@ -52,7 +54,7 @@ test_that("run uses the argument passed through the ellipsis in priority", {
 
 test_that("run works as expected with partial match argument", {
   skip_on_os("windows")
-  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, arm_var = "ARM"))
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, unwrap = FALSE, arm_var = "ARM"))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
@@ -70,11 +72,46 @@ test_that("run displays the symbols when available", {
       another_not_used = "X",
       arm_var = arm_param,
       user_args = user_args,
-      verbose = TRUE
+      verbose = TRUE,
+      unwrap = FALSE
     )
   )
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
+})
+
+test_that("run print internal functions when unwrap is TRUE", {
+  res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, unwrap = TRUE))
+  expect_snapshot(cat(res))
+})
+
+test_that("run print internal functions when unwrap is TRUE and standard chevron_tlg has no layout", {
+  res <- capture_output(tbl <- run(mng01, syn_data, dataset = "adlb", verbose = TRUE, unwrap = TRUE))
+  expect_snapshot(cat(res))
+})
+
+test_that("run print internal functions when unwrap is TRUE and the chevron_tlg object is customized", {
+  custom_chevron <- chevron_t(
+    main = function(adam_db, ...) {
+      ggplot2::ggplot(adam_db$iris, ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) +
+        ggplot2::geom_point()
+    }
+  )
+
+  res <- capture_output(tbl <- run(custom_chevron, list(iris = iris), verbose = TRUE, unwrap = TRUE))
+  expect_snapshot(cat(res))
+})
+
+test_that("run print main and postprocessing functions when unwrap is TRUE and auto_pre is FALSE", {
+  custom_chevron <- chevron_t(
+    main = function(adam_db, ...) {
+      ggplot2::ggplot(adam_db$iris, ggplot2::aes(x = Sepal.Length, y = Sepal.Width)) +
+        ggplot2::geom_point()
+    }
+  )
+  iris_ls <- list(iris = iris)
+  res <- capture_output(tbl <- run(custom_chevron, iris_ls, verbose = FALSE, unwrap = TRUE, auto_pre = FALSE))
+  expect_snapshot(cat(res))
 })
 
 # args_ls ----
@@ -224,7 +261,7 @@ test_that("script_funs generates a valid script", {
     writeLines(res_fun, tmp)
     # Creating the object tlg_output in the script.
     res <- capture_output(source(tmp, local = TRUE))
-    expect_snapshot(res)
+    expect_snapshot(cat(paste(res, collapse = "\n")))
     expected <- run(aet04, syn_adv, arm_var = "ARM")
     expect_identical(tlg_output, expected)
   })

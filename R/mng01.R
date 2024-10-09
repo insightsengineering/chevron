@@ -164,6 +164,9 @@ mng01_main <- function(adam_db,
 #' @export
 #'
 mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
+  assert_character(dataset)
+  dunlin::assert_all_tablenames(adam_db, dataset)
+
   adam_db[[dataset]] <- adam_db[[dataset]] %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
