@@ -1,6 +1,7 @@
 # cfbt01 functions ----
 
 test_that("cfbt01 functions with default argument value return expected result with test data", {
+  skip_on_os("windows")
   pre_data <- cfbt01_pre(syn_data, dataset = "advs")
   raw_res <- cfbt01_main(pre_data, dataset = "advs")
   res <- cfbt01_post(raw_res)

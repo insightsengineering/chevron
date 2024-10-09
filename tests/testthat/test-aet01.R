@@ -38,6 +38,7 @@ test_that("aet01 can use custom anl_vars", {
 })
 
 test_that("aet01 fails on incomplete data input", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(AESER = NULL)

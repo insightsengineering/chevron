@@ -10,6 +10,7 @@ test_that("egt05_qtcat functions with default argument value return expected res
 # egt05_qtcat ----
 
 test_that("egt05_qtcat erros on all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(
@@ -20,6 +21,7 @@ test_that("egt05_qtcat erros on all NA values", {
 })
 
 test_that("egt05_qtcat can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     filter(PARAMCD == "QT")

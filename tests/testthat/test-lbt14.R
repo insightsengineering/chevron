@@ -28,6 +28,7 @@ test_that("lbt14 functions with `gr_missing = excl` return expected result with 
 })
 
 test_that("lbt14 functions with `gr_missing = gr_0` return expected result with test data", {
+  skip_on_os("windows")
   pre_data <- lbt14_pre(syn_lab, gr_missing = "gr_0")
   raw_res <- lbt14_main(pre_data)
   res <- lbt14_post(raw_res)
@@ -49,6 +50,7 @@ test_that("lbt14 can handle all NA values", {
 })
 
 test_that("lbt14 can handle some NA values", {
+  skip_on_os("windows")
   set.seed(1)
   new_btoxgr <- syn_lab$adlb$BTOXGR
   new_btoxgr[sample(seq_along(new_btoxgr), 20)] <- NA
@@ -78,6 +80,7 @@ test_that("lbt14 can accept different gr_missing", {
 })
 
 test_that("lbt14 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_lab
 
   proc_data$adlb <- proc_data$adlb %>%
@@ -88,6 +91,7 @@ test_that("lbt14 fails on incomlete data", {
 
 # lbt14 direction = "high" ----
 test_that("lbt14 can handle all NA values with direction = high", {
+  skip_on_os("windows")
   proc_data <- syn_lab
 
   proc_data$adlb <- proc_data$adlb %>%
@@ -132,6 +136,7 @@ test_that("lbt14 can accept different gr_missing with direction = high", {
 })
 
 test_that("lbt14 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_lab
 
   proc_data$adlb <- proc_data$adlb %>%

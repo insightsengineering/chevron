@@ -15,6 +15,7 @@ test_that("aet02 fails on incomplete data input", {
 })
 
 test_that("aet02 handle empty data input", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     filter(

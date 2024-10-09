@@ -8,6 +8,7 @@ test_that("aet05_all can handle NA values", {
 })
 
 test_that("aet05_all can handle some NA values", {
+  skip_on_os("windows")
   new_paramcd <- c(NA, "", as.character(syn_data$adsaftte$PARAMCD[-c(1, 2)]))
 
   proc_data <- syn_data

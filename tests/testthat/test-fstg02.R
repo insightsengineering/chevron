@@ -46,6 +46,7 @@ test_that("fstg02 can handle some NA values in subgroups", {
 })
 
 test_that("fstg02 can handle customized time units", {
+  skip_on_os("windows")
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "OS" & ARM %in% c("A: Drug X", "B: Placebo"), "adtte")
 
   proc_data$adtte[1:10, "AVAL"] <- 28

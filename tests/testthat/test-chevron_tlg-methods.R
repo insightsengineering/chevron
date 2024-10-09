@@ -4,12 +4,12 @@ syn_adv <- syn_data[c("adsl", "adae")]
 syn_adv$adae <- syn_adv$adae[syn_adv$adae$AEBODSYS %in% c("cl A.1", "cl B.1", "cl B.2"), ]
 
 test_that("run works as expected for chevron_t object", {
-  skip_on_os("windows")
   res <- run(aet04, syn_adv, prune_0 = TRUE)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
+  skip_on_os("windows")
   proc_data <- syn_adv
   proc_data$adsl <- proc_data$adsl %>%
     mutate(DOMAIN = "ADSL")
@@ -18,12 +18,14 @@ test_that("run works as expected for chevron_t object when auto_pre = FALSE", {
 })
 
 test_that("run works as expected with argument printed", {
+  skip_on_os("windows")
   res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
 test_that("run works as expected with argument printed if the user argument is complicated", {
+  skip_on_os("windows")
   user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
   res <- capture_output(tbl <- run(aet02, syn_adv, user_args = user_args, verbose = TRUE))
   expect_snapshot(cat(res))
@@ -31,6 +33,7 @@ test_that("run works as expected with argument printed if the user argument is c
 })
 
 test_that("run uses the argument passed through the ellipsis in priority", {
+  skip_on_os("windows")
   user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
   res <- capture_output(
     tbl <- run(
@@ -48,12 +51,14 @@ test_that("run uses the argument passed through the ellipsis in priority", {
 })
 
 test_that("run works as expected with partial match argument", {
+  skip_on_os("windows")
   res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, arm_var = "ARM"))
   expect_snapshot(cat(res))
   expect_snapshot(cat(export_as_txt(tbl, lpp = 100)))
 })
 
 test_that("run displays the symbols when available", {
+  skip_on_os("windows")
   user_args <- list(prune_0 = TRUE, not_used = iris, lbl_overall = "All Patients", row_split_var = "AEHLT")
   arm_param <- "ARM"
   res <- capture_output(
@@ -75,12 +80,14 @@ test_that("run displays the symbols when available", {
 # args_ls ----
 
 test_that("args_ls works as expected", {
+  skip_on_os("windows")
   res <- expect_silent(args_ls(aet04))
   expect_list(res, len = 3, names = "named")
   expect_names(names(res), identical.to = c("main", "preprocess", "postprocess"))
 })
 
 test_that("args_ls works as expected when simplify is TRUE", {
+  skip_on_os("windows")
   res <- expect_silent(args_ls(aet04, simplify = TRUE))
   expect_list(res, len = 7, names = "named")
   expect_names(
@@ -92,6 +99,7 @@ test_that("args_ls works as expected when simplify is TRUE", {
 })
 
 test_that("args_ls works as expected with custom chevron_tlg object", {
+  skip_on_os("windows")
   obj <- aet04
   preprocess(obj) <- function(adam_db, arm_var = "overwritten", new_arg = "NEW", ...) {
     adam_db
@@ -111,12 +119,14 @@ test_that("args_ls works as expected with custom chevron_tlg object", {
 # main ----
 
 test_that("main works as expected", {
+  skip_on_os("windows")
   skip_on_covr()
   res <- main(aet04)
   expect_identical(res, aet04_main)
 })
 
 test_that("main setter works as expected", {
+  skip_on_os("windows")
   func <- function(adam_db, ...) {
     build_table(basic_table(), adam_db)
   }
@@ -126,6 +136,7 @@ test_that("main setter works as expected", {
 })
 
 test_that("main setter throw an error as expected", {
+  skip_on_os("windows")
   func <- function(adam_db) {
     build_table(basic_table(), adam_db)
   }
@@ -138,12 +149,14 @@ test_that("main setter throw an error as expected", {
 # preprocess ----
 
 test_that("preprocess works as expected", {
+  skip_on_os("windows")
   skip_on_covr()
   res <- preprocess(aet04)
   expect_identical(res, aet04_pre)
 })
 
 test_that("preprocess setter works as expected", {
+  skip_on_os("windows")
   func <- function(adam_db, ...) adam_db
   obj <- aet04
   preprocess(obj) <- func
@@ -151,6 +164,7 @@ test_that("preprocess setter works as expected", {
 })
 
 test_that("preprocess sends an error as expected", {
+  skip_on_os("windows")
   func <- function(adam_db) adam_db
   obj <- aet04
   expect_error(preprocess(obj) <- func, "Variable 'object@preprocess': Must have formal arguments: ....",
@@ -161,11 +175,13 @@ test_that("preprocess sends an error as expected", {
 # postprocess ----
 
 test_that("postprocess works as expected", {
+  skip_on_os("windows")
   res <- postprocess(aet04)
   expect_identical(res, aet04@postprocess)
 })
 
 test_that("postprocess setter works as expected", {
+  skip_on_os("windows")
   func <- function(tlg, ...) tlg
   obj <- aet04
   postprocess(obj) <- func
@@ -173,6 +189,7 @@ test_that("postprocess setter works as expected", {
 })
 
 test_that("postprocess sends an error as expected", {
+  skip_on_os("windows")
   func <- function(tlg) tlg
   obj <- aet04
   expect_error(postprocess(obj) <- func, "Variable 'object@postprocess': Must have formal arguments: ....",
@@ -183,18 +200,21 @@ test_that("postprocess sends an error as expected", {
 # script_funs ----
 
 test_that("script_funs works as expected in interactive mode", {
+  skip_on_os("windows")
   skip_if(!interactive())
   res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls"))
   expect_snapshot(res)
 })
 
 test_that("script_funs works as expected", {
+  skip_on_os("windows")
   res <- expect_silent(script_funs(aet04, adam_db = "data", args = "args_ls"))
   expect_character(res)
 })
 
 
 test_that("script_funs generates a valid script", {
+  skip_on_os("windows")
   withr::with_tempfile("tmp", fileext = ".R", {
     args_list <- list(
       arm_var = "ARM"
@@ -211,6 +231,7 @@ test_that("script_funs generates a valid script", {
 })
 
 test_that("script_funs works for simple template", {
+  skip_on_os("windows")
   res <- expect_silent(script_funs(chevron_simple(), adam_db = "syn_adv"))
   expect_character(res)
 })

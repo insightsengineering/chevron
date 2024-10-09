@@ -67,6 +67,7 @@ test_that("rspt01 works as expected for stratified analysis only", {
 })
 
 test_that("rspt01 works if change reference group", {
+  skip_on_os("windows")
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",

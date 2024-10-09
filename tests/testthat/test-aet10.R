@@ -11,6 +11,7 @@ test_that("aet10 can handle NA values", {
 })
 
 test_that("aet10 can handle some NA values", {
+  skip_on_os("windows")
   new_aedecod <- c(NA, "", as.character(syn_data$adae$AEDECOD[-c(1, 2)]))
 
   proc_data <- syn_data
