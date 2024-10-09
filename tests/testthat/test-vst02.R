@@ -8,6 +8,7 @@ test_that("vst02 functions with default argument value return expected result wi
 })
 
 test_that("vst02 functions return expected result with test data when excluding subject with baseline abnormality", {
+  skip_on_os("windows")
   pre_data <- vst02_pre(syn_data)
   raw_res <- vst02_2_main(pre_data)
   res <- vst02_post(raw_res)

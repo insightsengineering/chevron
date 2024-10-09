@@ -424,8 +424,12 @@ listing_format_chevron <- function() {
 #' @export
 #' @examples
 #' format_date("%d%b%Y")(as.Date("2021-01-01"))
-#' format_date("%d%b%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "NZ"))
-#' format_date("%d%b%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "US/Pacific"))
+#' if ("NZ" %in% OlsonNames()) {
+#'   format_date("%d%b%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "NZ"))
+#' }
+#' if ("US/Pacific" %in% OlsonNames()) {
+#'   format_date("%d%b%Y")(as.POSIXct("2021-01-01 00:00:01", tz = "US/Pacific"))
+#' }
 format_date <- function(date_format = "%d%b%Y") {
   function(x, ...) {
     toupper(

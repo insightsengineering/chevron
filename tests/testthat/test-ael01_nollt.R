@@ -9,6 +9,7 @@ test_that("ael01_nollt works with admh dataset", {
 
 
 test_that("ael01_nollt works with non-default label", {
+  skip_on_os("windows")
   proc_data <- syn_data
   attr(proc_data$adae$AETERM, "label") <- "Investigator-Specified\n Adverse Event Term"
   res <- expect_silent(
@@ -21,6 +22,7 @@ test_that("ael01_nollt works with non-default label", {
 })
 
 test_that("ael01_nollt can handle all missing values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
@@ -34,6 +36,7 @@ test_that("ael01_nollt can handle all missing values", {
 })
 
 test_that("ael01_nollt can handle some missing values", {
+  skip_on_os("windows")
   new_aebodsys <- c(NA, "", as.character(syn_data$adae$AEBODSYS[-c(1, 2)]))
   new_aedecod <- c(NA, "", as.character(syn_data$adae$AEDECOD[-c(1, 2)]))
 
@@ -49,6 +52,7 @@ test_that("ael01_nollt can handle some missing values", {
 })
 
 test_that("ael01_nollt listing can be split by an additional variable", {
+  skip_on_os("windows")
   res <- expect_silent(
     run(
       ael01_nollt,
@@ -64,6 +68,7 @@ test_that("ael01_nollt listing can be split by an additional variable", {
 })
 
 test_that("split ael01_nollt listing do not display missing values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$admh <- proc_data$admh[proc_data$admh$SEX == "F", ]
 

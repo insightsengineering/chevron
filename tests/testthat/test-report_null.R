@@ -2,7 +2,7 @@
 
 test_that("report_null works as expected with `NULL`", {
   expect_silent(res <- report_null(NULL))
-  expect_identical(res, null_report)
+  expect_identical(res, standard_null_report())
 })
 
 test_that("report_null works as expected with `VTableTree`", {
@@ -13,7 +13,7 @@ test_that("report_null works as expected with `VTableTree`", {
 
   tab <- build_table(basic_table(), data.frame())
   expect_silent(res <- report_null(tab))
-  expect_identical(res, null_report)
+  expect_identical(res, standard_null_report())
 })
 
 test_that("report_null works as expected with `listing_df`", {
@@ -22,7 +22,7 @@ test_that("report_null works as expected with `listing_df`", {
 
   lst <- rlistings::as_listing(iris[NULL, ], "Species", "Sepal.Length")
   expect_silent(lst <- report_null(lst))
-  expect_identical(lst, null_report)
+  expect_identical(lst, standard_null_report())
 })
 
 test_that("report_null works as expected with `list`", {
@@ -31,7 +31,7 @@ test_that("report_null works as expected with `list`", {
 
   lst <- rlistings::as_listing(iris[NULL, ], "Species", "Sepal.Length", split_into_pages_by_var = "Species")
   lst <- report_null(lst)
-  expect_identical(lst, null_report)
+  expect_identical(lst, standard_null_report())
 })
 
 test_that("report_null works as expected with by default", {

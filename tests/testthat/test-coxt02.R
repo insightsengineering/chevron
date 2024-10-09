@@ -3,7 +3,7 @@ test_that("coxt02 can handle some NA values", {
   proc_data$adtte[1:4, c("SEX", "RACE", "CNSR", "AVAL", "AAGE")] <- NA
   res1 <- expect_silent(run(coxt02, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
-
+  skip_on_os("windows")
   res2 <- expect_silent(run(coxt02, proc_data, conf_level = .90))
   expect_snapshot(cat(export_as_txt(res2, lpp = 100)))
 
@@ -15,6 +15,7 @@ test_that("coxt02 can handle some NA values", {
 })
 
 test_that("coxt02 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adtte <- proc_data$adtte %>%
     mutate(PARAMCD = NULL)
