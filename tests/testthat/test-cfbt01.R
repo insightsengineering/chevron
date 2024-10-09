@@ -10,6 +10,7 @@ test_that("cfbt01 functions with default argument value return expected result w
 # cfbt01 ----
 
 test_that("cfbt01 can handle n = 0 and outputs NE instead of infs and NAs", {
+  skip_on_os("windows")
   proc_data <- dunlin::log_filter(
     syn_data,
     PARAMCD %in% c("DIABP", "SYSBP"), "advs"

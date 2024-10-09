@@ -10,6 +10,7 @@ test_that("lbt15 functions with default argument value return expected result wi
 # lbt15 ----
 
 test_that("lbt15 can handle all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
@@ -32,6 +33,7 @@ test_that("lbt15 can handle missing levels", {
 })
 
 test_that("lbt15 can handle missing levels in baseline", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(

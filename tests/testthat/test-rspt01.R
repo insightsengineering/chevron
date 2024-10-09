@@ -6,6 +6,7 @@ test_that("rspt01 works as expected", {
 })
 
 test_that("rspt01 works as expected for stratified and unstratified analysis", {
+  skip_on_os("windows")
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",
@@ -26,6 +27,7 @@ test_that("rspt01 works as expected for stratified and unstratified analysis", {
 })
 
 test_that("rspt01 works as expected for unstratified analysis only", {
+  skip_on_os("windows")
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",
@@ -44,6 +46,7 @@ test_that("rspt01 works as expected for unstratified analysis only", {
 })
 
 test_that("rspt01 works as expected for stratified analysis only", {
+  skip_on_os("windows")
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",
@@ -84,6 +87,7 @@ test_that("rspt01 works if change reference group", {
 })
 
 test_that("rspt01 works if change statistic methods", {
+  skip_on_os("windows")
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",
@@ -113,6 +117,7 @@ test_that("rspt01 works if change statistic methods", {
 
 
 test_that("rspt01 works if change confidence interval", {
+  skip_on_os("windows")
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",

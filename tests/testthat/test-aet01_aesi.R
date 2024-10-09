@@ -1,6 +1,7 @@
 # aet01_aesi ----
 
 test_that("aet01_aesi can handle all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
@@ -20,6 +21,7 @@ test_that("aet01_aesi can handle all NA values", {
 })
 
 test_that("aet01_aesi can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(

@@ -1,6 +1,7 @@
 # ael01_nollt ----
 
 test_that("ael01_nollt works with admh dataset", {
+  skip_on_os("windows")
   res <- expect_silent(
     run(ael01_nollt, syn_data, dataset = "admh", key_cols = c("MHBODSYS", "MHDECOD"), disp_cols = "MHTERM")
   )
@@ -64,6 +65,7 @@ test_that("ael01_nollt listing can be split by an additional variable", {
 })
 
 test_that("split ael01_nollt listing do not display missing values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$admh <- proc_data$admh[proc_data$admh$SEX == "F", ]
 

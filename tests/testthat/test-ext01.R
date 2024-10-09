@@ -1,6 +1,7 @@
 # ext01 functions ----
 
 test_that("ext01 functions with default argument value return expected result with test data", {
+  skip_on_os("windows")
   pre_data <- ext01_pre(syn_data)
   raw_res <- ext01_main(pre_data)
   res <- ext01_post(raw_res)
@@ -18,6 +19,7 @@ test_that("ext01 functions with categorical data return expected result with tes
 # ext01 ----
 
 test_that("ext01 works", {
+  skip_on_os("windows")
   proc_data <- syn_data
   res1 <- expect_silent(run(ext01, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))

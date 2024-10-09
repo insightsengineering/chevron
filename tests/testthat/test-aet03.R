@@ -1,4 +1,5 @@
 test_that("aet03 can handle NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(

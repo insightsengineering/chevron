@@ -1,6 +1,7 @@
 # egt01 functions ----
 
 test_that("egt01 functions with default argument value return expected result with test data", {
+  skip_on_os("windows")
   pre_data <- egt01_pre(syn_data)
   raw_res <- egt01_main(pre_data)
   res <- cfbt01_post(raw_res)

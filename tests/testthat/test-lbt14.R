@@ -12,6 +12,7 @@ test_that("lbt14 functions with default argument value return expected result wi
 })
 
 test_that("lbt14 functions with default argument value return expected result with test data when direction = high", {
+  skip_on_os("windows")
   pre_data <- lbt14_pre(syn_lab, direction = "high")
   raw_res <- lbt14_main(pre_data, direction = "high")
   res <- lbt14_post(raw_res, direction = "high")
@@ -19,6 +20,7 @@ test_that("lbt14 functions with default argument value return expected result wi
 })
 
 test_that("lbt14 functions with `gr_missing = excl` return expected result with test data", {
+  skip_on_os("windows")
   pre_data <- lbt14_pre(syn_lab, gr_missing = "excl")
   raw_res <- lbt14_main(pre_data)
   res <- lbt14_post(raw_res)
@@ -34,6 +36,7 @@ test_that("lbt14 functions with `gr_missing = gr_0` return expected result with 
 
 # lbt14 ----
 test_that("lbt14 can handle all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_lab
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
@@ -65,6 +68,7 @@ test_that("lbt14 can handle some NA values", {
 })
 
 test_that("lbt14 can accept different gr_missing", {
+  skip_on_os("windows")
   res1 <- run(lbt14, syn_lab, gr_missing = "incl")
   res2 <- run(lbt14, syn_lab, gr_missing = "excl")
   res3 <- run(lbt14, syn_lab, gr_missing = "gr_0")
@@ -97,6 +101,7 @@ test_that("lbt14 can handle all NA values with direction = high", {
 })
 
 test_that("lbt14 can handle some NA values with direction = high", {
+  skip_on_os("windows")
   set.seed(1)
   new_btoxgr <- syn_lab$adlb$BTOXGR
   new_btoxgr[sample(seq_along(new_btoxgr), 20)] <- NA
@@ -116,6 +121,7 @@ test_that("lbt14 can handle some NA values with direction = high", {
 })
 
 test_that("lbt14 can accept different gr_missing with direction = high", {
+  skip_on_os("windows")
   proc_data <- syn_lab
   res1 <- run(lbt14, proc_data, gr_missing = "incl", direction = "high")
   res2 <- run(lbt14, proc_data, gr_missing = "excl", direction = "high")

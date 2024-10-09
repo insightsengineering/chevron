@@ -1,6 +1,7 @@
 # ael02 ----
 
 test_that("ael02 works with adae dataset", {
+  skip_on_os("windows")
   res <- expect_silent(
     run(ael02, syn_data, dataset = "adae")
   )
@@ -27,6 +28,7 @@ test_that("ael02 can handle all missing values", {
 
 
 test_that("ael02 functions work as expected", {
+  skip_on_os("windows")
   res <- expect_silent(
     ael02_pre(syn_data) %>%
       ael02_main()

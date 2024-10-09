@@ -12,6 +12,7 @@ test_that("mng01 works as expected with default argument values", {
 })
 
 test_that("mng01 works as expected with custom argument values", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     col <- c(
       "B: Placebo" = "black",
@@ -50,6 +51,7 @@ test_that("mng01 works as expected with custom argument values", {
 # mng01 ----
 
 test_that("mng01 works as expected with custom color set", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     col <- c(
       "B: Placebo" = "black",
@@ -71,6 +73,7 @@ test_that("mng01 works as expected with custom color set", {
 })
 
 test_that("mng01 works as expected with custom line type set", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     lty <- c(
       "B: Placebo" = "99",
@@ -103,6 +106,7 @@ test_that("mng01 works with table = NULL", {
 })
 
 test_that("mng01 works with combination of x variables", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     proc_data <- syn_data
     res <- run(

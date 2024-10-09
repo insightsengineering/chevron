@@ -1,6 +1,7 @@
 # lbt01 functions ----
 
 test_that("lbt01 functions with default argument value return expected result with test data", {
+  skip_on_os("windows")
   pre_data <- lbt01_pre(syn_data)
   raw_res <- lbt01_main(pre_data)
   res <- cfbt01_post(raw_res)

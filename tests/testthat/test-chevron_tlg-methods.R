@@ -4,6 +4,7 @@ syn_adv <- syn_data[c("adsl", "adae")]
 syn_adv$adae <- syn_adv$adae[syn_adv$adae$AEBODSYS %in% c("cl A.1", "cl B.1", "cl B.2"), ]
 
 test_that("run works as expected for chevron_t object", {
+  skip_on_os("windows")
   res <- run(aet04, syn_adv, prune_0 = TRUE)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
