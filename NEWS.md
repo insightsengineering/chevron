@@ -1,8 +1,10 @@
-# chevron 0.2.6.9021
+# chevron 0.2.7.9000
 
-* Add `AEL02`, `AEL03`, `CML02A_gl` templates.
+# chevron 0.2.7
+
+* Add the `AEL02`, `AEL03` and `CML02A_gl` templates.
 * Modify the post processing of `MHT01` to allow multiple `row_split_var`.
-* Improve the `report_null` method to facilitate the creation of null reports
+* Improve the `report_null` method to facilitate the creation of null reports.
 * Export the `std_postprocessing` function to simplify post processing logic.
 * `AET01` can now additionally display the number of death and withdrawal using the `show_wd` argument.
 * `MNG01` line type can now be controlled with the `line_type` argument.

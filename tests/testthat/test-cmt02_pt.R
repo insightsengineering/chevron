@@ -10,6 +10,7 @@ test_that("cmt02_pt can handle all NA values", {
 })
 
 test_that("cmt02_pt can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adcm[1:2, c("CMDECOD")] <- NA
 

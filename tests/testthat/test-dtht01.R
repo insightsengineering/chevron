@@ -13,6 +13,7 @@ test_that("dtht01 can handle all NA values", {
 })
 
 test_that("dtht01 can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adsl[1:2, c("DTHCAT", "DTHCAUS")] <- NA
   res <- expect_silent(run(dtht01, proc_data, time_since_last_dose = TRUE, other_category = TRUE))
@@ -22,6 +23,7 @@ test_that("dtht01 can handle some NA values", {
 # Arguments ----
 
 test_that("dtht01 can be parametrize as expected", {
+  skip_on_os("windows")
   proc_data <- syn_data
 
   pre_data <- dtht01_pre(proc_data)

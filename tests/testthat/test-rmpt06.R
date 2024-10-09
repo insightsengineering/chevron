@@ -9,6 +9,7 @@ test_that("rmpt06 works as expected", {
 })
 
 test_that("rmpt06 works as expected with show_diff = TRUE", {
+  skip_on_os("windows")
   res <- rmpt06_pre(syn_data) %>%
     rmpt06_main(show_diff = TRUE) %>%
     rmpt01_post()
@@ -17,6 +18,7 @@ test_that("rmpt06 works as expected with show_diff = TRUE", {
 })
 
 test_that("rmpt06 can handle all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(

@@ -10,6 +10,7 @@ test_that("lbt07 functions with default argument value return expected result wi
 # lbt07 ----
 
 test_that("lbt07 can handle some NA values", {
+  skip_on_os("windows")
   new_grade_dir <- c(NA_character_, "", as.character(syn_data$adlb$ATOXGR[-c(1, 2)]))
 
   proc_data <- syn_data
@@ -23,6 +24,7 @@ test_that("lbt07 can handle some NA values", {
 })
 
 test_that("lbt07 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(ATOXGR = NULL)

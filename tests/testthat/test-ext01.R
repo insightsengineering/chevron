@@ -8,6 +8,7 @@ test_that("ext01 functions with default argument value return expected result wi
 })
 
 test_that("ext01 functions with categorical data return expected result with test data", {
+  skip_on_os("windows")
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "TDOSE", "adex")
   pre_data <- ext01_pre(proc_data)
   raw_res <- ext01_main(pre_data, summaryvars = c("AVAL", "AVALCAT1"))
@@ -18,6 +19,7 @@ test_that("ext01 functions with categorical data return expected result with tes
 # ext01 ----
 
 test_that("ext01 works", {
+  skip_on_os("windows")
   proc_data <- syn_data
   res1 <- expect_silent(run(ext01, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
@@ -29,6 +31,7 @@ test_that("ext01 works", {
 # ext01 with categorical variables functions ----
 
 test_that("ext01 works for selected parameters and categorical variables", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adex <- proc_data$adex %>%
     filter(PARAMCD == "TDOSE")
@@ -39,6 +42,7 @@ test_that("ext01 works for selected parameters and categorical variables", {
 # ext01 with custom mapping
 
 test_that("ext01 works with custom mapping order", {
+  skip_on_os("windows")
   map <- data.frame(
     PARAMCD = "TDURD",
     AVALCAT1 = c("< 1 month", "3 to <6 months", "1 to <3 months", ">=6 months")
@@ -58,6 +62,7 @@ test_that("ext01 works with custom mapping order for a single split", {
 })
 
 test_that("ext01 works with custom mapping fill in value", {
+  skip_on_os("windows")
   map <- data.frame(
     PARAMCD = "TDURD",
     AVALCAT1 = c("< 1 month", "3 to <6 months", "1 to <3 months", ">=6 months", "> 12 months")

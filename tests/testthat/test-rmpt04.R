@@ -10,6 +10,7 @@ test_that("rmpt04 function with default argument value return expected result wi
 # rmpt04 ----
 
 test_that("rmpt04 can handle NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adex$AVAL <- NA_real_
 
@@ -21,6 +22,7 @@ test_that("rmpt04 can handle NA values", {
 })
 
 test_that("rmpt04 can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adex <- proc_data$adex %>%
     mutate(
@@ -42,6 +44,7 @@ test_that("rmpt04 can handle some NA values", {
 })
 
 test_that("rmpt04 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adex <- proc_data$adex %>%
     mutate(

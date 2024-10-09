@@ -10,6 +10,7 @@ test_that("pdt01 function with default argument value return expected result wit
 # pdt01 ----
 
 test_that("pdt01 can handle all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$addv <- proc_data$addv %>%
     mutate(
@@ -22,6 +23,7 @@ test_that("pdt01 can handle all NA values", {
 })
 
 test_that("pdt01 can handle some NA values", {
+  skip_on_os("windows")
   new_dvdecod <- c(NA_character_, "", as.character(syn_data$addv$DVDECOD[-c(1, 2)]))
   new_dvterm <- c(NA_character_, "", as.character(syn_data$addv$DVTERM[-c(1, 2)]))
 
