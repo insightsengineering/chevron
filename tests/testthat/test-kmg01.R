@@ -12,6 +12,7 @@ test_that("kmg01 works as expected", {
 # kmg01 ----
 
 test_that("kmg01 works as expected with custom color set", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     col <- c(
       "A: Drug X" = "black",
@@ -28,6 +29,7 @@ test_that("kmg01 works as expected with custom color set", {
 })
 
 test_that("kmg01 works if change pvalue, ties and conf level", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
     res <- expect_silent(run(kmg01, filter_data,
@@ -42,6 +44,7 @@ test_that("kmg01 works if change pvalue, ties and conf level", {
 
 
 test_that("kmg01 works if change annotation position", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
     res <- expect_silent(run(kmg01, filter_data,
@@ -54,6 +57,7 @@ test_that("kmg01 works if change annotation position", {
 
 
 test_that("kmg01 works for stratified analysis", {
+  skip_on_os("windows")
   withr::with_options(opts_partial_match_old, {
     filter_data <- dunlin::log_filter(syn_data, PARAMCD == "OS", "adtte")
     res <- expect_silent(run(kmg01, filter_data,

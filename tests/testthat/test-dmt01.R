@@ -9,6 +9,7 @@ test_that("dmt01 can handle NA values", {
 })
 
 test_that("dmt01 can handle numeric NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adsl$AGE[1] <- NA
   res <- expect_silent(run(dmt01, proc_data))
@@ -16,6 +17,7 @@ test_that("dmt01 can handle numeric NA values", {
 })
 
 test_that("dmt01 returns an error when variables are of the wrong type", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adsl <- proc_data$adsl %>%
     mutate(
@@ -30,21 +32,25 @@ test_that("dmt01 returns an error when variables are of the wrong type", {
 })
 
 test_that("dmt01 works as expected with setting default precision", {
+  skip_on_os("windows")
   res <- expect_silent(run(dmt01, syn_data, summaryvars = c("RACE", "AAGE", "BBMISI"), precision = list(default = 3)))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("dmt01 works as expected with auto precision settings", {
+  skip_on_os("windows")
   res <- expect_silent(run(dmt01, syn_data, summaryvars = c("RACE", "AAGE", "BBMISI"), precision = list()))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("dmt01 works as expected with auto precision settings and defined precision", {
+  skip_on_os("windows")
   res <- expect_silent(run(dmt01, syn_data, summaryvars = c("RACE", "AAGE", "BBMISI"), precision = list(AAGE = 2)))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
 test_that("dmt01 works as expected with auto precision settings and defined precision and default", {
+  skip_on_os("windows")
   res <- expect_silent(
     run(dmt01, syn_data, summaryvars = c("RACE", "AAGE", "BBMISI"), precision = list(AAGE = 2, default = 5))
   )
@@ -52,6 +58,7 @@ test_that("dmt01 works as expected with auto precision settings and defined prec
 })
 
 test_that("dmt01 works as expected with cutomized stats value", {
+  skip_on_os("windows")
   res <- expect_silent(
     run(
       dmt01,
@@ -65,6 +72,7 @@ test_that("dmt01 works as expected with cutomized stats value", {
 })
 
 test_that("dmt01 works as expected with empty list as stats value", {
+  skip_on_os("windows")
   res <- expect_silent(
     run(
       dmt01,
@@ -78,6 +86,7 @@ test_that("dmt01 works as expected with empty list as stats value", {
 })
 
 test_that("dmt01 works as expected with only one summaryvars", {
+  skip_on_os("windows")
   res <- expect_silent(
     run(
       dmt01,

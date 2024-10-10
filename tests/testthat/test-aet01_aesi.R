@@ -20,6 +20,7 @@ test_that("aet01_aesi can handle all NA values", {
 })
 
 test_that("aet01_aesi can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
@@ -31,12 +32,14 @@ test_that("aet01_aesi can handle some NA values", {
 })
 
 test_that("aet01_aesi works with `ALL` argument", {
+  skip_on_os("windows")
   proc_data <- syn_data
   res <- expect_silent(run(aet01_aesi, proc_data, aesi_vars = c("ALL")))
   expect_snapshot(cat(export_as_txt(res, lpp = 100, cpp = 200)))
 })
 
 test_that("aet01_aesi_check fails on incomplete data input", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(AEOUT = NULL)

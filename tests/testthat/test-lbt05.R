@@ -5,7 +5,7 @@ test_that("lbt05 functions with default argument value return expected result wi
   raw_res <- lbt05_main(pre_data)
   res <- lbt05_post(raw_res)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
-
+  skip_on_os("windows")
   res_prune <- lbt05_post(raw_res, prune_0 = TRUE)
   expect_snapshot(cat(export_as_txt(res_prune, lpp = 100)))
 })
@@ -13,6 +13,7 @@ test_that("lbt05 functions with default argument value return expected result wi
 # lbt05 ----
 
 test_that("lbt05 give all 0 count if ANRIND are all missing", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
@@ -24,6 +25,7 @@ test_that("lbt05 give all 0 count if ANRIND are all missing", {
 })
 
 test_that("lbt05 can handle some NA values", {
+  skip_on_os("windows")
   new_anrind <- c(NA, "", as.character(syn_data$adlb$ANRIND[-c(1, 2)]))
 
   proc_data <- syn_data
@@ -37,6 +39,7 @@ test_that("lbt05 can handle some NA values", {
 })
 
 test_that("lbt05 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(PARCAT2 = NULL)

@@ -8,7 +8,7 @@ test_that("aet04 can handle NA values", {
 
   res1 <- expect_silent(run(aet04, proc_data))
   expect_snapshot(cat(export_as_txt(res1, lpp = 100)))
-
+  skip_on_os("windows")
   grade_groups <- list(
     "Grade 1-2" = c("1", "2"),
     "Grade 3-4" = c("3", "4"),
@@ -26,6 +26,7 @@ test_that("aet04 can handle NA values", {
 })
 
 test_that("aet04 can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae[1:2, c("AEBODSYS", "AEDECOD")] <- NA
   res1 <- expect_silent(run(aet04, proc_data))

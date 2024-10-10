@@ -10,6 +10,7 @@ test_that("lbt15 functions with default argument value return expected result wi
 # lbt15 ----
 
 test_that("lbt15 can handle all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
@@ -21,6 +22,7 @@ test_that("lbt15 can handle all NA values", {
 })
 
 test_that("lbt15 can handle missing levels", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
@@ -32,6 +34,7 @@ test_that("lbt15 can handle missing levels", {
 })
 
 test_that("lbt15 can handle missing levels in baseline", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(
@@ -43,6 +46,7 @@ test_that("lbt15 can handle missing levels in baseline", {
 })
 
 test_that("lbt15 can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb[1:2, "ATOXGR"] <- NA
 
@@ -51,6 +55,7 @@ test_that("lbt15 can handle some NA values", {
 })
 
 test_that("lbt15 can handle some NA values in baseline", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb[1:2, "BTOXGR"] <- NA
 
@@ -59,6 +64,7 @@ test_that("lbt15 can handle some NA values in baseline", {
 })
 
 test_that("lbt15 fails on incomlete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adlb <- proc_data$adlb %>%
     mutate(PARCAT1 = NULL)

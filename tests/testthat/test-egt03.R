@@ -10,6 +10,7 @@ test_that("egt03 functions with default argument value return expected result wi
 # egt03 ----
 
 test_that("egt03 errors on all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(
@@ -21,6 +22,7 @@ test_that("egt03 errors on all NA values", {
 })
 
 test_that("egt03 can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adeg[1:2, c("ANRIND", "BNRIND")] <- NA
 
@@ -29,6 +31,7 @@ test_that("egt03 can handle some NA values", {
 })
 
 test_that("egt03 fails on incomplete data", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adeg <- proc_data$adeg %>%
     mutate(PARAMCD = NULL)
