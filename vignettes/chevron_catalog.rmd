@@ -327,6 +327,14 @@ The `skip` arguments controls which visit values should not be displayed. For in
 run(cfbt01, proc_data, dataset = "advs", skip = list(CHG = c("SCREENING", "BASELINE")))
 ```
 
+### **3. Absolute Value by Visit**
+
+To display only the absolute value, specify `summaryvars  = "AVAL"`.
+
+```{r}
+run(cfbt01, proc_data, dataset = "advs", summaryvars  = "AVAL")
+```
+
 ### **Concomitant Medications by Medication Class and Preferred Name (`CMT01A`)**
 
 #### **1. Concomitant Medications by Medication Class and Preferred Name**
