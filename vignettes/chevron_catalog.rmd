@@ -321,7 +321,7 @@ run(cfbt01, proc_data, dataset = "advs")
 
 #### **2. Absolute Value and Change from Baseline by Visit without Screening**
 
-The `skip` arguments controls which visit values should not be displayed. For instance, to mask the changes from baseline during the screening.
+The `skip` arguments controls which visit values should not be displayed. For instance, to mask the changes from baseline during the "SCREENING" and "BASELINE" visits.
 
 ```{r}
 run(cfbt01, proc_data, dataset = "advs", skip = list(CHG = c("SCREENING", "BASELINE")))
