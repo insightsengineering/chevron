@@ -302,6 +302,39 @@ To modify the threshold for displaying preferred terms, this can be achieved by 
 run(aet10, syn_data, atleast = 0.08)
 ```
 
+### **Absolute Value and Change from Baseline by Visit (`CFBT01`)**
+
+#### **1. Absolute Value and Change from Baseline by Visit**
+
+1) By default, the `cfbt01` template displays analysis value (`AVAL`) and absolute change from baseline (`CHG`) for each visit.
+2) The template does not include the column of total by default.
+3) Each parameter is presented on a separate page.
+4) The absolute change from baseline at baseline value is not displayed.
+
+```{r}
+proc_data <- log_filter(
+  syn_data,
+  PARAMCD %in% c("DIABP", "SYSBP"), "advs"
+)
+run(cfbt01, proc_data, dataset = "advs")
+```
+
+#### **2. Absolute Value and Change from Baseline by Visit without Screening**
+
+The `skip` arguments controls which visit values should not be displayed. For instance, to mask the changes from baseline during the "SCREENING" and "BASELINE" visits.
+
+```{r}
+run(cfbt01, proc_data, dataset = "advs", skip = list(CHG = c("SCREENING", "BASELINE")))
+```
+
+### **3. Absolute Value by Visit**
+
+To display only the absolute value, specify `summaryvars  = "AVAL"`.
+
+```{r}
+run(cfbt01, proc_data, dataset = "advs", summaryvars  = "AVAL")
+```
+
 ### **Concomitant Medications by Medication Class and Preferred Name (`CMT01A`)**
 
 #### **1. Concomitant Medications by Medication Class and Preferred Name**
