@@ -1,4 +1,4 @@
-# chevron 0.2.7.9003
+# chevron 0.2.8
 
 * New `unwrap` argument prints `preprocessing`, `main`, `postprocessing` and `layout` function upon execution of the `run` method.
 * The `chevron.run.verbose` option and `R_CHEVRON_RUN_VERBOSE` environment variable control the `verbose` argument of the `run` method, while the `chevron.run.unwrap` option and `R_CHEVRON_RUN_UNWRAP` environment variable control the `unwrap` argument.
