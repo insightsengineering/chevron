@@ -56,7 +56,8 @@ Suggests:
     vdiffr (>= 1.0.0),
     withr (>= 2.1.0)
 VignetteBuilder:
-    knitr
+    knitr,
+    rmarkdown
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
