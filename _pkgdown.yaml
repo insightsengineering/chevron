@@ -64,6 +64,7 @@ reference:
       - aet05_all
       - aet10
       - cfbt01
+      - cml02a_gl
       - cmt01a
       - cmt02_pt
       - coxt01
@@ -117,6 +118,7 @@ reference:
       - assert_valid_variable
       - create_id_listings
       - report_null
+      - standard_null_report
       - std_postprocessing
       - smart_prune
       - var_labels_for

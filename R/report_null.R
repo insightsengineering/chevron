@@ -19,7 +19,7 @@ setGeneric("report_null", function(tlg, ...) {
 
 #' @rdname report_null
 setMethod("report_null", "NULL", function(tlg, ind = 2L, ...) {
-  res <- null_report
+  res <- standard_null_report()
   table_inset(res) <- ind
   res
 })
@@ -27,7 +27,7 @@ setMethod("report_null", "NULL", function(tlg, ind = 2L, ...) {
 #' @rdname report_null
 setMethod("report_null", "VTableTree", function(tlg, ind = 2L, ...) {
   res <- if (nrow(tlg) == 0L || count_children(tlg) == 0) {
-    null_report
+    standard_null_report()
   } else {
     tlg
   }
@@ -39,7 +39,7 @@ setMethod("report_null", "VTableTree", function(tlg, ind = 2L, ...) {
 #' @rdname report_null
 setMethod("report_null", "listing_df", function(tlg, ind = 2L, ...) {
   if (nrow(tlg) == 0L) {
-    res <- null_report
+    res <- standard_null_report()
     table_inset(res) <- ind
     res
   } else {
@@ -50,7 +50,7 @@ setMethod("report_null", "listing_df", function(tlg, ind = 2L, ...) {
 #' @rdname report_null
 setMethod("report_null", "list", function(tlg, ind = 2L, ...) {
   if (length(tlg) == 0) {
-    res <- null_report
+    res <- standard_null_report()
     table_inset(res) <- ind
     res
   } else {
@@ -65,11 +65,13 @@ setMethod("report_null", "ANY", function(tlg, ...) {
 
 #' @export
 #' @rdname report_null
-null_report <- rtables::rtable(
-  header = "",
-  rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output."),
-  inset = 2L
-)
+standard_null_report <- function() {
+  rtables::rtable(
+    header = "",
+    rrow("", "Null Report: No observations met the reporting criteria for inclusion in this output."),
+    inset = 2L
+  )
+}
 
 #' Standard Post Processing
 #'

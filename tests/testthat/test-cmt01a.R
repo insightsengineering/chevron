@@ -8,6 +8,7 @@ test_that("cmt01a functions with default argument value return expected result w
 })
 
 test_that("cmt01a functions with custom argument value return expected result with test data", {
+  skip_on_os("windows")
   pre_data <- cmt01a_pre(syn_data)
   raw_res <- cmt01a_main(pre_data, summary_labels = list(
     TOTAL = c(
@@ -22,6 +23,7 @@ test_that("cmt01a functions with custom argument value return expected result wi
 # cmt01a ----
 
 test_that("cmt01a can handle all NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adcm <- proc_data$adcm %>%
     mutate(
@@ -34,6 +36,7 @@ test_that("cmt01a can handle all NA values", {
 })
 
 test_that("cmt01a can handle some NA values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adcm$ATC2[1:2] <- NA
   proc_data$adcm$CMDECOD[1:2] <- NA

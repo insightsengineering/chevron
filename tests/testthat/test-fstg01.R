@@ -10,6 +10,7 @@ test_that("fstg01 works as expected", {
 # fstg01 ----
 
 test_that("fstg01 works as expected with custom color set", {
+  skip_on_os("windows")
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
 
   res1 <- expect_silent(run(fstg01, proc_data, response = c("CR", "PR"), dataset = "adrs", col = "gray"))
@@ -20,6 +21,7 @@ test_that("fstg01 works as expected with custom color set", {
 })
 
 test_that("fstg01 works if changes are in subgroups, conf_level, and label_all", {
+  skip_on_os("windows")
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
 
   res1 <- expect_silent(run(fstg01, proc_data, response = c("CR", "PR"), subgroups = NULL, dataset = "adrs"))
@@ -33,6 +35,7 @@ test_that("fstg01 works if changes are in subgroups, conf_level, and label_all",
 })
 
 test_that("fstg01 can handle some NA values in subgroups", {
+  skip_on_os("windows")
   proc_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs")
   proc_data$adrs[1:2, "SEX"] <- NA
   proc_data$adrs[3:4, "AGEGR1"] <- NA

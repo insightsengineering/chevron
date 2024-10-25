@@ -2,14 +2,26 @@
 
 # run ----
 
-#' Run the pipeline
+#' Run the TLG-generating pipeline
 #'
-#' Execute the pre-processing, main and post-processing functions in a single run.
+#' Execute sequential the pre-processing, main and post-processing functions.
+#'
+#' @details
+#' The functions stored in the `preprocess`, `main` and `postprocess` slots of the `chevron_tlg` objects are called
+#' respectively, `preprocessing`, `main` and `postprocessing` functions.
+#'
+#' When executing the `run` method on a `chevron_tlg` object, if `auto_pre` is `TRUE`, the `adam_bd` list is first
+#' passed to the `preprocessing` function. The resulting list is then passed to the `main` function which produces a
+#' table, graph or listings or a list of these objects. This output is then passed to the `postprocessing` function
+#' which performed the final modifications before returning the output. Additional arguments specified in `...` or
+#' `user_args` are passed to each of the three functions.
 #'
 #' @inheritParams gen_args
 #' @param object (`chevron_tlg`) input.
 #' @param auto_pre (`flag`) whether to perform the default pre processing step.
 #' @param verbose (`flag`) whether to print argument information.
+#' @param unwrap (`flag`)  whether to print the preprocessing postprocessing and main function together with the
+#'   associated layout function.
 #' @param ... extra arguments to pass to the pre-processing, main and post-processing functions.
 #' @param user_args (`list`) arguments from `...`.
 #' @returns an `rtables` (for `chevron_t`), `rlistings` (for `chevron_l`), `grob` (for `chevron_g`) or `ElementaryTable`
@@ -19,10 +31,12 @@
 #' @export
 setGeneric(
   "run",
-  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) standardGeneric("run")
+  function(object, adam_db, auto_pre = TRUE, verbose = FALSE, unwrap = FALSE, ..., user_args = list(...)) {
+    standardGeneric("run")
+  }
 )
 
-#' Run the pipeline
+#' Run the TLG-generating pipeline
 #' @rdname run
 #' @export
 #' @examples
@@ -30,10 +44,19 @@ setGeneric(
 setMethod(
   f = "run",
   signature = "chevron_tlg",
-  definition = function(object, adam_db, auto_pre = TRUE, verbose = FALSE, ..., user_args = list(...)) {
+  definition = function(object,
+                        adam_db,
+                        auto_pre = TRUE,
+                        verbose = get_arg("chevron.run.verbose", "R_CHEVRON_RUN_VERBOSE", FALSE),
+                        unwrap = get_arg("chevron.run.unwrap", "R_CHEVRON_RUN_UNWRAP", verbose),
+                        ...,
+                        user_args = list(...)) {
     assert_list(adam_db, types = "data.frame", names = "unique")
     assert_flag(auto_pre)
+    verbose <- as.logical(verbose)
     assert_flag(verbose)
+    unwrap <- as.logical(unwrap)
+    assert_flag(unwrap)
     assert_list(user_args, names = "unique")
     args <- list(...)
     assert_list(args, names = "unique", .var.name = "...")
@@ -49,6 +72,25 @@ setMethod(
         auto_pre = auto_pre
       )
     }
+
+    if (unwrap) {
+      if (auto_pre) {
+        cat("Preprocessing function:\n")
+        cat(paste(deparse(preprocess(object)), collapse = "\n"), "\n")
+        cat("\n")
+      }
+
+      cat("Main function:\n")
+      cat(paste(deparse(main(object)), collapse = "\n"), "\n")
+      cat("\n")
+
+      # Show layout function from main if it exists.
+      unwrap_layout(main(object))
+
+      cat("Postprocessing function:\n")
+      cat(paste(deparse(postprocess(object)), collapse = "\n"), "\n")
+    }
+
     proc_data <- if (auto_pre) {
       list(adam_db = do_call(object@preprocess, c(list(adam_db), user_args)))
     } else {
@@ -71,7 +113,7 @@ print_args <- function(run_call, additional_args, args, auto_pre = TRUE) {
   run_call[[1]] <- NULL
   run_call <- as.list(run_call)
 
-  run_call[c("auto_pre", "verbose", "user_args")] <- NULL
+  run_call[c("auto_pre", "verbose", "user_args", "unwrap")] <- NULL
   if (!is.null(additional_args)) {
     run_call <- c(run_call, additional_args)
   }

@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.6.9015
-Date: 2024-08-06
+Version: 0.2.7.9004
+Date: 2024-10-25
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = c("aut", "cre")),
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
@@ -31,7 +31,7 @@ Imports:
     dplyr (>= 1.1.0),
     dunlin (>= 0.1.7),
     forcats (>= 1.0.0),
-    formatters (>= 0.5.8),
+    formatters (>= 0.5.9),
     ggplot2 (>= 3.4.0),
     glue (>= 1.0.0),
     grid,
@@ -43,9 +43,9 @@ Imports:
     purrr (>= 0.3.0),
     rlang (>= 1.0.0),
     rlistings (>= 0.2.9),
-    rtables (>= 0.6.8),
+    rtables (>= 0.6.10),
     stringr (>= 1.4.1),
-    tern (>= 0.9.5),
+    tern (>= 0.9.6),
     tibble (>= 2.0.0),
     utils
 Suggests:
@@ -56,23 +56,17 @@ Suggests:
     vdiffr (>= 1.0.0),
     withr (>= 2.1.0)
 VignetteBuilder:
-    knitr
-Remotes:
-    insightsengineering/dunlin@*release,
-    insightsengineering/formatters@*release,
-    insightsengineering/nestcolor@*release,
-    insightsengineering/rlistings@*release,
-    insightsengineering/rtables@*release,
-    insightsengineering/tern@*release
+    knitr,
+    rmarkdown
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
-    r-lib/lifecycle, tidyverse/magrittr, insightsengineering/nestcolor,
-    tidyverse/purrr, r-lib/rlang, insightsengineering/rlistings,
-    insightsengineering/rtables, tidyverse/stringr,
-    insightsengineering/tern, tidyverse/tibble, yihui/knitr,
-    rstudio/rmarkdown, r-lib/testthat, tidyverse/tidyr, r-lib/vdiffr,
-    r-lib/withr
+    r-lib/lifecycle, tidyverse/lubridate, tidyverse/magrittr,
+    insightsengineering/nestcolor, tidyverse/purrr, r-lib/rlang,
+    insightsengineering/rlistings, insightsengineering/rtables,
+    tidyverse/stringr, insightsengineering/tern, tidyverse/tibble,
+    yihui/knitr, rstudio/rmarkdown, r-lib/testthat, tidyverse/tidyr,
+    r-lib/vdiffr, r-lib/withr
 Config/Needs/website: insightsengineering/nesttemplate
 Config/testthat/edition: 3
 Encoding: UTF-8
@@ -99,6 +93,7 @@ Collate:
     'cfbt01.R'
     'checks.R'
     'chevron_tlg-S4methods.R'
+    'cml02a_gl.R'
     'cmt01a.R'
     'cmt02_pt.R'
     'coxt01.R'
@@ -139,6 +134,7 @@ Collate:
     'rtables_utils.R'
     'standard_rules.R'
     'ttet01.R'
+    'unwrap.R'
     'vst01.R'
     'vst02.R'
     'zzz.R'

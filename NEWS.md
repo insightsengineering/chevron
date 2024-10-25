@@ -1,8 +1,13 @@
-# chevron 0.2.6.9015
+# chevron 0.2.7.9004
 
-* Add `AEL02`, `AEL03` templates.
+* New `unwrap` argument prints `preprocessing`, `main`, `postprocessing` and `layout` function upon execution of the `run` method.
+* The `chevron.run.verbose` option and `R_CHEVRON_RUN_VERBOSE` environment variable control the `verbose` argument of the `run` method, while the `chevron.run.unwrap` option and `R_CHEVRON_RUN_UNWRAP` environment variable control the `unwrap` argument.
+
+# chevron 0.2.7
+
+* Add the `AEL02`, `AEL03` and `CML02A_gl` templates.
 * Modify the post processing of `MHT01` to allow multiple `row_split_var`.
-* Improve the `report_null` method to facilitate the creation of null reports
+* Improve the `report_null` method to facilitate the creation of null reports.
 * Export the `std_postprocessing` function to simplify post processing logic.
 * `AET01` can now additionally display the number of death and withdrawal using the `show_wd` argument.
 * `MNG01` line type can now be controlled with the `line_type` argument.

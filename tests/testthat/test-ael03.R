@@ -10,6 +10,7 @@ test_that("ael03 works with adae dataset", {
 })
 
 test_that("ael03 can handle all missing values", {
+  skip_on_os("windows")
   proc_data <- syn_data
   proc_data$adae <- proc_data$adae %>%
     mutate(
@@ -27,6 +28,7 @@ test_that("ael03 can handle all missing values", {
 # ael03 functions ----
 
 test_that("ael03 functions work as expected", {
+  skip_on_os("windows")
   res <- expect_silent(
     ael03_pre(syn_data) %>%
       ael03_main()
