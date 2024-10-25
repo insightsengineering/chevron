@@ -748,6 +748,96 @@ To display all possible grades even if they do not occur in the data, set the ar
 run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
 ```
 
+
+### **Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline (`LBT15`)**
+
+#### **1. Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline (Single Grading Approach)**
+
+In ADaM v1.1 or below, lab grade variables (`BTOXGR` and `ATOXGR`) in ADLB range from -4 to +4, with -/+ indicating the direction of lab abnormality. This is known as the single grading approach. 
+
+To summarize patients shifting to post-baseline grade 3-4 based on ADLB with the single grading approach, simply run the default `lbt15` template shown below.
+
+```{r}
+run(lbt15, syn_data)
+```
+
+#### **2. Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline (Double Grading Approach)**
+
+In ADaM v1.2 or above, ADLB now has two sets of lab grade variables - the high-directional variables (`ATOXDSCH`/`ATOXGRH`/`BTOXGRH`) and the low-directional variables (`ATOXDSCL`/`BTOXGRL`/`ATOXGRL`), both ranging from 0 to 4. This is known as the double grading or the bi-directional approach, which is the default in `{admiral}`.
+
+To summarize patients shifting to post-baseline grade 3-4 based on ADLB with the double grading approach, redefining `ANRIND` and `BNRIND` is needed in the pre-processing step shown below.
+
+```{r}
+proc_data <- syn_data
+# Convert single grading variables to double ones for demo purpose only
+# as the original syn_data is using single grading approach
+proc_data$adlb <- proc_data$adlb %>%
+  mutate(
+    BTOXGRH = as.factor(
+      case_when(
+        BTOXGR %in% c("-4", "-3", "-2", "-1", "0") ~ "0",
+        TRUE ~ BTOXGR
+      )
+    ),
+    ATOXGRH = as.factor(
+      case_when(
+        ATOXGR %in% c("-4", "-3", "-2", "-1", "0") ~ "0",
+        TRUE ~ ATOXGR
+      )
+    ),
+    BTOXGRL = as.factor(
+      case_when(
+        BTOXGR %in% c("4", "3", "2", "1", "0") ~ "0",
+        BTOXGR == "-1" ~ "1",  BTOXGR == "-2" ~ "2",
+        BTOXGR == "-3" ~ "3",  BTOXGR == "-4" ~ "4",
+        TRUE ~ BTOXGR
+      )
+    ),
+    ATOXGRL = as.factor(
+      case_when(
+        ATOXGR %in% c("4", "3", "2", "1", "0") ~ "0",
+        ATOXGR == "-1" ~ "1",  ATOXGR == "-2" ~ "2",
+        ATOXGR == "-3" ~ "3",  ATOXGR == "-4" ~ "4",
+        TRUE ~ ATOXGR
+      )
+    )
+  )
+
+# Redefine ANRIND and BNRIND to adopt double grading approach
+preprocess(lbt15) <- function(adam_db, ...) {
+  adam_db$adlb <- adam_db$adlb %>%
+    filter(.data$ONTRTFL == "Y", .data$PARCAT2 == "SI") %>%
+    mutate(
+      PARAM = with_label(.data$PARAM, "Laboratory Test"),
+      ANRIND = with_label(
+        as.factor(
+          case_when(
+            ATOXGRH == "0" & ATOXGRL %in% c("3", "4") ~ "LOW",
+            is.na(ATOXGRH) & ATOXGRL %in% c("3", "4") ~ "LOW",
+            ATOXGRH %in% c("3", "4") & ATOXGRL == "0" ~ "HIGH",
+            ATOXGRH %in% c("3", "4") & is.na(ATOXGRL) ~ "HIGH",
+            is.na(ATOXGRH) & is.na(ATOXGRL) ~ NA_character_,
+            TRUE ~ "MODERATE/NORMAL"
+          )
+        ), "Direction of Abnormality"
+      ),
+      BNRIND = as.factor(
+        case_when(
+          BTOXGRH == "0" & BTOXGRL %in% c("3", "4") ~ "LOW",
+          is.na(BTOXGRH) & BTOXGRL %in% c("3", "4") ~ "LOW",
+          BTOXGRH %in% c("3", "4") & BTOXGRL == "0" ~ "HIGH",
+          BTOXGRH %in% c("3", "4") & is.na(BTOXGRL) ~ "HIGH",
+          is.na(BTOXGRH) & is.na(BTOXGRL) ~ NA_character_,
+          TRUE ~ "MODERATE/NORMAL"
+        )
+      )
+    )
+  adam_db
+}
+
+run(lbt15, proc_data)
+```
+
 ### **Medical History (`MHT01`)**
 
 #### **1. Medical History**
