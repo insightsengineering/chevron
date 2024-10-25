@@ -82,11 +82,20 @@ test_that("run displays the symbols when available", {
 
 test_that("run print internal functions when unwrap is TRUE", {
   res <- capture_output(tbl <- run(aet02, syn_adv, prune_0 = TRUE, verbose = TRUE, unwrap = TRUE))
+
+  out <- paste(res, collapse = "\n")
+  expect_match(out, "Using template:  aet02")
+  expect_match(out, "Main function:")
+  expect_match(out, "Layout function:")
+
+  skip_on_covr()
   expect_snapshot(cat(res))
 })
 
 test_that("run print internal functions when unwrap is TRUE and standard chevron_tlg has no layout", {
-  res <- capture_output(tbl <- run(mng01, syn_data, dataset = "adlb", verbose = TRUE, unwrap = TRUE))
+  withr::with_options(opts_partial_match_old, {
+    res <- capture_output(tbl <- run(mng01, syn_data, dataset = "adlb", verbose = TRUE, unwrap = TRUE))
+  })
   expect_snapshot(cat(res))
 })
 
@@ -99,6 +108,12 @@ test_that("run print internal functions when unwrap is TRUE and the chevron_tlg 
   )
 
   res <- capture_output(tbl <- run(custom_chevron, list(iris = iris), verbose = TRUE, unwrap = TRUE))
+  out <- paste(res, collapse = "\n")
+  expect_match(out, "Using template:  custom_chevron")
+  expect_match(out, "Main function:")
+  expect_no_match(out, "Layout function:")
+
+  skip_on_covr()
   expect_snapshot(cat(res))
 })
 
@@ -261,9 +276,17 @@ test_that("script_funs generates a valid script", {
     writeLines(res_fun, tmp)
     # Creating the object tlg_output in the script.
     res <- capture_output(source(tmp, local = TRUE))
-    expect_snapshot(cat(paste(res, collapse = "\n")))
     expected <- run(aet04, syn_adv, arm_var = "ARM")
     expect_identical(tlg_output, expected)
+
+    out <- paste(res, collapse = "\n")
+    expect_match(out, "Using template:  aet04")
+    expect_match(out, "Main function:")
+    expect_match(out, "Layout function:")
+    expect_match(out, "aet04_lyt:")
+
+    skip_on_covr()
+    expect_snapshot(cat(paste(res, collapse = "\n")))
   })
 })
 
