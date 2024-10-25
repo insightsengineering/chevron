@@ -1,804 +1,1039 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="ael01_nollt" timestamp="2024-10-11T12:37:44Z" hostname="4a559c0cdd0e" tests="14" skipped="0" failures="0" errors="0" time="1.211">
-    <testcase time="0.0680000000000001" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset"/>
-    <testcase time="0.278" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset"/>
-    <testcase time="0.0289999999999999" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label"/>
-    <testcase time="0.217" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label"/>
-    <testcase time="0.028" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values"/>
-    <testcase time="0.0840000000000001" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values"/>
-    <testcase time="0.028" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values"/>
-    <testcase time="0.135" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values"/>
-    <testcase time="0.024" classname="ael01_nollt" name="ael01_nollt_listing_can_be_split_by_an_additional_variable"/>
+  <testsuite name="ael01_nollt" timestamp="2024-10-25T01:41:33Z" hostname="7060ca77dc1c" tests="14" skipped="0" failures="0" errors="0" time="1.16">
+    <testcase time="0.0640000000000001" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset"/>
+    <testcase time="0.266" classname="ael01_nollt" name="ael01_nollt_works_with_admh_dataset"/>
+    <testcase time="0.0310000000000001" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label"/>
+    <testcase time="0.209" classname="ael01_nollt" name="ael01_nollt_works_with_non_default_label"/>
+    <testcase time="0.0269999999999997" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values"/>
+    <testcase time="0.0820000000000003" classname="ael01_nollt" name="ael01_nollt_can_handle_all_missing_values"/>
+    <testcase time="0.0269999999999997" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values"/>
+    <testcase time="0.129" classname="ael01_nollt" name="ael01_nollt_can_handle_some_missing_values"/>
+    <testcase time="0.0219999999999998" classname="ael01_nollt" name="ael01_nollt_listing_can_be_split_by_an_additional_variable"/>
     <testcase time="0.00099999999999989" classname="ael01_nollt" name="ael01_nollt_listing_can_be_split_by_an_additional_variable"/>
-    <testcase time="0.169" classname="ael01_nollt" name="ael01_nollt_listing_can_be_split_by_an_additional_variable"/>
-    <testcase time="0.028" classname="ael01_nollt" name="split_ael01_nollt_listing_do_not_display_missing_values"/>
-    <testcase time="0.00100000000000033" classname="ael01_nollt" name="split_ael01_nollt_listing_do_not_display_missing_values"/>
-    <testcase time="0.121" classname="ael01_nollt" name="split_ael01_nollt_listing_do_not_display_missing_values"/>
+    <testcase time="0.16" classname="ael01_nollt" name="ael01_nollt_listing_can_be_split_by_an_additional_variable"/>
+    <testcase time="0.0270000000000001" classname="ael01_nollt" name="split_ael01_nollt_listing_do_not_display_missing_values"/>
+    <testcase time="0.00099999999999989" classname="ael01_nollt" name="split_ael01_nollt_listing_do_not_display_missing_values"/>
+    <testcase time="0.114" classname="ael01_nollt" name="split_ael01_nollt_listing_do_not_display_missing_values"/>
   </testsuite>
-  <testsuite name="ael02" timestamp="2024-10-11T12:37:46Z" hostname="4a559c0cdd0e" tests="9" skipped="0" failures="0" errors="0" time="2.801">
-    <testcase time="0.069" classname="ael02" name="ael02_works_with_adae_dataset"/>
-    <testcase time="0.00099999999999989" classname="ael02" name="ael02_works_with_adae_dataset"/>
-    <testcase time="0.875" classname="ael02" name="ael02_works_with_adae_dataset"/>
-    <testcase time="0.0510000000000002" classname="ael02" name="ael02_can_handle_all_missing_values"/>
-    <testcase time="0.00199999999999978" classname="ael02" name="ael02_can_handle_all_missing_values"/>
-    <testcase time="0.889" classname="ael02" name="ael02_can_handle_all_missing_values"/>
-    <testcase time="0.0499999999999998" classname="ael02" name="ael02_functions_work_as_expected"/>
-    <testcase time="0.00100000000000033" classname="ael02" name="ael02_functions_work_as_expected"/>
-    <testcase time="0.863" classname="ael02" name="ael02_functions_work_as_expected"/>
+  <testsuite name="ael02" timestamp="2024-10-25T01:41:35Z" hostname="7060ca77dc1c" tests="9" skipped="0" failures="0" errors="0" time="2.687">
+    <testcase time="0.0649999999999999" classname="ael02" name="ael02_works_with_adae_dataset"/>
+    <testcase time="0.00100000000000033" classname="ael02" name="ael02_works_with_adae_dataset"/>
+    <testcase time="0.822" classname="ael02" name="ael02_works_with_adae_dataset"/>
+    <testcase time="0.0489999999999999" classname="ael02" name="ael02_can_handle_all_missing_values"/>
+    <testcase time="0.00100000000000033" classname="ael02" name="ael02_can_handle_all_missing_values"/>
+    <testcase time="0.87" classname="ael02" name="ael02_can_handle_all_missing_values"/>
+    <testcase time="0.048" classname="ael02" name="ael02_functions_work_as_expected"/>
+    <testcase time="0.000999999999999446" classname="ael02" name="ael02_functions_work_as_expected"/>
+    <testcase time="0.83" classname="ael02" name="ael02_functions_work_as_expected"/>
   </testsuite>
-  <testsuite name="ael03" timestamp="2024-10-11T12:37:48Z" hostname="4a559c0cdd0e" tests="9" skipped="0" failures="0" errors="0" time="2.88">
-    <testcase time="0.0680000000000005" classname="ael03" name="ael03_works_with_adae_dataset"/>
-    <testcase time="0.000999999999999446" classname="ael03" name="ael03_works_with_adae_dataset"/>
-    <testcase time="0.893" classname="ael03" name="ael03_works_with_adae_dataset"/>
-    <testcase time="0.0750000000000002" classname="ael03" name="ael03_can_handle_all_missing_values"/>
-    <testcase time="0.00100000000000033" classname="ael03" name="ael03_can_handle_all_missing_values"/>
-    <testcase time="0.912" classname="ael03" name="ael03_can_handle_all_missing_values"/>
-    <testcase time="0.0510000000000002" classname="ael03" name="ael03_functions_work_as_expected"/>
+  <testsuite name="ael03" timestamp="2024-10-25T01:41:37Z" hostname="7060ca77dc1c" tests="9" skipped="0" failures="0" errors="0" time="2.757">
+    <testcase time="0.0670000000000002" classname="ael03" name="ael03_works_with_adae_dataset"/>
+    <testcase time="0.00100000000000033" classname="ael03" name="ael03_works_with_adae_dataset"/>
+    <testcase time="0.849" classname="ael03" name="ael03_works_with_adae_dataset"/>
+    <testcase time="0.0569999999999995" classname="ael03" name="ael03_can_handle_all_missing_values"/>
+    <testcase time="0.00199999999999978" classname="ael03" name="ael03_can_handle_all_missing_values"/>
+    <testcase time="0.881" classname="ael03" name="ael03_can_handle_all_missing_values"/>
+    <testcase time="0.0490000000000004" classname="ael03" name="ael03_functions_work_as_expected"/>
     <testcase time="0.000999999999999446" classname="ael03" name="ael03_functions_work_as_expected"/>
-    <testcase time="0.877999999999998" classname="ael03" name="ael03_functions_work_as_expected"/>
+    <testcase time="0.85" classname="ael03" name="ael03_functions_work_as_expected"/>
   </testsuite>
-  <testsuite name="aet01" timestamp="2024-10-11T12:37:51Z" hostname="4a559c0cdd0e" tests="13" skipped="0" failures="0" errors="0" time="3.464">
-    <testcase time="0.426" classname="aet01" name="aet01_can_handle_all_NA_values"/>
-    <testcase time="0.281000000000001" classname="aet01" name="aet01_can_handle_all_NA_values"/>
-    <testcase time="0.295999999999999" classname="aet01" name="aet01_can_handle_all_NA_values"/>
-    <testcase time="0.228000000000002" classname="aet01" name="aet01_can_handle_all_NA_values"/>
-    <testcase time="0.276" classname="aet01" name="aet01_can_handle_some_NA_values"/>
-    <testcase time="0.280999999999999" classname="aet01" name="aet01_can_handle_some_NA_values"/>
-    <testcase time="0.219000000000001" classname="aet01" name="aet01_can_use_custom_anl_vars"/>
-    <testcase time="0.350999999999999" classname="aet01" name="aet01_can_use_custom_anl_vars"/>
-    <testcase time="0.0600000000000005" classname="aet01" name="aet01_fails_on_incomplete_data_input"/>
-    <testcase time="0.291" classname="aet01" name="aet01_can_use_custom_medconcept_var"/>
-    <testcase time="0.289999999999999" classname="aet01" name="aet01_can_use_custom_medconcept_var"/>
-    <testcase time="0.192" classname="aet01" name="aet01_can_conditionally_show_the_number_of_withdrawal"/>
-    <testcase time="0.273" classname="aet01" name="aet01_can_conditionally_show_the_number_of_withdrawal"/>
+  <testsuite name="aet01" timestamp="2024-10-25T01:41:40Z" hostname="7060ca77dc1c" tests="13" skipped="0" failures="0" errors="0" time="3.295">
+    <testcase time="0.417000000000002" classname="aet01" name="aet01_can_handle_all_NA_values"/>
+    <testcase time="0.273999999999999" classname="aet01" name="aet01_can_handle_all_NA_values"/>
+    <testcase time="0.282" classname="aet01" name="aet01_can_handle_all_NA_values"/>
+    <testcase time="0.218" classname="aet01" name="aet01_can_handle_all_NA_values"/>
+    <testcase time="0.260999999999999" classname="aet01" name="aet01_can_handle_some_NA_values"/>
+    <testcase time="0.269" classname="aet01" name="aet01_can_handle_some_NA_values"/>
+    <testcase time="0.207000000000001" classname="aet01" name="aet01_can_use_custom_anl_vars"/>
+    <testcase time="0.334" classname="aet01" name="aet01_can_use_custom_anl_vars"/>
+    <testcase time="0.0579999999999998" classname="aet01" name="aet01_fails_on_incomplete_data_input"/>
+    <testcase time="0.284000000000001" classname="aet01" name="aet01_can_use_custom_medconcept_var"/>
+    <testcase time="0.276999999999999" classname="aet01" name="aet01_can_use_custom_medconcept_var"/>
+    <testcase time="0.183" classname="aet01" name="aet01_can_conditionally_show_the_number_of_withdrawal"/>
+    <testcase time="0.231" classname="aet01" name="aet01_can_conditionally_show_the_number_of_withdrawal"/>
   </testsuite>
-  <testsuite name="aet01_aesi" timestamp="2024-10-11T12:37:55Z" hostname="4a559c0cdd0e" tests="9" skipped="0" failures="0" errors="0" time="2.072">
-    <testcase time="0.225" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
-    <testcase time="0.256" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
-    <testcase time="0.194000000000001" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
-    <testcase time="0.214" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
-    <testcase time="0.203999999999999" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
-    <testcase time="0.257000000000001" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
-    <testcase time="0.276999999999999" classname="aet01_aesi" name="aet01_aesi_works_with_ALL_argument"/>
-    <testcase time="0.391999999999999" classname="aet01_aesi" name="aet01_aesi_works_with_ALL_argument"/>
-    <testcase time="0.0530000000000008" classname="aet01_aesi" name="aet01_aesi_check_fails_on_incomplete_data_input"/>
+  <testsuite name="aet01_aesi" timestamp="2024-10-25T01:41:43Z" hostname="7060ca77dc1c" tests="9" skipped="0" failures="0" errors="0" time="1.977">
+    <testcase time="0.197000000000001" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
+    <testcase time="0.247999999999999" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
+    <testcase time="0.190000000000001" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
+    <testcase time="0.205" classname="aet01_aesi" name="aet01_aesi_can_handle_all_NA_values"/>
+    <testcase time="0.189" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
+    <testcase time="0.245999999999999" classname="aet01_aesi" name="aet01_aesi_can_handle_some_NA_values"/>
+    <testcase time="0.270000000000001" classname="aet01_aesi" name="aet01_aesi_works_with_ALL_argument"/>
+    <testcase time="0.382" classname="aet01_aesi" name="aet01_aesi_works_with_ALL_argument"/>
+    <testcase time="0.0500000000000007" classname="aet01_aesi" name="aet01_aesi_check_fails_on_incomplete_data_input"/>
   </testsuite>
-  <testsuite name="aet02" timestamp="2024-10-11T12:37:57Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="2.468">
-    <testcase time="0.0579999999999998" classname="aet02" name="aet02_fails_on_incomplete_data_input"/>
-    <testcase time="0.122999999999999" classname="aet02" name="aet02_handle_empty_data_input"/>
-    <testcase time="1.509" classname="aet02" name="aet02_can_have_different_levels_of_row_split"/>
-    <testcase time="0.777999999999999" classname="aet02" name="aet02_can_have_different_levels_of_row_split"/>
+  <testsuite name="aet02" timestamp="2024-10-25T01:41:45Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="2.394">
+    <testcase time="0.0569999999999986" classname="aet02" name="aet02_fails_on_incomplete_data_input"/>
+    <testcase time="0.122" classname="aet02" name="aet02_handle_empty_data_input"/>
+    <testcase time="1.478" classname="aet02" name="aet02_can_have_different_levels_of_row_split"/>
+    <testcase time="0.736999999999998" classname="aet02" name="aet02_can_have_different_levels_of_row_split"/>
   </testsuite>
-  <testsuite name="aet03" timestamp="2024-10-11T12:37:59Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="2.625">
-    <testcase time="0.278000000000002" classname="aet03" name="aet03_can_handle_NA_values"/>
+  <testsuite name="aet03" timestamp="2024-10-25T01:41:48Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="2.459">
     <testcase time="0.268000000000001" classname="aet03" name="aet03_can_handle_NA_values"/>
-    <testcase time="1.337" classname="aet03" name="aet03_can_handle_some_NA_values"/>
-    <testcase time="0.741999999999997" classname="aet03" name="aet03_can_handle_some_NA_values"/>
+    <testcase time="0.241" classname="aet03" name="aet03_can_handle_NA_values"/>
+    <testcase time="1.247" classname="aet03" name="aet03_can_handle_some_NA_values"/>
+    <testcase time="0.702999999999999" classname="aet03" name="aet03_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="aet04" timestamp="2024-10-11T12:38:02Z" hostname="4a559c0cdd0e" tests="12" skipped="0" failures="0" errors="0" time="11.649">
-    <testcase time="0.449000000000002" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="0.425999999999998" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="0.421000000000003" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="0.00399999999999778" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="0.420999999999999" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="0.414999999999999" classname="aet04" name="aet04_can_handle_NA_values"/>
-    <testcase time="2.329" classname="aet04" name="aet04_can_handle_some_NA_values"/>
-    <testcase time="1.162" classname="aet04" name="aet04_can_handle_some_NA_values"/>
-    <testcase time="2.364" classname="aet04" name="aet04_can_handle_some_NA_values"/>
-    <testcase time="0.00500000000000256" classname="aet04" name="aet04_can_handle_some_NA_values"/>
-    <testcase time="2.4" classname="aet04" name="aet04_can_handle_some_NA_values"/>
-    <testcase time="1.253" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+  <testsuite name="aet04" timestamp="2024-10-25T01:41:50Z" hostname="7060ca77dc1c" tests="12" skipped="0" failures="0" errors="0" time="10.961">
+    <testcase time="0.413" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.401" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.390000000000001" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.00400000000000134" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.391999999999999" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="0.408999999999999" classname="aet04" name="aet04_can_handle_NA_values"/>
+    <testcase time="2.19" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="1.116" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="2.205" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="0.00499999999999901" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="2.238" classname="aet04" name="aet04_can_handle_some_NA_values"/>
+    <testcase time="1.198" classname="aet04" name="aet04_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="aet05" timestamp="2024-10-11T12:38:14Z" hostname="4a559c0cdd0e" tests="6" skipped="0" failures="0" errors="0" time="1.26">
-    <testcase time="0.148" classname="aet05" name="aet05_can_handle_NA_values"/>
-    <testcase time="0.256" classname="aet05" name="aet05_can_handle_NA_values"/>
-    <testcase time="0.146000000000001" classname="aet05" name="aet05_can_handle_some_NA_values"/>
-    <testcase time="0.288999999999998" classname="aet05" name="aet05_can_handle_some_NA_values"/>
-    <testcase time="0.127000000000002" classname="aet05" name="aet05_can_handle_some_NA_values"/>
-    <testcase time="0.293999999999997" classname="aet05" name="aet05_can_handle_some_NA_values"/>
+  <testsuite name="aet05" timestamp="2024-10-25T01:42:01Z" hostname="7060ca77dc1c" tests="6" skipped="0" failures="0" errors="0" time="1.181">
+    <testcase time="0.129000000000001" classname="aet05" name="aet05_can_handle_NA_values"/>
+    <testcase time="0.25" classname="aet05" name="aet05_can_handle_NA_values"/>
+    <testcase time="0.132999999999999" classname="aet05" name="aet05_can_handle_some_NA_values"/>
+    <testcase time="0.268999999999998" classname="aet05" name="aet05_can_handle_some_NA_values"/>
+    <testcase time="0.135999999999999" classname="aet05" name="aet05_can_handle_some_NA_values"/>
+    <testcase time="0.264000000000003" classname="aet05" name="aet05_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="aet05_all" timestamp="2024-10-11T12:38:15Z" hostname="4a559c0cdd0e" tests="6" skipped="0" failures="0" errors="0" time="1.272">
-    <testcase time="0.155000000000001" classname="aet05_all" name="aet05_all_can_handle_NA_values"/>
-    <testcase time="0.253" classname="aet05_all" name="aet05_all_can_handle_NA_values"/>
-    <testcase time="0.149999999999999" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
-    <testcase time="0.280000000000001" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
-    <testcase time="0.143999999999998" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
-    <testcase time="0.289999999999999" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
+  <testsuite name="aet05_all" timestamp="2024-10-25T01:42:02Z" hostname="7060ca77dc1c" tests="6" skipped="0" failures="0" errors="0" time="1.224">
+    <testcase time="0.143999999999998" classname="aet05_all" name="aet05_all_can_handle_NA_values"/>
+    <testcase time="0.254999999999999" classname="aet05_all" name="aet05_all_can_handle_NA_values"/>
+    <testcase time="0.142000000000003" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
+    <testcase time="0.279" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
+    <testcase time="0.126999999999999" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
+    <testcase time="0.276999999999997" classname="aet05_all" name="aet05_all_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="aet10" timestamp="2024-10-11T12:38:16Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="0.537">
-    <testcase time="0.0740000000000052" classname="aet10" name="aet10_can_handle_NA_values"/>
-    <testcase time="0.128999999999998" classname="aet10" name="aet10_can_handle_NA_values"/>
-    <testcase time="0.097999999999999" classname="aet10" name="aet10_can_handle_some_NA_values"/>
-    <testcase time="0.236000000000004" classname="aet10" name="aet10_can_handle_some_NA_values"/>
+  <testsuite name="aet10" timestamp="2024-10-25T01:42:04Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="0.521">
+    <testcase time="0.0720000000000027" classname="aet10" name="aet10_can_handle_NA_values"/>
+    <testcase time="0.122" classname="aet10" name="aet10_can_handle_NA_values"/>
+    <testcase time="0.106000000000002" classname="aet10" name="aet10_can_handle_some_NA_values"/>
+    <testcase time="0.220999999999997" classname="aet10" name="aet10_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="assertions" timestamp="2024-10-11T12:38:17Z" hostname="4a559c0cdd0e" tests="33" skipped="0" failures="0" errors="0" time="0.186">
-    <testcase time="0.00799999999999557" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
-    <testcase time="0.0120000000000005" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
-    <testcase time="0.007000000000005" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
-    <testcase time="0.00199999999999534" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
-    <testcase time="0.007000000000005" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
+  <testsuite name="assertions" timestamp="2024-10-25T01:42:04Z" hostname="7060ca77dc1c" tests="33" skipped="0" failures="0" errors="0" time="0.175">
+    <testcase time="0.0069999999999979" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
+    <testcase time="0.00499999999999545" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
+    <testcase time="0.00399999999999778" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
+    <testcase time="0.00200000000000244" classname="assertions" name="assert_valid_var.character_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
+    <testcase time="0.00399999999999778" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
     <testcase time="0.00499999999999545" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.logical_works_as_expected"/>
+    <testcase time="0.00100000000000477" classname="assertions" name="assert_valid_var.factor_works_as_expected"/>
     <testcase time="0.00499999999999545" classname="assertions" name="assert_valid_var.logical_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.logical_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="assertions" name="assert_valid_var.logical_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
+    <testcase time="0.00400000000000489" classname="assertions" name="assert_valid_var.logical_works_as_expected"/>
+    <testcase time="0.00499999999999545" classname="assertions" name="assert_valid_var.logical_works_as_expected"/>
+    <testcase time="0.00100000000000477" classname="assertions" name="assert_valid_var.logical_works_as_expected"/>
     <testcase time="0.00499999999999545" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
-    <testcase time="0.00400000000000489" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
-    <testcase time="0.00199999999999534" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
+    <testcase time="0.00399999999999778" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
     <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
     <testcase time="0.000999999999997669" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
-    <testcase time="0.0190000000000055" classname="assertions" name="assert_valid_var.POSIXct_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
+    <testcase time="0.00200000000000244" classname="assertions" name="assert_valid_var.numeric_works_as_expected"/>
+    <testcase time="0.0169999999999959" classname="assertions" name="assert_valid_var.POSIXct_works_as_expected"/>
     <testcase time="0.0180000000000007" classname="assertions" name="assert_valid_var.POSIXct_works_as_expected"/>
-    <testcase time="0.00499999999999545" classname="assertions" name="assert_valid_variable_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_variable_works_as_expected"/>
     <testcase time="0.00200000000000244" classname="assertions" name="assert_valid_variable_works_as_expected"/>
-    <testcase time="0.0069999999999979" classname="assertions" name="assert_valid_variable_works_as_expected"/>
+    <testcase time="0.00599999999999312" classname="assertions" name="assert_valid_variable_works_as_expected"/>
     <testcase time="0.00200000000000244" classname="assertions" name="assert_valid_variable_works_as_expected"/>
-    <testcase time="0.0069999999999979" classname="assertions" name="assert_valid_variable_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="assertions" name="assert_valid_variable_works_as_expected"/>
     <testcase time="0.00200000000000244" classname="assertions" name="assert_valid_variable_works_as_expected"/>
     <testcase time="0.00499999999999545" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_character"/>
     <testcase time="0.00600000000000023" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_character"/>
-    <testcase time="0.00500000000000256" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_factor"/>
-    <testcase time="0.00600000000000023" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_factor"/>
-    <testcase time="0.00600000000000023" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_factor"/>
+    <testcase time="0.0110000000000028" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_factor"/>
+    <testcase time="0.0069999999999979" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_factor"/>
+    <testcase time="0.00800000000000267" classname="assertions" name="assert_valid_var_pair_works_as_expected_with_factor"/>
   </testsuite>
-  <testsuite name="cfbt01" timestamp="2024-10-11T12:38:17Z" hostname="4a559c0cdd0e" tests="3" skipped="0" failures="0" errors="0" time="9.148">
-    <testcase time="6.831" classname="cfbt01" name="cfbt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.748999999999995" classname="cfbt01" name="cfbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
-    <testcase time="1.568" classname="cfbt01" name="cfbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+  <testsuite name="cfbt01" timestamp="2024-10-25T01:42:04Z" hostname="7060ca77dc1c" tests="3" skipped="0" failures="0" errors="0" time="8.585">
+    <testcase time="6.39" classname="cfbt01" name="cfbt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.710000000000001" classname="cfbt01" name="cfbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+    <testcase time="1.485" classname="cfbt01" name="cfbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
   </testsuite>
-  <testsuite name="checks" timestamp="2024-10-11T12:38:26Z" hostname="4a559c0cdd0e" tests="8" skipped="0" failures="0" errors="0" time="0.028">
+  <testsuite name="checks" timestamp="2024-10-25T01:42:13Z" hostname="7060ca77dc1c" tests="8" skipped="0" failures="0" errors="0" time="0.027">
     <testcase time="0.00900000000000034" classname="checks" name="check_all_colnames_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00100000000000477" classname="checks" name="check_all_colnames_works_as_expected"/>
+    <testcase time="0.000999999999997669" classname="checks" name="check_all_colnames_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="checks" name="check_all_colnames_works_as_expected"/>
-    <testcase time="0.00499999999999545" classname="checks" name="check_one_colnames_works_as_expected"/>
-    <testcase time="0.00300000000000011" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00500000000000256" classname="checks" name="check_one_colnames_works_as_expected"/>
+    <testcase time="0.00199999999999534" classname="checks" name="check_one_colnames_works_as_expected"/>
     <testcase time="0.00200000000000244" classname="checks" name="check_one_colnames_works_as_expected"/>
     <testcase time="0.00200000000000244" classname="checks" name="check_one_colnames_works_as_expected"/>
   </testsuite>
-  <testsuite name="chevron_tlg-class" timestamp="2024-10-11T12:38:26Z" hostname="4a559c0cdd0e" tests="27" skipped="0" failures="0" errors="0" time="0.088">
-    <testcase time="0.00900000000000034" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00199999999999534" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+  <testsuite name="chevron_tlg-class" timestamp="2024-10-25T01:42:13Z" hostname="7060ca77dc1c" tests="27" skipped="0" failures="0" errors="0" time="0.093">
+    <testcase time="0.00799999999999557" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_t_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00499999999999545" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00100000000000477" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_t_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
+    <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
     <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_l_object_can_be_constructed_with_default_values"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
+    <testcase time="0.00199999999999534" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
     <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00300000000000011" classname="chevron_tlg_class" name="chevron_g_object_can_be_constructed_with_custom_values"/>
-    <testcase time="0.00500000000000256" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00999999999999801" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
+    <testcase time="0.00200000000000244" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000477" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00199999999999534" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00100000000000477" classname="chevron_tlg_class" name="chevron_g_constructor_returns_an_error_when_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_class" name="chevron_simple_works_correctly"/>
+    <testcase time="0.00800000000000267" classname="chevron_tlg_class" name="chevron_simple_works_correctly"/>
     <testcase time="0.00199999999999534" classname="chevron_tlg_class" name="chevron_simple_works_correctly"/>
     <testcase time="0.0100000000000051" classname="chevron_tlg_class" name="chevron_simple_errors_if_contains_return"/>
   </testsuite>
-  <testsuite name="chevron_tlg-methods" timestamp="2024-10-11T12:38:26Z" hostname="4a559c0cdd0e" tests="45" skipped="1" failures="0" errors="0" time="10.09">
-    <testcase time="1.077" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object"/>
-    <testcase time="0.598999999999997" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object"/>
-    <testcase time="0.594999999999999" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object_when_auto_pre_FALSE"/>
-    <testcase time="0.333000000000006" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed"/>
-    <testcase time="0.274000000000001" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed"/>
-    <testcase time="0.433999999999997" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed_if_the_user_argument_is_complicated"/>
-    <testcase time="0.365000000000002" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed_if_the_user_argument_is_complicated"/>
-    <testcase time="0.425999999999995" classname="chevron_tlg_methods" name="run_uses_the_argument_passed_through_the_ellipsis_in_priority"/>
-    <testcase time="0.370000000000005" classname="chevron_tlg_methods" name="run_uses_the_argument_passed_through_the_ellipsis_in_priority"/>
-    <testcase time="0.320999999999998" classname="chevron_tlg_methods" name="run_works_as_expected_with_partial_match_argument"/>
-    <testcase time="0.271000000000001" classname="chevron_tlg_methods" name="run_works_as_expected_with_partial_match_argument"/>
-    <testcase time="0.458999999999996" classname="chevron_tlg_methods" name="run_displays_the_symbols_when_available"/>
-    <testcase time="0.396000000000001" classname="chevron_tlg_methods" name="run_displays_the_symbols_when_available"/>
-    <testcase time="0.338000000000001" classname="chevron_tlg_methods" name="run_print_internal_functions_when_unwrap_is_TRUE"/>
-    <testcase time="1.231" classname="chevron_tlg_methods" name="run_print_internal_functions_when_unwrap_is_TRUE_and_standard_chevron_tlg_has_no_layout"/>
-    <testcase time="0.0309999999999988" classname="chevron_tlg_methods" name="run_print_internal_functions_when_unwrap_is_TRUE_and_the_chevron_tlg_object_is_customized"/>
-    <testcase time="0.0300000000000011" classname="chevron_tlg_methods" name="run_print_main_and_postprocessing_functions_when_unwrap_is_TRUE_and_auto_pre_is_FALSE"/>
-    <testcase time="0.00500000000000256" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
-    <testcase time="0.00500000000000256" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+  <testsuite name="chevron_tlg-methods" timestamp="2024-10-25T01:42:13Z" hostname="7060ca77dc1c" tests="45" skipped="1" failures="0" errors="0" time="9.378">
+    <testcase time="1.014" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object"/>
+    <testcase time="0.561999999999998" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object"/>
+    <testcase time="0.565000000000005" classname="chevron_tlg_methods" name="run_works_as_expected_for_chevron_t_object_when_auto_pre_FALSE"/>
+    <testcase time="0.295000000000002" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed"/>
+    <testcase time="0.280999999999999" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed"/>
+    <testcase time="0.398000000000003" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed_if_the_user_argument_is_complicated"/>
+    <testcase time="0.350999999999999" classname="chevron_tlg_methods" name="run_works_as_expected_with_argument_printed_if_the_user_argument_is_complicated"/>
+    <testcase time="0.403999999999996" classname="chevron_tlg_methods" name="run_uses_the_argument_passed_through_the_ellipsis_in_priority"/>
+    <testcase time="0.378" classname="chevron_tlg_methods" name="run_uses_the_argument_passed_through_the_ellipsis_in_priority"/>
+    <testcase time="0.300000000000004" classname="chevron_tlg_methods" name="run_works_as_expected_with_partial_match_argument"/>
+    <testcase time="0.267999999999994" classname="chevron_tlg_methods" name="run_works_as_expected_with_partial_match_argument"/>
+    <testcase time="0.397000000000006" classname="chevron_tlg_methods" name="run_displays_the_symbols_when_available"/>
+    <testcase time="0.350999999999999" classname="chevron_tlg_methods" name="run_displays_the_symbols_when_available"/>
+    <testcase time="0.307000000000002" classname="chevron_tlg_methods" name="run_print_internal_functions_when_unwrap_is_TRUE"/>
+    <testcase time="1.139" classname="chevron_tlg_methods" name="run_print_internal_functions_when_unwrap_is_TRUE_and_standard_chevron_tlg_has_no_layout"/>
+    <testcase time="0.0300000000000011" classname="chevron_tlg_methods" name="run_print_internal_functions_when_unwrap_is_TRUE_and_the_chevron_tlg_object_is_customized"/>
+    <testcase time="0.027000000000001" classname="chevron_tlg_methods" name="run_print_main_and_postprocessing_functions_when_unwrap_is_TRUE_and_auto_pre_is_FALSE"/>
+    <testcase time="0.00499999999999545" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00100000000000477" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="args_ls_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
+    <testcase time="0.00199999999999534" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
     <testcase time="0.00100000000000477" classname="chevron_tlg_methods" name="args_ls_works_as_expected_when_simplify_is_TRUE"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
     <testcase time="0.00200000000000244" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
+    <testcase time="0.00300000000000011" classname="chevron_tlg_methods" name="args_ls_works_as_expected_with_custom_chevron_tlg_object"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="main_works_as_expected"/>
-    <testcase time="0.0069999999999979" classname="chevron_tlg_methods" name="main_setter_works_as_expected"/>
-    <testcase time="0.0110000000000028" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
+    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="main_setter_works_as_expected"/>
+    <testcase time="0.00999999999999801" classname="chevron_tlg_methods" name="main_setter_throw_an_error_as_expected"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="preprocess_works_as_expected"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="preprocess_setter_works_as_expected"/>
-    <testcase time="0.00999999999999801" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
-    <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="postprocess_works_as_expected"/>
+    <testcase time="0.00900000000000034" classname="chevron_tlg_methods" name="preprocess_sends_an_error_as_expected"/>
+    <testcase time="0.00500000000000256" classname="chevron_tlg_methods" name="postprocess_works_as_expected"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="postprocess_setter_works_as_expected"/>
-    <testcase time="0.0109999999999957" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
-    <testcase time="0.00900000000000034" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_interactive_mode">
+    <testcase time="0.00999999999999801" classname="chevron_tlg_methods" name="postprocess_sends_an_error_as_expected"/>
+    <testcase time="0.00400000000000489" classname="chevron_tlg_methods" name="script_funs_works_as_expected_in_interactive_mode">
       <skipped message="Reason: !interactive() is TRUE ('test-chevron_tlg-methods.R:241:3')"/>
     </testcase>
-    <testcase time="0.0220000000000056" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
-    <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
-    <testcase time="1.155" classname="chevron_tlg_methods" name="script_funs_generates_a_valid_script"/>
-    <testcase time="1.156" classname="chevron_tlg_methods" name="script_funs_generates_a_valid_script"/>
+    <testcase time="0.0139999999999958" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="0.00100000000000477" classname="chevron_tlg_methods" name="script_funs_works_as_expected"/>
+    <testcase time="1.075" classname="chevron_tlg_methods" name="script_funs_generates_a_valid_script"/>
+    <testcase time="1.048" classname="chevron_tlg_methods" name="script_funs_generates_a_valid_script"/>
     <testcase time="0.00600000000000023" classname="chevron_tlg_methods" name="script_funs_works_for_simple_template"/>
     <testcase time="0.000999999999997669" classname="chevron_tlg_methods" name="script_funs_works_for_simple_template"/>
-    <testcase time="0.0309999999999988" classname="chevron_tlg_methods" name="print_list_works"/>
-    <testcase time="0.0660000000000025" classname="chevron_tlg_methods" name="print_list_works_for_empty_list"/>
+    <testcase time="0.0390000000000015" classname="chevron_tlg_methods" name="print_list_works"/>
+    <testcase time="0.0249999999999986" classname="chevron_tlg_methods" name="print_list_works_for_empty_list"/>
   </testsuite>
-  <testsuite name="cml02a_gl" timestamp="2024-10-11T12:38:36Z" hostname="4a559c0cdd0e" tests="6" skipped="0" failures="0" errors="0" time="0.556">
-    <testcase time="0.0330000000000013" classname="cml02a_gl" name="cml02a_gl_works_with_adcm_dataset"/>
-    <testcase time="0.168999999999997" classname="cml02a_gl" name="cml02a_gl_works_with_adcm_dataset"/>
-    <testcase time="0.0250000000000057" classname="cml02a_gl" name="cml02a_gl_works_with_missing_data"/>
-    <testcase time="0.128999999999998" classname="cml02a_gl" name="cml02a_gl_works_with_missing_data"/>
-    <testcase time="0.0289999999999964" classname="cml02a_gl" name="cml02a_gl_functions_work_as_expected"/>
-    <testcase time="0.170999999999999" classname="cml02a_gl" name="cml02a_gl_functions_work_as_expected"/>
+  <testsuite name="cml02a_gl" timestamp="2024-10-25T01:42:22Z" hostname="7060ca77dc1c" tests="6" skipped="0" failures="0" errors="0" time="0.542">
+    <testcase time="0.027000000000001" classname="cml02a_gl" name="cml02a_gl_works_with_adcm_dataset"/>
+    <testcase time="0.18" classname="cml02a_gl" name="cml02a_gl_works_with_adcm_dataset"/>
+    <testcase time="0.0240000000000009" classname="cml02a_gl" name="cml02a_gl_works_with_missing_data"/>
+    <testcase time="0.127000000000002" classname="cml02a_gl" name="cml02a_gl_works_with_missing_data"/>
+    <testcase time="0.0229999999999961" classname="cml02a_gl" name="cml02a_gl_functions_work_as_expected"/>
+    <testcase time="0.161000000000001" classname="cml02a_gl" name="cml02a_gl_functions_work_as_expected"/>
   </testsuite>
-  <testsuite name="cmt01a" timestamp="2024-10-11T12:38:37Z" hostname="4a559c0cdd0e" tests="6" skipped="0" failures="0" errors="0" time="4.127">
-    <testcase time="1.206" classname="cmt01a" name="cmt01a_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="1.125" classname="cmt01a" name="cmt01a_functions_with_custom_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.158999999999999" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
-    <testcase time="0.185000000000002" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
-    <testcase time="0.805" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
-    <testcase time="0.646999999999998" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
+  <testsuite name="cmt01a" timestamp="2024-10-25T01:42:23Z" hostname="7060ca77dc1c" tests="6" skipped="0" failures="0" errors="0" time="3.837">
+    <testcase time="1.116" classname="cmt01a" name="cmt01a_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="1.062" classname="cmt01a" name="cmt01a_functions_with_custom_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.151000000000003" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
+    <testcase time="0.170999999999999" classname="cmt01a" name="cmt01a_can_handle_all_NA_values"/>
+    <testcase time="0.780999999999999" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
+    <testcase time="0.555999999999997" classname="cmt01a" name="cmt01a_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="cmt02_pt" timestamp="2024-10-11T12:38:41Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="0.616">
-    <testcase time="0.106000000000002" classname="cmt02_pt" name="cmt02_pt_can_handle_all_NA_values"/>
-    <testcase time="0.131999999999998" classname="cmt02_pt" name="cmt02_pt_can_handle_all_NA_values"/>
-    <testcase time="0.143000000000001" classname="cmt02_pt" name="cmt02_pt_can_handle_some_NA_values"/>
-    <testcase time="0.234999999999999" classname="cmt02_pt" name="cmt02_pt_can_handle_some_NA_values"/>
+  <testsuite name="cmt02_pt" timestamp="2024-10-25T01:42:27Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="0.584">
+    <testcase time="0.0990000000000038" classname="cmt02_pt" name="cmt02_pt_can_handle_all_NA_values"/>
+    <testcase time="0.130000000000003" classname="cmt02_pt" name="cmt02_pt_can_handle_all_NA_values"/>
+    <testcase time="0.134" classname="cmt02_pt" name="cmt02_pt_can_handle_some_NA_values"/>
+    <testcase time="0.220999999999997" classname="cmt02_pt" name="cmt02_pt_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="coxt01" timestamp="2024-10-11T12:38:41Z" hostname="4a559c0cdd0e" tests="9" skipped="0" failures="0" errors="0" time="1.86">
-    <testcase time="0.383000000000003" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.192" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.317999999999998" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.186999999999998" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.187000000000005" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.179000000000002" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.217999999999996" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.181000000000004" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
-    <testcase time="0.0150000000000006" classname="coxt01" name="coxt01_fails_on_incomlete_data"/>
+  <testsuite name="coxt01" timestamp="2024-10-25T01:42:27Z" hostname="7060ca77dc1c" tests="9" skipped="0" failures="0" errors="0" time="1.781">
+    <testcase time="0.359000000000002" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.183" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.299999999999997" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.182000000000002" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.205999999999996" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.171000000000006" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.195999999999998" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.170000000000002" classname="coxt01" name="coxt01_can_handle_some_NA_values"/>
+    <testcase time="0.0139999999999958" classname="coxt01" name="coxt01_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="coxt02" timestamp="2024-10-11T12:38:43Z" hostname="4a559c0cdd0e" tests="9" skipped="0" failures="0" errors="0" time="2.703">
-    <testcase time="0.619999999999997" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.253" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.601999999999997" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.238999999999997" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.280999999999999" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.201000000000001" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.295000000000002" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.191000000000003" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
-    <testcase time="0.0210000000000008" classname="coxt02" name="coxt02_fails_on_incomlete_data"/>
+  <testsuite name="coxt02" timestamp="2024-10-25T01:42:29Z" hostname="7060ca77dc1c" tests="9" skipped="0" failures="0" errors="0" time="2.213">
+    <testcase time="0.408999999999999" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.222000000000001" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.451999999999998" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.233000000000004" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.247999999999998" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.185000000000002" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.265999999999998" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.184000000000005" classname="coxt02" name="coxt02_can_handle_some_NA_values"/>
+    <testcase time="0.0139999999999958" classname="coxt02" name="coxt02_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="default_tlg" timestamp="2024-10-11T12:38:46Z" hostname="4a559c0cdd0e" tests="15" skipped="0" failures="0" errors="0" time="11.835">
-    <testcase time="0.156999999999996" classname="default_tlg" name="ael01_nollt_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.557000000000002" classname="default_tlg" name="aet01_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.489000000000004" classname="default_tlg" name="aet01_aesi_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="1.002" classname="default_tlg" name="aet02_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="2.119" classname="default_tlg" name="aet03_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="3.23699999999999" classname="default_tlg" name="aet04_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.418999999999997" classname="default_tlg" name="aet05_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.429000000000002" classname="default_tlg" name="aet05_all_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.320999999999998" classname="default_tlg" name="aet10_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.385000000000005" classname="default_tlg" name="cmt02_pt_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.548000000000002" classname="default_tlg" name="coxt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.829999999999998" classname="default_tlg" name="coxt02_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.634999999999991" classname="default_tlg" name="dmt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.420000000000002" classname="default_tlg" name="dst01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.287000000000006" classname="default_tlg" name="dtht01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+  <testsuite name="default_tlg" timestamp="2024-10-25T01:42:31Z" hostname="7060ca77dc1c" tests="15" skipped="0" failures="0" errors="0" time="11.375">
+    <testcase time="0.152000000000001" classname="default_tlg" name="ael01_nollt_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.533999999999999" classname="default_tlg" name="aet01_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.480000000000004" classname="default_tlg" name="aet01_aesi_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.955999999999996" classname="default_tlg" name="aet02_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="2.011" classname="default_tlg" name="aet03_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="3.105" classname="default_tlg" name="aet04_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.408000000000001" classname="default_tlg" name="aet05_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.427999999999997" classname="default_tlg" name="aet05_all_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.314999999999998" classname="default_tlg" name="aet10_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.368000000000009" classname="default_tlg" name="cmt02_pt_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.539000000000001" classname="default_tlg" name="coxt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.796999999999997" classname="default_tlg" name="coxt02_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.597999999999999" classname="default_tlg" name="dmt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.402999999999992" classname="default_tlg" name="dst01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.281000000000006" classname="default_tlg" name="dtht01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
   </testsuite>
-  <testsuite name="dmt01" timestamp="2024-10-11T12:38:58Z" hostname="4a559c0cdd0e" tests="19" skipped="0" failures="0" errors="0" time="4.636">
-    <testcase time="0.212000000000003" classname="dmt01" name="dmt01_can_handle_NA_values"/>
-    <testcase time="0.330999999999989" classname="dmt01" name="dmt01_can_handle_NA_values"/>
+  <testsuite name="dmt01" timestamp="2024-10-25T01:42:43Z" hostname="7060ca77dc1c" tests="19" skipped="0" failures="0" errors="0" time="4.514">
+    <testcase time="0.212999999999994" classname="dmt01" name="dmt01_can_handle_NA_values"/>
+    <testcase time="0.326000000000008" classname="dmt01" name="dmt01_can_handle_NA_values"/>
     <testcase time="0.206000000000003" classname="dmt01" name="dmt01_can_handle_numeric_NA_values"/>
-    <testcase time="0.418000000000006" classname="dmt01" name="dmt01_can_handle_numeric_NA_values"/>
-    <testcase time="0.0159999999999911" classname="dmt01" name="dmt01_returns_an_error_when_variables_are_of_the_wrong_type"/>
-    <testcase time="0.156000000000006" classname="dmt01" name="dmt01_works_as_expected_with_setting_default_precision"/>
-    <testcase time="0.332999999999998" classname="dmt01" name="dmt01_works_as_expected_with_setting_default_precision"/>
-    <testcase time="0.171000000000006" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings"/>
-    <testcase time="0.390000000000001" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings"/>
-    <testcase time="0.161999999999992" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision"/>
-    <testcase time="0.379000000000005" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision"/>
-    <testcase time="0.158999999999992" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision_and_default"/>
-    <testcase time="0.329000000000008" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision_and_default"/>
+    <testcase time="0.412999999999997" classname="dmt01" name="dmt01_can_handle_numeric_NA_values"/>
+    <testcase time="0.0150000000000006" classname="dmt01" name="dmt01_returns_an_error_when_variables_are_of_the_wrong_type"/>
+    <testcase time="0.155000000000001" classname="dmt01" name="dmt01_works_as_expected_with_setting_default_precision"/>
+    <testcase time="0.316999999999993" classname="dmt01" name="dmt01_works_as_expected_with_setting_default_precision"/>
+    <testcase time="0.163000000000011" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings"/>
+    <testcase time="0.384999999999991" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings"/>
+    <testcase time="0.162000000000006" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision"/>
+    <testcase time="0.376999999999995" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision"/>
+    <testcase time="0.156000000000006" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision_and_default"/>
+    <testcase time="0.325999999999993" classname="dmt01" name="dmt01_works_as_expected_with_auto_precision_settings_and_defined_precision_and_default"/>
     <testcase time="0.147999999999996" classname="dmt01" name="dmt01_works_as_expected_with_cutomized_stats_value"/>
-    <testcase time="0.495000000000005" classname="dmt01" name="dmt01_works_as_expected_with_cutomized_stats_value"/>
-    <testcase time="0.150999999999996" classname="dmt01" name="dmt01_works_as_expected_with_empty_list_as_stats_value"/>
-    <testcase time="0.308000000000007" classname="dmt01" name="dmt01_works_as_expected_with_empty_list_as_stats_value"/>
-    <testcase time="0.0809999999999889" classname="dmt01" name="dmt01_works_as_expected_with_only_one_summaryvars"/>
-    <testcase time="0.191000000000003" classname="dmt01" name="dmt01_works_as_expected_with_only_one_summaryvars"/>
+    <testcase time="0.461000000000013" classname="dmt01" name="dmt01_works_as_expected_with_cutomized_stats_value"/>
+    <testcase time="0.140999999999991" classname="dmt01" name="dmt01_works_as_expected_with_empty_list_as_stats_value"/>
+    <testcase time="0.293000000000006" classname="dmt01" name="dmt01_works_as_expected_with_empty_list_as_stats_value"/>
+    <testcase time="0.0799999999999983" classname="dmt01" name="dmt01_works_as_expected_with_only_one_summaryvars"/>
+    <testcase time="0.176999999999992" classname="dmt01" name="dmt01_works_as_expected_with_only_one_summaryvars"/>
   </testsuite>
-  <testsuite name="dst01" timestamp="2024-10-11T12:39:02Z" hostname="4a559c0cdd0e" tests="14" skipped="0" failures="0" errors="0" time="2.466">
-    <testcase time="0.146000000000001" classname="dst01" name="dst01_works_as_expected_when_all_data_are_NA"/>
-    <testcase time="0.0810000000000031" classname="dst01" name="dst01_works_as_expected_when_all_data_are_NA"/>
-    <testcase time="0.123000000000005" classname="dst01" name="dst01_can_handle_all_NA_values_in_DCSREAS"/>
-    <testcase time="0.140999999999991" classname="dst01" name="dst01_can_handle_all_NA_values_in_DCSREAS"/>
-    <testcase time="0.171000000000006" classname="dst01" name="dst01_can_handle_some_NA_values"/>
-    <testcase time="0.219999999999999" classname="dst01" name="dst01_can_handle_some_NA_values"/>
-    <testcase time="0.140000000000001" classname="dst01" name="dst01_can_handle_missing_levels_in_status_var"/>
-    <testcase time="0.0739999999999981" classname="dst01" name="dst01_can_handle_missing_levels_in_status_var"/>
+  <testsuite name="dst01" timestamp="2024-10-25T01:42:47Z" hostname="7060ca77dc1c" tests="14" skipped="0" failures="0" errors="0" time="2.477">
+    <testcase time="0.143000000000001" classname="dst01" name="dst01_works_as_expected_when_all_data_are_NA"/>
+    <testcase time="0.0669999999999931" classname="dst01" name="dst01_works_as_expected_when_all_data_are_NA"/>
+    <testcase time="0.117000000000004" classname="dst01" name="dst01_can_handle_all_NA_values_in_DCSREAS"/>
+    <testcase time="0.138999999999996" classname="dst01" name="dst01_can_handle_all_NA_values_in_DCSREAS"/>
+    <testcase time="0.158000000000001" classname="dst01" name="dst01_can_handle_some_NA_values"/>
+    <testcase time="0.210999999999999" classname="dst01" name="dst01_can_handle_some_NA_values"/>
+    <testcase time="0.13900000000001" classname="dst01" name="dst01_can_handle_missing_levels_in_status_var"/>
+    <testcase time="0.0690000000000026" classname="dst01" name="dst01_can_handle_missing_levels_in_status_var"/>
     <testcase time="0.179999999999993" classname="dst01" name="dst01_can_create_variants"/>
-    <testcase time="0.216000000000008" classname="dst01" name="dst01_can_create_variants"/>
-    <testcase time="0.212999999999994" classname="dst01" name="dst01_can_create_variants"/>
-    <testcase time="0.243000000000009" classname="dst01" name="dst01_can_create_variants"/>
-    <testcase time="0.233999999999995" classname="dst01" name="dst01_can_create_variants"/>
-    <testcase time="0.284000000000006" classname="dst01" name="dst01_can_create_variants"/>
+    <testcase time="0.233000000000004" classname="dst01" name="dst01_can_create_variants"/>
+    <testcase time="0.212000000000003" classname="dst01" name="dst01_can_create_variants"/>
+    <testcase time="0.292999999999992" classname="dst01" name="dst01_can_create_variants"/>
+    <testcase time="0.239999999999995" classname="dst01" name="dst01_can_create_variants"/>
+    <testcase time="0.27600000000001" classname="dst01" name="dst01_can_create_variants"/>
   </testsuite>
-  <testsuite name="dtht01" timestamp="2024-10-11T12:39:05Z" hostname="4a559c0cdd0e" tests="5" skipped="0" failures="0" errors="0" time="1.436">
-    <testcase time="0.106000000000009" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
-    <testcase time="0.165999999999997" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
-    <testcase time="0.221999999999994" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
-    <testcase time="0.358000000000004" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
-    <testcase time="0.583999999999989" classname="dtht01" name="dtht01_can_be_parametrize_as_expected"/>
+  <testsuite name="dtht01" timestamp="2024-10-25T01:42:50Z" hostname="7060ca77dc1c" tests="5" skipped="0" failures="0" errors="0" time="1.415">
+    <testcase time="0.119" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
+    <testcase time="0.167999999999992" classname="dtht01" name="dtht01_can_handle_all_NA_values"/>
+    <testcase time="0.224000000000004" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
+    <testcase time="0.337999999999994" classname="dtht01" name="dtht01_can_handle_some_NA_values"/>
+    <testcase time="0.566000000000003" classname="dtht01" name="dtht01_can_be_parametrize_as_expected"/>
   </testsuite>
-  <testsuite name="egt01" timestamp="2024-10-11T12:39:06Z" hostname="4a559c0cdd0e" tests="3" skipped="0" failures="0" errors="0" time="6.681">
-    <testcase time="3.32300000000001" classname="egt01" name="egt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="1.23099999999999" classname="egt01" name="egt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
-    <testcase time="2.12700000000001" classname="egt01" name="egt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+  <testsuite name="egt01" timestamp="2024-10-25T01:42:51Z" hostname="7060ca77dc1c" tests="3" skipped="0" failures="0" errors="0" time="6.553">
+    <testcase time="3.25700000000001" classname="egt01" name="egt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="1.22499999999999" classname="egt01" name="egt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+    <testcase time="2.07100000000001" classname="egt01" name="egt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
   </testsuite>
-  <testsuite name="egt02" timestamp="2024-10-11T12:39:13Z" hostname="4a559c0cdd0e" tests="2" skipped="0" failures="0" errors="0" time="0.672">
-    <testcase time="0.355999999999995" classname="egt02" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.316000000000003" classname="egt02" name="egt02_2_functions_with_default_value_return_expected_result_with_test_data"/>
+  <testsuite name="egt02" timestamp="2024-10-25T01:42:58Z" hostname="7060ca77dc1c" tests="2" skipped="0" failures="0" errors="0" time="0.657">
+    <testcase time="0.341999999999999" classname="egt02" name="egt02_1_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.314999999999998" classname="egt02" name="egt02_2_functions_with_default_value_return_expected_result_with_test_data"/>
   </testsuite>
-  <testsuite name="egt03" timestamp="2024-10-11T12:39:14Z" hostname="4a559c0cdd0e" tests="5" skipped="0" failures="0" errors="0" time="3.223">
-    <testcase time="1.586" classname="egt03" name="egt03_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.0249999999999915" classname="egt03" name="egt03_errors_on_all_NA_values"/>
-    <testcase time="0.50800000000001" classname="egt03" name="egt03_can_handle_some_NA_values"/>
-    <testcase time="1.08799999999999" classname="egt03" name="egt03_can_handle_some_NA_values"/>
+  <testsuite name="egt03" timestamp="2024-10-25T01:42:58Z" hostname="7060ca77dc1c" tests="5" skipped="0" failures="0" errors="0" time="3.113">
+    <testcase time="1.535" classname="egt03" name="egt03_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.0169999999999959" classname="egt03" name="egt03_errors_on_all_NA_values"/>
+    <testcase time="0.486000000000004" classname="egt03" name="egt03_can_handle_some_NA_values"/>
+    <testcase time="1.059" classname="egt03" name="egt03_can_handle_some_NA_values"/>
     <testcase time="0.0160000000000053" classname="egt03" name="egt03_fails_on_incomplete_data"/>
   </testsuite>
-  <testsuite name="egt05_qtcat" timestamp="2024-10-11T12:39:17Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="3.528">
-    <testcase time="2.24799999999999" classname="egt05_qtcat" name="egt05_qtcat_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.0160000000000053" classname="egt05_qtcat" name="egt05_qtcat_erros_on_all_NA_values"/>
-    <testcase time="0.429000000000002" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
-    <testcase time="0.834999999999994" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
+  <testsuite name="egt05_qtcat" timestamp="2024-10-25T01:43:01Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="3.401">
+    <testcase time="2.181" classname="egt05_qtcat" name="egt05_qtcat_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.0169999999999959" classname="egt05_qtcat" name="egt05_qtcat_erros_on_all_NA_values"/>
+    <testcase time="0.404000000000011" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
+    <testcase time="0.798999999999992" classname="egt05_qtcat" name="egt05_qtcat_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="empty_report" timestamp="2024-10-11T12:39:20Z" hostname="4a559c0cdd0e" tests="25" skipped="0" failures="0" errors="0" time="3.055">
-    <testcase time="0.108000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.292999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.205000000000013" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.114999999999995" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.114000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0699999999999932" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.329000000000008" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.148999999999987" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.188000000000002" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0870000000000033" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.108000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0510000000000019" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0559999999999974" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0679999999999978" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0690000000000026" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0870000000000033" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0829999999999984" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.100999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.310000000000002" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0929999999999893" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0940000000000083" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+  <testsuite name="empty_report" timestamp="2024-10-25T01:43:05Z" hostname="7060ca77dc1c" tests="25" skipped="0" failures="0" errors="0" time="2.891">
+    <testcase time="0.105000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.283999999999992" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.195000000000007" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.111999999999995" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.113" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
     <testcase time="0.0649999999999977" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.102000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.106999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.349000000000004" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.161000000000001" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0790000000000077" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.097999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0489999999999924" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
     <testcase time="0.0529999999999973" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
-    <testcase time="0.0570000000000022" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0650000000000119" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0659999999999883" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0790000000000077" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0759999999999934" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.097999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.295000000000002" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0930000000000035" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0859999999999985" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0619999999999976" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.097999999999999" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0500000000000114" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
+    <testcase time="0.0529999999999973" classname="empty_report" name="tlg_functions_return_null_reports_when_domain_table_is_empty"/>
   </testsuite>
-  <testsuite name="ext01" timestamp="2024-10-11T12:39:24Z" hostname="4a559c0cdd0e" tests="10" skipped="0" failures="0" errors="0" time="5.325">
-    <testcase time="0.495999999999995" classname="ext01" name="ext01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.534000000000006" classname="ext01" name="ext01_functions_with_categorical_data_return_expected_result_with_test_data"/>
-    <testcase time="0.186999999999998" classname="ext01" name="ext01_works"/>
-    <testcase time="0.331000000000003" classname="ext01" name="ext01_works"/>
-    <testcase time="0.180999999999997" classname="ext01" name="ext01_works"/>
-    <testcase time="0.331000000000003" classname="ext01" name="ext01_works"/>
-    <testcase time="0.547999999999988" classname="ext01" name="ext01_works_for_selected_parameters_and_categorical_variables"/>
-    <testcase time="0.842000000000013" classname="ext01" name="ext01_works_with_custom_mapping_order"/>
-    <testcase time="1.014" classname="ext01" name="ext01_works_with_custom_mapping_order_for_a_single_split"/>
-    <testcase time="0.861000000000004" classname="ext01" name="ext01_works_with_custom_mapping_fill_in_value"/>
+  <testsuite name="ext01" timestamp="2024-10-25T01:43:08Z" hostname="7060ca77dc1c" tests="10" skipped="0" failures="0" errors="0" time="4.879">
+    <testcase time="0.475999999999999" classname="ext01" name="ext01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.515999999999991" classname="ext01" name="ext01_functions_with_categorical_data_return_expected_result_with_test_data"/>
+    <testcase time="0.176000000000002" classname="ext01" name="ext01_works"/>
+    <testcase time="0.305999999999997" classname="ext01" name="ext01_works"/>
+    <testcase time="0.179000000000002" classname="ext01" name="ext01_works"/>
+    <testcase time="0.314000000000007" classname="ext01" name="ext01_works"/>
+    <testcase time="0.522999999999996" classname="ext01" name="ext01_works_for_selected_parameters_and_categorical_variables"/>
+    <testcase time="0.787999999999997" classname="ext01" name="ext01_works_with_custom_mapping_order"/>
+    <testcase time="0.77600000000001" classname="ext01" name="ext01_works_with_custom_mapping_order_for_a_single_split"/>
+    <testcase time="0.824999999999989" classname="ext01" name="ext01_works_with_custom_mapping_fill_in_value"/>
   </testsuite>
-  <testsuite name="fstg01" timestamp="2024-10-11T12:39:29Z" hostname="4a559c0cdd0e" tests="13" skipped="0" failures="0" errors="0" time="6.795">
-    <testcase time="0.0219999999999914" classname="fstg01" name="fstg01_works_as_expected"/>
-    <testcase time="1.298" classname="fstg01" name="fstg01_works_as_expected"/>
+  <testsuite name="fstg01" timestamp="2024-10-25T01:43:13Z" hostname="7060ca77dc1c" tests="13" skipped="0" failures="0" errors="0" time="6.441">
+    <testcase time="0.0200000000000102" classname="fstg01" name="fstg01_works_as_expected"/>
+    <testcase time="1.239" classname="fstg01" name="fstg01_works_as_expected"/>
     <testcase time="0.00300000000000011" classname="fstg01" name="fstg01_works_as_expected"/>
-    <testcase time="1.288" classname="fstg01" name="fstg01_works_as_expected_with_custom_color_set"/>
+    <testcase time="1.22" classname="fstg01" name="fstg01_works_as_expected_with_custom_color_set"/>
     <testcase time="0.00300000000000011" classname="fstg01" name="fstg01_works_as_expected_with_custom_color_set"/>
-    <testcase time="1.288" classname="fstg01" name="fstg01_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.00300000000000011" classname="fstg01" name="fstg01_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.658000000000001" classname="fstg01" name="fstg01_works_if_changes_are_in_subgroups_conf_level_and_label_all"/>
-    <testcase time="0.00400000000000489" classname="fstg01" name="fstg01_works_if_changes_are_in_subgroups_conf_level_and_label_all"/>
-    <testcase time="0.897000000000006" classname="fstg01" name="fstg01_works_if_changes_are_in_subgroups_conf_level_and_label_all"/>
+    <testcase time="1.22799999999999" classname="fstg01" name="fstg01_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.00200000000000955" classname="fstg01" name="fstg01_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.625" classname="fstg01" name="fstg01_works_if_changes_are_in_subgroups_conf_level_and_label_all"/>
     <testcase time="0.00300000000000011" classname="fstg01" name="fstg01_works_if_changes_are_in_subgroups_conf_level_and_label_all"/>
-    <testcase time="1.325" classname="fstg01" name="fstg01_can_handle_some_NA_values_in_subgroups"/>
+    <testcase time="0.843999999999994" classname="fstg01" name="fstg01_works_if_changes_are_in_subgroups_conf_level_and_label_all"/>
+    <testcase time="0.00400000000000489" classname="fstg01" name="fstg01_works_if_changes_are_in_subgroups_conf_level_and_label_all"/>
+    <testcase time="1.247" classname="fstg01" name="fstg01_can_handle_some_NA_values_in_subgroups"/>
     <testcase time="0.00300000000000011" classname="fstg01" name="fstg01_can_handle_some_NA_values_in_subgroups"/>
   </testsuite>
-  <testsuite name="fstg02" timestamp="2024-10-11T12:39:36Z" hostname="4a559c0cdd0e" tests="9" skipped="0" failures="0" errors="0" time="9.178">
-    <testcase time="0.0139999999999958" classname="fstg02" name="fstg02_works_as_expected"/>
-    <testcase time="1.28800000000001" classname="fstg02" name="fstg02_works_as_expected"/>
-    <testcase time="1.31099999999999" classname="fstg02" name="fstg02_works_as_expected_with_custom_color_set"/>
-    <testcase time="1.282" classname="fstg02" name="fstg02_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.631" classname="fstg02" name="fstg02_works_if_changes_are_in_subgroups_strata_var_conf_level_and_label_all"/>
-    <testcase time="0.88000000000001" classname="fstg02" name="fstg02_works_if_changes_are_in_subgroups_strata_var_conf_level_and_label_all"/>
-    <testcase time="1.404" classname="fstg02" name="fstg02_can_handle_some_NA_values_in_subgroups"/>
-    <testcase time="1.17" classname="fstg02" name="fstg02_can_handle_customized_time_units"/>
-    <testcase time="1.19799999999999" classname="fstg02" name="fstg02_can_handle_customized_time_units"/>
+  <testsuite name="fstg02" timestamp="2024-10-25T01:43:19Z" hostname="7060ca77dc1c" tests="9" skipped="0" failures="0" errors="0" time="8.65">
+    <testcase time="0.0120000000000005" classname="fstg02" name="fstg02_works_as_expected"/>
+    <testcase time="1.209" classname="fstg02" name="fstg02_works_as_expected"/>
+    <testcase time="1.21899999999999" classname="fstg02" name="fstg02_works_as_expected_with_custom_color_set"/>
+    <testcase time="1.211" classname="fstg02" name="fstg02_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.582999999999998" classname="fstg02" name="fstg02_works_if_changes_are_in_subgroups_strata_var_conf_level_and_label_all"/>
+    <testcase time="0.823999999999998" classname="fstg02" name="fstg02_works_if_changes_are_in_subgroups_strata_var_conf_level_and_label_all"/>
+    <testcase time="1.348" classname="fstg02" name="fstg02_can_handle_some_NA_values_in_subgroups"/>
+    <testcase time="1.11000000000001" classname="fstg02" name="fstg02_can_handle_customized_time_units"/>
+    <testcase time="1.13399999999999" classname="fstg02" name="fstg02_can_handle_customized_time_units"/>
   </testsuite>
-  <testsuite name="kmg01" timestamp="2024-10-11T12:39:45Z" hostname="4a559c0cdd0e" tests="13" skipped="0" failures="0" errors="0" time="2.139">
-    <testcase time="0.0120000000000005" classname="kmg01" name="kmg01_works_as_expected"/>
-    <testcase time="0.37700000000001" classname="kmg01" name="kmg01_works_as_expected"/>
-    <testcase time="0.00199999999999534" classname="kmg01" name="kmg01_works_as_expected"/>
-    <testcase time="0.370999999999995" classname="kmg01" name="kmg01_works_as_expected_with_custom_color_set"/>
+  <testsuite name="kmg01" timestamp="2024-10-25T01:43:28Z" hostname="7060ca77dc1c" tests="13" skipped="0" failures="0" errors="0" time="2.012">
+    <testcase time="0.0110000000000099" classname="kmg01" name="kmg01_works_as_expected"/>
+    <testcase time="0.350999999999999" classname="kmg01" name="kmg01_works_as_expected"/>
+    <testcase time="0.00300000000000011" classname="kmg01" name="kmg01_works_as_expected"/>
+    <testcase time="0.349999999999994" classname="kmg01" name="kmg01_works_as_expected_with_custom_color_set"/>
     <testcase time="0.00300000000000011" classname="kmg01" name="kmg01_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.378" classname="kmg01" name="kmg01_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.343000000000004" classname="kmg01" name="kmg01_works_as_expected_with_custom_color_set"/>
     <testcase time="0.00300000000000011" classname="kmg01" name="kmg01_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.359999999999999" classname="kmg01" name="kmg01_works_if_change_pvalue_ties_and_conf_level"/>
-    <testcase time="0.00300000000000011" classname="kmg01" name="kmg01_works_if_change_pvalue_ties_and_conf_level"/>
-    <testcase time="0.384" classname="kmg01" name="kmg01_works_if_change_annotation_position"/>
+    <testcase time="0.346999999999994" classname="kmg01" name="kmg01_works_if_change_pvalue_ties_and_conf_level"/>
+    <testcase time="0.00400000000000489" classname="kmg01" name="kmg01_works_if_change_pvalue_ties_and_conf_level"/>
+    <testcase time="0.364999999999995" classname="kmg01" name="kmg01_works_if_change_annotation_position"/>
     <testcase time="0.00300000000000011" classname="kmg01" name="kmg01_works_if_change_annotation_position"/>
-    <testcase time="0.240000000000009" classname="kmg01" name="kmg01_works_for_stratified_analysis"/>
+    <testcase time="0.225999999999999" classname="kmg01" name="kmg01_works_for_stratified_analysis"/>
     <testcase time="0.00300000000000011" classname="kmg01" name="kmg01_works_for_stratified_analysis"/>
   </testsuite>
-  <testsuite name="lbt01" timestamp="2024-10-11T12:39:47Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="10.094">
-    <testcase time="3.334" classname="lbt01" name="lbt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="3.38499999999999" classname="lbt01" name="lbt01_functions_with_row_split_var_return_expected_result_with_test_data"/>
-    <testcase time="1.05500000000001" classname="lbt01" name="lbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
-    <testcase time="2.31999999999999" classname="lbt01" name="lbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+  <testsuite name="lbt01" timestamp="2024-10-25T01:43:30Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="9.43">
+    <testcase time="3.07000000000001" classname="lbt01" name="lbt01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="3.22499999999999" classname="lbt01" name="lbt01_functions_with_row_split_var_return_expected_result_with_test_data"/>
+    <testcase time="0.995000000000005" classname="lbt01" name="lbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
+    <testcase time="2.14" classname="lbt01" name="lbt01_can_handle_n_0_and_outputs_NE_instead_of_infs_and_NAs"/>
   </testsuite>
-  <testsuite name="lbt04" timestamp="2024-10-11T12:39:57Z" hostname="4a559c0cdd0e" tests="8" skipped="0" failures="0" errors="0" time="3.561">
-    <testcase time="1.06299999999999" classname="lbt04" name="lbt04_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.0820000000000221" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
-    <testcase time="0.0909999999999798" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
-    <testcase time="0.334000000000003" classname="lbt04" name="lbt04_can_handle_missing_levels"/>
-    <testcase time="0.730000000000018" classname="lbt04" name="lbt04_can_handle_missing_levels"/>
-    <testcase time="0.332999999999998" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
-    <testcase time="0.911999999999978" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
-    <testcase time="0.0160000000000196" classname="lbt04" name="lbt04_fails_on_incomlete_data"/>
+  <testsuite name="lbt04" timestamp="2024-10-25T01:43:39Z" hostname="7060ca77dc1c" tests="8" skipped="0" failures="0" errors="0" time="3.311">
+    <testcase time="0.988000000000014" classname="lbt04" name="lbt04_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.0939999999999941" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
+    <testcase time="0.0699999999999932" classname="lbt04" name="lbt04_can_handle_all_NA_values"/>
+    <testcase time="0.307999999999993" classname="lbt04" name="lbt04_can_handle_missing_levels"/>
+    <testcase time="0.674000000000007" classname="lbt04" name="lbt04_can_handle_missing_levels"/>
+    <testcase time="0.316000000000003" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
+    <testcase time="0.846000000000004" classname="lbt04" name="lbt04_can_handle_some_NA_values"/>
+    <testcase time="0.0149999999999864" classname="lbt04" name="lbt04_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="lbt05" timestamp="2024-10-11T12:40:01Z" hostname="4a559c0cdd0e" tests="6" skipped="0" failures="0" errors="0" time="2.017">
-    <testcase time="0.692000000000007" classname="lbt05" name="lbt05_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.276999999999987" classname="lbt05" name="lbt05_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.312999999999988" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing"/>
-    <testcase time="0.299000000000007" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
-    <testcase time="0.40100000000001" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
-    <testcase time="0.0349999999999966" classname="lbt05" name="lbt05_fails_on_incomlete_data"/>
+  <testsuite name="lbt05" timestamp="2024-10-25T01:43:42Z" hostname="7060ca77dc1c" tests="6" skipped="0" failures="0" errors="0" time="1.886">
+    <testcase time="0.662000000000006" classname="lbt05" name="lbt05_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.266999999999996" classname="lbt05" name="lbt05_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.283000000000015" classname="lbt05" name="lbt05_give_all_0_count_if_ANRIND_are_all_missing"/>
+    <testcase time="0.268999999999977" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
+    <testcase time="0.373000000000019" classname="lbt05" name="lbt05_can_handle_some_NA_values"/>
+    <testcase time="0.0319999999999823" classname="lbt05" name="lbt05_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="lbt06" timestamp="2024-10-11T12:40:03Z" hostname="4a559c0cdd0e" tests="3" skipped="0" failures="0" errors="0" time="3.86">
-    <testcase time="0.99199999999999" classname="lbt06" name="lbt06_gives_all_0_count_if_ANRIND_and_BNRIND_are_all_missing"/>
-    <testcase time="2.81700000000001" classname="lbt06" name="lbt06_can_handle_some_NA_values"/>
-    <testcase time="0.0509999999999877" classname="lbt06" name="lbt06_fails_on_incomplete_data"/>
+  <testsuite name="lbt06" timestamp="2024-10-25T01:43:44Z" hostname="7060ca77dc1c" tests="3" skipped="0" failures="0" errors="0" time="3.561">
+    <testcase time="0.918000000000006" classname="lbt06" name="lbt06_gives_all_0_count_if_ANRIND_and_BNRIND_are_all_missing"/>
+    <testcase time="2.613" classname="lbt06" name="lbt06_can_handle_some_NA_values"/>
+    <testcase time="0.0300000000000011" classname="lbt06" name="lbt06_fails_on_incomplete_data"/>
   </testsuite>
-  <testsuite name="lbt07" timestamp="2024-10-11T12:40:06Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="2.101">
-    <testcase time="1.036" classname="lbt07" name="lbt07_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.489000000000004" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
-    <testcase time="0.53400000000002" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
-    <testcase time="0.0419999999999732" classname="lbt07" name="lbt07_fails_on_incomlete_data"/>
+  <testsuite name="lbt07" timestamp="2024-10-25T01:43:48Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="1.589">
+    <testcase time="0.795999999999992" classname="lbt07" name="lbt07_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.355000000000018" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
+    <testcase time="0.406000000000006" classname="lbt07" name="lbt07_can_handle_some_NA_values"/>
+    <testcase time="0.0319999999999823" classname="lbt07" name="lbt07_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="lbt14" timestamp="2024-10-11T12:40:09Z" hostname="4a559c0cdd0e" tests="20" skipped="0" failures="0" errors="0" time="8.43">
-    <testcase time="0.683000000000021" classname="lbt14" name="lbt14_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.516999999999996" classname="lbt14" name="lbt14_functions_with_default_argument_value_return_expected_result_with_test_data_when_direction_high"/>
-    <testcase time="0.638000000000005" classname="lbt14" name="lbt14_functions_with_gr_missing_excl_return_expected_result_with_test_data"/>
-    <testcase time="0.637" classname="lbt14" name="lbt14_functions_with_gr_missing_gr_0_return_expected_result_with_test_data"/>
-    <testcase time="0.390999999999991" classname="lbt14" name="lbt14_can_handle_all_NA_values"/>
-    <testcase time="0.177999999999997" classname="lbt14" name="lbt14_can_handle_all_NA_values"/>
-    <testcase time="0.437000000000012" classname="lbt14" name="lbt14_can_handle_some_NA_values"/>
-    <testcase time="0.338999999999999" classname="lbt14" name="lbt14_can_handle_some_NA_values"/>
-    <testcase time="1.392" classname="lbt14" name="lbt14_can_accept_different_gr_missing"/>
-    <testcase time="0.280000000000001" classname="lbt14" name="lbt14_can_accept_different_gr_missing"/>
-    <testcase time="0.284999999999997" classname="lbt14" name="lbt14_can_accept_different_gr_missing"/>
-    <testcase time="0.0180000000000007" classname="lbt14" name="lbt14_fails_on_incomlete_data"/>
-    <testcase time="0.383999999999986" classname="lbt14" name="lbt14_can_handle_all_NA_values_with_direction_high"/>
-    <testcase time="0.14700000000002" classname="lbt14" name="lbt14_can_handle_all_NA_values_with_direction_high"/>
-    <testcase time="0.407999999999987" classname="lbt14" name="lbt14_can_handle_some_NA_values_with_direction_high"/>
-    <testcase time="0.181999999999988" classname="lbt14" name="lbt14_can_handle_some_NA_values_with_direction_high"/>
-    <testcase time="1.19200000000001" classname="lbt14" name="lbt14_can_accept_different_gr_missing_with_direction_high"/>
-    <testcase time="0.157000000000011" classname="lbt14" name="lbt14_can_accept_different_gr_missing_with_direction_high"/>
-    <testcase time="0.138000000000005" classname="lbt14" name="lbt14_can_accept_different_gr_missing_with_direction_high"/>
-    <testcase time="0.0269999999999868" classname="lbt14" name="lbt14_fails_on_incomlete_data"/>
+  <testsuite name="lbt14" timestamp="2024-10-25T01:43:49Z" hostname="7060ca77dc1c" tests="20" skipped="0" failures="8" errors="0" time="8.395">
+    <testcase time="0.717000000000013" classname="lbt14" name="lbt14_functions_with_default_argument_value_return_expected_result_with_test_data">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:11:3')">Snapshot of code has changed:
+old[9:23] vs new[9:23]
+              Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
+      ———————————————————————————————————————————————————————————————————————————————
+      Not Low                                    12           12             14      
+-             Not Low                         5 (33.3%)   8 (53.3%)      5 (33.3%)   
++             Not Low                         5 (41.7%)   8 (66.7%)      5 (35.7%)   
+-             1                               3 (20.0%)       0              0       
++             1                               3 (25.0%)       0              0       
+-             2                               2 (13.3%)    1 (6.7%)       1 (6.7%)   
++             2                               2 (16.7%)    1 (8.3%)       1 (7.1%)   
+-             3                                   0        1 (6.7%)      5 (33.3%)   
++             3                                   0        1 (8.3%)      5 (35.7%)   
+-             4                               2 (13.3%)   2 (13.3%)      3 (20.0%)   
++             4                               2 (16.7%)   2 (16.7%)      3 (21.4%)   
+      1                                           1           2              0       
+-             Not Low                         1 (6.7%)    2 (13.3%)          0       
++             Not Low                         1 (100%)     2 (100%)          0       
+      2                                           1           1              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0        1 (100%)          0       
+-             4                               1 (6.7%)        0              0       
++             4                               1 (100%)        0              0       
+      3                                           1           0              1       
+-             3                               1 (6.7%)        0           1 (6.7%)   
++             3                               1 (100%)        0           1 (100%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="0.518000000000001" classname="lbt14" name="lbt14_functions_with_default_argument_value_return_expected_result_with_test_data_when_direction_high"/>
+    <testcase time="0.623999999999995" classname="lbt14" name="lbt14_functions_with_gr_missing_excl_return_expected_result_with_test_data">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:27:3')">Snapshot of code has changed:
+old[9:23] vs new[9:23]
+              Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
+      ———————————————————————————————————————————————————————————————————————————————
+      Not Low                                    12           12             14      
+-             Not Low                         5 (33.3%)   8 (53.3%)      5 (33.3%)   
++             Not Low                         5 (41.7%)   8 (66.7%)      5 (35.7%)   
+-             1                               3 (20.0%)       0              0       
++             1                               3 (25.0%)       0              0       
+-             2                               2 (13.3%)    1 (6.7%)       1 (6.7%)   
++             2                               2 (16.7%)    1 (8.3%)       1 (7.1%)   
+-             3                                   0        1 (6.7%)      5 (33.3%)   
++             3                                   0        1 (8.3%)      5 (35.7%)   
+-             4                               2 (13.3%)   2 (13.3%)      3 (20.0%)   
++             4                               2 (16.7%)   2 (16.7%)      3 (21.4%)   
+      1                                           1           2              0       
+-             Not Low                         1 (6.7%)    2 (13.3%)          0       
++             Not Low                         1 (100%)     2 (100%)          0       
+      2                                           1           1              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0        1 (100%)          0       
+-             4                               1 (6.7%)        0              0       
++             4                               1 (100%)        0              0       
+      3                                           1           0              1       
+-             3                               1 (6.7%)        0           1 (6.7%)   
++             3                               1 (100%)        0           1 (100%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="0.623999999999995" classname="lbt14" name="lbt14_functions_with_gr_missing_gr_0_return_expected_result_with_test_data">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:35:3')">Snapshot of code has changed:
+old[9:23] vs new[9:23]
+              Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
+      ———————————————————————————————————————————————————————————————————————————————
+      1                                           1           2              0       
+-             Not Low                         1 (6.7%)    2 (13.3%)          0       
++             Not Low                         1 (100%)     2 (100%)          0       
+      2                                           1           1              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0        1 (100%)          0       
+-             4                               1 (6.7%)        0              0       
++             4                               1 (100%)        0              0       
+      3                                           1           0              1       
+-             3                               1 (6.7%)        0           1 (6.7%)   
++             3                               1 (100%)        0           1 (100%)   
+      Not Low                                    12           12             14      
+-             Not Low                         5 (33.3%)   8 (53.3%)      5 (33.3%)   
++             Not Low                         5 (41.7%)   8 (66.7%)      5 (35.7%)   
+-             1                               3 (20.0%)       0              0       
++             1                               3 (25.0%)       0              0       
+-             2                               2 (13.3%)    1 (6.7%)       1 (6.7%)   
++             2                               2 (16.7%)    1 (8.3%)       1 (7.1%)   
+-             3                                   0        1 (6.7%)      5 (33.3%)   
++             3                                   0        1 (8.3%)      5 (35.7%)   
+-             4                               2 (13.3%)   2 (13.3%)      3 (20.0%)   
++             4                               2 (16.7%)   2 (16.7%)      3 (21.4%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="0.381" classname="lbt14" name="lbt14_can_handle_all_NA_values"/>
+    <testcase time="0.13900000000001" classname="lbt14" name="lbt14_can_handle_all_NA_values"/>
+    <testcase time="0.431999999999988" classname="lbt14" name="lbt14_can_handle_some_NA_values"/>
+    <testcase time="0.355999999999995" classname="lbt14" name="lbt14_can_handle_some_NA_values">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:69:3')">Snapshot of code has changed:
+old[9:28] vs new[9:28]
+              Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
+      ———————————————————————————————————————————————————————————————————————————————
+      Not Low                                    12           12             12      
+-             Not Low                         5 (33.3%)   8 (53.3%)      4 (26.7%)   
++             Not Low                         5 (41.7%)   8 (66.7%)      4 (33.3%)   
+-             1                               3 (20.0%)       0              0       
++             1                               3 (25.0%)       0              0       
+-             2                               2 (13.3%)    1 (6.7%)          0       
++             2                               2 (16.7%)    1 (8.3%)          0       
+-             3                                   0        1 (6.7%)      4 (26.7%)   
++             3                                   0        1 (8.3%)      4 (33.3%)   
+-             4                               2 (13.3%)   2 (13.3%)      2 (13.3%)   
++             4                               2 (16.7%)   2 (16.7%)      2 (16.7%)   
+-             Missing                             0           0          2 (13.3%)   
++             Missing                             0           0          2 (16.7%)   
+      1                                           1           2              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0       1 (50.0%)          0       
+-             Missing                         1 (6.7%)     1 (6.7%)          0       
++             Missing                         1 (100%)    1 (50.0%)          0       
+      2                                           1           1              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0        1 (100%)          0       
+-             4                               1 (6.7%)        0              0       
++             4                               1 (100%)        0              0       
+      3                                           1           0              1       
+-             3                               1 (6.7%)        0           1 (6.7%)   
++             3                               1 (100%)        0           1 (100%)   
+      Missing                                     0           0              2       
+-             Not Low                             0           0           1 (6.7%)   
++             Not Low                             0           0          1 (50.0%)   
+-             3                                   0           0           1 (6.7%)   
++             3                                   0           0          1 (50.0%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="1.405" classname="lbt14" name="lbt14_can_accept_different_gr_missing">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:77:3')">Snapshot of code has changed:
+old[9:23] vs new[9:23]
+              Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
+      ———————————————————————————————————————————————————————————————————————————————
+      Not Low                                    12           12             14      
+-             Not Low                         5 (33.3%)   8 (53.3%)      5 (33.3%)   
++             Not Low                         5 (41.7%)   8 (66.7%)      5 (35.7%)   
+-             1                               3 (20.0%)       0              0       
++             1                               3 (25.0%)       0              0       
+-             2                               2 (13.3%)    1 (6.7%)       1 (6.7%)   
++             2                               2 (16.7%)    1 (8.3%)       1 (7.1%)   
+-             3                                   0        1 (6.7%)      5 (33.3%)   
++             3                                   0        1 (8.3%)      5 (35.7%)   
+-             4                               2 (13.3%)   2 (13.3%)      3 (20.0%)   
++             4                               2 (16.7%)   2 (16.7%)      3 (21.4%)   
+      1                                           1           2              0       
+-             Not Low                         1 (6.7%)    2 (13.3%)          0       
++             Not Low                         1 (100%)     2 (100%)          0       
+      2                                           1           1              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0        1 (100%)          0       
+-             4                               1 (6.7%)        0              0       
++             4                               1 (100%)        0              0       
+      3                                           1           0              1       
+-             3                               1 (6.7%)        0           1 (6.7%)   
++             3                               1 (100%)        0           1 (100%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="0.314000000000021" classname="lbt14" name="lbt14_can_accept_different_gr_missing">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:78:3')">Snapshot of code has changed:
+old[9:23] vs new[9:23]
+              Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
+      ———————————————————————————————————————————————————————————————————————————————
+      Not Low                                    12           12             14      
+-             Not Low                         5 (33.3%)   8 (53.3%)      5 (33.3%)   
++             Not Low                         5 (41.7%)   8 (66.7%)      5 (35.7%)   
+-             1                               3 (20.0%)       0              0       
++             1                               3 (25.0%)       0              0       
+-             2                               2 (13.3%)    1 (6.7%)       1 (6.7%)   
++             2                               2 (16.7%)    1 (8.3%)       1 (7.1%)   
+-             3                                   0        1 (6.7%)      5 (33.3%)   
++             3                                   0        1 (8.3%)      5 (35.7%)   
+-             4                               2 (13.3%)   2 (13.3%)      3 (20.0%)   
++             4                               2 (16.7%)   2 (16.7%)      3 (21.4%)   
+      1                                           1           2              0       
+-             Not Low                         1 (6.7%)    2 (13.3%)          0       
++             Not Low                         1 (100%)     2 (100%)          0       
+      2                                           1           1              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0        1 (100%)          0       
+-             4                               1 (6.7%)        0              0       
++             4                               1 (100%)        0              0       
+      3                                           1           0              1       
+-             3                               1 (6.7%)        0           1 (6.7%)   
++             3                               1 (100%)        0           1 (100%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="0.291999999999973" classname="lbt14" name="lbt14_can_accept_different_gr_missing">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:79:3')">Snapshot of code has changed:
+old[9:23] vs new[9:23]
+              Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
+      ———————————————————————————————————————————————————————————————————————————————
+      1                                           1           2              0       
+-             Not Low                         1 (6.7%)    2 (13.3%)          0       
++             Not Low                         1 (100%)     2 (100%)          0       
+      2                                           1           1              0       
+-             Not Low                             0        1 (6.7%)          0       
++             Not Low                             0        1 (100%)          0       
+-             4                               1 (6.7%)        0              0       
++             4                               1 (100%)        0              0       
+      3                                           1           0              1       
+-             3                               1 (6.7%)        0           1 (6.7%)   
++             3                               1 (100%)        0           1 (100%)   
+      Not Low                                    12           12             14      
+-             Not Low                         5 (33.3%)   8 (53.3%)      5 (33.3%)   
++             Not Low                         5 (41.7%)   8 (66.7%)      5 (35.7%)   
+-             1                               3 (20.0%)       0              0       
++             1                               3 (25.0%)       0              0       
+-             2                               2 (13.3%)    1 (6.7%)       1 (6.7%)   
++             2                               2 (16.7%)    1 (8.3%)       1 (7.1%)   
+-             3                                   0        1 (6.7%)      5 (33.3%)   
++             3                                   0        1 (8.3%)      5 (35.7%)   
+-             4                               2 (13.3%)   2 (13.3%)      3 (20.0%)   
++             4                               2 (16.7%)   2 (16.7%)      3 (21.4%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="0.0250000000000057" classname="lbt14" name="lbt14_fails_on_incomlete_data"/>
+    <testcase time="0.37700000000001" classname="lbt14" name="lbt14_can_handle_all_NA_values_with_direction_high"/>
+    <testcase time="0.140999999999991" classname="lbt14" name="lbt14_can_handle_all_NA_values_with_direction_high"/>
+    <testcase time="0.385000000000019" classname="lbt14" name="lbt14_can_handle_some_NA_values_with_direction_high"/>
+    <testcase time="0.198999999999984" classname="lbt14" name="lbt14_can_handle_some_NA_values_with_direction_high">
+      <failure type="failure" message="Snapshot of code has changed: ('test-lbt14.R:124:3')">Snapshot of code has changed:
+old[9:15] vs new[9:15]
+              Post-baseline NCI-CTCAE Grade     (N=15)       (N=15)         (N=15)    
+      ————————————————————————————————————————————————————————————————————————————————
+      Not High                                    14           15             13      
+-             Not High                        13 (86.7%)   14 (93.3%)     12 (80.0%)  
++             Not High                        13 (92.9%)   14 (93.3%)     12 (92.3%)  
+-             Missing                          1 (6.7%)     1 (6.7%)       1 (6.7%)   
++             Missing                          1 (7.1%)     1 (6.7%)       1 (7.7%)   
+      Missing                                     1            0              2       
+-             Not High                         1 (6.7%)        0          2 (13.3%)   
++             Not High                         1 (100%)        0           2 (100%)   
+
+* Run `testthat::snapshot_accept('lbt14')` to accept the change.
+* Run `testthat::snapshot_review('lbt14')` to interactively review the change.</failure>
+    </testcase>
+    <testcase time="1.14600000000002" classname="lbt14" name="lbt14_can_accept_different_gr_missing_with_direction_high"/>
+    <testcase time="0.146999999999991" classname="lbt14" name="lbt14_can_accept_different_gr_missing_with_direction_high"/>
+    <testcase time="0.146999999999991" classname="lbt14" name="lbt14_can_accept_different_gr_missing_with_direction_high"/>
+    <testcase time="0.0260000000000105" classname="lbt14" name="lbt14_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="lbt15" timestamp="2024-10-11T12:40:17Z" hostname="4a559c0cdd0e" tests="12" skipped="0" failures="0" errors="0" time="6.251">
-    <testcase time="1.05600000000001" classname="lbt15" name="lbt15_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.338999999999999" classname="lbt15" name="lbt15_can_handle_all_NA_values"/>
-    <testcase time="0.715000000000003" classname="lbt15" name="lbt15_can_handle_all_NA_values"/>
-    <testcase time="0.337999999999994" classname="lbt15" name="lbt15_can_handle_missing_levels"/>
-    <testcase time="0.703000000000003" classname="lbt15" name="lbt15_can_handle_missing_levels"/>
-    <testcase time="0.518000000000001" classname="lbt15" name="lbt15_can_handle_missing_levels_in_baseline"/>
-    <testcase time="0.631" classname="lbt15" name="lbt15_can_handle_missing_levels_in_baseline"/>
-    <testcase time="0.300999999999988" classname="lbt15" name="lbt15_can_handle_some_NA_values"/>
-    <testcase time="0.685000000000002" classname="lbt15" name="lbt15_can_handle_some_NA_values"/>
-    <testcase time="0.294000000000011" classname="lbt15" name="lbt15_can_handle_some_NA_values_in_baseline"/>
-    <testcase time="0.645999999999987" classname="lbt15" name="lbt15_can_handle_some_NA_values_in_baseline"/>
-    <testcase time="0.0250000000000057" classname="lbt15" name="lbt15_fails_on_incomlete_data"/>
+  <testsuite name="lbt15" timestamp="2024-10-25T01:43:58Z" hostname="7060ca77dc1c" tests="12" skipped="0" failures="0" errors="0" time="5.697">
+    <testcase time="1.011" classname="lbt15" name="lbt15_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.326999999999998" classname="lbt15" name="lbt15_can_handle_all_NA_values"/>
+    <testcase time="0.858000000000004" classname="lbt15" name="lbt15_can_handle_all_NA_values"/>
+    <testcase time="0.275000000000006" classname="lbt15" name="lbt15_can_handle_missing_levels"/>
+    <testcase time="0.59899999999999" classname="lbt15" name="lbt15_can_handle_missing_levels"/>
+    <testcase time="0.277000000000015" classname="lbt15" name="lbt15_can_handle_missing_levels_in_baseline"/>
+    <testcase time="0.593999999999994" classname="lbt15" name="lbt15_can_handle_missing_levels_in_baseline"/>
+    <testcase time="0.274000000000001" classname="lbt15" name="lbt15_can_handle_some_NA_values"/>
+    <testcase time="0.59699999999998" classname="lbt15" name="lbt15_can_handle_some_NA_values"/>
+    <testcase time="0.27600000000001" classname="lbt15" name="lbt15_can_handle_some_NA_values_in_baseline"/>
+    <testcase time="0.592999999999989" classname="lbt15" name="lbt15_can_handle_some_NA_values_in_baseline"/>
+    <testcase time="0.0160000000000196" classname="lbt15" name="lbt15_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="mht01" timestamp="2024-10-11T12:40:23Z" hostname="4a559c0cdd0e" tests="4" skipped="0" failures="0" errors="0" time="3.219">
-    <testcase time="0.668000000000006" classname="mht01" name="mht01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.658999999999992" classname="mht01" name="mht01_works"/>
-    <testcase time="0.668000000000006" classname="mht01" name="mht01_works_on_NULL_in_lbl_mhbodsys_or_lbl_mhdecod"/>
-    <testcase time="1.22399999999999" classname="mht01" name="mht01_works_with_other_row_split_var"/>
+  <testsuite name="mht01" timestamp="2024-10-25T01:44:04Z" hostname="7060ca77dc1c" tests="4" skipped="0" failures="0" errors="0" time="2.93">
+    <testcase time="0.603999999999985" classname="mht01" name="mht01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.600999999999999" classname="mht01" name="mht01_works"/>
+    <testcase time="0.617000000000019" classname="mht01" name="mht01_works_on_NULL_in_lbl_mhbodsys_or_lbl_mhdecod"/>
+    <testcase time="1.108" classname="mht01" name="mht01_works_with_other_row_split_var"/>
   </testsuite>
-  <testsuite name="mng01" timestamp="2024-10-11T12:40:26Z" hostname="4a559c0cdd0e" tests="19" skipped="8" failures="0" errors="0" time="9.244">
-    <testcase time="0.961000000000013" classname="mng01" name="mng01_works_as_expected_with_default_argument_values"/>
-    <testcase time="0.00199999999998113" classname="mng01" name="mng01_works_as_expected_with_default_argument_values">
+  <testsuite name="mng01" timestamp="2024-10-25T01:44:07Z" hostname="7060ca77dc1c" tests="19" skipped="8" failures="0" errors="0" time="7.812">
+    <testcase time="0.845999999999975" classname="mng01" name="mng01_works_as_expected_with_default_argument_values"/>
+    <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_as_expected_with_default_argument_values">
       <skipped message="Reason: On CI ('test-mng01.R:9:5')"/>
     </testcase>
-    <testcase time="0.962000000000018" classname="mng01" name="mng01_works_as_expected_with_custom_argument_values"/>
-    <testcase time="0.0130000000000052" classname="mng01" name="mng01_works_as_expected_with_custom_argument_values"/>
-    <testcase time="0.000999999999976353" classname="mng01" name="mng01_works_as_expected_with_custom_argument_values">
+    <testcase time="0.837000000000018" classname="mng01" name="mng01_works_as_expected_with_custom_argument_values"/>
+    <testcase time="0.00999999999999091" classname="mng01" name="mng01_works_as_expected_with_custom_argument_values"/>
+    <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_as_expected_with_custom_argument_values">
       <skipped message="Reason: On CI ('test-mng01.R:45:5')"/>
     </testcase>
-    <testcase time="0.963000000000022" classname="mng01" name="mng01_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.975999999999999" classname="mng01" name="mng01_works_as_expected_with_custom_color_set"/>
-    <testcase time="0.000999999999976353" classname="mng01" name="mng01_works_as_expected_with_custom_color_set">
+    <testcase time="0.852000000000004" classname="mng01" name="mng01_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.84099999999998" classname="mng01" name="mng01_works_as_expected_with_custom_color_set"/>
+    <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_as_expected_with_custom_color_set">
       <skipped message="Reason: On CI ('test-mng01.R:69:5')"/>
     </testcase>
-    <testcase time="1.00700000000001" classname="mng01" name="mng01_works_as_expected_with_custom_line_type_set"/>
-    <testcase time="0.980999999999995" classname="mng01" name="mng01_works_as_expected_with_custom_line_type_set"/>
+    <testcase time="0.852000000000004" classname="mng01" name="mng01_works_as_expected_with_custom_line_type_set"/>
+    <testcase time="0.86699999999999" classname="mng01" name="mng01_works_as_expected_with_custom_line_type_set"/>
     <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_as_expected_with_custom_line_type_set">
       <skipped message="Reason: On CI ('test-mng01.R:91:5')"/>
     </testcase>
-    <testcase time="0.159999999999997" classname="mng01" name="mng01_works_with_table_NULL"/>
+    <testcase time="0.132000000000005" classname="mng01" name="mng01_works_with_table_NULL"/>
     <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_with_table_NULL">
       <skipped message="Reason: On CI ('test-mng01.R:104:5')"/>
     </testcase>
-    <testcase time="1.22400000000002" classname="mng01" name="mng01_works_with_combination_of_x_variables"/>
-    <testcase time="0.00199999999998113" classname="mng01" name="mng01_works_with_combination_of_x_variables">
+    <testcase time="0.873999999999995" classname="mng01" name="mng01_works_with_combination_of_x_variables"/>
+    <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_with_combination_of_x_variables">
       <skipped message="Reason: On CI ('test-mng01.R:122:5')"/>
     </testcase>
-    <testcase time="0.962000000000018" classname="mng01" name="mng01_works_with_numeric_x_variable"/>
-    <testcase time="0.000999999999976353" classname="mng01" name="mng01_works_with_numeric_x_variable">
+    <testcase time="0.834000000000003" classname="mng01" name="mng01_works_with_numeric_x_variable"/>
+    <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_with_numeric_x_variable">
       <skipped message="Reason: On CI ('test-mng01.R:143:5')"/>
     </testcase>
-    <testcase time="1.02500000000001" classname="mng01" name="mng01_works_with_numeric_jitter"/>
+    <testcase time="0.85899999999998" classname="mng01" name="mng01_works_with_numeric_jitter"/>
     <testcase time="0.00100000000000477" classname="mng01" name="mng01_works_with_numeric_jitter">
       <skipped message="Reason: On CI ('test-mng01.R:161:5')"/>
     </testcase>
   </testsuite>
-  <testsuite name="pdt01" timestamp="2024-10-11T12:40:36Z" hostname="4a559c0cdd0e" tests="5" skipped="0" failures="0" errors="0" time="1.273">
-    <testcase time="0.488" classname="pdt01" name="pdt01_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.120000000000005" classname="pdt01" name="pdt01_can_handle_all_NA_values"/>
-    <testcase time="0.170999999999992" classname="pdt01" name="pdt01_can_handle_all_NA_values"/>
-    <testcase time="0.235000000000014" classname="pdt01" name="pdt01_can_handle_some_NA_values"/>
-    <testcase time="0.258999999999986" classname="pdt01" name="pdt01_can_handle_some_NA_values"/>
+  <testsuite name="pdt01" timestamp="2024-10-25T01:44:14Z" hostname="7060ca77dc1c" tests="5" skipped="0" failures="0" errors="0" time="1.101">
+    <testcase time="0.429000000000002" classname="pdt01" name="pdt01_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.0970000000000084" classname="pdt01" name="pdt01_can_handle_all_NA_values"/>
+    <testcase time="0.155000000000001" classname="pdt01" name="pdt01_can_handle_all_NA_values"/>
+    <testcase time="0.189999999999998" classname="pdt01" name="pdt01_can_handle_some_NA_values"/>
+    <testcase time="0.22999999999999" classname="pdt01" name="pdt01_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="pdt02" timestamp="2024-10-11T12:40:37Z" hostname="4a559c0cdd0e" tests="5" skipped="0" failures="0" errors="0" time="1.306">
-    <testcase time="0.35499999999999" classname="pdt02" name="pdt02_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.168000000000006" classname="pdt02" name="pdt02_can_handle_all_NA_values"/>
-    <testcase time="0.292000000000002" classname="pdt02" name="pdt02_can_handle_all_NA_values"/>
-    <testcase time="0.204000000000008" classname="pdt02" name="pdt02_can_handle_some_NA_values"/>
-    <testcase time="0.287000000000006" classname="pdt02" name="pdt02_can_handle_some_NA_values"/>
+  <testsuite name="pdt02" timestamp="2024-10-25T01:44:15Z" hostname="7060ca77dc1c" tests="5" skipped="0" failures="0" errors="0" time="0.902">
+    <testcase time="0.300999999999988" classname="pdt02" name="pdt02_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.135000000000019" classname="pdt02" name="pdt02_can_handle_all_NA_values"/>
+    <testcase time="0.162000000000006" classname="pdt02" name="pdt02_can_handle_all_NA_values"/>
+    <testcase time="0.132999999999981" classname="pdt02" name="pdt02_can_handle_some_NA_values"/>
+    <testcase time="0.170999999999992" classname="pdt02" name="pdt02_can_handle_some_NA_values"/>
   </testsuite>
-  <testsuite name="reexports" timestamp="2024-10-11T12:40:38Z" hostname="4a559c0cdd0e" tests="2" skipped="0" failures="0" errors="0" time="0.016">
-    <testcase time="0.00999999999999091" classname="reexports" name="with_label_exported_correctly"/>
-    <testcase time="0.00600000000000023" classname="reexports" name="reformat_exported_correctly"/>
+  <testsuite name="reexports" timestamp="2024-10-25T01:44:16Z" hostname="7060ca77dc1c" tests="2" skipped="0" failures="0" errors="0" time="0.02">
+    <testcase time="0.0120000000000005" classname="reexports" name="with_label_exported_correctly"/>
+    <testcase time="0.00800000000000978" classname="reexports" name="reformat_exported_correctly"/>
   </testsuite>
-  <testsuite name="report_null" timestamp="2024-10-11T12:40:38Z" hostname="4a559c0cdd0e" tests="12" skipped="0" failures="0" errors="0" time="0.19">
-    <testcase time="0.0159999999999911" classname="report_null" name="report_null_works_as_expected_with_NULL_"/>
-    <testcase time="0.0109999999999957" classname="report_null" name="report_null_works_as_expected_with_NULL_"/>
-    <testcase time="0.0340000000000202" classname="report_null" name="report_null_works_as_expected_with_VTableTree_"/>
-    <testcase time="0.039999999999992" classname="report_null" name="report_null_works_as_expected_with_VTableTree_"/>
-    <testcase time="0.01400000000001" classname="report_null" name="report_null_works_as_expected_with_VTableTree_"/>
+  <testsuite name="report_null" timestamp="2024-10-25T01:44:16Z" hostname="7060ca77dc1c" tests="12" skipped="0" failures="0" errors="0" time="0.148">
+    <testcase time="0.0150000000000148" classname="report_null" name="report_null_works_as_expected_with_NULL_"/>
+    <testcase time="0.00999999999999091" classname="report_null" name="report_null_works_as_expected_with_NULL_"/>
+    <testcase time="0.0310000000000059" classname="report_null" name="report_null_works_as_expected_with_VTableTree_"/>
+    <testcase time="0.0209999999999866" classname="report_null" name="report_null_works_as_expected_with_VTableTree_"/>
+    <testcase time="0.00900000000001455" classname="report_null" name="report_null_works_as_expected_with_VTableTree_"/>
+    <testcase time="0.00799999999998136" classname="report_null" name="report_null_works_as_expected_with_listing_df_"/>
+    <testcase time="0.0100000000000193" classname="report_null" name="report_null_works_as_expected_with_listing_df_"/>
     <testcase time="0.00999999999999091" classname="report_null" name="report_null_works_as_expected_with_listing_df_"/>
-    <testcase time="0.0130000000000052" classname="report_null" name="report_null_works_as_expected_with_listing_df_"/>
-    <testcase time="0.0120000000000005" classname="report_null" name="report_null_works_as_expected_with_listing_df_"/>
     <testcase time="0.00899999999998613" classname="report_null" name="report_null_works_as_expected_with_list_"/>
-    <testcase time="0.0220000000000198" classname="report_null" name="report_null_works_as_expected_with_list_"/>
-    <testcase time="0.00600000000000023" classname="report_null" name="report_null_works_as_expected_with_by_default"/>
-    <testcase time="0.0029999999999859" classname="report_null" name="report_null_works_as_expected_with_by_default"/>
+    <testcase time="0.0180000000000007" classname="report_null" name="report_null_works_as_expected_with_list_"/>
+    <testcase time="0.00500000000002387" classname="report_null" name="report_null_works_as_expected_with_by_default"/>
+    <testcase time="0.00199999999998113" classname="report_null" name="report_null_works_as_expected_with_by_default"/>
   </testsuite>
-  <testsuite name="rmpt01" timestamp="2024-10-11T12:40:39Z" hostname="4a559c0cdd0e" tests="11" skipped="0" failures="0" errors="0" time="1.608">
-    <testcase time="0.228000000000009" classname="rmpt01" name="rmpt01_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.0759999999999934" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
-    <testcase time="0.150999999999982" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
-    <testcase time="0.14700000000002" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
-    <testcase time="0.281000000000006" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
-    <testcase time="0.070999999999998" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
-    <testcase time="0.153999999999996" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
-    <testcase time="0.147999999999996" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
-    <testcase time="0.288000000000011" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
-    <testcase time="0.0339999999999918" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
-    <testcase time="0.0300000000000011" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
+  <testsuite name="rmpt01" timestamp="2024-10-25T01:44:16Z" hostname="7060ca77dc1c" tests="11" skipped="0" failures="0" errors="0" time="1.387">
+    <testcase time="0.199000000000012" classname="rmpt01" name="rmpt01_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.0579999999999927" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
+    <testcase time="0.123999999999995" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
+    <testcase time="0.132000000000005" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
+    <testcase time="0.235000000000014" classname="rmpt01" name="rmpt01_can_handle_NA_values"/>
+    <testcase time="0.0599999999999739" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
+    <testcase time="0.122000000000014" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
+    <testcase time="0.132000000000005" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
+    <testcase time="0.264999999999986" classname="rmpt01" name="rmpt01_can_handle_some_NA_values"/>
+    <testcase time="0.0320000000000107" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
+    <testcase time="0.0279999999999916" classname="rmpt01" name="rmpt01_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="rmpt03" timestamp="2024-10-11T12:40:40Z" hostname="4a559c0cdd0e" tests="12" skipped="0" failures="0" errors="0" time="2.385">
-    <testcase time="0.394000000000005" classname="rmpt03" name="rmpt03_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.131999999999977" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
-    <testcase time="0.242000000000019" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
-    <testcase time="0.447000000000003" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
-    <testcase time="0.289999999999992" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
-    <testcase time="0.111999999999995" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
-    <testcase time="0.212999999999994" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
-    <testcase time="0.182000000000016" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
-    <testcase time="0.287999999999982" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
+  <testsuite name="rmpt03" timestamp="2024-10-25T01:44:18Z" hostname="7060ca77dc1c" tests="12" skipped="0" failures="0" errors="0" time="2.026">
+    <testcase time="0.332999999999998" classname="rmpt03" name="rmpt03_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.108000000000004" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
+    <testcase time="0.216000000000008" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
+    <testcase time="0.189999999999998" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
+    <testcase time="0.294999999999987" classname="rmpt03" name="rmpt03_can_handle_NA_values"/>
+    <testcase time="0.110000000000014" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
+    <testcase time="0.216000000000008" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
+    <testcase time="0.187999999999988" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
+    <testcase time="0.290999999999997" classname="rmpt03" name="rmpt03_can_handle_some_NA_values"/>
     <testcase time="0.0349999999999966" classname="rmpt03" name="rmpt03_fails_on_incomlete_data"/>
-    <testcase time="0.0340000000000202" classname="rmpt03" name="rmpt03_fails_on_incomlete_data"/>
-    <testcase time="0.0159999999999911" classname="rmpt03" name="rmpt03_fails_on_incomlete_data"/>
+    <testcase time="0.0270000000000152" classname="rmpt03" name="rmpt03_fails_on_incomlete_data"/>
+    <testcase time="0.0169999999999959" classname="rmpt03" name="rmpt03_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="rmpt04" timestamp="2024-10-11T12:40:43Z" hostname="4a559c0cdd0e" tests="10" skipped="0" failures="0" errors="0" time="0.986">
-    <testcase time="0.187000000000012" classname="rmpt04" name="rmpt04_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.0569999999999879" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
-    <testcase time="0.125" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
-    <testcase time="0.054000000000002" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
-    <testcase time="0.121000000000009" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
-    <testcase time="0.0629999999999882" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
-    <testcase time="0.121000000000009" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
-    <testcase time="0.0629999999999882" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
-    <testcase time="0.135999999999996" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
-    <testcase time="0.0589999999999975" classname="rmpt04" name="rmpt04_fails_on_incomlete_data"/>
+  <testsuite name="rmpt04" timestamp="2024-10-25T01:44:20Z" hostname="7060ca77dc1c" tests="10" skipped="0" failures="0" errors="0" time="0.972">
+    <testcase time="0.186000000000007" classname="rmpt04" name="rmpt04_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.0589999999999975" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
+    <testcase time="0.11699999999999" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
+    <testcase time="0.0529999999999973" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
+    <testcase time="0.131" classname="rmpt04" name="rmpt04_can_handle_NA_values"/>
+    <testcase time="0.0570000000000164" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
+    <testcase time="0.115999999999985" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
+    <testcase time="0.0689999999999884" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
+    <testcase time="0.126000000000005" classname="rmpt04" name="rmpt04_can_handle_some_NA_values"/>
+    <testcase time="0.0580000000000211" classname="rmpt04" name="rmpt04_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="rmpt05" timestamp="2024-10-11T12:40:44Z" hostname="4a559c0cdd0e" tests="10" skipped="0" failures="0" errors="0" time="1.049">
-    <testcase time="0.193000000000012" classname="rmpt05" name="rmpt05_function_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.063999999999993" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
-    <testcase time="0.134000000000015" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
-    <testcase time="0.0569999999999879" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
-    <testcase time="0.132000000000005" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
-    <testcase time="0.061000000000007" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
-    <testcase time="0.132000000000005" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
-    <testcase time="0.0629999999999882" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
-    <testcase time="0.149000000000001" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
-    <testcase time="0.063999999999993" classname="rmpt05" name="rmpt05_fails_on_incomlete_data"/>
+  <testsuite name="rmpt05" timestamp="2024-10-25T01:44:21Z" hostname="7060ca77dc1c" tests="10" skipped="0" failures="0" errors="0" time="1.062">
+    <testcase time="0.200999999999993" classname="rmpt05" name="rmpt05_function_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.0600000000000023" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
+    <testcase time="0.134999999999991" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
+    <testcase time="0.0589999999999975" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
+    <testcase time="0.125" classname="rmpt05" name="rmpt05_can_handle_NA_values"/>
+    <testcase time="0.0600000000000023" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
+    <testcase time="0.140999999999991" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
+    <testcase time="0.0620000000000118" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
+    <testcase time="0.146999999999991" classname="rmpt05" name="rmpt05_can_handle_some_NA_values"/>
+    <testcase time="0.0720000000000027" classname="rmpt05" name="rmpt05_fails_on_incomlete_data"/>
   </testsuite>
-  <testsuite name="rmpt06" timestamp="2024-10-11T12:40:45Z" hostname="4a559c0cdd0e" tests="6" skipped="0" failures="0" errors="0" time="2.059">
-    <testcase time="0.566000000000003" classname="rmpt06" name="rmpt06_works_as_expected"/>
-    <testcase time="0.602000000000004" classname="rmpt06" name="rmpt06_works_as_expected_with_show_diff_TRUE"/>
-    <testcase time="0.227000000000004" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
-    <testcase time="0.290999999999997" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
-    <testcase time="0.227000000000004" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
-    <testcase time="0.145999999999987" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
+  <testsuite name="rmpt06" timestamp="2024-10-25T01:44:22Z" hostname="7060ca77dc1c" tests="6" skipped="0" failures="0" errors="0" time="2.01">
+    <testcase time="0.555000000000007" classname="rmpt06" name="rmpt06_works_as_expected"/>
+    <testcase time="0.580999999999989" classname="rmpt06" name="rmpt06_works_as_expected_with_show_diff_TRUE"/>
+    <testcase time="0.224999999999994" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
+    <testcase time="0.280000000000001" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
+    <testcase time="0.209000000000003" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
+    <testcase time="0.159999999999997" classname="rmpt06" name="rmpt06_can_handle_all_NA_values"/>
   </testsuite>
-  <testsuite name="rspt01" timestamp="2024-10-11T12:40:47Z" hostname="4a559c0cdd0e" tests="27" skipped="0" failures="0" errors="0" time="8.092">
+  <testsuite name="rspt01" timestamp="2024-10-25T01:44:24Z" hostname="7060ca77dc1c" tests="27" skipped="0" failures="0" errors="0" time="7.312">
     <testcase time="0.0160000000000196" classname="rspt01" name="rspt01_works_as_expected"/>
-    <testcase time="0.310999999999979" classname="rspt01" name="rspt01_works_as_expected"/>
-    <testcase time="0.263000000000005" classname="rspt01" name="rspt01_works_as_expected"/>
-    <testcase time="0.310000000000002" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.323000000000008" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.498999999999995" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.369" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.262" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
-    <testcase time="0.254999999999995" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
-    <testcase time="0.278999999999996" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
-    <testcase time="0.256" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
-    <testcase time="0.25800000000001" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.25" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.274000000000001" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.260999999999996" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.306999999999988" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
-    <testcase time="0.257000000000005" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
-    <testcase time="0.373999999999995" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
-    <testcase time="0.318000000000012" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
-    <testcase time="0.294999999999987" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
-    <testcase time="0.27200000000002" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
-    <testcase time="0.35499999999999" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
-    <testcase time="0.424000000000007" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
-    <testcase time="0.299000000000007" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
-    <testcase time="0.274000000000001" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
-    <testcase time="0.393999999999977" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
-    <testcase time="0.337000000000018" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
+    <testcase time="0.298000000000002" classname="rspt01" name="rspt01_works_as_expected"/>
+    <testcase time="0.251000000000005" classname="rspt01" name="rspt01_works_as_expected"/>
+    <testcase time="0.295999999999992" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.277000000000015" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.336999999999989" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.298000000000002" classname="rspt01" name="rspt01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.251000000000005" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
+    <testcase time="0.241000000000014" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
+    <testcase time="0.264999999999986" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
+    <testcase time="0.25200000000001" classname="rspt01" name="rspt01_works_as_expected_for_unstratified_analysis_only"/>
+    <testcase time="0.245999999999981" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.228000000000009" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.269000000000005" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.253999999999991" classname="rspt01" name="rspt01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.274000000000001" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
+    <testcase time="0.253000000000014" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
+    <testcase time="0.330999999999989" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
+    <testcase time="0.296999999999997" classname="rspt01" name="rspt01_works_if_change_reference_group"/>
+    <testcase time="0.271000000000015" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
+    <testcase time="0.251999999999981" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
+    <testcase time="0.367000000000019" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
+    <testcase time="0.327999999999975" classname="rspt01" name="rspt01_works_if_change_statistic_methods"/>
+    <testcase time="0.27200000000002" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
+    <testcase time="0.251000000000005" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
+    <testcase time="0.335999999999984" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
+    <testcase time="0.301000000000016" classname="rspt01" name="rspt01_works_if_change_confidence_interval"/>
   </testsuite>
-  <testsuite name="ttet01" timestamp="2024-10-11T12:40:55Z" hostname="4a559c0cdd0e" tests="15" skipped="0" failures="0" errors="0" time="5.844">
+  <testsuite name="ttet01" timestamp="2024-10-25T01:44:31Z" hostname="7060ca77dc1c" tests="15" skipped="0" failures="0" errors="0" time="5.334">
     <testcase time="0.0169999999999959" classname="ttet01" name="ttet01_works_as_expected"/>
-    <testcase time="0.425000000000011" classname="ttet01" name="ttet01_works_as_expected"/>
-    <testcase time="0.537999999999982" classname="ttet01" name="ttet01_works_as_expected"/>
-    <testcase time="0.344999999999999" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.385000000000019" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.452999999999975" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.473000000000013" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
-    <testcase time="0.363" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.372000000000014" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.410999999999973" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.420000000000016" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
-    <testcase time="0.343999999999994" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
-    <testcase time="0.369" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
-    <testcase time="0.460000000000008" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
-    <testcase time="0.468999999999994" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
+    <testcase time="0.378999999999991" classname="ttet01" name="ttet01_works_as_expected"/>
+    <testcase time="0.485000000000014" classname="ttet01" name="ttet01_works_as_expected"/>
+    <testcase time="0.304999999999978" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.332999999999998" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.403999999999996" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.413000000000011" classname="ttet01" name="ttet01_works_as_expected_for_stratified_and_unstratified_analysis"/>
+    <testcase time="0.310000000000002" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.349999999999994" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.348000000000013" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.369" classname="ttet01" name="ttet01_works_as_expected_for_stratified_analysis_only"/>
+    <testcase time="0.305999999999983" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
+    <testcase time="0.576999999999998" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
+    <testcase time="0.355000000000018" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
+    <testcase time="0.382999999999981" classname="ttet01" name="ttet01_works_if_change_reference_group"/>
   </testsuite>
-  <testsuite name="unwrap" timestamp="2024-10-11T12:41:01Z" hostname="4a559c0cdd0e" tests="9" skipped="0" failures="0" errors="0" time="0.184">
-    <testcase time="0.0380000000000109" classname="unwrap" name="unwrap_layout_works_as_expected_with_standard_chevron_t_main_function"/>
-    <testcase time="0.0219999999999914" classname="unwrap" name="unwrap_layout_works_as_expected_with_standard_chevron_g_main_function"/>
-    <testcase time="0.00999999999999091" classname="unwrap" name="unwrap_layout_works_as_expected_with_standard_chevron_l_main_function"/>
-    <testcase time="0.0100000000000193" classname="unwrap" name="unwrap_layout_works_as_expected_with_a_custom_function_without_layout_function"/>
-    <testcase time="0.032999999999987" classname="unwrap" name="unwrap_layout_works_as_expected_with_a_custom_function_with_layout_function"/>
+  <testsuite name="unwrap" timestamp="2024-10-25T01:44:37Z" hostname="7060ca77dc1c" tests="9" skipped="0" failures="0" errors="0" time="0.151">
+    <testcase time="0.0410000000000252" classname="unwrap" name="unwrap_layout_works_as_expected_with_standard_chevron_t_main_function"/>
+    <testcase time="0.0109999999999957" classname="unwrap" name="unwrap_layout_works_as_expected_with_standard_chevron_g_main_function"/>
+    <testcase time="0.00600000000000023" classname="unwrap" name="unwrap_layout_works_as_expected_with_standard_chevron_l_main_function"/>
+    <testcase time="0.00600000000000023" classname="unwrap" name="unwrap_layout_works_as_expected_with_a_custom_function_without_layout_function"/>
+    <testcase time="0.0279999999999916" classname="unwrap" name="unwrap_layout_works_as_expected_with_a_custom_function_with_layout_function"/>
     <testcase time="0.00200000000000955" classname="unwrap" name="unwrap_layout_works_as_expected_with_a_custom_function_with_layout_function"/>
-    <testcase time="0.0339999999999918" classname="unwrap" name="unwrap_layout_works_as_expected_with_multiple_layout_function"/>
-    <testcase time="0.032999999999987" classname="unwrap" name="unwrap_layout_works_as_expected_on_custom_function_with_overwritten_layout_function"/>
-    <testcase time="0.00200000000000955" classname="unwrap" name="unwrap_layout_works_as_expected_on_custom_function_with_overwritten_layout_function"/>
+    <testcase time="0.0279999999999916" classname="unwrap" name="unwrap_layout_works_as_expected_with_multiple_layout_function"/>
+    <testcase time="0.0279999999999916" classname="unwrap" name="unwrap_layout_works_as_expected_on_custom_function_with_overwritten_layout_function"/>
+    <testcase time="0.00100000000000477" classname="unwrap" name="unwrap_layout_works_as_expected_on_custom_function_with_overwritten_layout_function"/>
   </testsuite>
-  <testsuite name="utils" timestamp="2024-10-11T12:41:01Z" hostname="4a559c0cdd0e" tests="81" skipped="0" failures="0" errors="0" time="2.774">
-    <testcase time="0.00999999999999091" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00100000000000477" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.0029999999999859" classname="utils" name="h_format_dec_works_as_exected"/>
+  <testsuite name="utils" timestamp="2024-10-25T01:44:37Z" hostname="7060ca77dc1c" tests="81" skipped="0" failures="0" errors="0" time="2.224">
+    <testcase time="0.00900000000001455" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00199999999998113" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00199999999998113" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00199999999998113" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="h_format_dec_works_as_exected"/>
     <testcase time="0.00100000000000477" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.0029999999999859" classname="utils" name="h_format_dec_works_as_exected"/>
-    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
-    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
-    <testcase time="0.00600000000000023" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
-    <testcase time="0.248999999999995" classname="utils" name="fuse_sequentially_works"/>
-    <testcase time="0.0029999999999859" classname="utils" name="fuse_sequentially_works"/>
-    <testcase time="0.0120000000000005" classname="utils" name="ifneeded_split_row_works_as_expected"/>
-    <testcase time="0.007000000000005" classname="utils" name="ifneeded_split_row_works_as_expected"/>
-    <testcase time="0.0790000000000077" classname="utils" name="_unnamed_"/>
-    <testcase time="0.0689999999999884" classname="utils" name="_unnamed_"/>
-    <testcase time="0.085000000000008" classname="utils" name="_unnamed_"/>
-    <testcase time="0.0649999999999977" classname="utils" name="_unnamed_"/>
-    <testcase time="0.00399999999999068" classname="utils" name="droplevels.character_works_as_expected"/>
-    <testcase time="0.0040000000000191" classname="utils" name="droplevels.character_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="utils" name="lvls.character_works_as_expected"/>
-    <testcase time="0.0029999999999859" classname="utils" name="lvls.character_works_as_expected"/>
-    <testcase time="0.007000000000005" classname="utils" name="lvls.factor_works_as_expected"/>
-    <testcase time="0.0029999999999859" classname="utils" name="lvls.factor_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="utils" name="lvls.default_works_as_expected"/>
-    <testcase time="0.0100000000000193" classname="utils" name="lvls.default_works_as_expected"/>
+    <testcase time="0.00300000000001432" classname="utils" name="h_format_dec_works_as_exected"/>
+    <testcase time="0.00499999999999545" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
+    <testcase time="0.0029999999999859" classname="utils" name="h_format_dec_works_as_expected_with_more_than_one_value"/>
+    <testcase time="0.00499999999999545" classname="utils" name="h_format_dec_works_as_expected_with_NA_digits"/>
+    <testcase time="0.00600000000000023" classname="utils" name="fuse_sequentially_works"/>
+    <testcase time="0.00200000000000955" classname="utils" name="fuse_sequentially_works"/>
+    <testcase time="0.0109999999999957" classname="utils" name="ifneeded_split_row_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="utils" name="ifneeded_split_row_works_as_expected"/>
+    <testcase time="0.0750000000000171" classname="utils" name="_unnamed_"/>
+    <testcase time="0.0669999999999789" classname="utils" name="_unnamed_"/>
+    <testcase time="0.0630000000000166" classname="utils" name="_unnamed_"/>
+    <testcase time="0.0449999999999875" classname="utils" name="_unnamed_"/>
+    <testcase time="0.00300000000001432" classname="utils" name="droplevels.character_works_as_expected"/>
+    <testcase time="0.00199999999998113" classname="utils" name="droplevels.character_works_as_expected"/>
+    <testcase time="0.00500000000002387" classname="utils" name="lvls.character_works_as_expected"/>
+    <testcase time="0.00199999999998113" classname="utils" name="lvls.character_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="utils" name="lvls.factor_works_as_expected"/>
+    <testcase time="0.00300000000001432" classname="utils" name="lvls.factor_works_as_expected"/>
+    <testcase time="0.00499999999999545" classname="utils" name="lvls.default_works_as_expected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="lvls.default_works_as_expected"/>
     <testcase time="0.00499999999999545" classname="utils" name="quote_str_works_as_expected"/>
     <testcase time="0.0029999999999859" classname="utils" name="quote_str_works_as_expected"/>
-    <testcase time="0.00600000000000023" classname="utils" name="quote_str_works_as_expected"/>
-    <testcase time="0.00500000000002387" classname="utils" name="modify_default_args_works_as_expected"/>
+    <testcase time="0.0040000000000191" classname="utils" name="quote_str_works_as_expected"/>
+    <testcase time="0.00499999999999545" classname="utils" name="modify_default_args_works_as_expected"/>
     <testcase time="0.0029999999999859" classname="utils" name="modify_default_args_works_as_expected"/>
-    <testcase time="0.00499999999999545" classname="utils" name="execute_with_args_works_as_expected"/>
-    <testcase time="0.00300000000001432" classname="utils" name="execute_with_args_works_as_expected"/>
-    <testcase time="0.00199999999998113" classname="utils" name="execute_with_args_works_as_expected"/>
-    <testcase time="0.00300000000001432" classname="utils" name="execute_with_args_works_as_expected"/>
-    <testcase time="0.00200000000000955" classname="utils" name="execute_with_args_works_as_expected"/>
+    <testcase time="0.0040000000000191" classname="utils" name="execute_with_args_works_as_expected"/>
     <testcase time="0.0029999999999859" classname="utils" name="execute_with_args_works_as_expected"/>
     <testcase time="0.00100000000000477" classname="utils" name="execute_with_args_works_as_expected"/>
     <testcase time="0.0029999999999859" classname="utils" name="execute_with_args_works_as_expected"/>
     <testcase time="0.00200000000000955" classname="utils" name="execute_with_args_works_as_expected"/>
-    <testcase time="0.00300000000001432" classname="utils" name="execute_with_args_works_as_expected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="execute_with_args_works_as_expected"/>
     <testcase time="0.00199999999998113" classname="utils" name="execute_with_args_works_as_expected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="execute_with_args_works_as_expected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="execute_with_args_works_as_expected"/>
+    <testcase time="0.0029999999999859" classname="utils" name="execute_with_args_works_as_expected"/>
+    <testcase time="0.00100000000000477" classname="utils" name="execute_with_args_works_as_expected"/>
     <testcase time="0.00300000000001432" classname="utils" name="execute_with_args_works_as_expected"/>
     <testcase time="0.00499999999999545" classname="utils" name="do_call_work_as_expected"/>
-    <testcase time="0.0029999999999859" classname="utils" name="do_call_work_as_expected"/>
-    <testcase time="0.00900000000001455" classname="utils" name="do_call_errors_as_expected"/>
-    <testcase time="0.00600000000000023" classname="utils" name="do_call_errors_as_expected"/>
+    <testcase time="0.00199999999998113" classname="utils" name="do_call_work_as_expected"/>
+    <testcase time="0.00800000000000978" classname="utils" name="do_call_errors_as_expected"/>
+    <testcase time="0.00499999999999545" classname="utils" name="do_call_errors_as_expected"/>
     <testcase time="0.00600000000000023" classname="utils" name="convert_to_month_work_as_expected"/>
-    <testcase time="0.0029999999999859" classname="utils" name="convert_to_month_work_as_expected"/>
+    <testcase time="0.00200000000000955" classname="utils" name="convert_to_month_work_as_expected"/>
+    <testcase time="0.00199999999998113" classname="utils" name="convert_to_month_work_as_expected"/>
     <testcase time="0.00300000000001432" classname="utils" name="convert_to_month_work_as_expected"/>
-    <testcase time="0.0029999999999859" classname="utils" name="convert_to_month_work_as_expected"/>
     <testcase time="0.00200000000000955" classname="utils" name="convert_to_month_work_as_expected"/>
     <testcase time="0.0029999999999859" classname="utils" name="convert_to_month_work_as_expected"/>
-    <testcase time="0.0100000000000193" classname="utils" name="convert_to_month_warning_messages_as_expected"/>
-    <testcase time="0.0109999999999957" classname="utils" name="gg_theme_chevron_works_as_expected"/>
+    <testcase time="0.00800000000000978" classname="utils" name="convert_to_month_warning_messages_as_expected"/>
+    <testcase time="0.00999999999999091" classname="utils" name="gg_theme_chevron_works_as_expected"/>
     <testcase time="0.00200000000000955" classname="utils" name="gg_theme_chevron_works_as_expected"/>
-    <testcase time="0.00199999999998113" classname="utils" name="gg_theme_chevron_works_as_expected"/>
+    <testcase time="0.00100000000000477" classname="utils" name="gg_theme_chevron_works_as_expected"/>
     <testcase time="0.00499999999999545" classname="utils" name="gg_theme_chevron_works_as_expected"/>
     <testcase time="0.00100000000000477" classname="utils" name="gg_theme_chevron_works_as_expected"/>
-    <testcase time="0.00200000000000955" classname="utils" name="gg_theme_chevron_works_as_expected"/>
-    <testcase time="0.007000000000005" classname="utils" name="modify_character_works"/>
-    <testcase time="0.0029999999999859" classname="utils" name="modify_character_works"/>
-    <testcase time="0.007000000000005" classname="utils" name="expand_list_works"/>
-    <testcase time="0.00300000000001432" classname="utils" name="expand_list_works"/>
-    <testcase time="0.00600000000000023" classname="utils" name="set_section_div_works"/>
+    <testcase time="0.00199999999998113" classname="utils" name="gg_theme_chevron_works_as_expected"/>
+    <testcase time="0.00600000000000023" classname="utils" name="modify_character_works"/>
+    <testcase time="0.00300000000001432" classname="utils" name="modify_character_works"/>
+    <testcase time="0.00600000000000023" classname="utils" name="expand_list_works"/>
+    <testcase time="0.00199999999998113" classname="utils" name="expand_list_works"/>
+    <testcase time="0.00500000000002387" classname="utils" name="set_section_div_works"/>
     <testcase time="0.00499999999999545" classname="utils" name="set_section_div_works"/>
     <testcase time="0.00499999999999545" classname="utils" name="set_section_div_works"/>
-    <testcase time="0.00399999999999068" classname="utils" name="set_section_div_works"/>
+    <testcase time="0.00200000000000955" classname="utils" name="set_section_div_works"/>
     <testcase time="0.00600000000000023" classname="utils" name="get_section_div_works"/>
-    <testcase time="0.00300000000001432" classname="utils" name="get_section_div_works"/>
-    <testcase time="0.963999999999999" classname="utils" name="grob_list_is_deprecated"/>
-    <testcase time="0.947000000000003" classname="utils" name="gg_list_is_deprecated"/>
+    <testcase time="0.0029999999999859" classname="utils" name="get_section_div_works"/>
+    <testcase time="0.859000000000009" classname="utils" name="grob_list_is_deprecated"/>
+    <testcase time="0.838999999999999" classname="utils" name="gg_list_is_deprecated"/>
     <testcase time="0.00799999999998136" classname="utils" name="format_date_works_as_expected_for_POSIXct"/>
     <testcase time="0.00300000000001432" classname="utils" name="format_date_works_as_expected_for_POSIXct"/>
     <testcase time="0.007000000000005" classname="utils" name="format_date_works_as_expected_for_Date"/>
-    <testcase time="0.00399999999999068" classname="utils" name="format_date_works_as_expected_for_Date"/>
+    <testcase time="0.0029999999999859" classname="utils" name="format_date_works_as_expected_for_Date"/>
   </testsuite>
-  <testsuite name="vst01" timestamp="2024-10-11T12:41:04Z" hostname="4a559c0cdd0e" tests="3" skipped="0" failures="0" errors="0" time="4.707">
-    <testcase time="2.333" classname="vst01" name="vst01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.763000000000005" classname="vst01" name="run_vst01_works_as_expected"/>
-    <testcase time="1.61099999999999" classname="vst01" name="run_vst01_works_as_expected"/>
+  <testsuite name="vst01" timestamp="2024-10-25T01:44:39Z" hostname="7060ca77dc1c" tests="3" skipped="0" failures="0" errors="0" time="4.385">
+    <testcase time="2.161" classname="vst01" name="vst01_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.719999999999999" classname="vst01" name="run_vst01_works_as_expected"/>
+    <testcase time="1.50400000000002" classname="vst01" name="run_vst01_works_as_expected"/>
   </testsuite>
-  <testsuite name="vst02" timestamp="2024-10-11T12:41:08Z" hostname="4a559c0cdd0e" tests="2" skipped="0" failures="0" errors="0" time="0.96">
-    <testcase time="0.479000000000013" classname="vst02" name="vst02_functions_with_default_argument_value_return_expected_result_with_test_data"/>
-    <testcase time="0.480999999999995" classname="vst02" name="vst02_functions_return_expected_result_with_test_data_when_excluding_subject_with_baseline_abnormality"/>
+  <testsuite name="vst02" timestamp="2024-10-25T01:44:43Z" hostname="7060ca77dc1c" tests="2" skipped="0" failures="0" errors="0" time="0.905">
+    <testcase time="0.453999999999979" classname="vst02" name="vst02_functions_with_default_argument_value_return_expected_result_with_test_data"/>
+    <testcase time="0.451000000000022" classname="vst02" name="vst02_functions_return_expected_result_with_test_data_when_excluding_subject_with_baseline_abnormality"/>
   </testsuite>
 </testsuites>
