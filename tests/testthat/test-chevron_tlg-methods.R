@@ -128,8 +128,8 @@ test_that("run print main and postprocessing functions when unwrap is TRUE and a
   res <- capture_output(tbl <- run(custom_chevron, iris_ls, verbose = FALSE, unwrap = TRUE, auto_pre = FALSE))
 
   out <- paste(res, collapse = "\n")
-  expect_no_match(out, "Using template:  custom_chevron") # verbose = FALSE
-  expect_no_match(out, "Preprocessing function:") # auto_pre = FALSE
+  expect_no_match(out, "Using template:  custom_chevron")
+  expect_no_match(out, "Preprocessing function:")
   expect_match(out, "Main function:")
   expect_no_match(out, "Layout function:") # no layout
 
