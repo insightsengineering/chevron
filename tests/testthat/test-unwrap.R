@@ -1,15 +1,20 @@
 test_that("unwrap_layout works as expected with standard chevron_t main function", {
-  res <- capture.output(unwrap_layout(aet01_main))
+  skip_on_covr()
+  res <- capture_output(unwrap_layout(aet01_main))
+  res <- paste(res, collapse = "\n")
+  expect_match(res, "Layout function:")
+  expect_match(res, "aet01_lyt:")
+  expect_match(res, "function ", fixed = TRUE)
   expect_snapshot(cat(paste(res, collapse = "\n")))
 })
 
 test_that("unwrap_layout works as expected with standard chevron_g main function", {
-  res <- capture.output(unwrap_layout(mng01_main))
+  res <- capture_output(unwrap_layout(mng01_main))
   expect_identical(res, "")
 })
 
 test_that("unwrap_layout works as expected with standard chevron_l main function", {
-  res <- capture.output(unwrap_layout(ael01_nollt_main))
+  res <- capture_output(unwrap_layout(ael01_nollt_main))
   expect_identical(res, "")
 })
 
