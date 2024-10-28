@@ -332,7 +332,7 @@ run(cfbt01, proc_data, dataset = "advs", skip = list(CHG = c("SCREENING", "BASEL
 To display only the absolute value, specify `summaryvars  = "AVAL"`.
 
 ```{r}
-run(cfbt01, proc_data, dataset = "advs", summaryvars  = "AVAL")
+run(cfbt01, proc_data, dataset = "advs", summaryvars = "AVAL")
 ```
 
 ### **Concomitant Medications by Medication Class and Preferred Name (`CMT01A`)**
