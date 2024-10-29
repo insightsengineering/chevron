@@ -784,6 +784,8 @@ run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
 
 ### **Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline (`LBT15`)**
 
+Please note that the following examples of summarizing lab grades using single and double grading approaches can be applied to other lab table templates beyond `LBT15`.
+
 #### **1. Laboratory Test Shifts to `NCI-CTCAE` Grade 3-4 Post-Baseline (Single Grading Approach)**
 
 In ADaM v1.1 or below, lab grade variables (`BTOXGR` and `ATOXGR`) in ADLB range from -4 to +4, with -/+ indicating the direction of lab abnormality. This is known as the single grading approach. 
