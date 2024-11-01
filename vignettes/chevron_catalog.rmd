@@ -806,36 +806,17 @@ To summarize patients shifting to post-baseline grade 3-4 based on ADLB with the
 proc_data <- syn_data
 # Convert single grading variables to double ones for demo purpose only
 # as the original syn_data is using single grading approach
+hr <- rule("0" = c("-4", "-3", "-2", "-1", "0"))
+lr <- rule(
+  "0" = c("4", "3", "2", "1", "0"),
+  "1" = "-1", "2" = "-2", "3" = "-3", "4" = "-4"
+)
 proc_data$adlb <- proc_data$adlb %>%
   mutate(
-    BTOXGRH = as.factor(
-      case_when(
-        BTOXGR %in% c("-4", "-3", "-2", "-1", "0") ~ "0",
-        TRUE ~ BTOXGR
-      )
-    ),
-    ATOXGRH = as.factor(
-      case_when(
-        ATOXGR %in% c("-4", "-3", "-2", "-1", "0") ~ "0",
-        TRUE ~ ATOXGR
-      )
-    ),
-    BTOXGRL = as.factor(
-      case_when(
-        BTOXGR %in% c("4", "3", "2", "1", "0") ~ "0",
-        BTOXGR == "-1" ~ "1",  BTOXGR == "-2" ~ "2",
-        BTOXGR == "-3" ~ "3",  BTOXGR == "-4" ~ "4",
-        TRUE ~ BTOXGR
-      )
-    ),
-    ATOXGRL = as.factor(
-      case_when(
-        ATOXGR %in% c("4", "3", "2", "1", "0") ~ "0",
-        ATOXGR == "-1" ~ "1",  ATOXGR == "-2" ~ "2",
-        ATOXGR == "-3" ~ "3",  ATOXGR == "-4" ~ "4",
-        TRUE ~ ATOXGR
-      )
-    )
+    BTOXGRH = reformat(.data$BTOXGR, hr),
+    ATOXGRH = reformat(.data$ATOXGR, hr),
+    BTOXGRL = reformat(.data$BTOXGR, lr),
+    ATOXGRL = reformat(.data$ATOXGR, lr)
   )
 
 # Redefine ANRIND and BNRIND to adopt double grading approach
