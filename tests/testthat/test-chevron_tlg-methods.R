@@ -111,7 +111,7 @@ test_that("run print internal functions when unwrap is TRUE and the chevron_tlg 
   out <- paste(res, collapse = "\n")
   expect_match(out, "Using template:  custom_chevron")
   expect_match(out, "Main function:")
-  expect_no_match(out, "Layout function:")
+  expect_no_match(out, "Layout function:") # no layout
 
   skip_on_covr()
   expect_snapshot(cat(res))
@@ -126,6 +126,14 @@ test_that("run print main and postprocessing functions when unwrap is TRUE and a
   )
   iris_ls <- list(iris = iris)
   res <- capture_output(tbl <- run(custom_chevron, iris_ls, verbose = FALSE, unwrap = TRUE, auto_pre = FALSE))
+
+  out <- paste(res, collapse = "\n")
+  expect_no_match(out, "Using template:  custom_chevron")
+  expect_no_match(out, "Preprocessing function:")
+  expect_match(out, "Main function:")
+  expect_no_match(out, "Layout function:") # no layout
+
+  skip_on_covr()
   expect_snapshot(cat(res))
 })
 

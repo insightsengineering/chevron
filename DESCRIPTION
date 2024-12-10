@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.8
-Date: 2024-10-24
+Version: 0.2.8.9002
+Date: 2024-11-07
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = c("aut", "cre")),
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut"),
@@ -45,7 +45,7 @@ Imports:
     rlistings (>= 0.2.9),
     rtables (>= 0.6.10),
     stringr (>= 1.4.1),
-    tern (>= 0.9.6),
+    tern (>= 0.9.6.9010),
     tibble (>= 2.0.0),
     utils
 Suggests:
@@ -56,7 +56,8 @@ Suggests:
     vdiffr (>= 1.0.0),
     withr (>= 2.1.0)
 VignetteBuilder:
-    knitr
+    knitr,
+    rmarkdown
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
