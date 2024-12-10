@@ -38,5 +38,13 @@ jobs:
     secrets:
       REPO_GITHUB_TOKEN: ${{ secrets.REPO_GITHUB_TOKEN }}
     with:
+      deps-installation-method: setup-r-dependencies
+      lookup-refs: |
+        insightsengineering/tern
+        insightsengineering/dunlin
+        insightsengineering/rtables
+        insightsengineering/rlistings
+        insightsengineering/formatters
+        insightsengineering/nestcolor
       default-landing-page: latest-tag
       additional-unit-test-report-directories: unit-test-report-non-cran
