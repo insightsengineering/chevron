@@ -57,60 +57,6 @@
                                                             6     
                                                             2     
                                                             6     
-      \s\nACTARM: C: Combination
-      
-      —————————————————————————————————————————————————————————————————————————————————————————————————————————
-                                                                                Date of                        
-                                                               Adverse        First Study     Study       AE   
-                                                             Event MedDRA         Drug        Day of   Duration
-      Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
-      —————————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    25MAR2019         342       700   
-                                                            dcd B.2.2.3.1    25MAR2019         441        53   
-                                                            dcd D.1.1.1.1    25MAR2019         445       598   
-                                                            dcd B.1.1.1.1    25MAR2019         644        42   
-                                                            dcd B.2.2.3.1    25MAR2019         669       100   
-                                                            dcd C.2.1.2.1    25MAR2019         744       185   
-                                                            dcd C.2.1.2.1    25MAR2019         808       166   
-                                                            dcd B.2.1.2.1    25MAR2019         970        15   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       678   
-                                                            dcd D.1.1.1.1    28APR2019          92       254   
-      \s\nACTARM: C: Combination
-      
-      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
-                                                                                                                 
-                                                                        Most      Caused by                      
-                                                                       Extreme      Study     Outcome   Treatment
-      Center/Patients ID            Age/Sex/Race            Serious   Intensity     Drug        (1)      for AE  
-      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       No        MODERATE    No          2         No       
-                                                            Yes       MILD        No          5         No       
-                                                            Yes       SEVERE      Yes         1         No       
-                                                            Yes       SEVERE      Yes         1         No       
-                                                            Yes       MILD        No          5         Yes      
-                                                            No        MODERATE    Yes         4         No       
-                                                            No        MODERATE    Yes         3         No       
-                                                            No        MODERATE    No          3         No       
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   No        MODERATE    No          6         No       
-                                                            Yes       SEVERE      Yes         1         No       
-      \s\nACTARM: C: Combination
-      
-      ————————————————————————————————————————————————————————————
-                                                                  
-                                                            Action
-                                                            Taken 
-      Center/Patients ID            Age/Sex/Race             (2)  
-      ————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       3     
-                                                            2     
-                                                            6     
-                                                            6     
-                                                            2     
-                                                            3     
-                                                            6     
-                                                            2     
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   1     
-                                                            6     
       \s\nACTARM: B: Placebo
       
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -165,6 +111,60 @@
                                                             2     
       CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   7     
                                                             2     
+      \s\nACTARM: C: Combination
+      
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————
+                                                                                Date of                        
+                                                               Adverse        First Study     Study       AE   
+                                                             Event MedDRA         Drug        Day of   Duration
+      Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————
+      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    25MAR2019         342       700   
+                                                            dcd B.2.2.3.1    25MAR2019         441        53   
+                                                            dcd D.1.1.1.1    25MAR2019         445       598   
+                                                            dcd B.1.1.1.1    25MAR2019         644        42   
+                                                            dcd B.2.2.3.1    25MAR2019         669       100   
+                                                            dcd C.2.1.2.1    25MAR2019         744       185   
+                                                            dcd C.2.1.2.1    25MAR2019         808       166   
+                                                            dcd B.2.1.2.1    25MAR2019         970        15   
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       678   
+                                                            dcd D.1.1.1.1    28APR2019          92       254   
+      \s\nACTARM: C: Combination
+      
+      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
+                                                                                                                 
+                                                                        Most      Caused by                      
+                                                                       Extreme      Study     Outcome   Treatment
+      Center/Patients ID            Age/Sex/Race            Serious   Intensity     Drug        (1)      for AE  
+      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
+      BRA-11/9             40/M/ASIAN                       No        MODERATE    No          2         No       
+                                                            Yes       MILD        No          5         No       
+                                                            Yes       SEVERE      Yes         1         No       
+                                                            Yes       SEVERE      Yes         1         No       
+                                                            Yes       MILD        No          5         Yes      
+                                                            No        MODERATE    Yes         4         No       
+                                                            No        MODERATE    Yes         3         No       
+                                                            No        MODERATE    No          3         No       
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   No        MODERATE    No          6         No       
+                                                            Yes       SEVERE      Yes         1         No       
+      \s\nACTARM: C: Combination
+      
+      ————————————————————————————————————————————————————————————
+                                                                  
+                                                            Action
+                                                            Taken 
+      Center/Patients ID            Age/Sex/Race             (2)  
+      ————————————————————————————————————————————————————————————
+      BRA-11/9             40/M/ASIAN                       3     
+                                                            2     
+                                                            6     
+                                                            6     
+                                                            2     
+                                                            3     
+                                                            6     
+                                                            2     
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   1     
+                                                            6     
 
 # ael02 can handle all missing values
 
@@ -405,60 +405,6 @@
                                                             6     
                                                             2     
                                                             6     
-      \s\nACTARM: C: Combination
-      
-      —————————————————————————————————————————————————————————————————————————————————————————————————————————
-                                                                                Date of                        
-                                                               Adverse        First Study     Study       AE   
-                                                             Event MedDRA         Drug        Day of   Duration
-      Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
-      —————————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    25MAR2019         342       700   
-                                                            dcd B.2.2.3.1    25MAR2019         441        53   
-                                                            dcd D.1.1.1.1    25MAR2019         445       598   
-                                                            dcd B.1.1.1.1    25MAR2019         644        42   
-                                                            dcd B.2.2.3.1    25MAR2019         669       100   
-                                                            dcd C.2.1.2.1    25MAR2019         744       185   
-                                                            dcd C.2.1.2.1    25MAR2019         808       166   
-                                                            dcd B.2.1.2.1    25MAR2019         970        15   
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       678   
-                                                            dcd D.1.1.1.1    28APR2019          92       254   
-      \s\nACTARM: C: Combination
-      
-      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
-                                                                                                                 
-                                                                        Most      Caused by                      
-                                                                       Extreme      Study     Outcome   Treatment
-      Center/Patients ID            Age/Sex/Race            Serious   Intensity     Drug        (1)      for AE  
-      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       No        MODERATE    No          2         No       
-                                                            Yes       MILD        No          5         No       
-                                                            Yes       SEVERE      Yes         1         No       
-                                                            Yes       SEVERE      Yes         1         No       
-                                                            Yes       MILD        No          5         Yes      
-                                                            No        MODERATE    Yes         4         No       
-                                                            No        MODERATE    Yes         3         No       
-                                                            No        MODERATE    No          3         No       
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   No        MODERATE    No          6         No       
-                                                            Yes       SEVERE      Yes         1         No       
-      \s\nACTARM: C: Combination
-      
-      ————————————————————————————————————————————————————————————
-                                                                  
-                                                            Action
-                                                            Taken 
-      Center/Patients ID            Age/Sex/Race             (2)  
-      ————————————————————————————————————————————————————————————
-      BRA-11/9             40/M/ASIAN                       3     
-                                                            2     
-                                                            6     
-                                                            6     
-                                                            2     
-                                                            3     
-                                                            6     
-                                                            2     
-      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   1     
-                                                            6     
       \s\nACTARM: B: Placebo
       
       —————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -513,4 +459,58 @@
                                                             2     
       CHN-1/227            26/F/BLACK OR AFRICAN AMERICAN   7     
                                                             2     
+      \s\nACTARM: C: Combination
+      
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————
+                                                                                Date of                        
+                                                               Adverse        First Study     Study       AE   
+                                                             Event MedDRA         Drug        Day of   Duration
+      Center/Patients ID            Age/Sex/Race            Preferred Term   Administration   Onset    in Days 
+      —————————————————————————————————————————————————————————————————————————————————————————————————————————
+      BRA-11/9             40/M/ASIAN                       dcd D.1.1.4.2    25MAR2019         342       700   
+                                                            dcd B.2.2.3.1    25MAR2019         441        53   
+                                                            dcd D.1.1.1.1    25MAR2019         445       598   
+                                                            dcd B.1.1.1.1    25MAR2019         644        42   
+                                                            dcd B.2.2.3.1    25MAR2019         669       100   
+                                                            dcd C.2.1.2.1    25MAR2019         744       185   
+                                                            dcd C.2.1.2.1    25MAR2019         808       166   
+                                                            dcd B.2.1.2.1    25MAR2019         970        15   
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   dcd B.2.1.2.1    28APR2019          31       678   
+                                                            dcd D.1.1.1.1    28APR2019          92       254   
+      \s\nACTARM: C: Combination
+      
+      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
+                                                                                                                 
+                                                                        Most      Caused by                      
+                                                                       Extreme      Study     Outcome   Treatment
+      Center/Patients ID            Age/Sex/Race            Serious   Intensity     Drug        (1)      for AE  
+      ———————————————————————————————————————————————————————————————————————————————————————————————————————————
+      BRA-11/9             40/M/ASIAN                       No        MODERATE    No          2         No       
+                                                            Yes       MILD        No          5         No       
+                                                            Yes       SEVERE      Yes         1         No       
+                                                            Yes       SEVERE      Yes         1         No       
+                                                            Yes       MILD        No          5         Yes      
+                                                            No        MODERATE    Yes         4         No       
+                                                            No        MODERATE    Yes         3         No       
+                                                            No        MODERATE    No          3         No       
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   No        MODERATE    No          6         No       
+                                                            Yes       SEVERE      Yes         1         No       
+      \s\nACTARM: C: Combination
+      
+      ————————————————————————————————————————————————————————————
+                                                                  
+                                                            Action
+                                                            Taken 
+      Center/Patients ID            Age/Sex/Race             (2)  
+      ————————————————————————————————————————————————————————————
+      BRA-11/9             40/M/ASIAN                       3     
+                                                            2     
+                                                            6     
+                                                            6     
+                                                            2     
+                                                            3     
+                                                            6     
+                                                            2     
+      CHN-1/64             34/F/BLACK OR AFRICAN AMERICAN   1     
+                                                            6     
 
