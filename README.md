@@ -1,4 +1,4 @@
-# `chevron`: Standard TLGs for clinical trials reporting <a href='https://insightsengineering.github.io/chevron/'><img src="man/figures/chevron.png" align="right" height="139" style="max-width: 100%; max-height: 139px;"/></a>
+# `chevron`: Standard TLGs for clinical trials reporting <a href='https://insightsengineering.github.io/chevron/'><img src="man/figures/logo.svg" align="right" height="139" style="max-width: 100%; max-height: 139px;"/></a>
 
 <!-- start badges -->
 [![Check 🛠](https://github.com/insightsengineering/chevron/actions/workflows/check.yaml/badge.svg)](https://insightsengineering.github.io/chevron/main/unit-test-report/)
