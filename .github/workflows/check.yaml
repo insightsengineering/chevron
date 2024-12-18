@@ -47,7 +47,7 @@ jobs:
         checking for unstated dependencies in vignettes .* NOTE
         checking top-level files .* NOTE
       unit-test-report-brand: >-
-        https://raw.githubusercontent.com/insightsengineering/hex-stickers/main/thumbs/chevron.png
+        https://raw.githubusercontent.com/insightsengineering/hex-stickers/main/SVG/chevron.svg
   r-cmd-non-cran:
     name: R CMD Check (non-CRAN) 🧬
     uses: insightsengineering/r.pkg.template/.github/workflows/build-check-install.yaml@main

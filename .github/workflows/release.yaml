@@ -45,7 +45,7 @@ jobs:
         checking Rd line widths .* NOTE
         checking top-level files .* NOTE
       unit-test-report-brand: >-
-        https://raw.githubusercontent.com/insightsengineering/hex-stickers/main/thumbs/chevron.png
+        https://raw.githubusercontent.com/insightsengineering/hex-stickers/main/SVG/chevron.svg
   coverage:
     name: Coverage 📔
     needs: [release, docs]
