@@ -10,6 +10,18 @@ test_that("ttet01 works as expected", {
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 
+test_that("ttet01 returns an error when one level or arm_var is empty", {
+  proc_data <- syn_data %>%
+    dunlin::log_filter(PARAMCD == "PFS", "adtte") %>%
+    dunlin::log_filter(ARM != "C: Combination", "adtte")
+
+  expect_error(
+    run(ttet01, proc_data, dataset = "adtte"),
+    "* Variable 'adam_db$adtte$ARM': Has has empty levels 'C: Combination'.",
+    fixed = TRUE
+  )
+})
+
 test_that("ttet01 works as expected for stratified and unstratified analysis", {
   skip_on_os("windows")
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "PFS", "adtte")
