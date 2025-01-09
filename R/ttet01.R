@@ -49,7 +49,7 @@ ttet01_main <- function(adam_db,
     adam_db[[dataset]], c("USUBJID", strata, "EVNT1", "EVNTDESC", "AVALU"),
     types = list(c("character", "factor")), label = df_label
   )
-  assert_valid_variable(adam_db[[dataset]], arm_var, type = list("factor"), empty.levels.ok = FALSE, label = df_label)
+  assert_valid_variable(adam_db[[dataset]], arm_var, types = list("factor"), empty.levels.ok = FALSE, label = df_label)
   assert_subset(ref_group, lvls(adam_db[[dataset]][[arm_var]]))
   ref_group <- ref_group %||% lvls(anl[[arm_var]])[1]
   assert_single_value(anl$AVALU, label = sprintf("adam_db$%s$AVALU", dataset))
