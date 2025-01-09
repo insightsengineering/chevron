@@ -1,5 +1,7 @@
 # chevron 0.2.8.9006
 
+* `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
+
 # chevron 0.2.8
 
 * New `unwrap` argument prints `preprocessing`, `main`, `postprocessing` and `layout` function upon execution of the `run` method.
