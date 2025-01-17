@@ -45,7 +45,7 @@ Imports:
     rlistings (>= 0.2.10),
     rtables (>= 0.6.11),
     stringr (>= 1.4.1),
-    tern (>= 0.9.6.9010),
+    tern (>= 0.9.7),
     tibble (>= 2.0.0),
     utils
 Suggests:
