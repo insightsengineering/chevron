@@ -38,7 +38,7 @@ lbt05_main <- function(adam_db,
     ABN_DIR = c("Low", "High"),
     stringsAsFactors = FALSE
   ) %>%
-  arrange(.data$PARAM, desc(.data$ABN_DIR))
+    arrange(.data$PARAM, desc(.data$ABN_DIR))
 
   lyt <- lbt05_lyt(
     arm_var = arm_var,
