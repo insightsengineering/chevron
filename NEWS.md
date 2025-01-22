@@ -1,6 +1,7 @@
 # chevron 0.2.8.9007
 
 * `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
+* Bug fix: `lbt05` now prints a clearer error message when `PARAM`, `AVALCAT1` and `ABN_DIR` variables in `adlb` are not of class `factor`. 
 
 # chevron 0.2.8
 
