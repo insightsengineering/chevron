@@ -35,7 +35,7 @@ lbt04_main <- function(adam_db,
   assert_string(row_split_var)
   assert_valid_variable(
     adam_db$adlb, c("PARAMCD", "PARAM", row_split_var),
-    types = list("characater", "factor")
+    types = list(c("character", "factor"))
   )
   assert_subset(page_var, row_split_var)
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)

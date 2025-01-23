@@ -45,3 +45,12 @@ test_that("lbt05 fails on incomlete data", {
     mutate(PARCAT2 = NULL)
   expect_error(run(lbt05, proc_data))
 })
+
+test_that("lbt05 works with missing levels", {
+  skip_on_os("windows")
+  proc_data <- syn_data
+  proc_data$adlb <- proc_data$adlb %>%
+    filter(PARAM == "Immunoglobulin A Measurement")
+  res <- expect_silent(run(lbt05, proc_data))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
