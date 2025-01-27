@@ -26,7 +26,7 @@
 #'  by `AVISIT`. Re-level to customize order
 #'
 #' @note
-#'   * `adam_db` object must contain table named as `dataset` with the columns specified in `summaryvars`.
+#'  * `adam_db` object must contain table named as `dataset` with the columns specified in `summaryvars`.
 #'
 #' @export
 #'

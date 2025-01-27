@@ -6,6 +6,8 @@
 #' @include cfbt01.R
 #' @returns the main function returns an `rtables` object.
 #'
+#' @note default precision is 0.
+#'
 #' @export
 #'
 egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg", precision = list(default = 0L))

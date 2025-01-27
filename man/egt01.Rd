@@ -88,9 +88,7 @@ by \code{AVISIT}. Re-level to customize order
 
 }}
 \note{
-\itemize{
-\item \code{adam_db} object must contain table named as \code{dataset} with the columns specified in \code{summaryvars}.
-}
+default precision is 0.
 }
 \examples{
 run(egt01, syn_data)
