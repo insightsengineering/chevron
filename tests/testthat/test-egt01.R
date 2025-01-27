@@ -16,7 +16,7 @@ test_that("egt01 can handle n = 0 and outputs NE instead of infs and NAs", {
     filter(PARAM != "HR" & ACTARM != "A: Drug X")
 
   res <- expect_silent(
-    run(egt01, proc_data, precision = list("RR" = 0, "HR" = 1))
+    run(egt01, proc_data, precision = list("HR" = 1, default = 0))
   )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
