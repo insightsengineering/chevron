@@ -18,7 +18,7 @@ egt01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(default = 2L),
+  precision = list(default = 0L),
   page_var = "PARAMCD",
   .stats = c("n", "mean_sd", "median", "range"),
   skip = list(CHG = "BASELINE"),
