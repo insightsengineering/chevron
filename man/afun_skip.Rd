@@ -35,7 +35,7 @@ afun_skip(
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the values
 indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
-the value for \code{default} will be used.}
+the value for \code{default} will be used. If \code{default} is not set, the default precision is 2.}
 
 \item{.stats}{(\code{character}) See \code{tern::analyze_variables}.}
 

@@ -8,7 +8,7 @@
 #' @param visitvar (`string`) typically one of `"AVISIT"` or user-defined visit incorporating `"ATPT"`.
 #' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the values
 #'   indicate the number of digits in statistics. If `default` is set, and parameter precision not specified,
-#'   the value for `default` will be used.
+#'   the value for `default` will be used. If `default` is not set, the default precision is 2.
 #' @param .stats (`character`) statistics names, see `tern::analyze_vars()`.
 #' @param skip Named (`list`) of visit values that need to be inhibited.
 #' @param ... additional arguments like `.indent_mods`, `.labels`.
@@ -26,7 +26,7 @@
 #'  by `AVISIT`. Re-level to customize order
 #'
 #' @note
-#'   * `adam_db` object must contain table named as `dataset` with the columns specified in `summaryvars`.
+#'  * `adam_db` object must contain table named as `dataset` with the columns specified in `summaryvars`.
 #'
 #' @export
 #'

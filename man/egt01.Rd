@@ -18,7 +18,7 @@ egt01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(default = 2L),
+  precision = list(default = 0L),
   page_var = "PARAMCD",
   .stats = c("n", "mean_sd", "median", "range"),
   skip = list(CHG = "BASELINE"),
@@ -47,7 +47,7 @@ table of \code{adam_db} is used as label.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the values
 indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
-the value for \code{default} will be used.}
+the value for \code{default} will be used. If \code{default} is not set, the default precision is 2.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
@@ -88,9 +88,7 @@ by \code{AVISIT}. Re-level to customize order
 
 }}
 \note{
-\itemize{
-\item \code{adam_db} object must contain table named as \code{dataset} with the columns specified in \code{summaryvars}.
-}
+default precision is 0.
 }
 \examples{
 run(egt01, syn_data)
