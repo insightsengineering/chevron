@@ -44,7 +44,6 @@ lbt01 <- chevron_t(
 #' @export
 #'
 lab_paramcd_precision <- function() {
-
   list(
     HCRIT = 2,
     HGB = 0,
@@ -102,4 +101,3 @@ lab_paramcd_precision <- function() {
     default = 2
   )
 }
-
