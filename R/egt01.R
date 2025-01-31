@@ -10,7 +10,7 @@
 #'
 #' @export
 #'
-egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg", precision = list(default = 0L))
+egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg", precision = quote(list(default = 0L)))
 
 #' @describeIn egt01 Preprocessing
 #'
