@@ -5,6 +5,7 @@
 \alias{lbt01_main}
 \alias{lbt01_pre}
 \alias{lbt01}
+\alias{lab_paramcd_precision}
 \title{\code{LBT01} Lab Results and Change from Baseline by Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
@@ -18,7 +19,7 @@ lbt01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(default = 2L),
+  precision = lab_paramcd_precision(),
   page_var = "PARAMCD",
   .stats = c("n", "mean_sd", "median", "range"),
   skip = list(CHG = "BASELINE"),
@@ -28,6 +29,8 @@ lbt01_main(
 lbt01_pre(adam_db, dataset = "adlb", ...)
 
 lbt01
+
+lab_paramcd_precision()
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
@@ -61,6 +64,8 @@ the value for \code{default} will be used. If \code{default} is not set, the def
 the main function returns an \code{rtables} object.
 
 the preprocessing function returns a \code{list} of \code{data.frame}.
+
+a named \code{list} with the precision of each lab parameter code (default is \code{2}).
 }
 \description{
 The \code{LBT01} table provides an
@@ -85,6 +90,8 @@ by \code{AVISIT}. Re-level to customize order
 \item \code{lbt01_main()}: Main TLG function
 
 \item \code{lbt01_pre()}: Preprocessing
+
+\item \code{lab_paramcd_precision()}: 
 
 }}
 \note{

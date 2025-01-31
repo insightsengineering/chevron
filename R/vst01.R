@@ -8,7 +8,11 @@
 #'
 #' @export
 #'
-vst01_main <- modify_default_args(cfbt01_main, dataset = "advs")
+vst01_main <- modify_default_args(
+  cfbt01_main,
+  dataset = "advs",
+  precision = quote(list(DIABP = 0, PULSE = 0, SYSBP = 0, default = 2L))
+)
 
 #' @describeIn vst01 Preprocessing
 #'
@@ -16,7 +20,10 @@ vst01_main <- modify_default_args(cfbt01_main, dataset = "advs")
 #' @returns the preprocessing function returns a `list` of `data.frame`.
 #' @export
 #'
-vst01_pre <- modify_default_args(cfbt01_pre, dataset = "advs")
+vst01_pre <- modify_default_args(
+  cfbt01_pre,
+  dataset = "advs"
+)
 
 #' `VST01` Vital Sign Results and change from Baseline By Visit Table.
 #'
