@@ -11,7 +11,7 @@
 vst01_main <- modify_default_args(
   cfbt01_main,
   dataset = "advs",
-  precision = quote(list(DIABP = 0, PULSE = 0, SYSBP = 0, default = 2L))
+  precision = quote(list(DIABP = 0, PUL = 0, SYSBP = 0, default = 2L))
 )
 
 #' @describeIn vst01 Preprocessing

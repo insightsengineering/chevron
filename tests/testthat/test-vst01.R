@@ -19,6 +19,6 @@ test_that("run vst01 works as expected", {
     syn_data,
     PARAMCD %in% c("DIABP", "SYSBP"), "advs"
   )
-  res <- expect_silent(run(vst01, proc_data))
+  res <- expect_silent(run(vst01, proc_data, precision = list(default = 0)))
   expect_snapshot(cat(export_as_txt(res, lpp = 200)))
 })

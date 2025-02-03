@@ -101,5 +101,8 @@ by \code{AVISIT}. Re-level to customize order
 }
 \examples{
 run(lbt01, syn_data)
+# example code
+head(lab_paramcd_precision())
+
 }
 \keyword{datasets}

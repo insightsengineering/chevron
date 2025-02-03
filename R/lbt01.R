@@ -42,9 +42,12 @@ lbt01 <- chevron_t(
 #'
 #' @returns a named `list` with the precision of each lab parameter code (default is `2`).
 #' @export
+#' @examples
+#' # example code
+#' head(lab_paramcd_precision())
 #'
 lab_paramcd_precision <- function() {
-  list(
+  no_suffix <- c(
     HCRIT = 2,
     HGB = 0,
     WBC = 1,
@@ -97,7 +100,14 @@ lab_paramcd_precision <- function() {
     PHOSAT = 2,
     FASTGL = 2,
     URACID = 0,
-    USG = 3,
-    default = 2
+    USG = 3
   )
+
+  # add suffixes to list name for each lab parameter code
+  res <- c()
+  for (i in c("SI", "CV", "LS")) {
+    res <- c(res, setNames(no_suffix, paste0(names(no_suffix), i)))
+  }
+
+  as.list(res)
 }

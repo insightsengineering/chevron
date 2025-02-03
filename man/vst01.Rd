@@ -18,7 +18,7 @@ vst01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(DIABP = 0, PULSE = 0, SYSBP = 0, default = 2L),
+  precision = list(DIABP = 0, PUL = 0, SYSBP = 0, default = 2L),
   page_var = "PARAMCD",
   .stats = c("n", "mean_sd", "median", "range"),
   skip = list(CHG = "BASELINE"),
