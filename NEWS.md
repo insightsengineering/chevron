@@ -1,4 +1,4 @@
-# chevron 0.2.8.9010
+# chevron 0.2.8.9011
 
 * `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
 * The default precision for parameters in `egt01` is now of 0 digits.
