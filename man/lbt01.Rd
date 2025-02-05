@@ -5,6 +5,7 @@
 \alias{lbt01_main}
 \alias{lbt01_pre}
 \alias{lbt01}
+\alias{lab_paramcd_precision}
 \title{\code{LBT01} Lab Results and Change from Baseline by Visit Table.}
 \format{
 An object of class \code{chevron_t} of length 1.
@@ -18,7 +19,7 @@ lbt01_main(
   row_split_var = NULL,
   summaryvars = c("AVAL", "CHG"),
   visitvar = "AVISIT",
-  precision = list(default = 2L),
+  precision = lab_paramcd_precision(),
   page_var = "PARAMCD",
   .stats = c("n", "mean_sd", "median", "range"),
   skip = list(CHG = "BASELINE"),
@@ -28,6 +29,8 @@ lbt01_main(
 lbt01_pre(adam_db, dataset = "adlb", ...)
 
 lbt01
+
+lab_paramcd_precision()
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
@@ -47,7 +50,7 @@ table of \code{adam_db} is used as label.}
 
 \item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the values
 indicate the number of digits in statistics. If \code{default} is set, and parameter precision not specified,
-the value for \code{default} will be used.}
+the value for \code{default} will be used. If \code{default} is not set, the default precision is 2.}
 
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
@@ -61,6 +64,8 @@ the value for \code{default} will be used.}
 the main function returns an \code{rtables} object.
 
 the preprocessing function returns a \code{list} of \code{data.frame}.
+
+a named \code{list} with the precision of each lab parameter code (default is \code{2}).
 }
 \description{
 The \code{LBT01} table provides an
@@ -86,6 +91,8 @@ by \code{AVISIT}. Re-level to customize order
 
 \item \code{lbt01_pre()}: Preprocessing
 
+\item \code{lab_paramcd_precision()}: 
+
 }}
 \note{
 \itemize{
@@ -94,5 +101,8 @@ by \code{AVISIT}. Re-level to customize order
 }
 \examples{
 run(lbt01, syn_data)
+# example code
+head(lab_paramcd_precision())
+
 }
 \keyword{datasets}

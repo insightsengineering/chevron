@@ -103,9 +103,10 @@ reference:
       - vst02_1
       - vst02_2
       - dummy_template
-  - title: Data
+  - title: Data and Metadata
     contents:
       - syn_data
+      - lab_paramcd_precision
       - ctcv4_dir
       - ctcv5_dir
       - mla_dir
