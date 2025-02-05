@@ -1,10 +1,10 @@
-# chevron 0.2.8.9011
+# chevron 0.2.9
 
-* `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
 * The default precision for parameters in `egt01` is now of 0 digits.
 * `vst01` default precision for diastolic blood pressure, systolic blood pressure and pulse rate is now 0. Default precision for other parameters remains 2.
 * `lbt01` default precision for several parameters is now provided by the `lab_paramcd_precision` function.
-* Bug fix: `lbt05` now prints a clearer error message when `PARAM`, `AVALCAT1` and `ABN_DIR` variables in `adlb` are not of class `factor`. 
+* `lbt05` now prints a clearer error message when `PARAM`, `AVALCAT1` and `ABN_DIR` variables in `adlb` are not of class `factor`.
+* `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
 
 # chevron 0.2.8
 
