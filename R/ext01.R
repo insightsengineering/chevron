@@ -6,6 +6,7 @@
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adex`
 #'   table of `adam_db` is used as label.
 #' @param map (`data.frame`) of mapping for split rows.
+#' @param stats (`list`)
 #' @returns the main function returns an `rtables` object.
 #'
 #' @details
@@ -30,6 +31,8 @@ ext01_main <- function(adam_db,
                        row_split_var = "PARCAT2",
                        page_var = NULL,
                        map = NULL,
+                       stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
+                       precision = list(default = 0),
                        ...) {
   assert_all_tablenames(adam_db, c("adsl", "adex"))
   assert_string(arm_var)
@@ -64,7 +67,9 @@ ext01_main <- function(adam_db,
     row_split_var = row_split_var,
     row_split_lbl = row_split_lbl,
     page_var = page_var,
-    map = map
+    map = map,
+    stats = stats,
+    precision = precision
   )
 
   tbl <- build_table(lyt, adam_db$adex, adam_db$adsl)
@@ -89,7 +94,9 @@ ext01_lyt <- function(arm_var,
                       row_split_var,
                       row_split_lbl,
                       page_var,
-                      map) {
+                      map,
+                      stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
+                      precision = list()) {
   page_by <- get_page_by(page_var, c(row_split_var))
   label_pos <- ifelse(page_by, "hidden", "topleft")
   basic_table(show_colcounts = TRUE) %>%
@@ -103,12 +110,23 @@ ext01_lyt <- function(arm_var,
       labels_var = "PARAM",
       split_fun = split_fun_map(map)
     ) %>%
-    analyze_vars(
+    analyze(
       vars = summaryvars,
       var_labels = summaryvars_lbls,
       show_labels = "hidden",
-      .formats = list(count_fraction = format_count_fraction_fixed_dp)
+      afun = afun_ext01,
+        extra_args = list(
+          precision = precision,
+          .stats = stats
+        )
     )
+
+    # analyze_vars(
+    #   vars = summaryvars,
+    #   var_labels = summaryvars_lbls,
+    #   show_labels = "hidden",
+    #   .formats = list(count_fraction = format_count_fraction_fixed_dp)
+    # )
 }
 
 #' @describeIn ext01 Preprocessing
@@ -156,9 +174,60 @@ ext01_post <- function(tlg, prune_0 = TRUE, ...) {
 #'   PARAMCD = "TDURD",
 #'   AVALCAT1 = c("< 1 month", "1 to <3 months", ">=6 months", "3 to <6 months", "12 months")
 #' )
-#' run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE, map = map)
+#' run(
+#'   ext01,
+#'   syn_data,
+#'   summaryvars = c("AVAL", "AVALCAT1"),
+#'   prune_0 = FALSE,
+#'   map = map,
+#'   precision = list(TDOSE = 4, default = 4),
+#'   stats = list(TDURD = "n", default = c("n", "count_fraction"))
+#' )
 ext01 <- chevron_t(
   main = ext01_main,
   preprocess = ext01_pre,
   postprocess = ext01_post
 )
+
+
+# helper function ----
+
+afun_ext01 <- function(x,
+                   .N_col, # nolint
+                   .spl_context,
+                   precision,
+                   .N_row, # nolint
+                   .var = NULL,
+                   .df_row = NULL,
+                   .stats = NULL,
+                   .labels = NULL,
+                   .indent_mods = NULL,
+                   ...) {
+browser()
+  context_parameter <- .spl_context %>%
+    filter(split == "PARAMCD") %>%
+    pull(value)
+
+  .stats <- .stats[[context_parameter]] %||% .stats[["default"]] %||% c("n", "mean_sd", "median", "range", "count_fraction")
+
+  # Define precision
+  pcs <- precision[[context_parameter]] %||% precision[["default"]]
+  fmts <- if (is.null(pcs) && length(x) > 0) {
+    lapply(.stats, function(.s) format_auto(dt_var = as.numeric(x), x_stat = .s))
+  } else {
+    # Define an arbitrary precision if unavailable and unable to compute it.
+    pcs <- pcs %||% 2
+    lapply(.stats, summary_formats, pcs = pcs, ne = NULL)
+  }
+  names(fmts) <- .stats
+
+  if ("n" %in% .stats) fmts$n <- "xx"
+  if ("count_fraction" %in% .stats) fmts$count_fraction <- format_count_fraction_fixed_dp
+
+  tern::a_summary(
+    .stats = .stats, .formats = fmts, .labels = .labels, .indent_mods = .indent_mods,
+    x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...
+  )
+}
+
+
