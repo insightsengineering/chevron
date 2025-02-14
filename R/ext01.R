@@ -118,7 +118,8 @@ ext01_lyt <- function(arm_var,
         extra_args = list(
           precision = precision,
           .stats = stats
-        )
+        ),
+      section_div = " "
     )
 
     # analyze_vars(
@@ -203,7 +204,7 @@ afun_ext01 <- function(x,
                    .labels = NULL,
                    .indent_mods = NULL,
                    ...) {
-browser()
+
   context_parameter <- .spl_context %>%
     filter(split == "PARAMCD") %>%
     pull(value)
