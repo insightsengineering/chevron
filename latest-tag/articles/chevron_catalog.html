@@ -9,8 +9,8 @@
 <title>Chevron Catalog • chevron</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Chevron Catalog">
 <link rel="stylesheet" href="../consent.css">
 <script src="../consent.js" type="text/javascript" charset="utf-8"></script>
@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.8</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.9</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,12 +45,13 @@
     <li><a class="dropdown-item" href="../unit-test-report-non-cran/">Non-CRAN unit test report</a></li>
   </ul>
 </li>
-      <li class="nav-item dropdown">
+      <div><li class="nav-item dropdown">
     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-versions">Versions</a>
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.9">v0.2.9</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.9-rc1">v0.2.9-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.8">v0.2.8</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.8-rc3">v0.2.8-rc3</a>
@@ -83,7 +84,7 @@
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.2">v0.1.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.1.1">v0.1.1</a>
 </div>
-</li>
+</li></div>
 </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
@@ -102,11 +103,10 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Chevron Catalog</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>Chevron Catalog</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.8/vignettes/chevron_catalog.rmd" class="external-link"><code>vignettes/chevron_catalog.rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.9/vignettes/chevron_catalog.rmd" class="external-link"><code>vignettes/chevron_catalog.rmd</code></a></small>
       <div class="d-none name"><code>chevron_catalog.rmd</code></div>
     </div>
 
@@ -2607,104 +2607,104 @@ Visit</strong><a class="anchor" aria-label="anchor" href="#ecg-results-and-chang
 standard ECG results and change from baseline by visit summary.</p>
 <div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">egt01</span>, <span class="va">syn_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                    A: Drug X                                B: Placebo                             C: Combination             </span></span>
-<span><span class="co">#&gt;                                             Change from                               Change from                              Change from    </span></span>
-<span><span class="co">#&gt;                       Value at Visit          Baseline          Value at Visit         Baseline          Value at Visit          Baseline     </span></span>
-<span><span class="co">#&gt;   Analysis Visit          (N=15)               (N=15)               (N=15)              (N=15)               (N=15)               (N=15)      </span></span>
-<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Heart Rate                                                                                                                                  </span></span>
-<span><span class="co">#&gt;     BASELINE                                                                                                                                  </span></span>
-<span><span class="co">#&gt;       n                     15                                        15                                       15                             </span></span>
-<span><span class="co">#&gt;       Mean (SD)      76.594 (17.889)                           69.899 (18.788)                          70.492 (18.175)                       </span></span>
-<span><span class="co">#&gt;       Median              77.531                                    77.174                                   74.111                           </span></span>
-<span><span class="co">#&gt;       Min - Max       46.50 - 106.68                            26.42 - 97.69                            45.37 - 115.49                       </span></span>
-<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                                              </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      71.140 (23.441)      -5.454 (25.128)      70.958 (14.877)      1.059 (23.345)      67.450 (18.932)      -3.043 (23.753)  </span></span>
-<span><span class="co">#&gt;       Median              77.210               -2.152               70.033              -8.403               68.471               0.181       </span></span>
-<span><span class="co">#&gt;       Min - Max       8.53 - 102.63        -50.97 - 36.54       44.85 - 93.79       -25.34 - 60.50       38.90 - 100.05       -52.20 - 33.13  </span></span>
-<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      69.350 (16.083)      -7.244 (28.960)      76.096 (14.958)      6.198 (29.319)      63.694 (12.920)      -6.799 (23.949)  </span></span>
-<span><span class="co">#&gt;       Median              65.746              -11.369               75.323               0.255               61.076               -4.954      </span></span>
-<span><span class="co">#&gt;       Min - Max       47.22 - 101.44       -49.59 - 42.91       47.50 - 111.40      -37.51 - 69.34       43.25 - 86.13        -52.70 - 40.76  </span></span>
-<span><span class="co">#&gt;     WEEK 3 DAY 22                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      73.894 (24.576)      -2.700 (32.079)      67.635 (19.114)      -2.263 (29.989)     72.054 (19.308)       1.562 (27.494)  </span></span>
-<span><span class="co">#&gt;       Median              69.296               5.492                68.468              -2.093               68.686               -5.848      </span></span>
-<span><span class="co">#&gt;       Min - Max       44.15 - 131.73       -62.53 - 38.19       31.89 - 108.87      -52.26 - 66.81       32.16 - 109.86       -49.61 - 35.23  </span></span>
-<span><span class="co">#&gt;     WEEK 4 DAY 29                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      73.241 (19.256)      -3.353 (29.170)      66.524 (25.487)      -3.374 (36.024)     66.600 (22.839)      -3.892 (24.140)  </span></span>
-<span><span class="co">#&gt;       Median              68.689               0.232                66.397              -11.730              64.969               -6.827      </span></span>
-<span><span class="co">#&gt;       Min - Max       33.71 - 111.54       -55.14 - 65.04       19.66 - 111.29      -60.39 - 61.00       10.35 - 100.88       -50.72 - 26.77  </span></span>
-<span><span class="co">#&gt;     WEEK 5 DAY 36                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      61.690 (22.182)      -14.904 (30.330)     60.712 (20.025)      -9.187 (24.587)     72.683 (23.495)       2.191 (26.654)  </span></span>
-<span><span class="co">#&gt;       Median              57.925              -12.660               60.454              -16.100              77.585               14.635      </span></span>
-<span><span class="co">#&gt;       Min - Max       23.89 - 103.74       -60.00 - 57.24       32.53 - 102.02      -52.56 - 50.96       31.21 - 105.05       -42.90 - 34.64  </span></span>
-<span><span class="co">#&gt;   QT Duration                                                                                                                                 </span></span>
-<span><span class="co">#&gt;     BASELINE                                                                                                                                  </span></span>
-<span><span class="co">#&gt;       n                     15                                        15                                       15                             </span></span>
-<span><span class="co">#&gt;       Mean (SD)     335.294 (123.231)                          363.104 (68.160)                         347.311 (86.236)                      </span></span>
-<span><span class="co">#&gt;       Median             372.731                                   386.316                                  348.254                           </span></span>
-<span><span class="co">#&gt;       Min - Max      121.28 - 554.97                           214.65 - 445.53                          170.80 - 508.54                       </span></span>
-<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                                              </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      357.361 (85.688)     22.067 (144.166)    415.225 (105.425)    52.121 (144.259)    321.078 (107.553)    -26.233 (129.135) </span></span>
-<span><span class="co">#&gt;       Median             344.797               49.432              421.950              62.762              307.962              -17.006      </span></span>
-<span><span class="co">#&gt;       Min - Max      241.22 - 517.39      -207.23 - 245.36     234.11 - 604.72     -190.70 - 364.94     118.36 - 480.29      -363.11 - 163.67 </span></span>
-<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)     344.883 (106.793)     9.589 (174.797)      370.548 (80.862)     7.444 (91.301)      354.129 (95.133)     6.818 (142.397)  </span></span>
-<span><span class="co">#&gt;       Median             312.236               -9.264              388.515              -9.429              365.292               39.930      </span></span>
-<span><span class="co">#&gt;       Min - Max      187.77 - 501.87      -278.91 - 372.71     204.55 - 514.43     -190.58 - 173.87     200.19 - 493.40      -279.46 - 265.56 </span></span>
-<span><span class="co">#&gt;     WEEK 3 DAY 22                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      342.062 (92.568)     6.768 (151.505)     326.684 (116.421)    -36.420 (145.415)    366.245 (99.106)     18.935 (168.417) </span></span>
-<span><span class="co">#&gt;       Median             352.930              -22.771              298.353              -78.409             329.688              -21.584      </span></span>
-<span><span class="co">#&gt;       Min - Max      199.40 - 476.04      -230.25 - 303.00     151.05 - 561.23     -205.30 - 293.76     249.42 - 580.81      -252.73 - 410.01 </span></span>
-<span><span class="co">#&gt;     WEEK 4 DAY 29                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)      371.650 (44.805)     36.356 (139.308)    333.697 (110.377)    -29.407 (125.592)    333.181 (96.466)    -14.130 (107.622) </span></span>
-<span><span class="co">#&gt;       Median             375.412               58.958              308.020              -40.987             330.911              -25.820      </span></span>
-<span><span class="co">#&gt;       Min - Max      302.32 - 451.62      -214.07 - 258.04     183.09 - 531.08     -241.72 - 134.12     126.95 - 488.57      -234.92 - 152.49 </span></span>
-<span><span class="co">#&gt;     WEEK 5 DAY 36                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)     345.504 (130.543)     10.210 (198.224)     309.919 (84.624)    -53.185 (105.730)    322.931 (67.801)    -24.380 (117.331) </span></span>
-<span><span class="co">#&gt;       Median             355.730              -23.213              306.219              -12.373             341.988              -26.952      </span></span>
-<span><span class="co">#&gt;       Min - Max       88.38 - 661.12      -271.06 - 539.84     189.01 - 448.58      -256.52 - 91.57     217.51 - 427.16      -291.03 - 171.19 </span></span>
-<span><span class="co">#&gt;   RR Duration                                                                                                                                 </span></span>
-<span><span class="co">#&gt;     BASELINE                                                                                                                                  </span></span>
-<span><span class="co">#&gt;       n                     15                                        15                                       15                             </span></span>
-<span><span class="co">#&gt;       Mean (SD)     1086.908 (363.811)                        1050.034 (390.444)                       1102.659 (310.359)                     </span></span>
-<span><span class="co">#&gt;       Median             1116.849                                  1089.193                                 1250.037                          </span></span>
-<span><span class="co">#&gt;       Min - Max      626.19 - 1653.12                          414.61 - 1721.89                         385.51 - 1430.81                      </span></span>
-<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                                              </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)     968.499 (287.811)    -118.409 (546.796)   1041.186 (211.201)   -8.848 (435.281)    948.491 (213.746)    -154.168 (442.882)</span></span>
-<span><span class="co">#&gt;       Median             961.296              -147.460             1013.786             24.754              965.429              -224.054     </span></span>
-<span><span class="co">#&gt;       Min - Max      358.92 - 1593.51    -1014.82 - 911.82     714.44 - 1417.52    -618.80 - 847.31     513.35 - 1229.09     -736.69 - 843.58 </span></span>
-<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)     932.717 (259.634)    -154.191 (331.884)   1139.332 (454.231)   89.298 (582.750)    1021.283 (233.529)   -81.376 (415.781) </span></span>
-<span><span class="co">#&gt;       Median             950.533              -205.949             1068.007             -5.449              964.616              -142.180     </span></span>
-<span><span class="co">#&gt;       Min - Max      409.68 - 1269.35     -649.69 - 473.09     486.51 - 2048.73    -846.72 - 1148.61    667.36 - 1367.25     -647.47 - 616.15 </span></span>
-<span><span class="co">#&gt;     WEEK 3 DAY 22                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)     1068.865 (319.540)   -18.043 (513.412)    1110.882 (259.523)   60.848 (432.700)    1105.918 (306.185)    3.259 (516.734)  </span></span>
-<span><span class="co">#&gt;       Median             1201.998             -65.085              1163.690             51.200              1187.130              30.318      </span></span>
-<span><span class="co">#&gt;       Min - Max      380.49 - 1551.65     -832.86 - 703.74     621.41 - 1453.29    -887.06 - 822.18     446.02 - 1648.32     -984.79 - 816.30 </span></span>
-<span><span class="co">#&gt;     WEEK 4 DAY 29                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)     1087.915 (205.940)    1.008 (403.039)     1161.681 (293.257)   111.647 (460.979)   992.134 (283.177)    -110.525 (334.932)</span></span>
-<span><span class="co">#&gt;       Median             1084.658             146.611              1055.223             191.008             1028.997             -112.599     </span></span>
-<span><span class="co">#&gt;       Min - Max      697.59 - 1499.17     -801.16 - 402.97     722.35 - 1762.04    -528.27 - 1191.83    497.14 - 1382.12     -597.95 - 757.99 </span></span>
-<span><span class="co">#&gt;     WEEK 5 DAY 36                                                                                                                             </span></span>
-<span><span class="co">#&gt;       n                     15                   15                   15                  15                   15                   15        </span></span>
-<span><span class="co">#&gt;       Mean (SD)     1016.880 (424.428)   -70.027 (505.078)    1135.131 (224.684)   85.097 (497.679)    1089.527 (238.909)   -13.132 (362.606) </span></span>
-<span><span class="co">#&gt;       Median             962.584              -142.925             1158.815             -9.553              1081.015              16.706      </span></span>
-<span><span class="co">#&gt;       Min - Max      352.97 - 1843.86    -894.83 - 1162.79     714.34 - 1436.68    -843.41 - 992.34     699.72 - 1611.38     -696.03 - 561.53</span></span></code></pre></div>
+<span><span class="co">#&gt;                                A: Drug X                        B: Placebo                     C: Combination         </span></span>
+<span><span class="co">#&gt;                                       Change from                       Change from                      Change from  </span></span>
+<span><span class="co">#&gt;                     Value at Visit      Baseline      Value at Visit     Baseline      Value at Visit      Baseline   </span></span>
+<span><span class="co">#&gt;   Analysis Visit        (N=15)           (N=15)           (N=15)          (N=15)           (N=15)           (N=15)    </span></span>
+<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Heart Rate                                                                                                          </span></span>
+<span><span class="co">#&gt;     BASELINE                                                                                                          </span></span>
+<span><span class="co">#&gt;       n                   15                                15                               15                       </span></span>
+<span><span class="co">#&gt;       Mean (SD)      76.6 (17.9)                       69.9 (18.8)                      70.5 (18.2)                   </span></span>
+<span><span class="co">#&gt;       Median             77.5                              77.2                             74.1                      </span></span>
+<span><span class="co">#&gt;       Min - Max        46 - 107                          26 - 98                          45 - 115                    </span></span>
+<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                      </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      71.1 (23.4)      -5.5 (25.1)      71.0 (14.9)      1.1 (23.3)      67.4 (18.9)      -3.0 (23.8)  </span></span>
+<span><span class="co">#&gt;       Median             77.2             -2.2             70.0            -8.4             68.5             0.2      </span></span>
+<span><span class="co">#&gt;       Min - Max        9 - 103          -51 - 37         45 - 94         -25 - 60         39 - 100         -52 - 33   </span></span>
+<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      69.4 (16.1)      -7.2 (29.0)      76.1 (15.0)      6.2 (29.3)      63.7 (12.9)      -6.8 (23.9)  </span></span>
+<span><span class="co">#&gt;       Median             65.7            -11.4             75.3             0.3             61.1             -5.0     </span></span>
+<span><span class="co">#&gt;       Min - Max        47 - 101         -50 - 43         47 - 111        -38 - 69         43 - 86          -53 - 41   </span></span>
+<span><span class="co">#&gt;     WEEK 3 DAY 22                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      73.9 (24.6)      -2.7 (32.1)      67.6 (19.1)      -2.3 (30.0)     72.1 (19.3)       1.6 (27.5)  </span></span>
+<span><span class="co">#&gt;       Median             69.3             5.5              68.5            -2.1             68.7             -5.8     </span></span>
+<span><span class="co">#&gt;       Min - Max        44 - 132         -63 - 38         32 - 109        -52 - 67         32 - 110         -50 - 35   </span></span>
+<span><span class="co">#&gt;     WEEK 4 DAY 29                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      73.2 (19.3)      -3.4 (29.2)      66.5 (25.5)      -3.4 (36.0)     66.6 (22.8)      -3.9 (24.1)  </span></span>
+<span><span class="co">#&gt;       Median             68.7             0.2              66.4            -11.7            65.0             -6.8     </span></span>
+<span><span class="co">#&gt;       Min - Max        34 - 112         -55 - 65         20 - 111        -60 - 61         10 - 101         -51 - 27   </span></span>
+<span><span class="co">#&gt;     WEEK 5 DAY 36                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      61.7 (22.2)      -14.9 (30.3)     60.7 (20.0)      -9.2 (24.6)     72.7 (23.5)       2.2 (26.7)  </span></span>
+<span><span class="co">#&gt;       Median             57.9            -12.7             60.5            -16.1            77.6             14.6     </span></span>
+<span><span class="co">#&gt;       Min - Max        24 - 104         -60 - 57         33 - 102        -53 - 51         31 - 105         -43 - 35   </span></span>
+<span><span class="co">#&gt;   QT Duration                                                                                                         </span></span>
+<span><span class="co">#&gt;     BASELINE                                                                                                          </span></span>
+<span><span class="co">#&gt;       n                   15                                15                               15                       </span></span>
+<span><span class="co">#&gt;       Mean (SD)     335.3 (123.2)                      363.1 (68.2)                     347.3 (86.2)                  </span></span>
+<span><span class="co">#&gt;       Median            372.7                             386.3                            348.3                      </span></span>
+<span><span class="co">#&gt;       Min - Max       121 - 555                         215 - 446                        171 - 509                    </span></span>
+<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                      </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      357.4 (85.7)     22.1 (144.2)    415.2 (105.4)    52.1 (144.3)    321.1 (107.6)    -26.2 (129.1) </span></span>
+<span><span class="co">#&gt;       Median            344.8             49.4            422.0            62.8            308.0            -17.0     </span></span>
+<span><span class="co">#&gt;       Min - Max       241 - 517        -207 - 245       234 - 605       -191 - 365       118 - 480        -363 - 164  </span></span>
+<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)     344.9 (106.8)     9.6 (174.8)      370.5 (80.9)     7.4 (91.3)      354.1 (95.1)     6.8 (142.4)  </span></span>
+<span><span class="co">#&gt;       Median            312.2             -9.3            388.5            -9.4            365.3             39.9     </span></span>
+<span><span class="co">#&gt;       Min - Max       188 - 502        -279 - 373       205 - 514       -191 - 174       200 - 493        -279 - 266  </span></span>
+<span><span class="co">#&gt;     WEEK 3 DAY 22                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      342.1 (92.6)     6.8 (151.5)     326.7 (116.4)    -36.4 (145.4)    366.2 (99.1)     18.9 (168.4) </span></span>
+<span><span class="co">#&gt;       Median            352.9            -22.8            298.4            -78.4           329.7            -21.6     </span></span>
+<span><span class="co">#&gt;       Min - Max       199 - 476        -230 - 303       151 - 561       -205 - 294       249 - 581        -253 - 410  </span></span>
+<span><span class="co">#&gt;     WEEK 4 DAY 29                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)      371.7 (44.8)     36.4 (139.3)    333.7 (110.4)    -29.4 (125.6)    333.2 (96.5)    -14.1 (107.6) </span></span>
+<span><span class="co">#&gt;       Median            375.4             59.0            308.0            -41.0           330.9            -25.8     </span></span>
+<span><span class="co">#&gt;       Min - Max       302 - 452        -214 - 258       183 - 531       -242 - 134       127 - 489        -235 - 152  </span></span>
+<span><span class="co">#&gt;     WEEK 5 DAY 36                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)     345.5 (130.5)     10.2 (198.2)     309.9 (84.6)    -53.2 (105.7)    322.9 (67.8)    -24.4 (117.3) </span></span>
+<span><span class="co">#&gt;       Median            355.7            -23.2            306.2            -12.4           342.0            -27.0     </span></span>
+<span><span class="co">#&gt;       Min - Max        88 - 661        -271 - 540       189 - 449        -257 - 92       218 - 427        -291 - 171  </span></span>
+<span><span class="co">#&gt;   RR Duration                                                                                                         </span></span>
+<span><span class="co">#&gt;     BASELINE                                                                                                          </span></span>
+<span><span class="co">#&gt;       n                   15                                15                               15                       </span></span>
+<span><span class="co">#&gt;       Mean (SD)     1086.9 (363.8)                    1050.0 (390.4)                   1102.7 (310.4)                 </span></span>
+<span><span class="co">#&gt;       Median            1116.8                            1089.2                           1250.0                     </span></span>
+<span><span class="co">#&gt;       Min - Max       626 - 1653                        415 - 1722                       386 - 1431                   </span></span>
+<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                      </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)     968.5 (287.8)    -118.4 (546.8)   1041.2 (211.2)   -8.8 (435.3)    948.5 (213.7)    -154.2 (442.9)</span></span>
+<span><span class="co">#&gt;       Median            961.3            -147.5           1013.8           24.8            965.4            -224.1    </span></span>
+<span><span class="co">#&gt;       Min - Max       359 - 1594      -1015 - 912       714 - 1418      -619 - 847       513 - 1229       -737 - 844  </span></span>
+<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)     932.7 (259.6)    -154.2 (331.9)   1139.3 (454.2)   89.3 (582.7)    1021.3 (233.5)   -81.4 (415.8) </span></span>
+<span><span class="co">#&gt;       Median            950.5            -205.9           1068.0           -5.4            964.6            -142.2    </span></span>
+<span><span class="co">#&gt;       Min - Max       410 - 1269       -650 - 473       487 - 2049      -847 - 1149      667 - 1367       -647 - 616  </span></span>
+<span><span class="co">#&gt;     WEEK 3 DAY 22                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)     1068.9 (319.5)   -18.0 (513.4)    1110.9 (259.5)   60.8 (432.7)    1105.9 (306.2)    3.3 (516.7)  </span></span>
+<span><span class="co">#&gt;       Median            1202.0           -65.1            1163.7           51.2            1187.1            30.3     </span></span>
+<span><span class="co">#&gt;       Min - Max       380 - 1552       -833 - 704       621 - 1453      -887 - 822       446 - 1648       -985 - 816  </span></span>
+<span><span class="co">#&gt;     WEEK 4 DAY 29                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)     1087.9 (205.9)    1.0 (403.0)     1161.7 (293.3)   111.6 (461.0)   992.1 (283.2)    -110.5 (334.9)</span></span>
+<span><span class="co">#&gt;       Median            1084.7           146.6            1055.2           191.0           1029.0           -112.6    </span></span>
+<span><span class="co">#&gt;       Min - Max       698 - 1499       -801 - 403       722 - 1762      -528 - 1192      497 - 1382       -598 - 758  </span></span>
+<span><span class="co">#&gt;     WEEK 5 DAY 36                                                                                                     </span></span>
+<span><span class="co">#&gt;       n                   15               15               15              15               15               15      </span></span>
+<span><span class="co">#&gt;       Mean (SD)     1016.9 (424.4)   -70.0 (505.1)    1135.1 (224.7)   85.1 (497.7)    1089.5 (238.9)   -13.1 (362.6) </span></span>
+<span><span class="co">#&gt;       Median            962.6            -142.9           1158.8           -9.6            1081.0            16.7     </span></span>
+<span><span class="co">#&gt;       Min - Max       353 - 1844      -895 - 1163       714 - 1437      -843 - 992       700 - 1611       -696 - 562</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
@@ -4837,31 +4837,31 @@ Visit</strong><a class="anchor" aria-label="anchor" href="#vital-sign-results-an
 <div class="sourceCode" id="cb90"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">t_vs_chg</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run.html">run</a></span><span class="op">(</span><span class="va">vst01</span>, <span class="va">syn_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">t_vs_chg</span>, <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                                         A: Drug X                           B: Placebo                          C: Combination          </span></span>
-<span><span class="co">#&gt;                                                 Change from                          Change from                           Change from  </span></span>
-<span><span class="co">#&gt;                              Value at Visit       Baseline       Value at Visit        Baseline        Value at Visit       Baseline    </span></span>
-<span><span class="co">#&gt;                                  (N=15)            (N=15)            (N=15)             (N=15)             (N=15)            (N=15)     </span></span>
-<span><span class="co">#&gt;   ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
-<span><span class="co">#&gt;   Diastolic Blood Pressure                                                                                                              </span></span>
-<span><span class="co">#&gt;     SCREENING                                                                                                                           </span></span>
-<span><span class="co">#&gt;       n                            15                0                 15                 0                  15                 0       </span></span>
-<span><span class="co">#&gt;       Mean (SD)              94.385 (17.067)      NE (NE)       106.381 (20.586)       NE (NE)        106.468 (12.628)       NE (NE)    </span></span>
-<span><span class="co">#&gt;       Median                     94.933              NE             111.133               NE              108.359              NE       </span></span>
-<span><span class="co">#&gt;       Min - Max              55.71 - 122.00       NE - NE        60.21 - 131.91        NE - NE         83.29 - 127.17        NE - NE    </span></span>
-<span><span class="co">#&gt;     BASELINE                                                                                                                            </span></span>
-<span><span class="co">#&gt;       n                            15                                  15                                    15                         </span></span>
-<span><span class="co">#&gt;       Mean (SD)              96.133 (22.458)                    108.111 (15.074)                      103.149 (19.752)                  </span></span>
-<span><span class="co">#&gt;       Median                     93.328                             108.951                               102.849                       </span></span>
-<span><span class="co">#&gt;       Min - Max              60.58 - 136.59                      83.44 - 131.62                        66.05 - 136.55                   </span></span>
-<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                                        </span></span>
-<span><span class="co">#&gt;       n                            15                15                15                 15                 15                15       </span></span>
-<span><span class="co">#&gt;       Mean (SD)              98.977 (21.359)   2.844 (28.106)   104.110 (16.172)   -4.001 (21.867)    100.826 (19.027)   -2.323 (25.018)</span></span>
-<span><span class="co">#&gt;       Median                     92.447            -4.066           107.703             3.227             103.058            -2.476     </span></span>
-<span><span class="co">#&gt;       Min - Max              67.55 - 130.37    -32.82 - 47.68    70.91 - 132.89     -52.94 - 28.63     70.04 - 128.68    -55.15 - 41.81 </span></span>
-<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                                       </span></span>
-<span><span class="co">#&gt;       n                            15                15                15                 15                 15                15       </span></span>
-<span><span class="co">#&gt;       Mean (SD)              99.758 (14.477)   3.626 (21.189)   97.473 (17.296)    -10.638 (20.831)   94.272 (16.961)    -8.877 (27.229)</span></span>
-<span><span class="co">#&gt;       Median                     101.498           1.731             99.501             -9.727             96.789            -10.155</span></span></code></pre></div>
+<span><span class="co">#&gt;                                        A: Drug X                      B: Placebo                    C: Combination        </span></span>
+<span><span class="co">#&gt;                                               Change from                     Change from                     Change from </span></span>
+<span><span class="co">#&gt;                              Value at Visit     Baseline     Value at Visit     Baseline     Value at Visit     Baseline  </span></span>
+<span><span class="co">#&gt;                                  (N=15)          (N=15)          (N=15)          (N=15)          (N=15)          (N=15)   </span></span>
+<span><span class="co">#&gt;   ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————</span></span>
+<span><span class="co">#&gt;   Diastolic Blood Pressure                                                                                                </span></span>
+<span><span class="co">#&gt;     SCREENING                                                                                                             </span></span>
+<span><span class="co">#&gt;       n                            15              0               15              0               15              0      </span></span>
+<span><span class="co">#&gt;       Mean (SD)               94.4 (17.1)       NE (NE)       106.4 (20.6)      NE (NE)       106.5 (12.6)      NE (NE)   </span></span>
+<span><span class="co">#&gt;       Median                      94.9             NE            111.1             NE            108.4             NE     </span></span>
+<span><span class="co">#&gt;       Min - Max                 56 - 122        NE - NE         60 - 132        NE - NE         83 - 127        NE - NE   </span></span>
+<span><span class="co">#&gt;     BASELINE                                                                                                              </span></span>
+<span><span class="co">#&gt;       n                            15                              15                              15                     </span></span>
+<span><span class="co">#&gt;       Mean (SD)               96.1 (22.5)                     108.1 (15.1)                    103.1 (19.8)                </span></span>
+<span><span class="co">#&gt;       Median                      93.3                           109.0                           102.8                    </span></span>
+<span><span class="co">#&gt;       Min - Max                 61 - 137                        83 - 132                        66 - 137                  </span></span>
+<span><span class="co">#&gt;     WEEK 1 DAY 8                                                                                                          </span></span>
+<span><span class="co">#&gt;       n                            15              15              15              15              15              15     </span></span>
+<span><span class="co">#&gt;       Mean (SD)               99.0 (21.4)      2.8 (28.1)     104.1 (16.2)    -4.0 (21.9)     100.8 (19.0)    -2.3 (25.0) </span></span>
+<span><span class="co">#&gt;       Median                      92.4            -4.1           107.7            3.2            103.1            -2.5    </span></span>
+<span><span class="co">#&gt;       Min - Max                 68 - 130        -33 - 48        71 - 133        -53 - 29        70 - 129        -55 - 42  </span></span>
+<span><span class="co">#&gt;     WEEK 2 DAY 15                                                                                                         </span></span>
+<span><span class="co">#&gt;       n                            15              15              15              15              15              15     </span></span>
+<span><span class="co">#&gt;       Mean (SD)               99.8 (14.5)      3.6 (21.2)     97.5 (17.3)     -10.6 (20.8)    94.3 (17.0)     -8.9 (27.2) </span></span>
+<span><span class="co">#&gt;       Median                     101.5            1.7             99.5            -9.7            96.8           -10.2</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
