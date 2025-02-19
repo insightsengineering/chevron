@@ -1,4 +1,6 @@
-# chevron 0.2.9.9000
+# chevron 0.2.10
+
+* Change package maintainer to Joe Zhu.
 
 # chevron 0.2.9
 
