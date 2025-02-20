@@ -323,28 +323,28 @@ test_that("gg_list is deprecated", {
 })
 
 test_that("format_date works as expected for POSIXct", {
-  d <- as.POSIXct("2019-01-01 00:00:01", tz = "NZ")
+  d <- as.POSIXct("2019-01-01 00:00:01", tz = "GMT")
 
   withr::with_timezone("Europe/Paris", {
     foo <- format_date()
     expect_identical(foo(d), "01JAN2019")
   })
 
-  withr::with_timezone("NZ", {
+  withr::with_timezone("GMT", {
     foo <- format_date()
     expect_identical(foo(d), "01JAN2019")
   })
 })
 
 test_that("format_date works as expected for Date", {
-  d <- as.Date("2019-01-01 00:00:01", tz = "NZ")
+  d <- as.Date("2019-01-01 00:00:01", tz = "GMT")
 
   withr::with_timezone("Europe/Paris", {
     foo <- format_date()
     expect_identical(foo(d), "01JAN2019")
   })
 
-  withr::with_timezone("NZ", {
+  withr::with_timezone("GMT", {
     foo <- format_date()
     expect_identical(foo(d), "01JAN2019")
   })
