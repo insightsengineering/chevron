@@ -72,6 +72,10 @@ Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
+Remotes:
+    insightsengineering/formatters@336_nearest_value_round,
+    insightsengineering/rtables@336_nearest_value_round,
+    insightsengineering/rlistings@336_nearest_value_round
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Collate:
