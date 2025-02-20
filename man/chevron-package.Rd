@@ -18,11 +18,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Liming Li \email{liming.li@roche.com}
+\strong{Maintainer}: Joe Zhu \email{joe.zhu@roche.com} (\href{https://orcid.org/0000-0001-7566-2787}{ORCID})
 
 Authors:
 \itemize{
-  \item Benoit Falquet \email{benoit.falquet@roche.com}
+  \item Liming Li \email{liming.li@roche.com} (Original creator of the package)
+  \item Benoit Falquet \email{benoit.falquet@roche.com} (Original creator of the package)
   \item Xiaoli Duan \email{xiaoli.duan@roche.com}
 }
 
