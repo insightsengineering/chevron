@@ -11,11 +11,11 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-lbt05_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
+lbt05_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, map = NULL, ...)
 
 lbt05_pre(adam_db, ...)
 
-lbt05_post(tlg, prune_0 = FALSE, ...)
+lbt05_post(tlg, prune_0 = FALSE, keep = "Any Abnormality", ...)
 
 lbt05
 }
@@ -26,11 +26,16 @@ lbt05
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{map}{(\code{data.frame}) with two columns mapping of parameters code (\code{PARAMCD}) to directions of abnormality
+(\code{ABN_DIR}). If \code{NUll}, all combinations are used.}
+
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{keep}{(\code{character}) the levels to keep in the table even if they are empty. If \code{NULL}, all levels are pruned.}
 }
 \value{
 the main function returns an \code{rtables} object.
@@ -66,5 +71,8 @@ the postprocessing function returns an \code{rtables} object or an \code{Element
 }
 \examples{
 run(lbt05, syn_data)
+
+map <- data.frame(PARAMCD = c("ALT", "ALT", "CRP", "CRP", "IGA", "XXX"), ABN_DIR = c("Low", "High"))
+run(lbt05, syn_data, map = map)
 }
 \keyword{datasets}

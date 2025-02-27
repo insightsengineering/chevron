@@ -23,7 +23,7 @@ lbt07_main(
 
 lbt07_pre(adam_db, ...)
 
-lbt07_post(tlg, prune_0 = TRUE, ...)
+lbt07_post(tlg, prune_0 = TRUE, keep = "Any", ...)
 
 lbt07
 }
@@ -47,6 +47,8 @@ order to obtain the correct denominators when building the layout as it is used 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{keep}{(\code{character}) the levels to keep in the table even if they are empty. If \code{NULL}, all levels are pruned.}
 }
 \value{
 the main function returns an \code{rtables} object.
