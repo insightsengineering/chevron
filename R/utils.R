@@ -195,7 +195,7 @@ quote_str <- function(x) {
 modify_default_args <- function(fun, ...) {
   ret <- fun
   formals(ret) <- utils::modifyList(formals(fun), list(...), keep.null = TRUE)
-  return(ret)
+  ret
 }
 
 #' Execute function with given arguments
