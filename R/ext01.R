@@ -115,18 +115,11 @@ ext01_lyt <- function(arm_var,
       var_labels = summaryvars_lbls,
       show_labels = "hidden",
       afun = afun_ext01,
-        extra_args = list(
-          precision = precision,
-          .stats = stats
-        )
+      extra_args = list(
+        precision = precision,
+        .stats = stats
+      )
     )
-
-    # analyze_vars(
-    #   vars = summaryvars,
-    #   var_labels = summaryvars_lbls,
-    #   show_labels = "hidden",
-    #   .formats = list(count_fraction = format_count_fraction_fixed_dp)
-    # )
 }
 
 #' @describeIn ext01 Preprocessing
@@ -193,17 +186,16 @@ ext01 <- chevron_t(
 # helper function ----
 
 afun_ext01 <- function(x,
-                   .N_col, # nolint
-                   .spl_context,
-                   precision,
-                   .N_row, # nolint
-                   .var = NULL,
-                   .df_row = NULL,
-                   .stats = NULL,
-                   .labels = NULL,
-                   .indent_mods = NULL,
-                   ...) {
-
+                       .N_col, # nolint
+                       .spl_context,
+                       precision,
+                       .N_row, # nolint
+                       .var = NULL,
+                       .df_row = NULL,
+                       .stats = NULL,
+                       .labels = NULL,
+                       .indent_mods = NULL,
+                       ...) {
   context_parameter <- .spl_context %>%
     filter(split == "PARAMCD") %>%
     pull(value)
@@ -229,5 +221,3 @@ afun_ext01 <- function(x,
     x = x, .var = .var, .spl_context = .spl_context, .N_col = .N_col, .N_row = .N_row, ...
   )
 }
-
-
