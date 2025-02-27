@@ -3,7 +3,7 @@
 #' @describeIn lbt05 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @para map (`data.frame`) mapping of parameters to directions of abnormality. If `NUll`, all combinations are used.
+#' @param map (`data.frame`) with two columns mapping of parameters code (`PARAMCD`) to directions of abnormality (`ABN_DIR`). If `NUll`, all combinations are used.
 #' @returns the main function returns an `rtables` object.
 #'
 #' @details
@@ -26,7 +26,8 @@ lbt05_main <- function(adam_db,
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
   # expand.grid steps requires levels later.
-  assert_data_frame(map, null.ok = TRUE)
+  assert_data_frame(map, ncols = 2, null.ok = TRUE)
+  assert_names(colnames(map), c("PARAMCD", "ABN_DIR"), null.ok = TRUE)
   assert_valid_variable(adam_db$adlb, c("PARAM", "AVALCAT1", "ABN_DIR"), types = list("factor"))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
   assert_valid_variable(adam_db$adsl, c("USUBJID"), types = list(c("character", "factor")))
@@ -152,7 +153,7 @@ lbt05_post <- function(tlg, prune_0 = FALSE, keep = "Any Abnormality", ...) {
 #'
 #' @examples
 #' run(lbt05, syn_data)
-#' 
+#'
 #' map <- data.frame(PARAMCD = c("ALT", "ALT", "CRP", "CRP", "IGA", "XXX"), ABN_DIR = c("Low", "High"))
 #' run(lbt05, syn_data, map = map)
 lbt05 <- chevron_t(

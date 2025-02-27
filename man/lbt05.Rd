@@ -11,7 +11,7 @@
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-lbt05_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
+lbt05_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, map = NULL, ...)
 
 lbt05_pre(adam_db, ...)
 
@@ -25,6 +25,8 @@ lbt05
 \item{arm_var}{(\code{string}) variable used for column splitting}
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
+
+\item{map}{(\code{data.frame}) with two columns mapping of parameters code (\code{PARAMCD}) to directions of abnormality (\code{ABN_DIR}). If \code{NUll}, all combinations are used.}
 
 \item{...}{not used.}
 
@@ -68,5 +70,8 @@ the postprocessing function returns an \code{rtables} object or an \code{Element
 }
 \examples{
 run(lbt05, syn_data)
+
+map <- data.frame(PARAMCD = c("ALT", "ALT", "CRP", "CRP", "IGA", "XXX"), ABN_DIR = c("Low", "High"))
+run(lbt05, syn_data, map = map)
 }
 \keyword{datasets}

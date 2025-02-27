@@ -1,5 +1,10 @@
 # chevron 0.2.10.9002
 
+* A new `map` argument now controls the direction of abnormality associated with each parameter in `lbt05`.
+* A new `keep` argument prevents the removal of the `"Any"` (or other user specified) rows during the processing of `lbt07` if the table is pruned.
+* A new `keep` argument prevents the removal of the `"Any Abnormality"` (or other user specified) rows during the processing of `lbt05`.
+* A bug that caused all rows to be pruned from the `lbt05` table even when they contain non-zero values has been fixed.
+
 # chevron 0.2.10
 
 * Change package maintainer to Joe Zhu.

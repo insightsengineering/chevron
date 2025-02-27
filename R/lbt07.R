@@ -164,7 +164,6 @@ lbt07_pre <- function(adam_db, ...) {
 #' @export
 #'
 lbt07_post <- function(tlg, prune_0 = TRUE, keep = "Any", ...) {
-
   if (prune_0) {
     tlg <- prune_table(tlg, prune_func = prune_except(keep))
   }
