@@ -5,8 +5,8 @@
 #' @inheritParams gen_args
 #' @param summaryvars (`character`) variables summarized in demographic table. The label attribute of the corresponding
 #'   column in `adsl` table of `adam_db` is used as label.
-#' @param stats (named `list` of character)  where names of columns found in `.df_row` and the values indicate the
-#'   statistical analysis to perform. If `default` is set, and parameter precision not specified, the
+#' @param stats (named `list` of character)  where names are `strings` found in `summaryvars` and the values indicate
+#' the statistical analysis to perform. If `default` is set, and parameter precision not specified, the
 #'   value for `default` will be used.
 #' @param precision (named `list` of `integer`) where names are `strings` found in `summaryvars` and the values indicate
 #'   the number of digits in statistics for numeric variables. If `default` is set, and parameter precision not
