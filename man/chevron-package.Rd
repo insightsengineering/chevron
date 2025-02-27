@@ -22,8 +22,8 @@ Useful links:
 
 Authors:
 \itemize{
-  \item Liming Li \email{liming.li@roche.com} (Original creator of the package)
-  \item Benoit Falquet \email{benoit.falquet@roche.com} (Original creator of the package)
+  \item Liming Li \email{liming.li@roche.com} (\href{https://orcid.org/0009-0008-6870-0878}{ORCID}) (Original creator of the package)
+  \item Benoit Falquet \email{benoit.falquet@roche.com} (\href{https://orcid.org/0000-0002-4434-3799}{ORCID}) (Original creator of the package)
   \item Xiaoli Duan \email{xiaoli.duan@roche.com}
 }
 
