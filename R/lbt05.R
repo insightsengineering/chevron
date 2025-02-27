@@ -46,13 +46,13 @@ lbt05_main <- function(adam_db,
       arrange(.data$PARAM, desc(.data$ABN_DIR))
   } else {
     matching <- adam_db$adlb %>%
-      dplyr::select(PARAMCD, PARAM) %>%
+      dplyr::select(.data$PARAMCD, .data$PARAM) %>%
       dplyr::distinct()
 
     map %>%
-      dplyr::filter(PARAMCD %in% matching$PARAMCD) %>%
+      dplyr::filter(.data$PARAMCD %in% matching$PARAMCD) %>%
       dplyr::left_join(matching, by = "PARAMCD") %>%
-      dplyr::select(PARAM, ABN_DIR) %>%
+      dplyr::select(.data$PARAM, .data$ABN_DIR) %>%
       mutate(across(everything(), as.character))
   }
 
