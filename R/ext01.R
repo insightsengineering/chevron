@@ -6,7 +6,10 @@
 #' @param summaryvars (`character`) variables to be analyzed. The label attribute of the corresponding column in `adex`
 #'   table of `adam_db` is used as label.
 #' @param map (`data.frame`) of mapping for split rows.
-#' @param stats (`list`)
+#' @param stats (named `list` of character) where names are values found in the `PARAMCD` column and the values indicate
+#'  the statistical analysis to perform. If `default` is set, and parameter precision not specified, the
+#'   value for `default` will be used.
+#' @param precision (named `list` of `integer`) where names are values found in the `PARAMCD` column and the values
 #' @returns the main function returns an `rtables` object.
 #'
 #' @details

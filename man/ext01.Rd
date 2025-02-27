@@ -46,7 +46,11 @@ table of \code{adam_db} is used as label.}
 
 \item{map}{(\code{data.frame}) of mapping for split rows.}
 
-\item{stats}{(\code{list})}
+\item{stats}{(named \code{list} of character) where names are values found in the \code{PARAMCD} column and the values indicate
+the statistical analysis to perform. If \code{default} is set, and parameter precision not specified, the
+value for \code{default} will be used.}
+
+\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the values}
 
 \item{...}{not used.}
 
