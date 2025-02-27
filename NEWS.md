@@ -1,5 +1,7 @@
 # chevron 0.2.9.9000
 
+* New `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
+
 # chevron 0.2.9
 
 * The default precision for parameters in `egt01` is now of 0 digits.
