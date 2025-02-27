@@ -201,7 +201,7 @@ afun_ext01 <- function(x,
                        ...) {
   context_parameter <- .spl_context %>%
     filter(split == "PARAMCD") %>%
-    pull(value)
+    pull(.data$value)
 
   .stats <- .stats[[context_parameter]] %||%
     .stats[["default"]] %||%
