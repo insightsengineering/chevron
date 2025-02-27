@@ -159,12 +159,14 @@ lbt07_pre <- function(adam_db, ...) {
 #' @describeIn lbt07 Postprocessing
 #'
 #' @inheritParams gen_args
+#' @param keep (`character`) the levels to keep in the table even if they are empty. If `NULL`, all levels are pruned.
 #' @returns the postprocessing function returns an `rtables` object or an `ElementaryTable` (null report).
 #' @export
 #'
-lbt07_post <- function(tlg, prune_0 = TRUE, ...) {
+lbt07_post <- function(tlg, prune_0 = TRUE, keep = "Any", ...) {
+
   if (prune_0) {
-    tlg <- smart_prune(tlg)
+    tlg <- prune_table(tlg, prune_func = prune_except(keep))
   }
   std_postprocessing(tlg)
 }
