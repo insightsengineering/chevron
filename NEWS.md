@@ -1,10 +1,10 @@
 # chevron 0.2.10.9002
 
+* New `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
+
 # chevron 0.2.10
 
 * Change package maintainer to Joe Zhu.
-
-* New `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
 
 # chevron 0.2.9
 
