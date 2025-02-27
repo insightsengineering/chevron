@@ -200,7 +200,9 @@ afun_ext01 <- function(x,
     filter(split == "PARAMCD") %>%
     pull(value)
 
-  .stats <- .stats[[context_parameter]] %||% .stats[["default"]] %||% c("n", "mean_sd", "median", "range", "count_fraction")
+  .stats <- .stats[[context_parameter]] %||%
+    .stats[["default"]] %||%
+    c("n", "mean_sd", "median", "range", "count_fraction")
 
   # Define precision
   pcs <- precision[[context_parameter]] %||% precision[["default"]]
