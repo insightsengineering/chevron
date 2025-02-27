@@ -72,3 +72,9 @@ test_that("ext01 works with custom mapping fill in value", {
   res <- run(ext01, proc_data, prune_0 = FALSE, summaryvars = c("AVAL", "AVALCAT1"), map = map)
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
+
+test_that("ext01 precision argument works as expeted", {
+  skip_on_os("windows")
+  res <- run(ext01, syn_data, precision = list(TDOSE = 4, default = 0))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})

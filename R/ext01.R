@@ -118,8 +118,7 @@ ext01_lyt <- function(arm_var,
         extra_args = list(
           precision = precision,
           .stats = stats
-        ),
-      section_div = " "
+        )
     )
 
     # analyze_vars(
