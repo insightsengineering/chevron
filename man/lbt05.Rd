@@ -26,7 +26,8 @@ lbt05
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
-\item{map}{(\code{data.frame}) with two columns mapping of parameters code (\code{PARAMCD}) to directions of abnormality (\code{ABN_DIR}). If \code{NUll}, all combinations are used.}
+\item{map}{(\code{data.frame}) with two columns mapping of parameters code (\code{PARAMCD}) to directions of abnormality
+(\code{ABN_DIR}). If \code{NUll}, all combinations are used.}
 
 \item{...}{not used.}
 

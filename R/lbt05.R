@@ -3,7 +3,8 @@
 #' @describeIn lbt05 Main TLG function
 #'
 #' @inheritParams gen_args
-#' @param map (`data.frame`) with two columns mapping of parameters code (`PARAMCD`) to directions of abnormality (`ABN_DIR`). If `NUll`, all combinations are used.
+#' @param map (`data.frame`) with two columns mapping of parameters code (`PARAMCD`) to directions of abnormality
+#' (`ABN_DIR`). If `NUll`, all combinations are used.
 #' @returns the main function returns an `rtables` object.
 #'
 #' @details
