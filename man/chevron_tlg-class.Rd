@@ -19,12 +19,13 @@
 \alias{chevron_t}
 \alias{chevron_l}
 \alias{chevron_g}
-\title{\code{chevron_t}}
+\title{\code{chevron_tlg} class}
 \usage{
 chevron_t(
   main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = std_postprocessing,
+  dataset = NULL,
   ...
 )
 
@@ -32,6 +33,7 @@ chevron_l(
   main = function(adam_db, ...) data.frame(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = std_postprocessing,
+  dataset = NULL,
   ...
 )
 
@@ -39,6 +41,7 @@ chevron_g(
   main = function(adam_db, ...) ggplot2::ggplot(),
   preprocess = function(adam_db, ...) adam_db,
   postprocess = std_postprocessing,
+  dataset = NULL,
   ...
 )
 
@@ -53,6 +56,8 @@ Typically one of the \verb{_pre} function of \code{chevron}.}
 
 \item{postprocess}{(\code{function}) returning a post-processed \code{tlg}, with \code{tlg} as first argument.}
 
+\item{dataset}{(\code{string}) the name of a table in the \code{adam_db} object.}
+
 \item{...}{not used}
 }
 \value{
@@ -65,6 +70,8 @@ a \code{chevron_g} class object.
 a \code{chevron_simple} class object.
 }
 \description{
+The \code{chevron_tlg} S4 class associates a \code{preprocess} function, a main \code{tlg} function and a \code{postprocess} function.
+
 \code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle table creation
 
 \code{chevron_l}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle listing creation
@@ -83,6 +90,8 @@ one of the \verb{*_pre} function from \code{chevron}.}
 
 \item{\code{postprocess}}{(\code{function}) returning a post-processed \code{tlg}. Typically one of the \verb{*_post} function from
 \code{chevron}.}
+
+\item{\code{dataset}}{(\code{character}) the names of the data sets used in the \code{chevron_tlg} object.}
 }}
 
 \note{

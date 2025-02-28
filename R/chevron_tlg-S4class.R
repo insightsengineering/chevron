@@ -1,6 +1,11 @@
 #' @include utils.R
 #' @include report_null.R
 
+
+#' Class containing character and NULL
+#' @keywords internal
+setClassUnion("char_null", c("character", "NULL"))
+
 # Chevron_tlg ----
 
 #' `chevron_tlg` class
@@ -12,6 +17,7 @@
 #'   one of the `*_pre` function from `chevron`.
 #' @slot postprocess (`function`) returning a post-processed `tlg`. Typically one of the `*_post` function from
 #'   `chevron`.
+#' @slot dataset (`character`) the names of the data sets used in the `chevron_tlg` object.
 #'
 #' @format NULL
 #'
@@ -31,7 +37,8 @@
   slots = c(
     main = "function",
     preprocess = "function",
-    postprocess = "function"
+    postprocess = "function",
+    dataset = "char_null"
   )
 )
 
@@ -45,6 +52,7 @@ methods::setValidity("chevron_tlg", function(object) {
   assert_function(object@preprocess, args = "...", add = coll)
   assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
   assert_function(object@postprocess, args = "...", add = coll)
+  assert_character(object@dataset, null.ok = TRUE, add = coll)
   reportAssertions(coll)
 })
 
@@ -143,11 +151,13 @@ methods::setValidity("chevron_simple", function(object) {
 chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), adam_db[[1]]),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = std_postprocessing,
+                      dataset = NULL,
                       ...) {
   res <- .chevron_t(
     main = main,
     preprocess = preprocess,
-    postprocess = postprocess
+    postprocess = postprocess,
+    dataset = dataset
   )
 
   res
@@ -168,11 +178,13 @@ chevron_t <- function(main = function(adam_db, ...) build_table(basic_table(), a
 chevron_l <- function(main = function(adam_db, ...) data.frame(),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = std_postprocessing,
+                      dataset = NULL,
                       ...) {
   res <- .chevron_l(
     main = main,
     preprocess = preprocess,
-    postprocess = postprocess
+    postprocess = postprocess,
+    dataset = dataset
   )
 
   res
@@ -197,11 +209,13 @@ chevron_l <- function(main = function(adam_db, ...) data.frame(),
 chevron_g <- function(main = function(adam_db, ...) ggplot2::ggplot(),
                       preprocess = function(adam_db, ...) adam_db,
                       postprocess = std_postprocessing,
+                      dataset = NULL,
                       ...) {
   res <- .chevron_g(
     main = main,
     preprocess = preprocess,
-    postprocess = postprocess
+    postprocess = postprocess,
+    dataset = dataset
   )
 
   res
@@ -223,7 +237,8 @@ chevron_simple <- function() {
   res <- .chevron_simple(
     main = \(adam_db, ...) basic_table() %>% build_table(data.frame()),
     preprocess = \(adam_db, ...) adam_db,
-    postprocess = \(tlg, ...) tlg
+    postprocess = \(tlg, ...) tlg,
+    dataset = NULL
   )
   res
 }

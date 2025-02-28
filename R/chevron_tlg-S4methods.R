@@ -374,6 +374,50 @@ setMethod(
   }
 )
 
+# dataset ----
+
+#' Data Set
+#'
+#' retrieve or set `dataset` slot.
+#'
+#' @param x (`chevron_tlg`) input.
+#' @returns the `character` stored in the `dataset` slot of the `x` argument.
+#'
+#' @aliases dataset
+#' @export
+setGeneric("dataset", function(x) standardGeneric("dataset"))
+
+#' @rdname dataset
+#' @export
+setMethod(
+  f = "dataset",
+  signature = "chevron_tlg",
+  definition = function(x) {
+    x@dataset
+  }
+)
+
+#' Dataset Assignment Function
+#'
+#' @param x (`chevron_tlg`) input.
+#' @param value (`character` or `NULL`) defining the dataset slot.
+#'
+#' @rdname dataset
+#' @export
+setGeneric("dataset<-", function(x, value) standardGeneric("dataset<-"))
+
+#' @rdname dataset
+#' @export
+setMethod(
+  f = "dataset<-",
+  signature = "chevron_tlg",
+  definition = function(x, value) {
+    x@dataset <- value
+    validObject(x)
+    x
+  }
+)
+
 # script ----
 
 #' Create Script for `TLG` Generation
