@@ -195,5 +195,6 @@ aet01_post <- function(tlg, prune_0 = FALSE, ...) {
 aet01 <- chevron_t(
   main = aet01_main,
   preprocess = aet01_pre,
-  postprocess = aet01_post
+  postprocess = aet01_post,
+  dataset = c("adae", "adsl")
 )
