@@ -21,7 +21,7 @@
               table_names = "TotWithdrawal")
           lyt_ae2 <- lyt_base %>% count_patients_recursive(anl_vars = anl_vars, 
               anl_lbls = anl_lbls, lbl_vars = lbl_vars)
-          return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
+          list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl)
       }
 
 # unwrap_layout works as expected with a custom function with layout function
