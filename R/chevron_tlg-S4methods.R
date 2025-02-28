@@ -279,6 +279,7 @@ setMethod(
   f = "main<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
+    checkmate::assert_function(value)
     x@main <- value
     validObject(x)
     x
@@ -324,6 +325,7 @@ setMethod(
   f = "preprocess<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
+    checkmate::assert_function(value)
     x@preprocess <- value
     validObject(x)
     x
@@ -368,6 +370,7 @@ setMethod(
   f = "postprocess<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
+    checkmate::assert_function(value)
     x@postprocess <- value
     validObject(x)
     x
@@ -412,6 +415,7 @@ setMethod(
   f = "dataset<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
+    checkmate::assert_character(value, null.ok = TRUE)
     x@dataset <- value
     validObject(x)
     x

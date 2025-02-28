@@ -275,7 +275,7 @@ test_that("dataset setter works as expected", {
 test_that("dataset sends an error as expected", {
   skip_on_os("windows")
   obj <- aet01
-  expect_error(dataset(obj) <- 1, "assignment of an object of class “numeric” is not valid for @‘dataset’",
+  expect_error(dataset(obj) <- 1, "Must be of type 'character' (or 'NULL')",
     fixed = TRUE
   )
 })
