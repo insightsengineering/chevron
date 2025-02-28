@@ -52,7 +52,7 @@ methods::setValidity("chevron_tlg", function(object) {
   assert_function(object@preprocess, args = "...", add = coll)
   assert_function(object@postprocess, args = c("tlg"), ordered = TRUE, add = coll)
   assert_function(object@postprocess, args = "...", add = coll)
-  assert_character(object@dataset, null.ok = TRUE, add = coll)
+  assert_character(object@dataset, any.missing = FALSE, null.ok = TRUE, add = coll)
   reportAssertions(coll)
 })
 

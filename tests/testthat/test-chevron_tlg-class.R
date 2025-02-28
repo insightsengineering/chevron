@@ -15,7 +15,8 @@ test_that("chevron_t object can be constructed with custom values", {
           count_patients_with_flags(fl)
         build_table(lyt, adam_db$adlb, adam_db$adsl)
       },
-      postprocess = function(tlg, ...) report_null(tlg)
+      postprocess = function(tlg, ...) report_null(tlg),
+      dataset = c("adae", "adsl")
     )
   )
   expect_true(validObject(obj))
@@ -29,7 +30,8 @@ test_that("chevron_t object can be constructed with custom values", {
           count_patients_with_flags(fl)
         build_table(lyt, adam_db$adlb, adam_db$adsl)
       },
-      postprocess = function(tlg, ...) report_null(tlg)
+      postprocess = function(tlg, ...) report_null(tlg),
+      dataset = c("adae", "adsl")
     )
   )
   expect_true(validObject(obj))
@@ -45,7 +47,8 @@ test_that("chevron_t constructor returns an error when expected", {
           count_patients_with_flags(fl)
         build_table(lyt, x$adlb, x$adsl)
       },
-      postprocess = function(w) report_null(w)
+      postprocess = function(w) report_null(w),
+      dataset = NA
     )
   )
 
@@ -80,6 +83,11 @@ test_that("chevron_t constructor returns an error when expected", {
     "Variable 'object@postprocess': Must have formal arguments: ....",
     fixed = TRUE
   )
+  expect_match(
+    obj_string,
+    "Variable 'object@dataset': Contains missing values",
+    fixed = TRUE
+  )
 })
 
 # chevron_l ----
@@ -99,7 +107,8 @@ test_that("chevron_g object can be constructed with custom values", {
         ggplot(adam_db$adsl, aes(x = .data$x)) +
           geom_histogram()
       },
-      postprocess = function(tlg, ...) tlg
+      postprocess = function(tlg, ...) tlg,
+      dataset = c("adsl, adlb")
     )
   )
 
@@ -125,7 +134,8 @@ test_that("chevron_g constructor returns an error when expected", {
         ggplot(dat$adsl, aes(x = .data$x)) +
           geom_histogram()
       },
-      postprocess = function(w) w
+      postprocess = function(w) w,
+      dataset = NA
     )
   )
 
@@ -158,6 +168,11 @@ test_that("chevron_g constructor returns an error when expected", {
   expect_match(
     obj_string,
     "Variable 'object@postprocess': Must have formal arguments: ....",
+    fixed = TRUE
+  )
+  expect_match(
+    obj_string,
+    "Variable 'object@dataset': Contains missing values",
     fixed = TRUE
   )
 })
