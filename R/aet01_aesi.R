@@ -226,7 +226,8 @@ aet01_aesi_post <- function(tlg, prune_0 = FALSE, ...) {
 aet01_aesi <- chevron_t(
   main = aet01_aesi_main,
   preprocess = aet01_aesi_pre,
-  postprocess = aet01_aesi_post
+  postprocess = aet01_aesi_post,
+  dataset = c("adsl", "adae")
 )
 
 #' @keywords internal

@@ -116,5 +116,6 @@ aet10_post <- function(tlg, atleast = 0.05, ...) {
 aet10 <- chevron_t(
   main = aet10_main,
   preprocess = aet10_pre,
-  postprocess = aet10_post
+  postprocess = aet10_post,
+  dataset = c("adae", "adsl")
 )

@@ -91,7 +91,8 @@ one of the \verb{*_pre} function from \code{chevron}.}
 \item{\code{postprocess}}{(\code{function}) returning a post-processed \code{tlg}. Typically one of the \verb{*_post} function from
 \code{chevron}.}
 
-\item{\code{dataset}}{(\code{character}) the names of the data sets used in the \code{chevron_tlg} object.}
+\item{\code{dataset}}{(\code{character}) the names of the data sets used in the \code{chevron_tlg} object. If \code{NULL}, all data sets are
+possibly used.}
 }}
 
 \note{

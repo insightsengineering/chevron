@@ -134,5 +134,6 @@ mht01_post <- function(tlg, row_split_var = "MHBODSYS", prune_0 = TRUE, ...) {
 mht01 <- chevron_t(
   main = mht01_main,
   preprocess = mht01_pre,
-  postprocess = mht01_post
+  postprocess = mht01_post,
+  dataset = c("admh", "adsl")
 )

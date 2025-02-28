@@ -121,5 +121,6 @@ fstg02_pre <- function(adam_db, ...) {
 #' )
 fstg02 <- chevron_g(
   main = fstg02_main,
-  preprocess = fstg02_pre
+  preprocess = fstg02_pre,
+  dataset = c("adtte", "adsl")
 )

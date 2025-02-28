@@ -198,5 +198,6 @@ dtht01_post <- function(tlg, prune_0 = TRUE, ...) {
 dtht01 <- chevron_t(
   main = dtht01_main,
   preprocess = dtht01_pre,
-  postprocess = dtht01_post
+  postprocess = dtht01_post,
+  dataset = "adsl"
 )

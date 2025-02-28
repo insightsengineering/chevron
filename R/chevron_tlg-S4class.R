@@ -17,7 +17,8 @@ setClassUnion("char_null", c("character", "NULL"))
 #'   one of the `*_pre` function from `chevron`.
 #' @slot postprocess (`function`) returning a post-processed `tlg`. Typically one of the `*_post` function from
 #'   `chevron`.
-#' @slot dataset (`character`) the names of the data sets used in the `chevron_tlg` object.
+#' @slot dataset (`character`) the names of the data sets used in the `chevron_tlg` object. If `NULL`, all data sets are
+#'   possibly used.
 #'
 #' @format NULL
 #'
