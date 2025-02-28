@@ -247,5 +247,5 @@ get_aesi_vars <- function(aesi_vars) {
     "NOT_RESOLVED", grep("^NOTRES", aesi, value = TRUE), "SER", grep("^SER", aesi, value = TRUE),
     "REL", grep("^REL", aesi, value = TRUE)
   )
-  return(all_aesi_vars)
+  all_aesi_vars
 }

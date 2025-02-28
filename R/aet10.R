@@ -72,7 +72,7 @@ aet10_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(AEDECOD = reformat(.data$AEDECOD, nocoding))
-  return(adam_db)
+  adam_db
 }
 
 #' @describeIn aet10 Postprocessing

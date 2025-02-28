@@ -177,7 +177,6 @@ test_that("chevron_g constructor returns an error when expected", {
   )
 })
 
-
 # chevron_simple ----
 
 test_that("chevron_simple works correctly", {
@@ -191,7 +190,7 @@ test_that("chevron_simple works correctly", {
 test_that("chevron_simple errors if contains return", {
   obj <- chevron_simple()
   expect_error(
-    main(obj) <- \(adam_db, ...) return(abc),
+    main(obj) <- \(adam_db, ...) return(abc), # nolint
     "Must be a simple expression without `return`."
   )
 })
