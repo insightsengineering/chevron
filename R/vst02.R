@@ -123,7 +123,8 @@ vst02_post <- function(tlg, prune_0 = FALSE, ...) {
 vst02_1 <- chevron_t(
   main = vst02_1_main,
   preprocess = vst02_pre,
-  postprocess = vst02_post
+  postprocess = vst02_post,
+  dataset = c("adsl", "advs")
 )
 
 # vst02_2 ----
@@ -147,5 +148,6 @@ vst02_2_main <- modify_default_args(vst02_1_main, exclude_base_abn = TRUE)
 vst02_2 <- chevron_t(
   main = vst02_2_main,
   preprocess = vst02_pre,
-  postprocess = vst02_post
+  postprocess = vst02_post,
+  dataset = c("adsl", "advs")
 )

@@ -279,6 +279,7 @@ setMethod(
   f = "main<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
+    checkmate::assert_function(value)
     x@main <- value
     validObject(x)
     x
@@ -324,6 +325,7 @@ setMethod(
   f = "preprocess<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
+    checkmate::assert_function(value)
     x@preprocess <- value
     validObject(x)
     x
@@ -368,7 +370,53 @@ setMethod(
   f = "postprocess<-",
   signature = "chevron_tlg",
   definition = function(x, value) {
+    checkmate::assert_function(value)
     x@postprocess <- value
+    validObject(x)
+    x
+  }
+)
+
+# dataset ----
+
+#' Data Set
+#'
+#' retrieve or set `dataset` slot.
+#'
+#' @param x (`chevron_tlg`) input.
+#' @returns the `character` stored in the `dataset` slot of the `x` argument.
+#'
+#' @aliases dataset
+#' @export
+setGeneric("dataset", function(x) standardGeneric("dataset"))
+
+#' @rdname dataset
+#' @export
+setMethod(
+  f = "dataset",
+  signature = "chevron_tlg",
+  definition = function(x) {
+    x@dataset
+  }
+)
+
+#' Dataset Assignment Function
+#'
+#' @param x (`chevron_tlg`) input.
+#' @param value (`character` or `NULL`) defining the dataset slot.
+#'
+#' @rdname dataset
+#' @export
+setGeneric("dataset<-", function(x, value) standardGeneric("dataset<-"))
+
+#' @rdname dataset
+#' @export
+setMethod(
+  f = "dataset<-",
+  signature = "chevron_tlg",
+  definition = function(x, value) {
+    checkmate::assert_character(value, null.ok = TRUE)
+    x@dataset <- value
     validObject(x)
     x
   }

@@ -40,5 +40,6 @@ rmpt05_pre <- modify_default_args(
 rmpt05 <- chevron_t(
   main = rmpt05_main,
   preprocess = rmpt05_pre,
-  postprocess = rmpt01_post
+  postprocess = rmpt01_post,
+  dataset = c("adex", "adsl")
 )

@@ -1,5 +1,7 @@
 # chevron 0.2.10.9003
 
+* New `dataset` slot in `chevron_tlg` class to store the name of the data set used in the template.
+
 # chevron 0.2.10
 
 * Change package maintainer to Joe Zhu.

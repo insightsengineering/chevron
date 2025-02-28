@@ -42,5 +42,6 @@ aet05_all_pre <- function(adam_db, dataset = "adsaftte", ...) {
 aet05_all <- chevron_t(
   main = aet05_main,
   preprocess = aet05_all_pre,
-  postprocess = aet05_post
+  postprocess = aet05_post,
+  dataset = c("adsaftte", "adsl")
 )

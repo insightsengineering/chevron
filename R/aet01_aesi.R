@@ -226,7 +226,8 @@ aet01_aesi_post <- function(tlg, prune_0 = FALSE, ...) {
 aet01_aesi <- chevron_t(
   main = aet01_aesi_main,
   preprocess = aet01_aesi_pre,
-  postprocess = aet01_aesi_post
+  postprocess = aet01_aesi_post,
+  dataset = c("adsl", "adae")
 )
 
 #' @keywords internal
@@ -246,5 +247,5 @@ get_aesi_vars <- function(aesi_vars) {
     "NOT_RESOLVED", grep("^NOTRES", aesi, value = TRUE), "SER", grep("^SER", aesi, value = TRUE),
     "REL", grep("^REL", aesi, value = TRUE)
   )
-  return(all_aesi_vars)
+  all_aesi_vars
 }
