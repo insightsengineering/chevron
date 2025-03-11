@@ -16,6 +16,7 @@
 * `lbt01` default precision for several parameters is now provided by the `lab_paramcd_precision` function.
 * `lbt05` now prints a clearer error message when `PARAM`, `AVALCAT1` and `ABN_DIR` variables in `adlb` are not of class `factor`.
 * `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
+* `lbt05` has a new argument `map` that controls the direction of abnormality associated with each parameter. The default values are provided by the new `lab_paramcd_abn_dir` function.
 
 # chevron 0.2.8
 
