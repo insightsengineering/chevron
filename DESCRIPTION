@@ -63,7 +63,7 @@ VignetteBuilder:
     knitr,
     rmarkdown
 Remotes:
-    insightsengineering/tern@main
+    insightsengineering/tern@1402_add_denom_estimate_proportions@main
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
