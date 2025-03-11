@@ -62,6 +62,11 @@ Suggests:
 VignetteBuilder:
     knitr,
     rmarkdown
+Remotes:
+    insightsengineering/formatters@main,
+    insightsengineering/rtables@main,
+    insightsengineering/rlistings@main,
+    insightsengineering/tern@1366_r4.4.0
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
