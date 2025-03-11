@@ -27,7 +27,7 @@ lbt05_main <- function(adam_db,
   assert_string(arm_var)
   assert_string(lbl_overall, null.ok = TRUE)
   # expand.grid steps requires levels later.
-  assert_data_frame(map, ncols = 2, null.ok = TRUE)
+  assert_data_frame(map, ncols = 2, min.rows = 1, null.ok = TRUE)
   assert_subset(colnames(map), c("PARAMCD", "ABN_DIR"))
   assert_valid_variable(adam_db$adlb, c("PARAM", "AVALCAT1", "ABN_DIR"), types = list("factor"))
   assert_valid_variable(adam_db$adlb, c("USUBJID"), types = list(c("character", "factor")), empty_ok = TRUE)
