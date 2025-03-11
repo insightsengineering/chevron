@@ -68,3 +68,9 @@ test_that("incomplete map argument works as expected", {
   res <- expect_silent(run(lbt05, syn_data, map = map))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
+
+test_that("prune_0 keeps the `Any Abnormaility` row", {
+  skip_on_os("windows")
+  res <- expect_silent(run(lbt05, syn_data, prune_0 = TRUE))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
