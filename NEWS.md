@@ -18,6 +18,7 @@
 * `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
 * `lbt05` has a new argument `map` that controls the direction of abnormality associated with each parameter. The default values are provided by the new `lab_paramcd_abn_dir` function.
 * A bug in `lbt05` that was removing every rows when `prune_0 = TRUE` has been fixed.
+* A new `keep` argument prevents the removal of the `"Any"` (or other user specified) rows during the processing of `lbt05` and `lbt07` when the table is pruned.
 
 # chevron 0.2.8
 
