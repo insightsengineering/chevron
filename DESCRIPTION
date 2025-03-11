@@ -1,13 +1,13 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.10.9002
-Date: 2025-02-20
+Version: 0.2.10.9004
+Date: 2025-03-11
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = "aut",
-           comment = "Original creator of the package"),
+           comment = c(ORCID = "0009-0008-6870-0878", "Original creator of the package")),
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut",
-           comment = "Original creator of the package"),
+           comment = c(ORCID = "0000-0002-4434-3799", "Original creator of the package")),
     person("Xiaoli", "Duan", , "xiaoli.duan@roche.com", role = "aut"),
     person("Adrian", "Waddell", , "waddell.adrian@gene.com", role = "ctb"),
     person("Chenkai", "Lv", , "chenkai.lv@roche.com", role = "ctb"),
@@ -62,6 +62,8 @@ Suggests:
 VignetteBuilder:
     knitr,
     rmarkdown
+Remotes:
+    insightsengineering/tern@main
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
