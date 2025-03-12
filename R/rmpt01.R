@@ -146,5 +146,6 @@ rmpt01_post <- function(tlg, prune_0 = FALSE, ...) {
 rmpt01 <- chevron_t(
   main = rmpt01_main,
   preprocess = rmpt01_pre,
-  postprocess = rmpt01_post
+  postprocess = rmpt01_post,
+  dataset = c("adsl", "adex")
 )

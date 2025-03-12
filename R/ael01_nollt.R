@@ -55,5 +55,6 @@ ael01_nollt_pre <- function(adam_db,
 #' run(ael01_nollt, syn_data)
 ael01_nollt <- chevron_l(
   main = ael01_nollt_main,
-  preprocess = ael01_nollt_pre
+  preprocess = ael01_nollt_pre,
+  dataset = c("adsl", "adae")
 )

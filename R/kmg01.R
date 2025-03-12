@@ -95,5 +95,6 @@ kmg01_pre <- function(adam_db, dataset = "adtte", ...) {
 #' run(kmg01, pre_data, dataset = "adtte", col = col)
 kmg01 <- chevron_g(
   main = kmg01_main,
-  preprocess = kmg01_pre
+  preprocess = kmg01_pre,
+  dataset = c("adsl", "adtte")
 )

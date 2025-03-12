@@ -176,5 +176,6 @@ egt05_qtcat_post <- function(tlg, prune_0 = TRUE, ...) {
 egt05_qtcat <- chevron_t(
   main = egt05_qtcat_main,
   preprocess = egt05_qtcat_pre,
-  postprocess = egt05_qtcat_post
+  postprocess = egt05_qtcat_post,
+  dataset = c("adsl", "adeg")
 )

@@ -176,5 +176,6 @@ egt03_post <- function(tlg, prune_0 = FALSE, ...) {
 egt03 <- chevron_t(
   main = egt03_main,
   preprocess = egt03_pre,
-  postprocess = egt03_post
+  postprocess = egt03_post,
+  dataset = c("adsl", "adeg")
 )

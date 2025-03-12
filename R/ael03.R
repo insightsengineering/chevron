@@ -76,5 +76,6 @@ ael03_pre <- function(adam_db,
 #' res <- run(ael03, syn_data)
 ael03 <- chevron_l(
   main = ael03_main,
-  preprocess = ael03_pre
+  preprocess = ael03_pre,
+  dataset = c("adsl", "adae")
 )

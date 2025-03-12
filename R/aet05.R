@@ -138,5 +138,6 @@ aet05_post <- function(tlg, prune_0 = FALSE, ...) {
 aet05 <- chevron_t(
   main = aet05_main,
   preprocess = aet05_pre,
-  postprocess = aet05_post
+  postprocess = aet05_post,
+  dataset = c("adsl", "adsaftte")
 )

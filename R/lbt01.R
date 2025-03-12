@@ -33,7 +33,8 @@ lbt01_pre <- modify_default_args(cfbt01_pre, dataset = "adlb")
 lbt01 <- chevron_t(
   main = lbt01_main,
   preprocess = lbt01_pre,
-  postprocess = cfbt01_post
+  postprocess = cfbt01_post,
+  dataset = c("adsl", "adlb")
 )
 
 #' @describeIn lbt01

@@ -222,5 +222,6 @@ rmpt06_post <- function(tlg, prune_0 = FALSE, ...) {
 rmpt06 <- chevron_t(
   main = rmpt06_main,
   preprocess = rmpt06_pre,
-  postprocess = rmpt06_post
+  postprocess = rmpt06_post,
+  dataset = c("adsl", "adae")
 )

@@ -35,5 +35,6 @@ egt01_pre <- modify_default_args(cfbt01_pre, dataset = "adeg")
 egt01 <- chevron_t(
   main = egt01_main,
   preprocess = egt01_pre,
-  postprocess = cfbt01_post
+  postprocess = cfbt01_post,
+  dataset = c("adsl", "adeg")
 )

@@ -154,5 +154,6 @@ coxt01_post <- function(tlg, prune_0 = FALSE, ...) {
 coxt01 <- chevron_t(
   main = coxt01_main,
   preprocess = coxt01_pre,
-  postprocess = coxt01_post
+  postprocess = coxt01_post,
+  dataset = c("adsl", "adtte")
 )

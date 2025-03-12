@@ -231,5 +231,6 @@ ttet01_post <- function(tlg, prune_0 = TRUE, ...) {
 ttet01 <- chevron_t(
   main = ttet01_main,
   preprocess = ttet01_pre,
-  postprocess = ttet01_post
+  postprocess = ttet01_post,
+  dataset = c("adsl", "adtte")
 )

@@ -121,5 +121,6 @@ aet02_post <- function(tlg, row_split_var = "AEBODSYS", prune_0 = TRUE, ...) {
 aet02 <- chevron_t(
   main = aet02_main,
   preprocess = aet02_pre,
-  postprocess = aet02_post
+  postprocess = aet02_post,
+  dataset = c("adsl", "adae")
 )

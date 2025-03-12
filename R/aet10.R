@@ -72,7 +72,7 @@ aet10_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(AEDECOD = reformat(.data$AEDECOD, nocoding))
-  return(adam_db)
+  adam_db
 }
 
 #' @describeIn aet10 Postprocessing
@@ -116,5 +116,6 @@ aet10_post <- function(tlg, atleast = 0.05, ...) {
 aet10 <- chevron_t(
   main = aet10_main,
   preprocess = aet10_pre,
-  postprocess = aet10_post
+  postprocess = aet10_post,
+  dataset = c("adsl", "adae")
 )

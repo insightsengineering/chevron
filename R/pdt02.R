@@ -156,5 +156,6 @@ pdt02_post <- function(tlg, prune_0 = TRUE, dvreas_var = "DVREAS", dvterm_var = 
 pdt02 <- chevron_t(
   main = pdt02_main,
   preprocess = pdt02_pre,
-  postprocess = pdt02_post
+  postprocess = pdt02_post,
+  dataset = c("adsl", "addv")
 )

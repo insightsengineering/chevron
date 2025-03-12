@@ -42,5 +42,6 @@ cmt02_pt_post <- modify_default_args(cmt01a_post, row_split_var = NULL)
 cmt02_pt <- chevron_t(
   main = cmt02_pt_main,
   preprocess = cmt02_pt_pre,
-  postprocess = cmt02_pt_post
+  postprocess = cmt02_pt_post,
+  dataset = c("adsl", "adcm")
 )

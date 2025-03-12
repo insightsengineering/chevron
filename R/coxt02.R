@@ -30,5 +30,6 @@ coxt02_main <- modify_default_args(coxt01_main, multivar = TRUE)
 coxt02 <- chevron_t(
   main = coxt02_main,
   preprocess = coxt01_pre,
-  postprocess = coxt01_post
+  postprocess = coxt01_post,
+  dataset = c("adsl", "adtte")
 )

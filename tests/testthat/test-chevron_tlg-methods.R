@@ -257,6 +257,29 @@ test_that("postprocess sends an error as expected", {
   )
 })
 
+# dataset ----
+
+test_that("dataset works as expected", {
+  skip_on_os("windows")
+  res <- dataset(aet01)
+  expect_identical(res, aet01@dataset)
+})
+
+test_that("dataset setter works as expected", {
+  skip_on_os("windows")
+  obj <- aet01
+  dataset(obj) <- "new_dataset"
+  expect_identical(obj@dataset, "new_dataset")
+})
+
+test_that("dataset sends an error as expected", {
+  skip_on_os("windows")
+  obj <- aet01
+  expect_error(dataset(obj) <- 1, "Must be of type 'character' (or 'NULL')",
+    fixed = TRUE
+  )
+})
+
 # script_funs ----
 
 test_that("script_funs works as expected in interactive mode", {

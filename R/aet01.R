@@ -133,7 +133,11 @@ aet01_lyt <- function(arm_var,
       lbl_vars = lbl_vars
     )
 
-  return(list(ae1 = lyt_ae1, ae2 = lyt_ae2, adsl = lyt_adsl))
+  list(
+    ae1 = lyt_ae1,
+    ae2 = lyt_ae2,
+    adsl = lyt_adsl
+  )
 }
 
 #' @describeIn aet01 Preprocessing
@@ -195,5 +199,6 @@ aet01_post <- function(tlg, prune_0 = FALSE, ...) {
 aet01 <- chevron_t(
   main = aet01_main,
   preprocess = aet01_pre,
-  postprocess = aet01_post
+  postprocess = aet01_post,
+  dataset = c("adsl", "adae")
 )
