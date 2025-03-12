@@ -1,4 +1,6 @@
-# chevron 0.2.10.9004
+# chevron 0.2.10.9005
+
+* New `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
 
 * A new `map` argument now controls the direction of abnormality associated with each parameter in `lbt05`.
 * A new `keep` argument prevents the removal of the `"Any"` (or other user specified) rows during the processing of `lbt07` if the table is pruned.
