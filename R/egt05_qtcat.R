@@ -177,5 +177,5 @@ egt05_qtcat <- chevron_t(
   main = egt05_qtcat_main,
   preprocess = egt05_qtcat_pre,
   postprocess = egt05_qtcat_post,
-  dataset = c("adeg", "adsl")
+  dataset = c("adsl", "adeg")
 )

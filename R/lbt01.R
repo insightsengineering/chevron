@@ -34,7 +34,7 @@ lbt01 <- chevron_t(
   main = lbt01_main,
   preprocess = lbt01_pre,
   postprocess = cfbt01_post,
-  dataset = c("adlb", "adsl")
+  dataset = c("adsl", "adlb")
 )
 
 #' @describeIn lbt01

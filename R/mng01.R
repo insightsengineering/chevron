@@ -214,5 +214,5 @@ mng01_pre <- function(adam_db, dataset, x_var = "AVISIT", ...) {
 mng01 <- chevron_g(
   main = mng01_main,
   preprocess = mng01_pre,
-  dataset = c("adlb", "adsl")
+  dataset = c("adsl", "adlb")
 )

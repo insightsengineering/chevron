@@ -41,5 +41,5 @@ rmpt04 <- chevron_t(
   main = rmpt04_main,
   preprocess = rmpt04_pre,
   postprocess = rmpt01_post,
-  dataset = c("adex", "adsl")
+  dataset = c("adsl", "adex")
 )

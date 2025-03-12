@@ -232,5 +232,5 @@ ttet01 <- chevron_t(
   main = ttet01_main,
   preprocess = ttet01_pre,
   postprocess = ttet01_post,
-  dataset = c("adtte", "adsl")
+  dataset = c("adsl", "adtte")
 )

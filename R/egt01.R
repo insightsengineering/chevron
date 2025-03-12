@@ -36,5 +36,5 @@ egt01 <- chevron_t(
   main = egt01_main,
   preprocess = egt01_pre,
   postprocess = cfbt01_post,
-  dataset = c("adeg", "adsl")
+  dataset = c("adsl", "adeg")
 )

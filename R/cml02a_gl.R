@@ -48,5 +48,5 @@ cml02a_gl_pre <- function(adam_db,
 cml02a_gl <- chevron_l(
   main = cml02a_gl_main,
   preprocess = cml02a_gl_pre,
-  dataset = c("adcm", "adsl")
+  dataset = c("adsl", "adcm")
 )

@@ -177,5 +177,5 @@ egt03 <- chevron_t(
   main = egt03_main,
   preprocess = egt03_pre,
   postprocess = egt03_post,
-  dataset = c("adeg", "adsl")
+  dataset = c("adsl", "adeg")
 )

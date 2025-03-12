@@ -113,7 +113,7 @@ egt02_1 <- chevron_t(
   main = egt02_1_main,
   preprocess = egt02_pre,
   postprocess = egt02_post,
-  dataset = c("adeg", "adsl")
+  dataset = c("adsl", "adeg")
 )
 
 # egt02_2 ----
@@ -139,5 +139,5 @@ egt02_2 <- chevron_t(
   main = egt02_2_main,
   preprocess = egt02_pre,
   postprocess = egt02_post,
-  dataset = c("adeg", "adsl")
+  dataset = c("adsl", "adeg")
 )

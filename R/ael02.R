@@ -67,5 +67,5 @@ ael02_pre <- function(adam_db,
 ael02 <- chevron_l(
   main = ael02_main,
   preprocess = ael02_pre,
-  dataset = c("adae", "adsl")
+  dataset = c("adsl", "adae")
 )

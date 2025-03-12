@@ -158,5 +158,5 @@ lbt06 <- chevron_t(
   main = lbt06_main,
   preprocess = lbt06_pre,
   postprocess = lbt06_post,
-  dataset = c("adlb", "adsl")
+  dataset = c("adsl", "adlb")
 )
