@@ -19,6 +19,8 @@ ext01_main(
   row_split_var = "PARCAT2",
   page_var = NULL,
   map = NULL,
+  stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
+  precision = list(default = 0),
   ...
 )
 
@@ -43,6 +45,12 @@ table of \code{adam_db} is used as label.}
 \item{page_var}{(\code{string}) variable name prior to which the row split is by page.}
 
 \item{map}{(\code{data.frame}) of mapping for split rows.}
+
+\item{stats}{(named \code{list} of character) where names are values found in the \code{PARAMCD} column and the values indicate
+the statistical analysis to perform. If \code{default} is set, and parameter precision not specified, the
+value for \code{default} will be used.}
+
+\item{precision}{(named \code{list} of \code{integer}) where names are values found in the \code{PARAMCD} column and the values}
 
 \item{...}{not used.}
 
@@ -97,6 +105,14 @@ map <- data.frame(
   PARAMCD = "TDURD",
   AVALCAT1 = c("< 1 month", "1 to <3 months", ">=6 months", "3 to <6 months", "12 months")
 )
-run(ext01, syn_data, summaryvars = c("AVAL", "AVALCAT1"), prune_0 = FALSE, map = map)
+run(
+  ext01,
+  syn_data,
+  summaryvars = c("AVAL", "AVALCAT1"),
+  prune_0 = FALSE,
+  map = map,
+  precision = list(TDOSE = 4, default = 4),
+  stats = list(TDURD = "n", default = c("n", "count_fraction"))
+)
 }
 \keyword{datasets}
