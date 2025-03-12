@@ -12,7 +12,9 @@ ext01_lyt(
   row_split_var,
   row_split_lbl,
   page_var,
-  map
+  map,
+  stats = list(default = c("n", "mean_sd", "median", "range", "count_fraction")),
+  precision = list()
 )
 }
 \arguments{

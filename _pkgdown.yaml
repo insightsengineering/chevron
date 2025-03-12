@@ -108,6 +108,7 @@ reference:
     contents:
       - syn_data
       - lab_paramcd_precision
+      - lab_paramcd_abn_dir
       - ctcv4_dir
       - ctcv5_dir
       - mla_dir

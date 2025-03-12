@@ -1,6 +1,8 @@
 # as we use NSE
 globalVariables(c(".", ":="))
 
+# Helpers ----
+
 #' Retrieve labels for certain variables
 #'
 #' @param df (`data.frame`) containing columns with label attribute.
@@ -16,6 +18,39 @@ var_labels_for <- function(df, vars) {
   assert_names(colnames(df), must.include = vars, what = "colnames")
   render_safe(unname(formatters::var_labels(df, fill = TRUE)[vars]))
 }
+
+
+#' Helper function to convert to months if needed
+#'
+#' @param x (`numeric`) time.
+#' @param unit (`character`) or (`factor`) time unit.
+#'
+#' @returns A `numeric` vector with the time in months.
+#'
+#' @export
+convert_to_month <- function(x, unit) {
+  assert_multi_class(unit, c("character", "factor"))
+  assert_numeric(x, len = length(unit))
+
+  unit <- toupper(unit)
+  diff <- setdiff(unique(unit), c("DAYS", "MONTHS", "YEARS"))
+  if (length(diff) > 0) {
+    rlang::warn(
+      paste0(
+        "Time unit ", toString(diff), " not covered. No unit conversion applied."
+      )
+    )
+  }
+
+  case_when(
+    unit == "DAYS" ~ x / 30.4375,
+    unit == "MONTHS" ~ x,
+    unit == "YEARS" ~ x * 12,
+    TRUE ~ x
+  )
+}
+
+# Prunning ----
 
 #' Prune table up to an `ElementaryTable`
 #'
@@ -34,33 +69,32 @@ smart_prune <- function(tlg) {
   res
 }
 
-#' Standard Main Listing Function
+#' Prune table except specified levels
 #'
-#' @inheritParams gen_args
-#' @param ... additional arguments passed to [`rlistings::as_listing`].
-#' @returns the main function returns an `rlistings` or a `list` object.
+#' @param keep (`character`) levels to keep.
+#' @returns A pruning `function`.
 #'
+#' @export
 #' @keywords internal
-std_listing <- function(adam_db,
-                        dataset,
-                        key_cols,
-                        disp_cols,
-                        split_into_pages_by_var,
-                        unique_rows = FALSE,
-                        ...) {
-  assert_all_tablenames(adam_db, dataset)
-  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
-
-  execute_with_args(
-    as_listing,
-    df = adam_db[[dataset]],
-    key_cols = key_cols,
-    disp_cols = disp_cols,
-    split_into_pages_by_var = split_into_pages_by_var,
-    ...,
-    default_formatting = listing_format_chevron(),
-    unique_rows = unique_rows
-  )
+prune_except <- function(keep) {
+  function(tt) {
+    assert_character(keep, null.ok = TRUE)
+    if (is(tt, "TableRow")) {
+      # label and data rows
+      # browser() to check when to avoid doing this
+      if (obj_name(tt) %in% keep) {
+        return(FALSE)
+      } else {
+        return(all_zero_or_na(tt))
+      }
+    }
+    if (content_all_zeros_nas(tt)) {
+      # content rows
+      return(TRUE)
+    }
+    kids <- tree_children(tt)
+    length(kids) == 0 # entire splits with no children remaining are pruned
+  }
 }
 
 # Special formats ----
@@ -147,17 +181,21 @@ lvls.factor <- function(x) {
   levels(x)
 }
 
+# string ----
+
 #' @keywords internal
 quote_str <- function(x) {
   assert_string(x)
   paste0("`", x, "`")
 }
 
+# formals and args ----
+
 #' @keywords internal
 modify_default_args <- function(fun, ...) {
   ret <- fun
   formals(ret) <- utils::modifyList(formals(fun), list(...), keep.null = TRUE)
-  return(ret)
+  ret
 }
 
 #' Execute function with given arguments
@@ -189,13 +227,16 @@ do_call <- function(what, args) {
   do.call(what, new_args, envir = args_env)
 }
 
-#' Modify character
-#'
+# Lists ----
+
+
 #' @keywords internal
-modify_character <- function(x, y) {
-  assert_character(x, names = "unique", null.ok = TRUE)
-  assert_character(y, names = "unique", null.ok = TRUE)
-  c(y, x)[unique(c(names(x), names(y)))]
+to_list <- function(x) {
+  if (length(x) == 1L) {
+    return(x)
+  }
+  x <- as.list(x)
+  lapply(x, to_list)
 }
 
 #' Expand list to each split
@@ -214,35 +255,16 @@ expand_list <- function(lst, split) {
   lst
 }
 
-#' Helper function to convert to months if needed
+#' Modify character
 #'
-#' @param x (`numeric`) time.
-#' @param unit (`character`) or (`factor`) time unit.
-#'
-#' @returns A `numeric` vector with the time in months.
-#'
-#' @export
-convert_to_month <- function(x, unit) {
-  assert_multi_class(unit, c("character", "factor"))
-  assert_numeric(x, len = length(unit))
-
-  unit <- toupper(unit)
-  diff <- setdiff(unique(unit), c("DAYS", "MONTHS", "YEARS"))
-  if (length(diff) > 0) {
-    rlang::warn(
-      paste0(
-        "Time unit ", toString(diff), " not covered. No unit conversion applied."
-      )
-    )
-  }
-
-  case_when(
-    unit == "DAYS" ~ x / 30.4375,
-    unit == "MONTHS" ~ x,
-    unit == "YEARS" ~ x * 12,
-    TRUE ~ x
-  )
+#' @keywords internal
+modify_character <- function(x, y) {
+  assert_character(x, names = "unique", null.ok = TRUE)
+  assert_character(y, names = "unique", null.ok = TRUE)
+  c(y, x)[unique(c(names(x), names(y)))]
 }
+
+# Plots ----
 
 #' Theme for Chevron Plot
 #'
@@ -335,6 +357,8 @@ get_x_vjust <- function(x) {
   }
 }
 
+# Section Div ----
+
 #' Get Section dividers
 #' @export
 #' @returns (`character`) value with section dividers at corresponding section.
@@ -363,39 +387,56 @@ set_section_div <- function(x) {
   invisible()
 }
 
+# listings ----
+
+#' Standard Main Listing Function
+#'
+#' @inheritParams gen_args
+#' @param ... additional arguments passed to [`rlistings::as_listing`].
+#' @returns the main function returns an `rlistings` or a `list` object.
+#'
 #' @keywords internal
-to_list <- function(x) {
-  if (length(x) == 1L) {
-    return(x)
-  }
-  x <- as.list(x)
-  lapply(x, to_list)
+std_listing <- function(adam_db,
+                        dataset,
+                        key_cols,
+                        disp_cols,
+                        split_into_pages_by_var,
+                        unique_rows = FALSE,
+                        ...) {
+  assert_all_tablenames(adam_db, dataset)
+  assert_valid_variable(adam_db[[dataset]], c(key_cols, disp_cols), label = paste0("adam_db$", dataset))
+
+  execute_with_args(
+    as_listing,
+    df = adam_db[[dataset]],
+    key_cols = key_cols,
+    disp_cols = disp_cols,
+    split_into_pages_by_var = split_into_pages_by_var,
+    ...,
+    default_formatting = listing_format_chevron(),
+    unique_rows = unique_rows
+  )
 }
 
-# Deprecated functions ----
-
-#' List of `grob` object
+#' Concatenate Site and Subject ID
 #'
-#' `r lifecycle::badge("deprecated")`
+#' @param site (`string`)
+#' @param subject (`string`)
+#' @param sep (`string`)
 #'
-#' @param ... (`grob`) objects.
-#' @returns a `grob_list` object.
+#' @note the `{Patient_label}` whisker placeholder will be used in the label.
+#'
 #' @export
-grob_list <- function(...) {
-  lifecycle::deprecate_warn("0.2.5.9009", "grob_list()", "list()")
-  list(...)
-}
+#' @examples
+#' create_id_listings("BRA-1", "xxx-1234")
+create_id_listings <- function(site, subject, sep = "/") {
+  assert_character(site)
+  assert_character(subject)
+  assert_string(sep)
 
-#' List of `gg` object
-#'
-#' `r lifecycle::badge("deprecated")`
-#'
-#' @param ... (`ggplot`) objects.
-#' @returns a `gg_list` object.
-#' @export
-gg_list <- function(...) {
-  lifecycle::deprecate_warn("0.2.5.9009", "gg_list()", "list()")
-  list(...)
+  subject_id <- stringr::str_split_i(subject, pattern = "-", i = -1)
+
+  with_label(paste(site, subject_id, sep = sep), render_safe("Center/{Patient_label} ID"))
 }
 
 
@@ -443,25 +484,28 @@ format_date <- function(date_format = "%d%b%Y") {
   }
 }
 
-# listing_id ----
+# Deprecated functions ----
 
-#' Concatenate Site and Subject ID
+#' List of `grob` object
 #'
-#' @param site (`string`)
-#' @param subject (`string`)
-#' @param sep (`string`)
+#' `r lifecycle::badge("deprecated")`
 #'
-#' @note the `{Patient_label}` whisker placeholder will be used in the label.
-#'
+#' @param ... (`grob`) objects.
+#' @returns a `grob_list` object.
 #' @export
-#' @examples
-#' create_id_listings("BRA-1", "xxx-1234")
-create_id_listings <- function(site, subject, sep = "/") {
-  assert_character(site)
-  assert_character(subject)
-  assert_string(sep)
+grob_list <- function(...) {
+  lifecycle::deprecate_warn("0.2.5.9009", "grob_list()", "list()")
+  list(...)
+}
 
-  subject_id <- stringr::str_split_i(subject, pattern = "-", i = -1)
-
-  with_label(paste(site, subject_id, sep = sep), render_safe("Center/{Patient_label} ID"))
+#' List of `gg` object
+#'
+#' `r lifecycle::badge("deprecated")`
+#'
+#' @param ... (`ggplot`) objects.
+#' @returns a `gg_list` object.
+#' @export
+gg_list <- function(...) {
+  lifecycle::deprecate_warn("0.2.5.9009", "gg_list()", "list()")
+  list(...)
 }

@@ -37,8 +37,6 @@ lbt01 <- chevron_t(
   dataset = c("adlb", "adsl")
 )
 
-
-
 #' @describeIn lbt01
 #'
 #' @returns a named `list` with the precision of each lab parameter code (default is `2`).

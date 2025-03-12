@@ -6,18 +6,27 @@
 \alias{lbt05_pre}
 \alias{lbt05_post}
 \alias{lbt05}
+\alias{lab_paramcd_abn_dir}
 \title{\code{LBT05} Table 1 (Default) Laboratory Abnormalities with Single and Replicated Marked.}
 \format{
 An object of class \code{chevron_t} of length 1.
 }
 \usage{
-lbt05_main(adam_db, arm_var = "ACTARM", lbl_overall = NULL, ...)
+lbt05_main(
+  adam_db,
+  arm_var = "ACTARM",
+  lbl_overall = NULL,
+  map = lab_paramcd_abn_dir(),
+  ...
+)
 
 lbt05_pre(adam_db, ...)
 
-lbt05_post(tlg, prune_0 = FALSE, ...)
+lbt05_post(tlg, prune_0 = FALSE, keep = "Any Abnormality", ...)
 
 lbt05
+
+lab_paramcd_abn_dir()
 }
 \arguments{
 \item{adam_db}{(\code{list} of \code{data.frames}) object containing the \code{ADaM} datasets}
@@ -26,11 +35,16 @@ lbt05
 
 \item{lbl_overall}{(\code{string}) label used for overall column, if set to \code{NULL} the overall column is omitted}
 
+\item{map}{(\code{data.frame}) with two columns mapping of parameters code (\code{PARAMCD}) to directions of abnormality
+(\code{ABN_DIR}). If a parameter is not in the \code{map} or if \code{map} is \code{NULL}, both directions are analyzed.}
+
 \item{...}{not used.}
 
 \item{tlg}{(\code{TableTree}, \code{Listing} or \code{ggplot}) object typically produced by a \code{main} function.}
 
 \item{prune_0}{(\code{flag}) remove 0 count rows}
+
+\item{keep}{(\code{character}) the levels to keep in the table even if they are empty. If \code{NULL}, all levels are pruned.}
 }
 \value{
 the main function returns an \code{rtables} object.
@@ -38,6 +52,8 @@ the main function returns an \code{rtables} object.
 the preprocessing function returns a \code{list} of \code{data.frame}.
 
 the postprocessing function returns an \code{rtables} object or an \code{ElementaryTable} (null report).
+
+a \code{data.frame} with the direction of abnormality of each lab parameter code.
 }
 \description{
 \code{LBT05} Table 1 (Default) Laboratory Abnormalities with Single and Replicated Marked.
@@ -57,6 +73,8 @@ the postprocessing function returns an \code{rtables} object or an \code{Element
 
 \item \code{lbt05_post()}: Postprocessing
 
+\item \code{lab_paramcd_abn_dir()}: 
+
 }}
 \note{
 \itemize{
@@ -66,5 +84,11 @@ the postprocessing function returns an \code{rtables} object or an \code{Element
 }
 \examples{
 run(lbt05, syn_data)
+
+map <- data.frame(PARAMCD = c("ALT", "ALT", "CRP", "CRP", "IGA", "XXX"), ABN_DIR = c("Low", "High"))
+run(lbt05, syn_data, map = map)
+# example code
+head(lab_paramcd_abn_dir())
+
 }
 \keyword{datasets}

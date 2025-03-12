@@ -1,4 +1,11 @@
-# chevron 0.2.10.9004
+# chevron 0.2.10.9005
+
+* New `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
+
+* A new `map` argument now controls the direction of abnormality associated with each parameter in `lbt05`.
+* A new `keep` argument prevents the removal of the `"Any"` (or other user specified) rows during the processing of `lbt07` if the table is pruned.
+* A new `keep` argument prevents the removal of the `"Any Abnormality"` (or other user specified) rows during the processing of `lbt05`.
+* A bug that caused all rows to be pruned from the `lbt05` table even when they contain non-zero values has been fixed.
 
 * New `dataset` slot in `chevron_tlg` class to store the name of the data set used in the template.
 
@@ -13,6 +20,9 @@
 * `lbt01` default precision for several parameters is now provided by the `lab_paramcd_precision` function.
 * `lbt05` now prints a clearer error message when `PARAM`, `AVALCAT1` and `ABN_DIR` variables in `adlb` are not of class `factor`.
 * `ttet01_main` now prints a clearer error message when a level in `arm_var` variable is missing.
+* `lbt05` has a new argument `map` that controls the direction of abnormality associated with each parameter. The default values are provided by the new `lab_paramcd_abn_dir` function.
+* A bug in `lbt05` that was removing every rows when `prune_0 = TRUE` has been fixed.
+* A new `keep` argument prevents the removal of the `"Any"` (or other user specified) rows during the processing of `lbt05` and `lbt07` when the table is pruned.
 
 # chevron 0.2.8
 
