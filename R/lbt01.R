@@ -36,8 +36,6 @@ lbt01 <- chevron_t(
   postprocess = cfbt01_post
 )
 
-
-
 #' @describeIn lbt01
 #'
 #' @returns a named `list` with the precision of each lab parameter code (default is `2`).

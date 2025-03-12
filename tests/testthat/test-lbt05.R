@@ -19,7 +19,7 @@ test_that("lbt05 give all 0 count if ANRIND are all missing", {
     mutate(
       ANRIND = NA_character_
     )
-  res <- run(lbt05, proc_data)
+  res <- run(lbt05, proc_data, map = NULL)
   res <- smart_prune(res)
   expect_identical(nrow(res), 0L)
 })
@@ -52,5 +52,25 @@ test_that("lbt05 works with missing levels", {
   proc_data$adlb <- proc_data$adlb %>%
     filter(PARAM == "Immunoglobulin A Measurement")
   res <- expect_silent(run(lbt05, proc_data))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("map argument works as expected", {
+  skip_on_os("windows")
+  map <- data.frame(PARAMCD = c("ALT", "ALT", "CRP", "IGA", "XXX"), ABN_DIR = c("Low", "High", "High", "Low", "Low"))
+  res <- expect_silent(run(lbt05, syn_data, map = map))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("incomplete map argument works as expected", {
+  skip_on_os("windows")
+  map <- data.frame(PARAMCD = c("ALT"), ABN_DIR = c("Low"))
+  res <- expect_silent(run(lbt05, syn_data, map = map))
+  expect_snapshot(cat(export_as_txt(res, lpp = 100)))
+})
+
+test_that("prune_0 keeps the `Any Abnormaility` row", {
+  skip_on_os("windows")
+  res <- expect_silent(run(lbt05, syn_data, prune_0 = TRUE))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
