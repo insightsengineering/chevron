@@ -88,8 +88,8 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-        Body System                                                  A: Drug X    B: Placebo   C: Combination
-          Dictionary-Derived Term                                      (N=15)       (N=15)         (N=15)    
+        MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event     13 (86.7%)   14 (93.3%)     15 (100%)   
         Overall total number of events                                   58           59             99      

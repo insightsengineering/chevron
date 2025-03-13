@@ -111,8 +111,8 @@
     Code
       cat(export_as_txt(tbl, lpp = 100))
     Output
-        Body System                                                  A: Drug X    B: Placebo   C: Combination
-          Dictionary-Derived Term                                      (N=15)       (N=15)         (N=15)    
+        MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event     13 (86.7%)   12 (80.0%)     13 (86.7%)  
         Overall total number of events                                   32           32             48      
@@ -166,7 +166,7 @@
       cat(export_as_txt(tbl, lpp = 100))
     Output
         High Level Term                                              A: Drug X    B: Placebo   C: Combination
-          Dictionary-Derived Term                                      (N=15)       (N=15)         (N=15)    
+          MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event     13 (86.7%)   12 (80.0%)     13 (86.7%)  
         Overall total number of events                                   32           32             48      
@@ -188,7 +188,7 @@
           Total number of events                                         9            8              7       
           dcd B.2.1.2.1                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
       \s\n  High Level Term                                              All Patients
-          Dictionary-Derived Term                                       (N=45)   
+          MedDRA Preferred Term                                         (N=45)   
         —————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event      38 (84.4%) 
         Overall total number of events                                   112     
@@ -246,7 +246,7 @@
       cat(export_as_txt(tbl, lpp = 100))
     Output
         High Level Term                                              A: Drug X    B: Placebo   C: Combination
-          Dictionary-Derived Term                                      (N=15)       (N=15)         (N=15)    
+          MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event     13 (86.7%)   12 (80.0%)     13 (86.7%)  
         Overall total number of events                                   32           32             48      
@@ -268,7 +268,7 @@
           Total number of events                                         9            8              7       
           dcd B.2.1.2.1                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
       \s\n  High Level Term                                              All Patients
-          Dictionary-Derived Term                                       (N=45)   
+          MedDRA Preferred Term                                         (N=45)   
         —————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event      38 (84.4%) 
         Overall total number of events                                   112     
@@ -317,8 +317,8 @@
     Code
       cat(export_as_txt(tbl, lpp = 100))
     Output
-        Body System                                                  A: Drug X    B: Placebo   C: Combination
-          Dictionary-Derived Term                                      (N=15)       (N=15)         (N=15)    
+        MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
+          MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event     13 (86.7%)   12 (80.0%)     13 (86.7%)  
         Overall total number of events                                   32           32             48      
@@ -369,7 +369,7 @@
       cat(export_as_txt(tbl, lpp = 100))
     Output
         High Level Term                                              A: Drug X    B: Placebo   C: Combination
-          Dictionary-Derived Term                                      (N=15)       (N=15)         (N=15)    
+          MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
         —————————————————————————————————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event     13 (86.7%)   12 (80.0%)     13 (86.7%)  
         Overall total number of events                                   32           32             48      
@@ -391,7 +391,7 @@
           Total number of events                                         9            8              7       
           dcd B.2.1.2.1                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
       \s\n  High Level Term                                              All Patients
-          Dictionary-Derived Term                                       (N=45)   
+          MedDRA Preferred Term                                         (N=45)   
         —————————————————————————————————————————————————————————————————————————
         Total number of patients with at least one adverse event      38 (84.4%) 
         Overall total number of events                                   112     
@@ -440,9 +440,9 @@
       {
           adam_db$adae <- adam_db$adae %>% filter(.data$ANL01FL == 
               "Y") %>% mutate(AEDECOD = with_label(reformat(.data$AEDECOD, 
-              nocoding), "Dictionary-Derived Term")) %>% mutate(across(all_of(row_split_var), 
+              nocoding), "MedDRA Preferred Term")) %>% mutate(across(all_of(row_split_var), 
               ~reformat(.x, nocoding))) %>% mutate(AEBODSYS = with_label(.data$AEBODSYS, 
-              "Body System"))
+              "MedDRA System Organ Class"))
           adam_db
       } 
       
