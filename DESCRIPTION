@@ -63,7 +63,8 @@ VignetteBuilder:
     knitr,
     rmarkdown
 Remotes:
-    insightsengineering/tern@main
+    insightsengineering/tern@main,
+    insightsengineering/rtables@999_afun_alt_df_full
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
