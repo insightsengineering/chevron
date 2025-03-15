@@ -439,8 +439,10 @@
       function (adam_db, row_split_var = "AEBODSYS", ...) 
       {
           adam_db$adae <- adam_db$adae %>% filter(.data$ANL01FL == 
-              "Y") %>% mutate(AEDECOD = reformat(.data$AEDECOD, nocoding)) %>% 
-              mutate(across(all_of(row_split_var), ~reformat(.x, nocoding)))
+              "Y") %>% mutate(AEDECOD = with_label(reformat(.data$AEDECOD, 
+              nocoding), "MedDRA Preferred Term")) %>% mutate(across(all_of(row_split_var), 
+              ~reformat(.x, nocoding))) %>% mutate(AEBODSYS = with_label(.data$AEBODSYS, 
+              "MedDRA System Organ Class"))
           adam_db
       } 
       

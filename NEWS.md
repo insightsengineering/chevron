@@ -6,6 +6,7 @@
 * A new `keep` argument prevents the removal of the `"Any Abnormality"` (or other user specified) rows during the processing of `lbt05`.
 * A bug that caused all rows to be pruned from the `lbt05` table even when they contain non-zero values has been fixed.
 * New `dataset` slot in `chevron_tlg` class to store the name of the data set used in the template.
+* The `label` attributes of `AEBODSYS` and `AEDECOD` in `adae` are automatically modified by `aet02` preprocessing function.
 
 # chevron 0.2.10
 
