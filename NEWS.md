@@ -1,4 +1,4 @@
-# chevron 0.2.10.9007
+# chevron 0.2.10.9008
 
 * New `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
 * A new `map` argument now controls the direction of abnormality associated with each parameter in `lbt05`.
