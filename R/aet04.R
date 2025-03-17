@@ -139,8 +139,8 @@ aet04_pre <- function(adam_db, ...) {
   adam_db$adae <- adam_db$adae %>%
     filter(.data$ANL01FL == "Y") %>%
     mutate(
-      AEBODSYS = reformat(.data$AEBODSYS, nocoding),
-      AEDECOD = reformat(.data$AEDECOD, nocoding),
+      AEBODSYS = with_label(reformat(.data$AEBODSYS, nocoding), "MedDRA System Organ Class"),
+      AEDECOD = with_label(reformat(.data$AEDECOD, nocoding), "MedDRA Preferred Term"),
       ATOXGR = factor(.data$ATOXGR, levels = atoxgr_lvls)
     )
   adam_db
