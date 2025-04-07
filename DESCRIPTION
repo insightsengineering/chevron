@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.10.9009
-Date: 2025-03-17
+Version: 0.2.10.9010
+Date: 2025-04-07
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = "aut",
            comment = c(ORCID = "0009-0008-6870-0878", "Original creator of the package")),
