@@ -9,8 +9,8 @@
 <title>Changelog • chevron</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Changelog">
 <meta property="og:image" content="https://insightsengineering.github.io/chevron/logo.svg">
 <link rel="stylesheet" href="../consent.css">
@@ -24,7 +24,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.11</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,7 @@
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.11-rc1">v0.2.11-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.10">v0.2.10</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.9">v0.2.9</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.9-rc1">v0.2.9-rc1</a>
@@ -102,9 +103,30 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.9-rc1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.11-rc1/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.11" id="chevron-0211">chevron 0.2.11<a class="anchor" aria-label="anchor" href="#chevron-0211"></a>
+</h2>
+<ul>
+<li>A new <code>precision</code> arguments now control the statistical analysis and numbers of digits presented in <code>ext01</code>.</li>
+<li>A new <code>map</code> argument now controls the direction of abnormality associated with each parameter in <code>lbt05</code>.</li>
+<li>A new <code>keep</code> argument prevents the removal of the <code>"Any"</code> (or other user specified) rows during the processing of <code>lbt07</code> if the table is pruned.</li>
+<li>A new <code>keep</code> argument prevents the removal of the <code>"Any Abnormality"</code> (or other user specified) rows during the processing of <code>lbt05</code>.</li>
+<li>The <code>label</code> attributes of <code>AEBODSYS</code> and <code>AEDECOD</code> in <code>adae</code> are automatically modified during the pre processing of <code>AET02</code>, <code>AET03</code>, <code>AET04</code> and <code>AET10</code>.</li>
+<li>New <code>dataset</code> slot in <code>chevron_tlg</code> class to store the name of the data sets used in the template.</li>
+<li>Fix a bug that caused all rows to be pruned from the <code>lbt05</code> table even when they contain non-zero values.</li>
+</ul>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2.10" id="chevron-0210">chevron 0.2.10<a class="anchor" aria-label="anchor" href="#chevron-0210"></a>
+</h2>
+<p class="text-muted">CRAN release: 2025-02-20</p>
+<ul>
+<li>Change package maintainer to Joe Zhu.</li>
+</ul>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.9" id="chevron-029">chevron 0.2.9<a class="anchor" aria-label="anchor" href="#chevron-029"></a>
 </h2>
@@ -118,6 +140,10 @@
 <code>lbt05</code> now prints a clearer error message when <code>PARAM</code>, <code>AVALCAT1</code> and <code>ABN_DIR</code> variables in <code>adlb</code> are not of class <code>factor</code>.</li>
 <li>
 <code>ttet01_main</code> now prints a clearer error message when a level in <code>arm_var</code> variable is missing.</li>
+<li>
+<code>lbt05</code> has a new argument <code>map</code> that controls the direction of abnormality associated with each parameter. The default values are provided by the new <code>lab_paramcd_abn_dir</code> function.</li>
+<li>A bug in <code>lbt05</code> that was removing every rows when <code>prune_0 = TRUE</code> has been fixed.</li>
+<li>A new <code>keep</code> argument prevents the removal of the <code>"Any"</code> (or other user specified) rows during the processing of <code>lbt05</code> and <code>lbt07</code> when the table is pruned.</li>
 </ul>
 </div>
     <div class="section level2">
