@@ -28,7 +28,7 @@ patients in terms of Total dose administered or missed, and treatment duration."
 
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.10</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.11</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,7 @@ patients in terms of Total dose administered or missed, and treatment duration."
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.11">v0.2.11</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.11-rc1">v0.2.11-rc1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.10">v0.2.10</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.9">v0.2.9</a>
@@ -108,7 +109,7 @@ patients in terms of Total dose administered or missed, and treatment duration."
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>
 <code>EXT01</code> Exposure Summary Table.</h1>
-      <small class="dont-index">Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.10/R/ext01.R" class="external-link"><code>R/ext01.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.11/R/ext01.R" class="external-link"><code>R/ext01.R</code></a></small>
       <div class="d-none name"><code>ext01.Rd</code></div>
     </div>
 
@@ -128,6 +129,8 @@ patients in terms of Total dose administered or missed, and treatment duration.<
 <span>  row_split_var <span class="op">=</span> <span class="st">"PARCAT2"</span>,</span>
 <span>  page_var <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  map <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>default <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"mean_sd"</span>, <span class="st">"median"</span>, <span class="st">"range"</span>, <span class="st">"count_fraction"</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  precision <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>default <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span>
 <span></span>
@@ -183,6 +186,18 @@ table of <code>adam_db</code> is used as label.</p></dd>
 <dt id="arg-map">map<a class="anchor" aria-label="anchor" href="#arg-map"></a>
 </dt>
 <dd><p>(<code>data.frame</code>) of mapping for split rows.</p></dd>
+
+
+<dt id="arg-stats">stats<a class="anchor" aria-label="anchor" href="#arg-stats"></a>
+</dt>
+<dd><p>(named <code>list</code> of character) where names are values found in the <code>PARAMCD</code> column and the values indicate
+the statistical analysis to perform. If <code>default</code> is set, and parameter precision not specified, the
+value for <code>default</code> will be used.</p></dd>
+
+
+<dt id="arg-precision">precision<a class="anchor" aria-label="anchor" href="#arg-precision"></a>
+</dt>
+<dd><p>(named <code>list</code> of <code>integer</code>) where names are values found in the <code>PARAMCD</code> column and the values</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a>
@@ -254,23 +269,23 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)                157.5 (67.4)      115.4 (62.8)       98.6 (68.8)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                       174.0             119.0             89.0      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                53.0 - 239.0      22.0 - 219.0       1.0 - 182.0  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                  53 - 239          22 - 219           1 - 182    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Total dose administered                                                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)               6567.3 (1127.1)   7028.6 (1626.1)   6377.1 (863.7) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                      6720.0            7200.0            6480.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max               4800.0 - 8400.0   5280.0 - 9360.0   5280.0 - 7440.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                 4800 - 8400       5280 - 9360       5280 - 7440  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Drug B                                                                         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Overall duration (days)                                                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)                142.2 (100.3)     105.9 (60.0)      158.2 (96.2)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                       160.0             95.0              203.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                17.0 - 232.0      37.0 - 211.0      27.0 - 249.0  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                  17 - 232          37 - 211          27 - 249    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Total dose administered                                                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)               7020.0 (1148.9)   5250.0 (864.7)    5940.0 (1187.9)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                      6960.0            5160.0            5880.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max               5760.0 - 8400.0   4080.0 - 6480.0   4320.0 - 7680.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                 5760 - 8400       4080 - 6480       4320 - 7680  </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">ext01</span>, <span class="va">syn_data</span>, summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVAL"</span>, <span class="st">"AVALCAT1"</span><span class="op">)</span>, prune_0 <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                  A: Drug X        B: Placebo      C: Combination </span>
@@ -281,7 +296,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)                157.5 (67.4)      115.4 (62.8)       98.6 (68.8)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                       174.0             119.0             89.0      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                53.0 - 239.0      22.0 - 219.0       1.0 - 182.0  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                  53 - 239          22 - 219           1 - 182    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt; 1 month                      0             1 (14.3%)         1 (14.3%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1 to &lt;3 months             3 (27.3%)         1 (14.3%)         3 (42.9%)   </span>
@@ -300,7 +315,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)               6567.3 (1127.1)   7028.6 (1626.1)   6377.1 (863.7) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                      6720.0            7200.0            6480.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max               4800.0 - 8400.0   5280.0 - 9360.0   5280.0 - 7440.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                 4800 - 8400       5280 - 9360       5280 - 7440  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt; 1 month                      0                 0                 0       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1 to &lt;3 months                 0                 0                 0       </span>
@@ -320,7 +335,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)                142.2 (100.3)     105.9 (60.0)      158.2 (96.2)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                       160.0             95.0              203.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                17.0 - 232.0      37.0 - 211.0      27.0 - 249.0  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                  17 - 232          37 - 211          27 - 249    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt; 1 month                  1 (25.0%)             0             1 (12.5%)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1 to &lt;3 months                 0             4 (50.0%)         2 (25.0%)   </span>
@@ -339,7 +354,7 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)               7020.0 (1148.9)   5250.0 (864.7)    5940.0 (1187.9)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Median                      6960.0            5160.0            5880.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max               5760.0 - 8400.0   4080.0 - 6480.0   4320.0 - 7680.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                 5760 - 8400       4080 - 6480       4320 - 7680  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       &lt; 1 month                      0                 0                 0       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1 to &lt;3 months                 0                 0                 0       </span>
@@ -360,54 +375,40 @@ patients in the corresponding analysis population given by <code>N</code>.</p></
 <span class="r-in"><span>  PARAMCD <span class="op">=</span> <span class="st">"TDURD"</span>,</span></span>
 <span class="r-in"><span>  AVALCAT1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"&lt; 1 month"</span>, <span class="st">"1 to &lt;3 months"</span>, <span class="st">"&gt;=6 months"</span>, <span class="st">"3 to &lt;6 months"</span>, <span class="st">"12 months"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span><span class="va">ext01</span>, <span class="va">syn_data</span>, summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVAL"</span>, <span class="st">"AVALCAT1"</span><span class="op">)</span>, prune_0 <span class="op">=</span> <span class="cn">FALSE</span>, map <span class="op">=</span> <span class="va">map</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  A: Drug X        B: Placebo      C: Combination </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   PARCAT2                         (N=15)            (N=15)            (N=15)     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————————————————</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Drug A                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Overall duration (days)                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)                157.5 (67.4)      115.4 (62.8)       98.6 (68.8)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Median                       174.0             119.0             89.0      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                53.0 - 239.0      22.0 - 219.0       1.0 - 182.0  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt; 1 month                      0             1 (14.3%)         1 (14.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1 to &lt;3 months             3 (27.3%)         1 (14.3%)         3 (42.9%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &gt;=6 months                 5 (45.5%)         1 (14.3%)         1 (14.3%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3 to &lt;6 months             3 (27.3%)         4 (57.1%)         2 (28.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       12 months                      0                 0                 0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total dose administered                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)               6567.3 (1127.1)   7028.6 (1626.1)   6377.1 (863.7) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Median                      6720.0            7200.0            6480.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max               4800.0 - 8400.0   5280.0 - 9360.0   5280.0 - 7440.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                             11                 7                 7       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;5000                      1 (9.1%)              0                 0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5000-7000                  6 (54.5%)         3 (42.9%)         5 (71.4%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       7000-9000                  4 (36.4%)         3 (42.9%)         2 (28.6%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &gt;9000                          0             1 (14.3%)             0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Drug B                                                                         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Overall duration (days)                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)                142.2 (100.3)     105.9 (60.0)      158.2 (96.2)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Median                       160.0             95.0              203.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max                17.0 - 232.0      37.0 - 211.0      27.0 - 249.0  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt; 1 month                  1 (25.0%)             0             1 (12.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       1 to &lt;3 months                 0             4 (50.0%)         2 (25.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &gt;=6 months                 2 (50.0%)         1 (12.5%)         5 (62.5%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       3 to &lt;6 months             1 (25.0%)         3 (37.5%)             0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       12 months                      0                 0                 0       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     Total dose administered                                                      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Mean (SD)               7020.0 (1148.9)   5250.0 (864.7)    5940.0 (1187.9)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Median                      6960.0            5160.0            5880.0     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Min - Max               5760.0 - 8400.0   4080.0 - 6480.0   4320.0 - 7680.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       n                              4                 8                 8       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;5000                          0             4 (50.0%)         2 (25.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       5000-7000                  2 (50.0%)         4 (50.0%)         4 (50.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       7000-9000                  2 (50.0%)             0             2 (25.0%)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &gt;9000                          0                 0                 0       </span>
+<span class="r-in"><span><span class="fu"><a href="run.html">run</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="va">ext01</span>,</span></span>
+<span class="r-in"><span>  <span class="va">syn_data</span>,</span></span>
+<span class="r-in"><span>  summaryvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AVAL"</span>, <span class="st">"AVALCAT1"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  prune_0 <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>  map <span class="op">=</span> <span class="va">map</span>,</span></span>
+<span class="r-in"><span>  precision <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>TDOSE <span class="op">=</span> <span class="fl">4</span>, default <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>TDURD <span class="op">=</span> <span class="st">"n"</span>, default <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"count_fraction"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               A: Drug X   B: Placebo   C: Combination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   PARCAT2                      (N=15)       (N=15)         (N=15)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ———————————————————————————————————————————————————————————————————</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Drug A                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Overall duration (days)                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                          11           7              7       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                          11           7              7       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total dose administered                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                          11           7              7       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                          11           7              7       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;5000                   1 (9.1%)        0              0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5000-7000               6 (54.5%)   3 (42.9%)      5 (71.4%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       7000-9000               4 (36.4%)   3 (42.9%)      2 (28.6%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &gt;9000                       0       1 (14.3%)          0       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Drug B                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Overall duration (days)                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                           4           8              8       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                           4           8              8       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Total dose administered                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                           4           8              8       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       n                           4           8              8       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;5000                       0       4 (50.0%)      2 (25.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       5000-7000               2 (50.0%)   4 (50.0%)      4 (50.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       7000-9000               2 (50.0%)       0          2 (25.0%)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       &gt;9000                       0           0              0       </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
