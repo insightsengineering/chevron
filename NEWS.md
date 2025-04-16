@@ -1,12 +1,12 @@
-# chevron 0.2.10.9010
+# chevron 0.2.11
 
-* New `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
+* A new `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.
 * A new `map` argument now controls the direction of abnormality associated with each parameter in `lbt05`.
 * A new `keep` argument prevents the removal of the `"Any"` (or other user specified) rows during the processing of `lbt07` if the table is pruned.
 * A new `keep` argument prevents the removal of the `"Any Abnormality"` (or other user specified) rows during the processing of `lbt05`.
-* A bug that caused all rows to be pruned from the `lbt05` table even when they contain non-zero values has been fixed.
-* New `dataset` slot in `chevron_tlg` class to store the name of the data set used in the template.
 * The `label` attributes of `AEBODSYS` and `AEDECOD` in `adae` are automatically modified during the pre processing of `AET02`, `AET03`, `AET04` and `AET10`.
+* New `dataset` slot in `chevron_tlg` class to store the name of the data sets used in the template.
+* Fix a bug that caused all rows to be pruned from the `lbt05` table even when they contain non-zero values.
 
 # chevron 0.2.10
 
