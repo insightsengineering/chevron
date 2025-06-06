@@ -46,7 +46,7 @@ lbt05_main <- function(adam_db,
   )
 
   un_mapped <- adam_db$adlb %>%
-    dplyr::select(PARAM, PARAMCD) %>%
+    dplyr::select("PARAM", "PARAMCD") %>%
     distinct() %>%
     tidyr::drop_na() %>%
     dplyr::anti_join(matching, by = c("PARAM", "PARAMCD"))
@@ -62,8 +62,8 @@ lbt05_main <- function(adam_db,
     left_join(tidyr::nest(map, ABN_DIR = ABN_DIR), by = "PARAMCD") %>%
     rowwise() %>%
     mutate(ABN_DIR = ifelse((is.null(.data$ABN_DIR)), list(c("Low", "High")), .data$ABN_DIR)) %>%
-    tidyr::unnest(ABN_DIR) %>%
-    dplyr::select(PARAM, ABN_DIR) %>%
+    tidyr::unnest("ABN_DIR") %>%
+    dplyr::select("PARAM", "ABN_DIR") %>%
     mutate(across(everything(), as.character))
 
 
