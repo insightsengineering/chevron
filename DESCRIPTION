@@ -59,6 +59,8 @@ Suggests:
     tidyr (>= 0.8.3),
     vdiffr (>= 1.0.7),
     withr (>= 2.1.0)
+Remotes:
+    insightsengineering/rtables@main
 VignetteBuilder:
     knitr,
     rmarkdown
