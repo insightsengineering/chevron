@@ -60,7 +60,8 @@ Suggests:
     vdiffr (>= 1.0.7),
     withr (>= 2.1.0)
 Remotes:
-    insightsengineering/rtables@main
+    insightsengineering/rtables@main,
+    insightsengineering/tern@1422_uniq_name
 VignetteBuilder:
     knitr,
     rmarkdown
