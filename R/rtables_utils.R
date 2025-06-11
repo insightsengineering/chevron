@@ -254,7 +254,7 @@ obtain_value <- function(obj, index) {
   if (is.vector(obj) && length(obj) >= index) {
     return(obj[index])
   }
-  return(obj)
+  obj
 }
 
 #' Get page by value
@@ -273,7 +273,7 @@ get_page_by <- function(var, vars) {
     return(ret)
   }
   ret[seq_len(index)] <- TRUE
-  return(ret)
+  ret
 }
 
 #' Proportion layout
