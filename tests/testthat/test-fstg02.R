@@ -56,7 +56,7 @@ test_that("fstg02 can handle customized time units", {
       AVALU = factor(.env$new_avalu),
     )
 
-  expect_silent(res1 <- run(fstg02, proc_data, dataset = "adtte"))
+  res1 <- expect_silent(run(fstg02, proc_data, dataset = "adtte"))
   checkmate::assert_true(ggplot2::is_ggplot(res1))
 
   proc_data$adtte$AVALU <- "DAYS"
