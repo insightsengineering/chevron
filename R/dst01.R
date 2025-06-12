@@ -109,7 +109,9 @@ dst01_lyt <- function(arm_var,
         denom = "N_col",
         .formats = list(count_fraction = format_count_fraction_fixed_dp),
         show_labels = "hidden",
-        nested = FALSE
+        nested = FALSE,
+        table_names = paste(trt_status_var),
+        parent_names = paste(trt_status_var)
       )
   }
 

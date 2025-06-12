@@ -131,7 +131,8 @@ dtht01_lyt <- function(arm_var,
         .formats = list(count_fraction = format_count_fraction_fixed_dp),
         show_labels = "visible",
         nested = FALSE,
-        inclNAs = FALSE
+        inclNAs = FALSE,
+        table_names = "LDDTHGR1 top level"
       ) %>%
       split_rows_by(
         dose_death_var,
@@ -142,7 +143,8 @@ dtht01_lyt <- function(arm_var,
       ) %>%
       summarize_vars_allow_na(
         death_var,
-        .formats = list(count_fraction = format_count_fraction_fixed_dp)
+        .formats = list(count_fraction = format_count_fraction_fixed_dp),
+        table_names = "LDDTHGR1 split level"
       )
   }
 

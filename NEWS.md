@@ -1,5 +1,7 @@
 # chevron 0.2.11.9001
 
+* Code enhancement in `dst01` and `dtht01` tables, adding `table_names` and `parent_names` when using `split_rows_by` and `analysis` on the same variable multiple times, enhancing the table paths. Upstream enhancement from `rtables`.
+
 # chevron 0.2.11
 
 * A new `precision` arguments now control the statistical analysis and numbers of digits presented in `ext01`.

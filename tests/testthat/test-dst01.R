@@ -44,7 +44,9 @@ test_that("dst01 can handle missing levels in status_var", {
 
 test_that("dst01 can create variants", {
   skip_on_os("windows")
-  res <- expect_silent(run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS", Discontinued = "DCSREAS")))
+  res <- expect_silent(
+    run(dst01, syn_data, detail_vars = list(Ongoing = "STDONS", Discontinued = "DCSREAS"))
+  )
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))
 })
 

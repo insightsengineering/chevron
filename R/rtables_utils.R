@@ -187,25 +187,34 @@ count_or_summarize <- function(lyt, var, level, detail_vars, indent_mod = 0L, ..
         table_names = paste(var, level, sep = "_"),
         .formats = list(count_fraction = format_count_fraction_fixed_dp),
         .indent_mods = indent_mod,
+        var_labels = paste0(c(var, " variable")),
+        parent_name = paste(var, level, sep = "_"),
         ...
       )
   } else {
     lyt <- lyt %>%
-      split_rows_by(var, split_fun = keep_split_levels(level), indent_mod = indent_mod) %>%
+      split_rows_by(var,
+        split_fun = keep_split_levels(level),
+        parent_name = paste(var, level, sep = "_"), indent_mod = indent_mod
+      ) %>%
       summarize_row_groups(
         format = format_count_fraction_fixed_dp
       ) %>%
-      split_rows_by_recursive(detail_vars[-length(detail_vars)], split_fun = drop_split_levels) %>%
+      split_rows_by_recursive(detail_vars[-length(detail_vars)],
+        split_fun = drop_split_levels,
+        parent_name = paste(var, level, sep = "_")
+      ) %>%
       analyze_vars(
         detail_vars[length(detail_vars)],
         .stats = "count_fraction",
         denom = "N_col",
         show_labels = "hidden",
         .formats = list(count_fraction = format_count_fraction_fixed_dp),
+        table_names = paste(var, level, length(detail_vars), sep = "_"),
+        parent_names = paste(var, level, length(detail_vars), sep = "_"),
         ...
       )
   }
-
   lyt
 }
 
@@ -225,7 +234,7 @@ split_rows_by_recursive <- function(lyt, row_split_var, ...) {
       c(
         list(
           lyt = lyt,
-          row_split_var
+          var = row_split_var
         ),
         args_i
       )
@@ -245,7 +254,7 @@ obtain_value <- function(obj, index) {
   if (is.vector(obj) && length(obj) >= index) {
     return(obj[index])
   }
-  return(obj)
+  obj
 }
 
 #' Get page by value
@@ -264,7 +273,7 @@ get_page_by <- function(var, vars) {
     return(ret)
   }
   ret[seq_len(index)] <- TRUE
-  return(ret)
+  ret
 }
 
 #' Proportion layout
