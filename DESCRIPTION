@@ -1,8 +1,8 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.11.9001
-Date: 2025-06-07
+Version: 0.2.11.9002
+Date: 2025-06-12
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = "aut",
            comment = c(ORCID = "0009-0008-6870-0878", "Original creator of the package")),
@@ -59,12 +59,12 @@ Suggests:
     tidyr (>= 0.8.3),
     vdiffr (>= 1.0.7),
     withr (>= 2.1.0)
-Remotes:
-    insightsengineering/rtables@main,
-    insightsengineering/tern@main
 VignetteBuilder:
     knitr,
     rmarkdown
+Remotes:
+    insightsengineering/rtables@main,
+    insightsengineering/tern@main
 Config/Needs/verdepcheck: mllg/checkmate, tidyverse/dplyr,
     insightsengineering/dunlin, tidyverse/forcats,
     insightsengineering/formatters, tidyverse/ggplot2, tidyverse/glue,
