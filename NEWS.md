@@ -1,4 +1,4 @@
-# chevron 0.2.11.9002
+# chevron 0.2.11.9003
 
 * Code enhancement in `dst01` and `dtht01` tables, adding `table_names` and `parent_names` when using `split_rows_by` and `analysis` on the same variable multiple times, enhancing the table paths. Upstream enhancement from `rtables`.
 
