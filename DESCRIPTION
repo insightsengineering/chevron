@@ -55,6 +55,7 @@ Imports:
 Suggests:
     knitr (>= 1.42),
     rmarkdown (>= 2.23),
+    sass (>= 0.4.10),
     testthat (>= 3.0.4),
     tidyr (>= 0.8.3),
     vdiffr (>= 1.0.7),
@@ -80,7 +81,7 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Collate:
     'report_null.R'
     'utils.R'
