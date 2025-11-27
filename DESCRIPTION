@@ -55,6 +55,7 @@ Imports:
 Suggests:
     knitr (>= 1.42),
     rmarkdown (>= 2.23),
+    sass (>= 0.4.10),
     testthat (>= 3.0.4),
     tidyr (>= 0.8.3),
     vdiffr (>= 1.0.7),
