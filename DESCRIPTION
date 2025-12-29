@@ -54,6 +54,7 @@ Imports:
     utils
 Suggests:
     knitr (>= 1.42),
+    Rcpp (>= 1.1.0),
     rmarkdown (>= 2.28),
     testthat (>= 3.3.0),
     tidyr (>= 0.8.3),
