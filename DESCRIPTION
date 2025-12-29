@@ -40,7 +40,7 @@ Imports:
     glue (>= 1.0.0),
     grid,
     lifecycle (>= 0.2.0),
-    lubridate (>= 1.7.8),
+    lubridate (>= 1.7.9),
     magrittr (>= 1.5),
     methods,
     nestcolor (>= 0.1.1),
