@@ -9,7 +9,7 @@ Authors@R: c(
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut",
            comment = c(ORCID = "0000-0002-4434-3799", "Original creator of the package")),
     person("Xiaoli", "Duan", , "xiaoli.duan@roche.com", role = "aut"),
-    person("Adrian", "Waddell", , "waddell.adrian@gene.com", role = "ctb"),
+    person("Adrian", "Waddell", , "adrian.waddell@gmail.com", role = "ctb"),
     person("Chenkai", "Lv", , "chenkai.lv@roche.com", role = "ctb"),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "ctb"),
     person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb"),
