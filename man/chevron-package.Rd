@@ -29,7 +29,7 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item Adrian Waddell \email{waddell.adrian@gene.com} [contributor]
+  \item Adrian Waddell \email{adrian.waddell@gmail.com} [contributor]
   \item Chenkai Lv \email{chenkai.lv@roche.com} [contributor]
   \item Pawel Rucki \email{pawel.rucki@roche.com} [contributor]
   \item Tim Barnett \email{timothy.barnett@roche.com} [contributor]
