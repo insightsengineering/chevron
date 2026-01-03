@@ -36,7 +36,7 @@ Authors:
 
 Other contributors:
 
-- Adrian Waddell <waddell.adrian@gene.com> \[contributor\]
+- Adrian Waddell <adrian.waddell@gmail.com> \[contributor\]
 
 - Chenkai Lv <chenkai.lv@roche.com> \[contributor\]
 

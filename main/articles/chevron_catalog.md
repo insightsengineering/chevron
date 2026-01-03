@@ -3613,8 +3613,8 @@ run(rmpt05, syn_data)
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
 run(rspt01, proc_data, ref_group = NULL, perform_analysis = "unstrat", strata = NULL)
-#> Warning in stats::prop.test(tbl, correct = FALSE): Chi-squared approximation
-#> may be incorrect
+#> Warning in stats::prop.test(tbl, correct = FALSE, alternative = alternative):
+#> Chi-squared approximation may be incorrect
 #>                                          A: Drug X          B: Placebo         C: Combination  
 #>                                            (N=15)             (N=15)               (N=15)      
 #>   —————————————————————————————————————————————————————————————————————————————————————————————
@@ -3691,14 +3691,14 @@ run(rspt01, proc_data, odds_ratio = FALSE, perform_analysis = NULL)
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
 run(rspt01, proc_data, perform_analysis = "strat", strata = c("STRATA1", "STRATA2"))
-#> Warning in prop_diff_cmh(rsp, grp, strata, conf_level): Less than 5
-#> observations in some strata.
-#> Warning in prop_diff_cmh(rsp, grp, strata, conf_level): Less than 5
-#> observations in some strata.
-#> Warning in prop_cmh(tbl): <5 data points in some strata. CMH test may be
-#> incorrect.
-#> Warning in prop_cmh(tbl): <5 data points in some strata. CMH test may be
-#> incorrect.
+#> Warning in prop_diff_cmh(rsp, grp, strata, conf_level, diff_se = "standard"):
+#> Less than 5 observations in some strata.
+#> Warning in prop_diff_cmh(rsp, grp, strata, conf_level, diff_se = "standard"):
+#> Less than 5 observations in some strata.
+#> Warning in prop_cmh(tbl, alternative = alternative): <5 data points in some
+#> strata. CMH test may be incorrect.
+#> Warning in prop_cmh(tbl, alternative = alternative): <5 data points in some
+#> strata. CMH test may be incorrect.
 #>                                                A: Drug X          B: Placebo         C: Combination  
 #>                                                  (N=15)             (N=15)               (N=15)      
 #>   ———————————————————————————————————————————————————————————————————————————————————————————————————
@@ -3824,8 +3824,8 @@ preprocess(rspt01) <- function(adam_db, ...) {
 }
 
 run(rspt01, proc_data)
-#> Warning in stats::prop.test(tbl, correct = FALSE): Chi-squared approximation
-#> may be incorrect
+#> Warning in stats::prop.test(tbl, correct = FALSE, alternative = alternative):
+#> Chi-squared approximation may be incorrect
 #>                                          A: Drug X          B: Placebo         C: Combination   
 #>                                            (N=15)             (N=15)               (N=15)       
 #>   ——————————————————————————————————————————————————————————————————————————————————————————————

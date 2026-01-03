@@ -164,7 +164,7 @@ main(aet02)
 #>     tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 #>     tbl
 #> }
-#> <bytecode: 0x55d1d14cca40>
+#> <bytecode: 0x55b13d23c870>
 #> <environment: namespace:chevron>
 ```
 
