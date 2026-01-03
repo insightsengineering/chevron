@@ -1,15 +1,15 @@
 Type: Package
 Package: chevron
 Title: Standard TLGs for Clinical Trials Reporting
-Version: 0.2.12.9000
-Date: 2025-06-24
+Version: 0.2.12.9001
+Date: 2025-11-27
 Authors@R: c(
     person("Liming", "Li", , "liming.li@roche.com", role = "aut",
            comment = c(ORCID = "0009-0008-6870-0878", "Original creator of the package")),
     person("Benoit", "Falquet", , "benoit.falquet@roche.com", role = "aut",
            comment = c(ORCID = "0000-0002-4434-3799", "Original creator of the package")),
     person("Xiaoli", "Duan", , "xiaoli.duan@roche.com", role = "aut"),
-    person("Adrian", "Waddell", , "waddell.adrian@gene.com", role = "ctb"),
+    person("Adrian", "Waddell", , "adrian.waddell@gmail.com", role = "ctb"),
     person("Chenkai", "Lv", , "chenkai.lv@roche.com", role = "ctb"),
     person("Pawel", "Rucki", , "pawel.rucki@roche.com", role = "ctb"),
     person("Tim", "Barnett", , "timothy.barnett@roche.com", role = "ctb"),
@@ -29,34 +29,33 @@ URL: https://insightsengineering.github.io/chevron/,
     https://github.com/insightsengineering/chevron/
 BugReports: https://github.com/insightsengineering/chevron/issues
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.4.0)
 Imports:
     checkmate (>= 2.1.0),
     dplyr (>= 1.1.0),
     dunlin (>= 0.1.10),
     forcats (>= 1.0.0),
-    formatters (>= 0.5.11),
+    formatters (>= 0.5.12),
     ggplot2 (>= 3.4.0),
     glue (>= 1.0.0),
     grid,
     lifecycle (>= 0.2.0),
-    lubridate (>= 1.7.8),
+    lubridate (>= 1.9.4),
     magrittr (>= 1.5),
     methods,
     nestcolor (>= 0.1.1),
     purrr (>= 0.3.0),
     rlang (>= 1.0.0),
-    rlistings (>= 0.2.12),
-    rtables (>= 0.6.13),
+    rlistings (>= 0.2.13),
+    rtables (>= 0.6.15),
     stringr (>= 1.4.1),
-    tern (>= 0.9.9),
+    tern (>= 0.9.10),
     tibble (>= 2.0.0),
     utils
 Suggests:
     knitr (>= 1.42),
-    rmarkdown (>= 2.23),
-    sass (>= 0.4.10),
-    testthat (>= 3.0.4),
+    rmarkdown (>= 2.28),
+    testthat (>= 3.3.0),
     tidyr (>= 0.8.3),
     vdiffr (>= 1.0.7),
     withr (>= 2.1.0)
@@ -81,7 +80,7 @@ Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Collate:
     'report_null.R'
     'utils.R'
