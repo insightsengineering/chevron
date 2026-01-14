@@ -30,6 +30,7 @@ names. Conventional `ADaM` dataset names, including `adsl`,`adex`,
 picked up by `chevron` with one exception.
 
 ``` r
+
 std_data <- list(adsl = adsl, adae = adae)
 run(object = aet01_nollt, adam_db = std_data)
 ```
@@ -54,6 +55,7 @@ factorized to provide access to the same level attribute of the variable
 `rtables` instead of `chevron`.
 
 ``` r
+
 proc_data <- syn_data
 proc_data$adsl <- proc_data$adsl %>%
   mutate(RACE = case_when(
@@ -70,12 +72,14 @@ across all columns,” and it is recommended to convert analysis variable
 `"RACE"` to a factor.
 
 ``` r
+
 run(dmt01, proc_data)
 ```
 
 To resolve this issue, simply try factorizing the variable `"RACE"`:
 
 ``` r
+
 proc_data$adsl$RACE <- as.factor(proc_data$adsl$RACE)
 run(dmt01, proc_data)
 #>                                        A: Drug X    B: Placebo   C: Combination   All Patients
@@ -118,6 +122,7 @@ utilized to render the plot for viewing and testing purpose. See example
 below:
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 
 # method 1
@@ -147,6 +152,7 @@ column counts away during the postprocessing (with precautions and it is
 not recommended).
 
 ``` r
+
 tbl <- run(dmt01, syn_data) # table with column counts
 tbl@col_info@display_columncounts <- FALSE
 tbl # no column counts now
@@ -187,6 +193,7 @@ tbl # no column counts now
 The **`aet01`** template produces the standard safety summary.
 
 ``` r
+
 run(aet01, syn_data, arm_var = "ARM")
 #>                                                                A: Drug X    B: Placebo   C: Combination
 #>                                                                  (N=15)       (N=15)         (N=15)    
@@ -222,6 +229,7 @@ listed in the argument `anl_vars`. The example below shows adding the
 customized analysis `"RELCTC35"`.
 
 ``` r
+
 proc_data <- syn_data
 proc_data$adae <- proc_data$adae %>%
   filter(.data$ANL01FL == "Y") %>%
@@ -271,6 +279,7 @@ The **`aet01_aesi`** template produces the standard safety summary for
 adverse events of special interest.
 
 ``` r
+
 run(aet01_aesi, syn_data)
 #>                                                                                   A: Drug X    B: Placebo   C: Combination
 #>                                                                                     (N=15)       (N=15)         (N=15)    
@@ -301,6 +310,7 @@ in console to find out the list of all pre-defined optional analyses in
 the HELP.
 
 ``` r
+
 run(aet01_aesi, syn_data, aesi_vars = c("RESLWD", "RELSER"))
 #>                                                                                   A: Drug X    B: Placebo   C: Combination
 #>                                                                                     (N=15)       (N=15)         (N=15)    
@@ -342,6 +352,7 @@ example above. No pre-defined analysis is available at this moment.
     `No Coding Available`.
 
 ``` r
+
 run(aet02, syn_data)
 #>   MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
 #>     MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
@@ -387,6 +398,7 @@ The syntax below displays adverse events by MedDRA system organ class,
 high-level term and preferred term.
 
 ``` r
+
 run(aet02, syn_data, row_split_var = c("AEBODSYS", "AEHLT"))
 #>   MedDRA System Organ Class                                                                              
 #>     High Level Term                                              A: Drug X    B: Placebo   C: Combination
@@ -459,6 +471,7 @@ run(aet02, syn_data, row_split_var = c("AEBODSYS", "AEHLT"))
 The syntax below displays adverse events by preferred term only.
 
 ``` r
+
 run(aet02, syn_data, row_split_var = NULL)
 #>                                                              A: Drug X    B: Placebo   C: Combination
 #>   MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
@@ -485,6 +498,7 @@ This **`aet03`** template produces the standard adverse event by
 greatest intensity summary
 
 ``` r
+
 run(aet03, syn_data)
 #>   MedDRA System Organ Class   A: Drug X    B: Placebo   C: Combination
 #>     MedDRA Preferred Term       (N=15)       (N=15)         (N=15)    
@@ -563,6 +577,7 @@ run(aet03, syn_data)
     `ADSL`.
 
 ``` r
+
 run(aet04, syn_data)
 #>   MedDRA System Organ Class                                                           
 #>     MedDRA Preferred Term                     A: Drug X    B: Placebo   C: Combination
@@ -662,6 +677,7 @@ be displayed, this can be achieved by specifying the argument
 `prune_0 = FALSE`.
 
 ``` r
+
 run(aet04, syn_data, prune_0 = FALSE)
 #>   MedDRA System Organ Class                                                           
 #>     MedDRA Preferred Term                     A: Drug X    B: Placebo   C: Combination
@@ -844,6 +860,7 @@ Collapsing grade 3-4 with grade 5, can be achieved by modifying the
 definition of grade groups in the argument `grade_groups`.
 
 ``` r
+
 grade_groups <- list(
   "Grade 1-2" = c("1", "2"),
   "Grade 3-5" = c("3", "4", "5")
@@ -1041,6 +1058,7 @@ run(aet04, syn_data, grade_groups = grade_groups, prune_0 = FALSE)
     denotes censoring.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "AETTE1", "adsaftte")
 
 run(aet05, proc_data)
@@ -1063,6 +1081,7 @@ run(aet05, proc_data)
     `conf_level`.
 
 ``` r
+
 run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
 #>                                                              A: Drug X         B: Placebo      C: Combination 
 #>                                                               (N=15)             (N=15)            (N=15)     
@@ -1104,6 +1123,7 @@ run(aet05, syn_data, conf_level = 0.90, conf_type = "exact")
     denotes censoring.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "AETOT1" | PARAMCD == "AEREPTTE", "adsaftte")
 
 run(aet05_all, proc_data)
@@ -1126,6 +1146,7 @@ run(aet05_all, proc_data)
     `conf_level`.
 
 ``` r
+
 run(aet05_all, syn_data, conf_level = 0.90, conf_type = "exact")
 #>                                                           A: Drug X         B: Placebo       C: Combination 
 #>                                                             (N=15)            (N=15)             (N=15)     
@@ -1155,6 +1176,7 @@ run(aet05_all, syn_data, conf_level = 0.90, conf_type = "exact")
     events occurring with relative frequency \>=5% output.
 
 ``` r
+
 run(aet10, syn_data)
 #>                           A: Drug X   B: Placebo   C: Combination
 #>   MedDRA Preferred Term    (N=15)       (N=15)         (N=15)    
@@ -1177,6 +1199,7 @@ To modify the threshold for displaying preferred terms, this can be
 achieved by providing the threshold to the argument `atleast`.
 
 ``` r
+
 run(aet10, syn_data, atleast = 0.08)
 #>                           A: Drug X   B: Placebo   C: Combination
 #>   MedDRA Preferred Term    (N=15)       (N=15)         (N=15)    
@@ -1205,6 +1228,7 @@ run(aet10, syn_data, atleast = 0.08)
     displayed.
 
 ``` r
+
 proc_data <- log_filter(
   syn_data,
   PARAMCD %in% c("DIABP", "SYSBP"), "advs"
@@ -1296,6 +1320,7 @@ displayed. For instance, to mask the changes from baseline during the
 “SCREENING” and “BASELINE” visits.
 
 ``` r
+
 run(cfbt01, proc_data, dataset = "advs", skip = list(CHG = c("SCREENING", "BASELINE")))
 #>                                          A: Drug X                            B: Placebo                          C: Combination           
 #>                                                   Change from                          Change from                           Change from   
@@ -1381,6 +1406,7 @@ run(cfbt01, proc_data, dataset = "advs", skip = list(CHG = c("SCREENING", "BASEL
 To display only the absolute value, specify `summaryvars = "AVAL"`.
 
 ``` r
+
 run(cfbt01, proc_data, dataset = "advs", summaryvars = "AVAL")
 #>                                 A: Drug X          B: Placebo       C: Combination 
 #>                               Value at Visit     Value at Visit     Value at Visit 
@@ -1471,6 +1497,7 @@ run(cfbt01, proc_data, dataset = "advs", summaryvars = "AVAL")
     alphabetical order by default.
 
 ``` r
+
 run(cmt01a, syn_data)
 #>   ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination
 #>     Other Treatment                                          (N=15)       (N=15)         (N=15)    
@@ -1523,6 +1550,7 @@ run(cmt01a, syn_data)
 #### **2. Concomitant Medications by Medication Class and Preferred Name (changing `ATC class level`)**
 
 ``` r
+
 run(cmt01a, syn_data, row_split_var = "ATC1")
 #>   ATC Level 1 Text                                         A: Drug X    B: Placebo   C: Combination
 #>     Other Treatment                                          (N=15)       (N=15)         (N=15)    
@@ -1577,6 +1605,7 @@ run(cmt01a, syn_data, row_split_var = "ATC1")
 The argument `sort_by_freq = TRUE` sort medication class by frequency.
 
 ``` r
+
 run(cmt01a, syn_data, sort_by_freq = TRUE)
 #>   ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination
 #>     Other Treatment                                          (N=15)       (N=15)         (N=15)    
@@ -1633,6 +1662,7 @@ treatments’ by default, modify the argument `summary_labels` to change
 it.
 
 ``` r
+
 run(cmt01a, syn_data, summary_labels = list(TOTAL = cmt01_label, ATC2 = cmt01_label[1]))
 #>   ATC Level 2 Text                                         A: Drug X    B: Placebo   C: Combination
 #>     Other Treatment                                          (N=15)       (N=15)         (N=15)    
@@ -1686,6 +1716,7 @@ run(cmt01a, syn_data, summary_labels = list(TOTAL = cmt01_label, ATC2 = cmt01_la
     frequency.
 
 ``` r
+
 run(cmt02_pt, syn_data)
 #>                                                          A: Drug X    B: Placebo   C: Combination
 #>   Other Treatment                                          (N=15)       (N=15)         (N=15)    
@@ -1726,6 +1757,7 @@ run(cmt02_pt, syn_data)
     `"Arm B"`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 proc_data <- log_filter(proc_data, ARMCD != "ARM C", "adsl")
 run(coxt01, proc_data, time_var = "AVAL", event_var = "EVENT")
@@ -1748,6 +1780,7 @@ passed to
 needs to be specified.
 
 ``` r
+
 run(coxt01, proc_data, covariates = "AAGE", interaction = TRUE)
 #>                                                        Treatment Effect Adjusted for Covariate             
 #>   Effect/Covariate Included in the Model   n    Hazard Ratio      95% CI      p-value   Interaction p-value
@@ -1768,6 +1801,7 @@ run(coxt01, proc_data, covariates = "AAGE", interaction = TRUE)
     are used as covariates.
 
 ``` r
+
 run(coxt01, proc_data, covariates = c("RACE", "AAGE"))
 #>                                                Treatment Effect Adjusted for Covariate     
 #>   Effect/Covariate Included in the Model    n      Hazard Ratio       95% CI       p-value 
@@ -1794,6 +1828,7 @@ run(coxt01, proc_data, covariates = c("RACE", "AAGE"))
     [`tern::control_coxreg()`](https://insightsengineering.github.io/tern/latest-tag/reference/control_coxreg.html).
 
 ``` r
+
 run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90)
 #>                                                Treatment Effect Adjusted for Covariate     
 #>   Effect/Covariate Included in the Model    n      Hazard Ratio       90% CI       p-value 
@@ -1824,6 +1859,7 @@ run(coxt01, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_l
     pre-processing function `coxt01_pre`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(coxt02, proc_data, time_var = "AVAL", event_var = "EVENT")
 #>   Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
@@ -1852,6 +1888,7 @@ run(coxt02, proc_data, time_var = "AVAL", event_var = "EVENT")
     are used as covariates.
 
 ``` r
+
 run(coxt02, proc_data, covariates = c("RACE", "AAGE"))
 #>   Effect/Covariate Included in the Model                  Hazard Ratio      95% CI      p-value
 #>   —————————————————————————————————————————————————————————————————————————————————————————————
@@ -1883,6 +1920,7 @@ run(coxt02, proc_data, covariates = c("RACE", "AAGE"))
     [`tern::control_coxreg()`](https://insightsengineering.github.io/tern/latest-tag/reference/control_coxreg.html).
 
 ``` r
+
 run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_level = 0.90, ties = "efron")
 #>   Effect/Covariate Included in the Model                 Hazard Ratio      90% CI      p-value
 #>   ————————————————————————————————————————————————————————————————————————————————————————————
@@ -1906,6 +1944,7 @@ run(coxt02, proc_data, covariates = c("SEX", "AAGE"), strata = c("RACE"), conf_l
 2.  This template includes the column of total by default.
 
 ``` r
+
 run(dmt01, syn_data)
 #>                                        A: Drug X    B: Placebo   C: Combination   All Patients
 #>                                          (N=15)       (N=15)         (N=15)          (N=45)   
@@ -1940,6 +1979,7 @@ run(dmt01, syn_data)
 To remove the column of total, set the argument `lbl_overall` to `NULL`.
 
 ``` r
+
 run(dmt01, syn_data, lbl_overall = NULL)
 #>                                        A: Drug X    B: Placebo   C: Combination
 #>                                          (N=15)       (N=15)         (N=15)    
@@ -1979,6 +2019,7 @@ run(dmt01, syn_data, lbl_overall = NULL)
     defined in the input data.
 
 ``` r
+
 run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "BBMISI"), lbl_overall = NULL)
 #>                                          A: Drug X      B: Placebo     C: Combination
 #>                                           (N=15)          (N=15)           (N=15)    
@@ -2023,6 +2064,7 @@ run(dmt01, syn_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", "
     pre-specified order provided as levels.
 
 ``` r
+
 proc_data <- syn_data
 proc_data$adsl <- proc_data$adsl %>%
   mutate(
@@ -2095,6 +2137,7 @@ values from `advs` (where `ADVS.ABLFL == "Y"`) or `adsub` with `adsl` by
 unique subject identifier.
 
 ``` r
+
 proc_data <- syn_data
 diabpbl <- proc_data$advs %>%
   filter(ABLFL == "Y" & PARAMCD == "DIABP") %>%
@@ -2149,6 +2192,7 @@ run(dmt01, proc_data, summaryvars = c("AGE", "AGEGR1", "SEX", "ETHNIC", "RACE", 
     `lbl_overall = NULL` to suppress the default.
 
 ``` r
+
 run(dst01, syn_data, lbl_overall = NULL)
 #>                                     A: Drug X    B: Placebo   C: Combination
 #>                                       (N=15)       (N=15)         (N=15)    
@@ -2172,6 +2216,7 @@ run(dst01, syn_data, lbl_overall = NULL)
     `adsl` dataset.
 
 ``` r
+
 run(dst01, syn_data, detail_vars = list(Discontinued = c("DCSREASGP", "DCSREAS")), lbl_overall = NULL)
 #>                                       A: Drug X    B: Placebo   C: Combination
 #>                                         (N=15)       (N=15)         (N=15)    
@@ -2195,6 +2240,7 @@ patient disposition summary by providing the end of treatment status
 variable to the argument `trt_status_var`.
 
 ``` r
+
 run(dst01, syn_data, trt_status_var = "EOTSTT", lbl_overall = NULL)
 #>                                     A: Drug X    B: Placebo   C: Combination
 #>                                       (N=15)       (N=15)         (N=15)    
@@ -2219,6 +2265,7 @@ standard patient disposition summary by modifying the argument
 `detail_vars`.
 
 ``` r
+
 run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STDONS"))
 #>                                     A: Drug X    B: Placebo   C: Combination   All Patients
 #>                                       (N=15)       (N=15)         (N=15)          (N=45)   
@@ -2240,6 +2287,7 @@ run(dst01, syn_data, detail_vars = list(Discontinued = "DCSREAS", Ongoing = "STD
 The **`dtht01`** template produces the standard deaths output.
 
 ``` r
+
 run(dst01, syn_data)
 #>                                     A: Drug X    B: Placebo   C: Combination   All Patients
 #>                                       (N=15)       (N=15)         (N=15)          (N=45)   
@@ -2257,6 +2305,7 @@ run(dst01, syn_data)
 #### **2. Deaths (adding “Primary Cause of Death” details for ‘Other’ category)**
 
 ``` r
+
 run(dtht01, syn_data, other_category = TRUE)
 #>                            A: Drug X   B: Placebo   C: Combination
 #>                             (N=15)       (N=15)         (N=15)    
@@ -2284,6 +2333,7 @@ count of deaths by primary cause and days from last study drug
 administration.
 
 ``` r
+
 run(dtht01, syn_data, time_since_last_dose = TRUE)
 #>                                                               A: Drug X   B: Placebo   C: Combination
 #>                                                                (N=15)       (N=15)         (N=15)    
@@ -2314,6 +2364,7 @@ The **`egt01`** template produces the standard ECG results and change
 from baseline by visit summary.
 
 ``` r
+
 run(egt01, syn_data)
 #>                                A: Drug X                        B: Placebo                     C: Combination         
 #>                                       Change from                       Change from                      Change from  
@@ -2424,6 +2475,7 @@ summary where the abnormalities are summarized regardless of the
 abnormality at baseline.
 
 ``` r
+
 run(egt02_1, syn_data)
 #>   Assessment      A: Drug X      B: Placebo    C: Combination
 #>    Abnormality      (N=15)         (N=15)          (N=15)    
@@ -2448,6 +2500,7 @@ summary where the abnormalities are summarized among subject without
 abnormality at baseline.
 
 ``` r
+
 run(egt02_2, syn_data)
 #>   Assessment      A: Drug X      B: Placebo    C: Combination
 #>    Abnormality      (N=15)         (N=15)          (N=15)    
@@ -2471,6 +2524,7 @@ The **`egt03`** template produces the standard shift table of ECG
 interval data - baseline versus minimum post-baseline summary.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "HR", "adeg")
 run(egt03, proc_data)
 #>   Actual Arm Code                            Minimum Post-Baseline Assessment     
@@ -2507,6 +2561,7 @@ The **`egt05_qtcat`** template produces the standard ECG actual values
 and changes from baseline by visit summary.
 
 ``` r
+
 run(egt05_qtcat, syn_data)
 #>   Parameter                                                          
 #>     Analysis Visit           A: Drug X    B: Placebo   C: Combination
@@ -2587,6 +2642,7 @@ The template have two default analyses of `ADEG.AVALCAT1` and
 by modifying the parameter `summaryvars`.
 
 ``` r
+
 run(egt05_qtcat, syn_data, summaryvars = c("AVALCAT1"))
 #>   Parameter                                                        
 #>     Analysis Visit         A: Drug X    B: Placebo   C: Combination
@@ -2638,6 +2694,7 @@ run(egt05_qtcat, syn_data, summaryvars = c("AVALCAT1"))
 2.  The template does not include the column of total by default
 
 ``` r
+
 run(ext01, syn_data)
 #>                                  A: Drug X        B: Placebo      C: Combination 
 #>   PARCAT2                         (N=15)            (N=15)            (N=15)     
@@ -2678,6 +2735,7 @@ run(ext01, syn_data)
     running CHEVRON.
 
 ``` r
+
 t_lb_chg <- run(lbt01, syn_data)
 head(t_lb_chg, 20)
 #>                                                      A: Drug X                          B: Placebo                       C: Combination          
@@ -2724,6 +2782,7 @@ TBA
     specified among patients without this abnormality at baseline.
 
 ``` r
+
 run(lbt04, syn_data)
 #>   Laboratory Test                           A: Drug X    B: Placebo    C: Combination
 #>       Direction of Abnormality               (N=15)        (N=15)          (N=15)    
@@ -2771,6 +2830,7 @@ run(lbt04, syn_data)
     Standardization will be incorporated in future release.
 
 ``` r
+
 run(lbt05, syn_data)
 #>   Laboratory Test                            A: Drug X   B: Placebo   C: Combination
 #>       Direction of Abnormality                (N=15)       (N=15)         (N=15)    
@@ -2816,6 +2876,7 @@ run(lbt05, syn_data)
     abnormalities by visit and baseline status summary.
 
 ``` r
+
 run(lbt06, syn_data)
 #>   Visit                                                                            
 #>     Abnormality at Visit                  A: Drug X    B: Placebo    C: Combination
@@ -2973,6 +3034,7 @@ run(lbt06, syn_data)
     release.
 
 ``` r
+
 run(lbt07, syn_data)
 #>   Parameter                                                                          
 #>     Direction of Abnormality                 A: Drug X    B: Placebo   C: Combination
@@ -3021,6 +3083,7 @@ for high abnormalities, use the **`lbt14`** template and set the
 parameter *`direction`* to `high`.
 
 ``` r
+
 run(lbt14, syn_data, direction = "high")
 #>   Baseline Toxicity Grade                 A: Drug X   B: Placebo   C: Combination
 #>           Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
@@ -3064,6 +3127,7 @@ for high abnormalities, use the **`lbt14`** template and the argument
 `direction` is `low` by default.
 
 ``` r
+
 run(lbt14, syn_data)
 #>   Baseline Toxicity Grade                 A: Drug X   B: Placebo   C: Combination
 #>           Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
@@ -3107,6 +3171,7 @@ To exclude patients with missing baseline grade, set the argument
 `gr_missing` to `excl`.
 
 ``` r
+
 run(lbt14, syn_data, direction = "high", gr_missing = "excl")
 #>   Baseline Toxicity Grade                 A: Drug X   B: Placebo   C: Combination
 #>           Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
@@ -3148,6 +3213,7 @@ To count patients with missing baseline grade as grade 0, set the
 argument `gr_missing` to `gr_0`.
 
 ``` r
+
 run(lbt14, syn_data, gr_missing = "gr_0")
 #>   Baseline Toxicity Grade                 A: Drug X   B: Placebo   C: Combination
 #>           Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
@@ -3191,6 +3257,7 @@ To display all possible grades even if they do not occur in the data,
 set the argument `prune_0` to `FALSE`.
 
 ``` r
+
 run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
 #>   Baseline Toxicity Grade                 A: Drug X   B: Placebo   C: Combination
 #>           Post-baseline NCI-CTCAE Grade    (N=15)       (N=15)         (N=15)    
@@ -3342,6 +3409,7 @@ run(lbt14, syn_data, direction = "high", prune_0 = FALSE)
     names by order of frequency.
 
 ``` r
+
 run(mht01, syn_data)
 #>   MedDRA System Organ Class                                A: Drug X    B: Placebo   C: Combination
 #>     MedDRA Preferred Term                                    (N=15)       (N=15)         (N=15)    
@@ -3375,6 +3443,7 @@ run(mht01, syn_data)
 #### **2. Medical History showing additional column ‘All Patients’**
 
 ``` r
+
 run(mht01, syn_data, lbl_overall = "All Patients")
 #>   MedDRA System Organ Class                                A: Drug X    B: Placebo   C: Combination   All Patients
 #>     MedDRA Preferred Term                                    (N=15)       (N=15)         (N=15)          (N=45)   
@@ -3415,6 +3484,7 @@ run(mht01, syn_data, lbl_overall = "All Patients")
     `DVCAT == "MAJOR"` in pre-processing.
 
 ``` r
+
 proc_data <- syn_data
 proc_data$addv <- proc_data$addv %>%
   filter(DVCAT == "MAJOR")
@@ -3450,6 +3520,7 @@ run(pdt01, proc_data)
     meet the condition `AEPRELFL == "Y" & DVCAT == "MAJOR"`.
 
 ``` r
+
 run(pdt02, syn_data)
 #>   Primary Reason                                                                                     A: Drug X   B: Placebo   C: Combination
 #>     Description                                                                                       (N=15)       (N=15)         (N=15)    
@@ -3470,6 +3541,7 @@ output for the Risk Management Plan (`RMP`).
 Person time is the sum of exposure across all patients in days.
 
 ``` r
+
 run(rmpt01, syn_data)
 #>                                        Patients     Person time
 #>   Duration of exposure                  (N=45)        (N=45)   
@@ -3493,6 +3565,7 @@ is available in `ADSL` only but not in `ADEX`, it needs to be added to
 `ADEX` first.
 
 ``` r
+
 proc_data <- syn_data
 proc_data <- propagate(proc_data, "adsl", "AGEGR1", "USUBJID")
 #> 
@@ -3523,6 +3596,7 @@ Any other study specific age group can be used by editing the parameter
 first.
 
 ``` r
+
 proc_data <- syn_data
 proc_data$adsl <- proc_data$adsl %>%
   mutate(
@@ -3566,6 +3640,7 @@ The **`rmpt04`** template produces the standard extent of exposure by
 ethnic origin output for the Risk Management Plan (`RMP`).
 
 ``` r
+
 run(rmpt04, syn_data)
 #>                                        Patients     Person time
 #>   ETHNIC                                (N=45)        (N=45)   
@@ -3584,6 +3659,7 @@ The **`rmpt05`** template produces the standard extent of exposure by
 race output for the Risk Management Plan (`RMP`).
 
 ``` r
+
 run(rmpt05, syn_data)
 #>                                        Patients     Person time
 #>   RACE                                  (N=45)        (N=45)   
@@ -3610,6 +3686,7 @@ run(rmpt05, syn_data)
 4.  Unstratified analysis is provided by default.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
 run(rspt01, proc_data, ref_group = NULL, perform_analysis = "unstrat", strata = NULL)
@@ -3660,6 +3737,7 @@ run(rspt01, proc_data, ref_group = NULL, perform_analysis = "unstrat", strata = 
     the argument `perform_analysis = NULL`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
 run(rspt01, proc_data, odds_ratio = FALSE, perform_analysis = NULL)
@@ -3688,6 +3766,7 @@ run(rspt01, proc_data, odds_ratio = FALSE, perform_analysis = NULL)
     `perform_analysis = c("unstrat", "strat")`
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
 run(rspt01, proc_data, perform_analysis = "strat", strata = c("STRATA1", "STRATA2"))
@@ -3780,6 +3859,7 @@ difference and the associated statistical methods:
 An example:
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
 run(rspt01, proc_data,
@@ -3814,6 +3894,7 @@ The following example shows how to customize the definition of
 responder, e.g, consider only complete response as response.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
 
 preprocess(rspt01) <- function(adam_db, ...) {
@@ -3860,6 +3941,7 @@ run(rspt01, proc_data)
     default.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 run(ttet01, proc_data)
@@ -3899,6 +3981,7 @@ To suspend the section of earliest contributing events, use
 `summarize_event = FALSE`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 run(ttet01, proc_data, summarize_event = FALSE)
@@ -3937,6 +4020,7 @@ of difference in event free rate, the 95% confidence interval of the
 difference and its corresponding p-value. - `both` calls out both.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 run(ttet01, proc_data, method = "surv")
@@ -3978,6 +4062,7 @@ run(ttet01, proc_data, method = "surv")
     `"efron"` (default),`"breslow"` or `"exact"`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 run(ttet01, proc_data, conf_level = 0.90, conf_type = "log-log", ties = "efron")
@@ -4023,6 +4108,7 @@ run(ttet01, proc_data, conf_level = 0.90, conf_type = "log-log", ties = "efron")
     use `perform_analysis = c("unstrat", "strat")`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 run(ttet01, proc_data, perform_analysis = "strat", strata = "STRATA1")
@@ -4065,6 +4151,7 @@ estimates are then summarized in month, and the numeric values should be
 provided in months to `time_point`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 run(ttet01, proc_data, perform_analysis = "unstrat", time_point = c(3, 6))
@@ -4109,6 +4196,7 @@ The following example shows how to specify the time point in
 **user-defined unit**.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 preprocess(ttet01) <- function(adam_db, dataset = "adtte",
@@ -4183,6 +4271,7 @@ template, try
 [`chevron::ttet01`](https://insightsengineering.github.io/chevron/reference/ttet01.md).
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "PFS", "adtte")
 
 run(ttet01, proc_data, pval_method = "wald")
@@ -4222,6 +4311,7 @@ run(ttet01, proc_data, pval_method = "wald")
 #### **1. Vital Sign Results and Change from Baseline by Visit**
 
 ``` r
+
 t_vs_chg <- run(vst01, syn_data)
 head(t_vs_chg, 20)
 #>                                        A: Drug X                      B: Placebo                    C: Combination        
@@ -4256,6 +4346,7 @@ head(t_vs_chg, 20)
 #### **1. Vital Sign Abnormalities (Regardless of Abnormality at Baseline)**
 
 ``` r
+
 run(vst02_1, syn_data)
 #>   Assessment                   A: Drug X      B: Placebo     C: Combination
 #>    Abnormality                  (N=15)          (N=15)           (N=15)    
@@ -4285,6 +4376,7 @@ run(vst02_1, syn_data)
 #### **1. Vital Sign Abnormalities (Among Subject Without Abnormality at Baseline)**
 
 ``` r
+
 run(vst02_2, syn_data)
 #>   Assessment                  A: Drug X      B: Placebo    C: Combination
 #>    Abnormality                  (N=15)         (N=15)          (N=15)    
@@ -4321,6 +4413,7 @@ run(vst02_2, syn_data)
     lines of the output.
 
 ``` r
+
 l_ae_nollt <- run(ael01_nollt, syn_data)
 head(l_ae_nollt, 10)
 #> MedDRA System Organ Class   MedDRA Preferred Term   Reported Term for the Adverse Event
@@ -4358,6 +4451,7 @@ head(l_ae_nollt, 10)
     responders.
 
 ``` r
+
 proc_data <- log_filter(
   syn_data,
   PARAMCD == "BESRSPI" & ARM %in% c("A: Drug X", "B: Placebo"), "adrs"
@@ -4373,6 +4467,7 @@ The confidence level of the confidence interval can be adjusted by the
 `conf_level` argument.
 
 ``` r
+
 run(fstg01, proc_data, conf_level = 0.90)
 ```
 
@@ -4386,6 +4481,7 @@ expected to select a method for p-value computation. see
 `[tern::prop_diff_test]`.
 
 ``` r
+
 run(fstg01, proc_data, method = "fisher", stat_var = c("n_tot", "n", "ci", "or", "pval"))
 ```
 
@@ -4397,6 +4493,7 @@ The `subgroups` arguments controls which variables are used for subgroup
 analysis. If `NULL`the subgroup analysis is removed.
 
 ``` r
+
 run(fstg01, proc_data, subgroups = NULL)
 ```
 
@@ -4408,6 +4505,7 @@ The `strata_var` argument is used to pass the columns used for
 stratified analysis.
 
 ``` r
+
 run(fstg01, proc_data, strata_var = "STRATA1")
 #> Warning in coxexact.fit(X, Y, istrat, offset, init, control, weights = weights,
 #> : Ran out of iterations and did not converge
@@ -4427,6 +4525,7 @@ symbols which are by default proportional in size to the sample size of
 the subgroup. If `NULL` the same symbol size is used for all subgroups.
 
 ``` r
+
 run(fstg01, proc_data, col_symbol_size = NULL)
 ```
 
@@ -4450,6 +4549,7 @@ run(fstg01, proc_data, col_symbol_size = NULL)
     of events and the median time to event in month.
 
 ``` r
+
 proc_data <- log_filter(
   syn_data,
   PARAMCD == "OS" & ARM %in% c("A: Drug X", "B: Placebo"), "adtte"
@@ -4466,6 +4566,7 @@ displayed using the `control` argument. More details about the control
 options are available in `[tern::extract_survival_subgroups]`
 
 ``` r
+
 run(
   fstg02,
   proc_data,
@@ -4482,6 +4583,7 @@ The `subgroups` arguments controls which variables are used for subgroup
 analysis. If `NULL`the subgroup analysis is removed.
 
 ``` r
+
 run(fstg02, proc_data, subgroups = NULL)
 ```
 
@@ -4493,6 +4595,7 @@ The `strata_var` argument is used to pass the columns used for
 stratified analysis.
 
 ``` r
+
 run(fstg02, proc_data, strata_var = "STRATA1")
 #> Warning in coxph.fit(X, Y, istrat, offset, init, control, weights = weights, :
 #> Loglik converged before variable 1 ; coefficient may be infinite.
@@ -4508,6 +4611,7 @@ events in the subgroup. If `NULL` the same symbol size is used for all
 subgroups.
 
 ``` r
+
 run(fstg02, proc_data, col_symbol_size = NULL)
 ```
 
@@ -4529,6 +4633,7 @@ run(fstg02, proc_data, col_symbol_size = NULL)
     passed through, please use the Help to find out more information.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(kmg01, proc_data, dataset = "adtte")
 ```
@@ -4543,6 +4648,7 @@ determined by the levels in the factorized variable of treatment group
 and the first level is used as reference group in the statistics.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(
   kmg01,
@@ -4561,6 +4667,7 @@ To suppress the censoring marks, set the argument `cencor_show` to
 FALSE.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(kmg01, proc_data, dataset = "adtte", censor_show = FALSE)
 ```
@@ -4570,6 +4677,7 @@ run(kmg01, proc_data, dataset = "adtte", censor_show = FALSE)
 #### **4. Kaplan-Meier Plot (without estimation of median survival time)**
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(kmg01, proc_data, dataset = "adtte", annot_surv_med = FALSE)
 ```
@@ -4582,6 +4690,7 @@ To add the statistics annotation, use the function `annot_stats`.
 Options are `min` or `median`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(kmg01, proc_data, dataset = "adtte", annot_stats = "median")
 ```
@@ -4589,6 +4698,7 @@ run(kmg01, proc_data, dataset = "adtte", annot_stats = "median")
 ![](chevron_catalog_files/figure-html/unnamed-chunk-110-1.png)
 
 ``` r
+
 run(kmg01, proc_data, dataset = "adtte", annot_stats = c("min", "median"))
 ```
 
@@ -4597,6 +4707,7 @@ run(kmg01, proc_data, dataset = "adtte", annot_stats = c("min", "median"))
 #### **6. Kaplan-Meier Plot (without the table of patients at risk)**
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "OS", "adtte")
 run(kmg01, proc_data, dataset = "adtte", annot_at_risk = FALSE)
 ```
@@ -4619,6 +4730,7 @@ run(kmg01, proc_data, dataset = "adtte", annot_at_risk = FALSE)
     the parameters in appropriate units are selected in advance.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"))
 #> $`Diastolic Blood Pressure`
@@ -4629,6 +4741,7 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"))
 #### **2. Plot of Mean and Confidence Interval of Change from Baseline of Vital Signs**
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), y_var = "CHG")
 #> `geom_line()`: Each group consists of only one observation.
@@ -4644,6 +4757,7 @@ To change the statistics, use the argument `interval_fun`. Options are
 `mean_ci`, `mean_sei`, `mean_sdi`, `median_ci`, `quantiles`,`range`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), interval_fun = "mean_sdi")
 #> $`Diastolic Blood Pressure`
@@ -4658,6 +4772,7 @@ To change the alpha level of the confidence interval, use the argument
 only in effect when `interval_fun` is set to `mean_ci`.
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(
   mng01, proc_data,
@@ -4672,6 +4787,7 @@ run(
 #### **5. Plot of Mean and Confidence Interval （With Number of Patients Only)**
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = "n")
 #> $`Diastolic Blood Pressure`
@@ -4682,6 +4798,7 @@ run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = 
 #### **6. Plot of Mean and Confidence Interval (without Table Section)**
 
 ``` r
+
 proc_data <- log_filter(syn_data, PARAMCD == "DIABP", "advs")
 run(mng01, proc_data, dataset = "advs", x_var = c("AVISIT", "AVISITN"), table = NULL)
 #> $`Diastolic Blood Pressure`
@@ -4693,6 +4810,7 @@ A new argument has been added to control the theme (e.g. setting the
 angle of the axis); see an example below:
 
 ``` r
+
 ggtheme <- ggplot2::theme(
   panel.grid = ggplot2::element_line(colour = "black", linetype = 3),
   panel.background = ggplot2::element_rect(fill = "white"),

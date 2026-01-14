@@ -103,12 +103,14 @@ Catalog](https://insightsengineering.github.io/tlg-catalog/).
 version with:
 
 ``` r
+
 install.packages("chevron")
 ```
 
 Alternatively, you might also use the development version.
 
 ``` r
+
 # install.packages("pak")
 pak::pak("insightsengineering/chevron")
 ```
@@ -123,6 +125,7 @@ article, which provides multiple examples of code implementation.
 Below is the showcase of the example usage.
 
 ``` r
+
 library(chevron)
 
 data(syn_data)

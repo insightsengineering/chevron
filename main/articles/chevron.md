@@ -77,6 +77,7 @@ We first load the data as a `list` of `data.frame`, where each table
 represents a domain.
 
 ``` r
+
 library(chevron)
 #> Registered S3 method overwritten by 'tern':
 #>   method   from 
@@ -87,6 +88,7 @@ data(syn_data, package = "chevron")
 A the `aet02` output is then created as follows:
 
 ``` r
+
 run(aet02, syn_data)
 #>   MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
 #>     MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
@@ -131,6 +133,7 @@ corresponding method: `main`, `lyt`, `preprocess` `postprocess` and
 `datasets`.
 
 ``` r
+
 main(aet02)
 #> function (adam_db, arm_var = "ACTARM", row_split_var = "AEBODSYS", 
 #>     lbl_overall = NULL, summary_labels = list(all = aet02_label, 
@@ -164,13 +167,14 @@ main(aet02)
 #>     tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
 #>     tbl
 #> }
-#> <bytecode: 0x55b13d23c870>
+#> <bytecode: 0x56241736d4f8>
 #> <environment: namespace:chevron>
 ```
 
 These are standard functions that can be used on their own.
 
 ``` r
+
 res <- preprocess(aet02)(syn_data)
 
 # or
@@ -204,6 +208,7 @@ constructors corresponding to the desired output:
   for graphs.
 
 ``` r
+
 library(rtables)
 library(tern)
 my_template <- chevron_t(

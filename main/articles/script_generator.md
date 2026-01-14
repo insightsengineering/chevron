@@ -16,6 +16,7 @@ The object returned by the `script` methods are vectors of character
 with one element per line of the script, that can be easily rendered.
 
 ``` r
+
 res <- script_funs(aet01, adam_db = "syn_data", args = "args_list")
 writeLines(res)
 #> # Edit Preprocessing Function.
@@ -55,6 +56,7 @@ object. Modifying the `chevron_tlg` object can lead to a different
 script.
 
 ``` r
+
 aet01_custom <- aet01
 preprocess(aet01_custom) <- function(adam_db, new_format, ...) {
   reformat(adam_db, new_format)
@@ -67,6 +69,7 @@ Print the generated scripts. Note that a new argument `new_format` has
 been added and the pre processing function has been modified.
 
 ``` r
+
 writeLines(res_funs)
 #> # Edit Preprocessing Function.
 #> preprocess(aet01_custom) <- 
