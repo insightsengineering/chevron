@@ -29,10 +29,6 @@ pdt02_post(
 pdt02
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

@@ -11,10 +11,6 @@ aet05_all_pre(adam_db, dataset = "adsaftte", ...)
 aet05_all
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

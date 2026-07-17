@@ -24,10 +24,6 @@ egt05_qtcat_post(tlg, prune_0 = TRUE, ...)
 egt05_qtcat
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

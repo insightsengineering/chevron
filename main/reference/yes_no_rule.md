@@ -7,7 +7,3 @@ Yes/No rule in title case
 ``` r
 yes_no_rule
 ```
-
-## Format
-
-An object of class `rule` (inherits from `character`) of length 8.

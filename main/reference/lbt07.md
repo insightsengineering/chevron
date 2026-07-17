@@ -24,10 +24,6 @@ lbt07_post(tlg, prune_0 = TRUE, keep = "Any", ...)
 lbt07
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

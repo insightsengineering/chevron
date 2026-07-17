@@ -4571,7 +4571,7 @@ run(
   fstg02,
   proc_data,
   stat_var = c("n_tot", "n", "ci", "hr", "pval"),
-  control = list(conf_level = 0.9, pval_method = "likelihood")
+  control = tern::control_coxph(conf_level = 0.9, pval_method = "likelihood")
 )
 ```
 

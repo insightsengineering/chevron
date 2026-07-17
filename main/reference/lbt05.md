@@ -23,10 +23,6 @@ lbt05
 lab_paramcd_abn_dir()
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:
@@ -94,7 +90,7 @@ code.
 
 - `lbt05_post()`: Postprocessing
 
-- `lab_paramcd_abn_dir()`:
+- `lab_paramcd_abn_dir()`: Default lab parameter abnormality direction
 
 ## Note
 

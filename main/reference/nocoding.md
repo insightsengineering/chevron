@@ -7,7 +7,3 @@ No Coding Available rule
 ``` r
 nocoding
 ```
-
-## Format
-
-An object of class `rule` (inherits from `character`) of length 2.

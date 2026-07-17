@@ -27,10 +27,6 @@ ael01_nollt_pre(
 ael01_nollt
 ```
 
-## Format
-
-An object of class `chevron_l` of length 1.
-
 ## Arguments
 
 - adam_db:
@@ -64,7 +60,7 @@ An object of class `chevron_l` of length 1.
 - ...:
 
   additional arguments passed to
-  [`rlistings::as_listing`](https://insightsengineering.github.io/rlistings/latest-tag/reference/listings.html).
+  [`rlistings::as_listing`](https://rdrr.io/pkg/rlistings/man/listings.html).
 
 ## Value
 

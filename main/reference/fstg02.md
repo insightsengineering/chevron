@@ -21,10 +21,6 @@ fstg02_pre(adam_db, ...)
 fstg02
 ```
 
-## Format
-
-An object of class `chevron_g` of length 1.
-
 ## Arguments
 
 - adam_db:

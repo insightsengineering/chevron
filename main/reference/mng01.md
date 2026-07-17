@@ -29,10 +29,6 @@ mng01_pre(adam_db, dataset, x_var = "AVISIT", ...)
 mng01
 ```
 
-## Format
-
-An object of class `chevron_g` of length 1.
-
 ## Arguments
 
 - adam_db:

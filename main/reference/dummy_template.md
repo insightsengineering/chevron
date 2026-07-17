@@ -8,10 +8,6 @@ This template creates a dummy output.
 dummy_template
 ```
 
-## Format
-
-An object of class `chevron_simple` of length 1.
-
 ## Examples
 
 ``` r

@@ -17,10 +17,6 @@ aet10_post(tlg, atleast = 0.05, ...)
 aet10
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

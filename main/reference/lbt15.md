@@ -11,10 +11,6 @@ lbt15_pre(adam_db, ...)
 lbt15
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Source
 
 `lbt04.R`

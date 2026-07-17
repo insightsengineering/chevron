@@ -28,10 +28,6 @@ lbt01
 lab_paramcd_precision()
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:
@@ -125,7 +121,7 @@ a named `list` with the precision of each lab parameter code (default is
 
 - `lbt01_pre()`: Preprocessing
 
-- `lab_paramcd_precision()`:
+- `lab_paramcd_precision()`: Default lab parameter precision
 
 ## Note
 

@@ -24,12 +24,6 @@ mht01_post(tlg, row_split_var = "MHBODSYS", prune_0 = TRUE, ...)
 mht01
 ```
 
-## Format
-
-An object of class `character` of length 2.
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

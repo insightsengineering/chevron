@@ -19,10 +19,6 @@ kmg01_pre(adam_db, dataset = "adtte", ...)
 kmg01
 ```
 
-## Format
-
-An object of class `chevron_g` of length 1.
-
 ## Arguments
 
 - adam_db:

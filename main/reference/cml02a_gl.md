@@ -26,10 +26,6 @@ cml02a_gl_pre(
 cml02a_gl
 ```
 
-## Format
-
-An object of class `chevron_l` of length 1.
-
 ## Arguments
 
 - adam_db:

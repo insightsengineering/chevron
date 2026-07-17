@@ -22,10 +22,6 @@ aet01_aesi_post(tlg, prune_0 = FALSE, ...)
 aet01_aesi
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

@@ -20,10 +20,6 @@ rmpt05_pre(adam_db, summaryvars = "RACE", ...)
 rmpt05
 ```
 
-## Format
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

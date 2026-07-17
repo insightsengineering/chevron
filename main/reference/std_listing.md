@@ -49,7 +49,7 @@ std_listing(
 - ...:
 
   additional arguments passed to
-  [`rlistings::as_listing`](https://insightsengineering.github.io/rlistings/latest-tag/reference/listings.html).
+  [`rlistings::as_listing`](https://rdrr.io/pkg/rlistings/man/listings.html).
 
 ## Value
 

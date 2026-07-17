@@ -33,12 +33,6 @@ cmt01a_post(
 cmt01a
 ```
 
-## Format
-
-An object of class `character` of length 2.
-
-An object of class `chevron_t` of length 1.
-
 ## Arguments
 
 - adam_db:

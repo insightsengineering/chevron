@@ -21,10 +21,6 @@ ael03_pre(adam_db, dataset = "adae", arm_var = "ACTARM", ...)
 ael03
 ```
 
-## Format
-
-An object of class `chevron_l` of length 1.
-
 ## Arguments
 
 - adam_db:
