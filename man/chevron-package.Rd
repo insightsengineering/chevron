@@ -6,6 +6,8 @@
 \alias{chevron-package}
 \title{\code{chevron} package}
 \description{
+\if{html}{\figure{logo.svg}{options: style='float: right' alt='logo' width='120'}}
+
 Provide standard tables, listings, and graphs (TLGs) libraries used in clinical trials. This package implements a structure to reformat the data with 'dunlin', create reporting tables using 'rtables' and 'tern' with standardized input arguments to enable quick generation of standard outputs. In addition, it also provides comprehensive data checks and script generation functionality.
 }
 \seealso{

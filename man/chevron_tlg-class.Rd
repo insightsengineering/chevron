@@ -72,13 +72,13 @@ a \code{chevron_simple} class object.
 \description{
 The \code{chevron_tlg} S4 class associates a \code{preprocess} function, a main \code{tlg} function and a \code{postprocess} function.
 
-\code{chevron_t}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle table creation
+\code{chevron_t}, a subclass of \link[=chevron_tlg-class]{chevron_tlg} with specific validation criteria to handle table creation
 
-\code{chevron_l}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle listing creation
+\code{chevron_l}, a subclass of \link[=chevron_tlg-class]{chevron_tlg} with specific validation criteria to handle listing creation
 
-\code{chevron_g}, a subclass of \linkS4class{chevron_tlg} with specific validation criteria to handle graph creation
+\code{chevron_g}, a subclass of \link[=chevron_tlg-class]{chevron_tlg} with specific validation criteria to handle graph creation
 
-\code{chevron_simple}, a subclass of \linkS4class{chevron_tlg}, where main function is a simple call
+\code{chevron_simple}, a subclass of \link[=chevron_tlg-class]{chevron_tlg}, where main function is a simple call
 }
 \section{Slots}{
 

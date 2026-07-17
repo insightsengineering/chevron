@@ -13,8 +13,8 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dunlin}{\code{\link[dunlin]{get_arg}}, \code{\link[dunlin]{reformat}}}
+  \item{dunlin}{\code{\link[dunlin:get_arg]{get_arg()}}, \code{\link[dunlin:reformat]{reformat()}}}
 
-  \item{formatters}{\code{\link[formatters]{with_label}}}
+  \item{formatters}{\code{\link[formatters:with_label]{with_label()}}}
 }}
 

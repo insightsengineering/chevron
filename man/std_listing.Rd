@@ -28,7 +28,7 @@ Key columns allow you to group repeat occurrences.}
 
 \item{unique_rows}{(\code{flag}) whether to keep only unique rows in listing.}
 
-\item{...}{additional arguments passed to \code{\link[rlistings:listings]{rlistings::as_listing}}.}
+\item{...}{additional arguments passed to \code{\link[rlistings:as_listing]{rlistings::as_listing}}.}
 }
 \value{
 the main function returns an \code{rlistings} or a \code{list} object.
