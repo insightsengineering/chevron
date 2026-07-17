@@ -36,9 +36,10 @@ assert_valid_var <- function(x, label, na_ok, empty_ok, ...) {
 #' @export
 #' @param min_chars (`integer`) the minimum length of the characters.
 assert_valid_var.character <- function(
-    x, label = deparse(substitute(x)),
-    na_ok = FALSE, empty_ok = FALSE,
-    min_chars = 1L, ...) {
+  x, label = deparse(substitute(x)),
+  na_ok = FALSE, empty_ok = FALSE,
+  min_chars = 1L, ...
+) {
   assert_character(
     x,
     min.chars = min_chars,
@@ -52,9 +53,10 @@ assert_valid_var.character <- function(
 #' @rdname assert_valid_var
 #' @export
 assert_valid_var.factor <- function(
-    x, label = deparse(substitute(x)),
-    na_ok = FALSE, empty_ok = FALSE,
-    min_chars = 1L, ...) {
+  x, label = deparse(substitute(x)),
+  na_ok = FALSE, empty_ok = FALSE,
+  min_chars = 1L, ...
+) {
   assert_character(
     levels(x),
     min.chars = min_chars,
@@ -85,8 +87,9 @@ assert_valid_var.logical <- function(x, label = deparse(substitute(x)), na_ok = 
 #' @param integerish (`flag`) whether the number should be treated as `integerish`.
 #' @export
 assert_valid_var.numeric <- function(
-    x, label = deparse(substitute(x)),
-    na_ok = TRUE, empty_ok = FALSE, integerish = FALSE, ...) {
+  x, label = deparse(substitute(x)),
+  na_ok = TRUE, empty_ok = FALSE, integerish = FALSE, ...
+) {
   check_fun <- if (integerish) assert_integerish else assert_numeric
   check_fun(
     x,
@@ -128,8 +131,7 @@ assert_valid_var.POSIXct <- function(x,
 
 #' @rdname assert_valid_var
 #' @export
-assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {
-}
+assert_valid_var.default <- function(x, label = deparse(substitute(x)), na_ok = FALSE, empty_ok = FALSE, ...) {}
 
 # assert_valid_variable ----
 

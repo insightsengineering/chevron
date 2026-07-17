@@ -156,10 +156,11 @@ s_summary_na <- function(x, labelstr, denom = c("n", "N_row", "N_col"), .N_row, 
 #'
 #' @keywords internal
 summarize_vars_allow_na <- function(
-    lyt, vars, var_labels = vars,
-    nested = TRUE, ..., show_labels = "default", table_names = vars,
-    section_div = NA_character_, .stats = c("n", "count_fraction"),
-    .formats = list(count_fraction = format_count_fraction_fixed_dp), .labels = NULL, .indent_mods = NULL, inclNAs = TRUE) { # nolint
+  lyt, vars, var_labels = vars,
+  nested = TRUE, ..., show_labels = "default", table_names = vars,
+  section_div = NA_character_, .stats = c("n", "count_fraction"),
+  .formats = list(count_fraction = format_count_fraction_fixed_dp), .labels = NULL, .indent_mods = NULL, inclNAs = TRUE
+) { # nolint
   afun <- make_afun(s_summary_na, .stats, .formats, .labels, .indent_mods, .ungroup_stats = c("count_fraction"))
   analyze(
     lyt = lyt, vars = vars, var_labels = var_labels,
@@ -421,8 +422,9 @@ split_cols_by_with_overall <- function(lyt, col_var, lbl_overall, ref_group = NU
 #'
 #' @keywords internal
 afun_skip <- function(
-    x, .var, .spl_context, paramcdvar, visitvar, skip,
-    precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...) { # nolint
+  x, .var, .spl_context, paramcdvar, visitvar, skip,
+  precision, .stats, .labels = NULL, .indent_mods = NULL, .N_col, .N_row, ...
+) { # nolint
   param_val <- .spl_context$value[which(.spl_context$split == paramcdvar)]
   # Identify context
   split_level <- .spl_context$value[which(.spl_context$split == visitvar)]

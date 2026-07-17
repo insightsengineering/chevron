@@ -104,9 +104,10 @@ cmt01a_pre <- function(adam_db, ...) {
 #' @export
 #'
 cmt01a_post <- function(
-    tlg, prune_0 = TRUE,
-    sort_by_freq = FALSE, row_split_var = "ATC2",
-    medname_var = "CMDECOD", ...) {
+  tlg, prune_0 = TRUE,
+  sort_by_freq = FALSE, row_split_var = "ATC2",
+  medname_var = "CMDECOD", ...
+) {
   if (sort_by_freq) {
     tlg <- tlg %>%
       tlg_sort_by_var(

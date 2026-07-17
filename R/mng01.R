@@ -136,8 +136,6 @@ mng01_main <- function(adam_db,
   }
 
 
-
-
   lapply(
     data_ls,
     tern::g_lineplot,
