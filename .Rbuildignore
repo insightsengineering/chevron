@@ -19,3 +19,5 @@ LICENSE
 ^.revdeprefs\.yaml$
 ^revdep$
 ^\.covrignore$
+^CRAN-SUBMISSION$
+.claude
