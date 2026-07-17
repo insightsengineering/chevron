@@ -176,7 +176,7 @@ lbt05 <- chevron_t(
 
 
 
-#' @describeIn lbt05
+#' @describeIn lbt05 Default lab parameter abnormality direction
 #'
 #' @returns a `data.frame` with the direction of abnormality of each lab parameter code.
 #' @export

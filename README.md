@@ -138,15 +138,3 @@ which returns
 ## Acknowledgment
 
 This package is a result of a joint efforts by many developers and stakeholders. We would like to thank everyone who has contributed so far!
-
-## Stargazers and Forkers
-
-### Stargazers over time
-
-[![Stargazers over time](https://starchart.cc/insightsengineering/chevron.svg)](https://starchart.cc/insightsengineering/chevron)
-
-### Stargazers
-
-[![Stargazers repo roster for chevron](https://reporoster.com/stars/insightsengineering/chevron)](https://github.com/insightsengineering/chevron/stargazers)
-
-[![Forkers repo roster for chevron](https://reporoster.com/forks/insightsengineering/chevron)](https://github.com/insightsengineering/chevron/network/members)

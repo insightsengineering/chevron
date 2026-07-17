@@ -37,7 +37,7 @@ lbt01 <- chevron_t(
   dataset = c("adsl", "adlb")
 )
 
-#' @describeIn lbt01
+#' @describeIn lbt01 Default lab parameter precision
 #'
 #' @returns a named `list` with the precision of each lab parameter code (default is `2`).
 #' @export
