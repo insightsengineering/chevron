@@ -257,38 +257,50 @@ import(dplyr)
 import(methods)
 import(rtables)
 import(tern)
-importFrom(dunlin,assert_all_tablenames)
-importFrom(dunlin,get_arg)
-importFrom(dunlin,reformat)
-importFrom(dunlin,render_safe)
-importFrom(dunlin,rule)
+importFrom(dunlin,
+  assert_all_tablenames,
+  get_arg,
+  reformat,
+  render_safe,
+  rule
+)
 importFrom(forcats,fct_relevel)
-importFrom(formatters,fmt_config)
-importFrom(formatters,propose_column_widths)
-importFrom(formatters,with_label)
+importFrom(formatters,
+  fmt_config,
+  propose_column_widths,
+  with_label
+)
 importFrom(ggplot2,theme)
 importFrom(glue,glue)
-importFrom(grid,stringWidth)
-importFrom(grid,unit)
+importFrom(grid,
+  stringWidth,
+  unit
+)
 importFrom(lifecycle,deprecated)
 importFrom(lubridate,force_tz)
 importFrom(magrittr,"%>%")
-importFrom(methods,is)
-importFrom(methods,setValidity)
+importFrom(methods,
+  is,
+  setValidity
+)
 importFrom(nestcolor,color_palette)
 importFrom(purrr,reduce)
-importFrom(rlang,"!!!")
-importFrom(rlang,"%||%")
-importFrom(rlang,.data)
-importFrom(rlang,.env)
-importFrom(rlang,abort)
-importFrom(rlang,sym)
+importFrom(rlang,
+  "!!!",
+  "%||%",
+  .data,
+  .env,
+  abort,
+  sym
+)
 importFrom(rlistings,as_listing)
-importFrom(stats,median)
-importFrom(stats,quantile)
-importFrom(stats,reorder)
-importFrom(stats,sd)
-importFrom(stats,setNames)
+importFrom(stats,
+  median,
+  quantile,
+  reorder,
+  sd,
+  setNames
+)
 importFrom(stringr,str_dup)
 importFrom(tibble,tribble)
 importFrom(utils,modifyList)
