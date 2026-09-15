@@ -59,7 +59,7 @@
 
 Please visit [the catalog](https://insightsengineering.github.io/chevron/latest-tag/articles/chevron_catalog.html) to see full list of available outputs. If you want a new output, please [create an issue](https://github.com/insightsengineering/chevron/issues/new?template=new_table.yml).
 
-If you need more flexibility please refer to [`tern`](https://insightsengineering.github.io/tern/) with its [TLG Catalog](https://insightsengineering.github.io/tlg-catalog/).
+If you need more flexibility please refer to [`tern`](https://pharmaverse.github.io/tern/) with its [TLG Catalog](https://insightsengineering.github.io/tlg-catalog/).
 
 ## Installation
 
@@ -132,8 +132,8 @@ which returns
 
 ## Related
 
-- [`rtables`](https://insightsengineering.github.io/rtables/) - table engine used
-- [`tern`](https://insightsengineering.github.io/tern/) - analysis function used
+- [`rtables`](https://pharmaverse.github.io/rtables/) - table engine used
+- [`tern`](https://pharmaverse.github.io/tern/) - analysis function used
 
 ## Acknowledgment
 
