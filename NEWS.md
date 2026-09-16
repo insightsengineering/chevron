@@ -1,3 +1,5 @@
+# chevron 0.2.14.9000
+
 # chevron 0.2.14
 
 * Relaxed the `fstg01` and `fstg02` tests to no longer assert that forest plot creation is entirely silent, as `tern`'s subgroup model fitting can emit platform-dependent warnings on some R-devel flavors that caused spurious CRAN test failures.
