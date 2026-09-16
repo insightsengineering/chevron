@@ -43,7 +43,7 @@ aet05
 - ...:
 
   Further arguments passed to
-  [`tern::control_incidence_rate()`](https://insightsengineering.github.io/tern/latest-tag/reference/control_incidence_rate.html).
+  [`tern::control_incidence_rate()`](https://rdrr.io/pkg/tern/man/control_incidence_rate.html).
 
 - tlg:
 

@@ -29,7 +29,7 @@ afun_p(
 - .N_col:
 
   (`int`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - .spl_context:
 
@@ -42,12 +42,12 @@ afun_p(
   value. If `default` is set, and parameter precision not specified, the
   value for `default` will be used. If neither are provided, auto
   determination is used. See
-  [`tern::format_auto`](https://insightsengineering.github.io/tern/latest-tag/reference/format_auto.html).
+  [`tern::format_auto`](https://rdrr.io/pkg/tern/man/format_auto.html).
 
 - .N_row:
 
   (`int`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - .var:
 
@@ -63,14 +63,14 @@ afun_p(
 - .labels:
 
   (`character`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - .indent_mods:
 
   (`integer`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - ...:
 
   additional arguments for
-  [`tern::a_summary`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::a_summary`](https://rdrr.io/pkg/tern/man/analyze_variables.html).

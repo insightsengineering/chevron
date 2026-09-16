@@ -10,4 +10,4 @@ to see their documentation.
 
 - formatters:
 
-  [`with_label()`](https://insightsengineering.github.io/formatters/latest-tag/reference/with_label.html)
+  [`with_label()`](https://pharmaverse.github.io/formatters/latest-tag/reference/with_label.html)

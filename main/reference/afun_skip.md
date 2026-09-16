@@ -59,29 +59,29 @@ afun_skip(
 - .stats:
 
   (`character`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - .labels:
 
   (`character`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - .indent_mods:
 
   (`integer`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - .N_col:
 
   (`int`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - .N_row:
 
   (`int`) See
-  [`tern::analyze_variables`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_variables`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - ...:
 
   additional arguments for
-  [`tern::a_summary`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::a_summary`](https://rdrr.io/pkg/tern/man/analyze_variables.html).

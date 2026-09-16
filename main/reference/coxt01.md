@@ -70,7 +70,7 @@ coxt01
 - ...:
 
   Further arguments passed to
-  [`tern::control_coxreg()`](https://insightsengineering.github.io/tern/latest-tag/reference/control_coxreg.html).
+  [`tern::control_coxreg()`](https://rdrr.io/pkg/tern/man/control_coxreg.html).
 
 - tlg:
 

@@ -89,7 +89,7 @@ mng01
 - ggtheme:
 
   (`theme`) passed to
-  [`tern::g_lineplot()`](https://insightsengineering.github.io/tern/latest-tag/reference/g_lineplot.html).
+  [`tern::g_lineplot()`](https://rdrr.io/pkg/tern/man/g_lineplot.html).
 
 - table:
 
@@ -99,7 +99,7 @@ mng01
 - ...:
 
   passed to
-  [`tern::g_lineplot()`](https://insightsengineering.github.io/tern/latest-tag/reference/g_lineplot.html).
+  [`tern::g_lineplot()`](https://rdrr.io/pkg/tern/man/g_lineplot.html).
 
 ## Value
 
@@ -130,7 +130,7 @@ the preprocessing function returns a `list` of `data.frame`.
 ## See also
 
 [`gg_theme_chevron()`](https://insightsengineering.github.io/chevron/reference/gg_theme_chevron.md),
-[`tern::g_lineplot()`](https://insightsengineering.github.io/tern/latest-tag/reference/g_lineplot.html).
+[`tern::g_lineplot()`](https://rdrr.io/pkg/tern/man/g_lineplot.html).
 
 ## Examples
 

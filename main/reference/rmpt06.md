@@ -45,12 +45,12 @@ rmpt06
 - method:
 
   (`string`) the method used to construct the confidence interval. See
-  [`tern::estimate_proportion`](https://insightsengineering.github.io/tern/latest-tag/reference/estimate_proportion.html).
+  [`tern::estimate_proportion`](https://rdrr.io/pkg/tern/man/estimate_proportion.html).
 
 - conf_level:
 
   (`proportion`) the confidence level of the interval. See
-  [`tern::estimate_proportion`](https://insightsengineering.github.io/tern/latest-tag/reference/estimate_proportion.html).
+  [`tern::estimate_proportion`](https://rdrr.io/pkg/tern/man/estimate_proportion.html).
 
 - show_diff:
 
