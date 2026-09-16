@@ -94,7 +94,7 @@ to see full list of available outputs. If you want a new output, please
 issue](https://github.com/insightsengineering/chevron/issues/new?template=new_table.yml).
 
 If you need more flexibility please refer to
-[`tern`](https://insightsengineering.github.io/tern/) with its [TLG
+[`tern`](https://pharmaverse.github.io/tern/) with its [TLG
 Catalog](https://insightsengineering.github.io/tlg-catalog/).
 
 ## Installation
@@ -102,18 +102,11 @@ Catalog](https://insightsengineering.github.io/tlg-catalog/).
 `chevron` is available on CRAN and you can install the latest released
 version with:
 
-``` r
-
-install.packages("chevron")
-```
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"chevron"``)`
 
 Alternatively, you might also use the development version.
 
-``` r
-
-# install.packages("pak")
-pak::pak("insightsengineering/chevron")
-```
+`# install.packages("pak")`` ``pak``::`[`pak`](https://pak.r-lib.org/reference/pak.html)`(``"insightsengineering/chevron"``)`
 
 ## Usage
 
@@ -124,17 +117,11 @@ article, which provides multiple examples of code implementation.
 
 Below is the showcase of the example usage.
 
-``` r
-
-library(chevron)
-
-data(syn_data)
-run(aet02, syn_data)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`chevron`](https://insightsengineering.github.io/chevron/)`)`` `` `[`data`](https://rdrr.io/r/utils/data.html)`(``syn_data``)`` `[`run`](https://insightsengineering.github.io/chevron/reference/run.md)`(``aet02``, ``syn_data``)`
 
 which returns
 
-``` text
+```
   MedDRA System Organ Class                                     A: Drug X    B: Placebo    C: Combination
     MedDRA Preferred Term                                        (N=134)       (N=134)        (N=132)
   ———————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -175,10 +162,9 @@ which returns
 
 ## Related
 
-- [`rtables`](https://insightsengineering.github.io/rtables/) - table
-  engine used
-- [`tern`](https://insightsengineering.github.io/tern/) - analysis
-  function used
+- [`rtables`](https://pharmaverse.github.io/rtables/) - table engine
+  used
+- [`tern`](https://pharmaverse.github.io/tern/) - analysis function used
 
 ## Acknowledgment
 

@@ -75,7 +75,7 @@ vst01
 - .stats:
 
   (`character`) statistics names, see
-  [`tern::analyze_vars()`](https://insightsengineering.github.io/tern/latest-tag/reference/analyze_variables.html).
+  [`tern::analyze_vars()`](https://rdrr.io/pkg/tern/man/analyze_variables.html).
 
 - skip:
 

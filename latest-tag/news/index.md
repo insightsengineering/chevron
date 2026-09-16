@@ -1,6 +1,17 @@
 # Changelog
 
+## chevron 0.2.14
+
+CRAN release: 2026-09-16
+
+- Relaxed the `fstg01` and `fstg02` tests to no longer assert that
+  forest plot creation is entirely silent, as `tern`’s subgroup model
+  fitting can emit platform-dependent warnings on some R-devel flavors
+  that caused spurious CRAN test failures.
+
 ## chevron 0.2.13
+
+CRAN release: 2026-07-17
 
 - Update dependencies versions.
 

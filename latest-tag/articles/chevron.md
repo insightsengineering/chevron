@@ -76,114 +76,21 @@ the `chevropn_tlg` objects that have the name `aet02`.
 We first load the data as a `list` of `data.frame`, where each table
 represents a domain.
 
-``` r
-
-library(chevron)
-#> Registered S3 method overwritten by 'tern':
-#>   method   from 
-#>   tidy.glm broom
-data(syn_data, package = "chevron")
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`chevron`](https://insightsengineering.github.io/chevron/)`)`` ``#> Registered S3 method overwritten by 'tern':`` ``#> method from `` ``#> tidy.glm broom`` `[`data`](https://rdrr.io/r/utils/data.html)`(``syn_data``, package ``=`` ``"chevron"``)`
 
 A the `aet02` output is then created as follows:
 
-``` r
-
-run(aet02, syn_data)
-#>   MedDRA System Organ Class                                    A: Drug X    B: Placebo   C: Combination
-#>     MedDRA Preferred Term                                        (N=15)       (N=15)         (N=15)    
-#>   —————————————————————————————————————————————————————————————————————————————————————————————————————
-#>   Total number of patients with at least one adverse event     13 (86.7%)   14 (93.3%)     15 (100%)   
-#>   Overall total number of events                                   58           59             99      
-#>   cl B.2                                                                                               
-#>     Total number of patients with at least one adverse event   11 (73.3%)   8 (53.3%)      10 (66.7%)  
-#>     Total number of events                                         18           15             20      
-#>     dcd B.2.2.3.1                                              8 (53.3%)    6 (40.0%)      7 (46.7%)   
-#>     dcd B.2.1.2.1                                              5 (33.3%)    6 (40.0%)      5 (33.3%)   
-#>   cl D.1                                                                                               
-#>     Total number of patients with at least one adverse event   9 (60.0%)    5 (33.3%)      11 (73.3%)  
-#>     Total number of events                                         13           9              19      
-#>     dcd D.1.1.1.1                                              4 (26.7%)    4 (26.7%)      7 (46.7%)   
-#>     dcd D.1.1.4.2                                              6 (40.0%)    2 (13.3%)      7 (46.7%)   
-#>   cl A.1                                                                                               
-#>     Total number of patients with at least one adverse event   7 (46.7%)    6 (40.0%)      10 (66.7%)  
-#>     Total number of events                                         8            11             16      
-#>     dcd A.1.1.1.2                                              5 (33.3%)    6 (40.0%)      6 (40.0%)   
-#>     dcd A.1.1.1.1                                              3 (20.0%)     1 (6.7%)      6 (40.0%)   
-#>   cl B.1                                                                                               
-#>     Total number of patients with at least one adverse event   5 (33.3%)    6 (40.0%)      8 (53.3%)   
-#>     Total number of events                                         6            6              12      
-#>     dcd B.1.1.1.1                                              5 (33.3%)    6 (40.0%)      8 (53.3%)   
-#>   cl C.2                                                                                               
-#>     Total number of patients with at least one adverse event   6 (40.0%)    4 (26.7%)      8 (53.3%)   
-#>     Total number of events                                         6            4              12      
-#>     dcd C.2.1.2.1                                              6 (40.0%)    4 (26.7%)      8 (53.3%)   
-#>   cl D.2                                                                                               
-#>     Total number of patients with at least one adverse event   2 (13.3%)    5 (33.3%)      7 (46.7%)   
-#>     Total number of events                                         3            5              10      
-#>     dcd D.2.1.5.3                                              2 (13.3%)    5 (33.3%)      7 (46.7%)   
-#>   cl C.1                                                                                               
-#>     Total number of patients with at least one adverse event   4 (26.7%)    4 (26.7%)      5 (33.3%)   
-#>     Total number of events                                         4            9              10      
-#>     dcd C.1.1.1.3                                              4 (26.7%)    4 (26.7%)      5 (33.3%)
-```
+[`run`](https://insightsengineering.github.io/chevron/reference/run.md)`(``aet02``, ``syn_data``)`` ``#> MedDRA System Organ Class A: Drug X B: Placebo C: Combination`` ``#> MedDRA Preferred Term (N=15) (N=15) (N=15) `` ``#> —————————————————————————————————————————————————————————————————————————————————————————————————————`` ``#> Total number of patients with at least one adverse event 13 (86.7%) 14 (93.3%) 15 (100%) `` ``#> Overall total number of events 58 59 99 `` ``#> cl B.2 `` ``#> Total number of patients with at least one adverse event 11 (73.3%) 8 (53.3%) 10 (66.7%) `` ``#> Total number of events 18 15 20 `` ``#> dcd B.2.2.3.1 8 (53.3%) 6 (40.0%) 7 (46.7%) `` ``#> dcd B.2.1.2.1 5 (33.3%) 6 (40.0%) 5 (33.3%) `` ``#> cl D.1 `` ``#> Total number of patients with at least one adverse event 9 (60.0%) 5 (33.3%) 11 (73.3%) `` ``#> Total number of events 13 9 19 `` ``#> dcd D.1.1.1.1 4 (26.7%) 4 (26.7%) 7 (46.7%) `` ``#> dcd D.1.1.4.2 6 (40.0%) 2 (13.3%) 7 (46.7%) `` ``#> cl A.1 `` ``#> Total number of patients with at least one adverse event 7 (46.7%) 6 (40.0%) 10 (66.7%) `` ``#> Total number of events 8 11 16 `` ``#> dcd A.1.1.1.2 5 (33.3%) 6 (40.0%) 6 (40.0%) `` ``#> dcd A.1.1.1.1 3 (20.0%) 1 (6.7%) 6 (40.0%) `` ``#> cl B.1 `` ``#> Total number of patients with at least one adverse event 5 (33.3%) 6 (40.0%) 8 (53.3%) `` ``#> Total number of events 6 6 12 `` ``#> dcd B.1.1.1.1 5 (33.3%) 6 (40.0%) 8 (53.3%) `` ``#> cl C.2 `` ``#> Total number of patients with at least one adverse event 6 (40.0%) 4 (26.7%) 8 (53.3%) `` ``#> Total number of events 6 4 12 `` ``#> dcd C.2.1.2.1 6 (40.0%) 4 (26.7%) 8 (53.3%) `` ``#> cl D.2 `` ``#> Total number of patients with at least one adverse event 2 (13.3%) 5 (33.3%) 7 (46.7%) `` ``#> Total number of events 3 5 10 `` ``#> dcd D.2.1.5.3 2 (13.3%) 5 (33.3%) 7 (46.7%) `` ``#> cl C.1 `` ``#> Total number of patients with at least one adverse event 4 (26.7%) 4 (26.7%) 5 (33.3%) `` ``#> Total number of events 4 9 10 `` ``#> dcd C.1.1.1.3 4 (26.7%) 4 (26.7%) 5 (33.3%)`
 
 The function associated with a particular slot can be retrieved with the
 corresponding method: `main`, `lyt`, `preprocess` `postprocess` and
 `datasets`.
 
-``` r
-
-main(aet02)
-#> function (adam_db, arm_var = "ACTARM", row_split_var = "AEBODSYS", 
-#>     lbl_overall = NULL, summary_labels = list(all = aet02_label, 
-#>         TOTAL = c(nonunique = "Overall total number of events")), 
-#>     ...) 
-#> {
-#>     assert_all_tablenames(adam_db, "adsl", "adae")
-#>     assert_string(arm_var)
-#>     assert_character(row_split_var, null.ok = TRUE)
-#>     assert_string(lbl_overall, null.ok = TRUE)
-#>     assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), 
-#>         types = list(c("character", "factor")))
-#>     assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, 
-#>         "AEDECOD"), types = list(c("character", "factor")))
-#>     assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, 
-#>         types = list(c("character", "factor")))
-#>     assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)
-#>     assert_list(summary_labels, null.ok = TRUE)
-#>     assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))
-#>     assert_subset(unique(unlist(lapply(summary_labels, names))), 
-#>         c("unique", "nonunique", "unique_count"))
-#>     summary_labels <- expand_list(summary_labels, c("TOTAL", 
-#>         row_split_var))
-#>     lbl_overall <- render_safe(lbl_overall)
-#>     lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)
-#>     lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")
-#>     lyt <- occurrence_lyt(arm_var = arm_var, lbl_overall = lbl_overall, 
-#>         row_split_var = row_split_var, lbl_row_split = lbl_row_split, 
-#>         medname_var = "AEDECOD", lbl_medname_var = lbl_aedecod, 
-#>         summary_labels = summary_labels, count_by = NULL)
-#>     tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)
-#>     tbl
-#> }
-#> <bytecode: 0x5603f9a97560>
-#> <environment: namespace:chevron>
-```
+[`main`](https://insightsengineering.github.io/chevron/reference/main.md)`(``aet02``)`` ``#> function (adam_db, arm_var = "ACTARM", row_split_var = "AEBODSYS", `` ``#> lbl_overall = NULL, summary_labels = list(all = aet02_label, `` ``#> TOTAL = c(nonunique = "Overall total number of events")), `` ``#> ...) `` ``#> {`` ``#> assert_all_tablenames(adam_db, "adsl", "adae")`` ``#> assert_string(arm_var)`` ``#> assert_character(row_split_var, null.ok = TRUE)`` ``#> assert_string(lbl_overall, null.ok = TRUE)`` ``#> assert_valid_variable(adam_db$adsl, c("USUBJID", arm_var), `` ``#> types = list(c("character", "factor")))`` ``#> assert_valid_variable(adam_db$adae, c(arm_var, row_split_var, `` ``#> "AEDECOD"), types = list(c("character", "factor")))`` ``#> assert_valid_variable(adam_db$adae, "USUBJID", empty_ok = TRUE, `` ``#> types = list(c("character", "factor")))`` ``#> assert_valid_var_pair(adam_db$adsl, adam_db$adae, arm_var)`` ``#> assert_list(summary_labels, null.ok = TRUE)`` ``#> assert_subset(names(summary_labels), c("all", "TOTAL", row_split_var))`` ``#> assert_subset(unique(unlist(lapply(summary_labels, names))), `` ``#> c("unique", "nonunique", "unique_count"))`` ``#> summary_labels <- expand_list(summary_labels, c("TOTAL", `` ``#> row_split_var))`` ``#> lbl_overall <- render_safe(lbl_overall)`` ``#> lbl_row_split <- var_labels_for(adam_db$adae, row_split_var)`` ``#> lbl_aedecod <- var_labels_for(adam_db$adae, "AEDECOD")`` ``#> lyt <- occurrence_lyt(arm_var = arm_var, lbl_overall = lbl_overall, `` ``#> row_split_var = row_split_var, lbl_row_split = lbl_row_split, `` ``#> medname_var = "AEDECOD", lbl_medname_var = lbl_aedecod, `` ``#> summary_labels = summary_labels, count_by = NULL)`` ``#> tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)`` ``#> tbl`` ``#> }`` ``#> <bytecode: 0x5625bbaa3ed8>`` ``#> <environment: namespace:chevron>`
 
 These are standard functions that can be used on their own.
 
-``` r
-
-res <- preprocess(aet02)(syn_data)
-
-# or
-foo <- aet02@preprocess
-res <- foo(syn_data)
-
-str(res, max.level = 0)
-#> List of 13
-```
+`res`` ``<-`` `[`preprocess`](https://insightsengineering.github.io/chevron/reference/preprocess.md)`(``aet02``)``(``syn_data``)`` `` ``# or`` ``foo`` ``<-`` ``aet02``@``preprocess`` ``res`` ``<-`` ``foo``(``syn_data``)`` `` `[`str`](https://rdrr.io/pkg/rtables/man/int_methods.html)`(``res``, max.level ``=`` ``0``)`` ``#> List of 13`
 
 ## `chevron_tlg` object customization
 
@@ -207,18 +114,7 @@ constructors corresponding to the desired output:
 - [`chevron_g()`](https://insightsengineering.github.io/chevron/reference/chevron_tlg-class.md)
   for graphs.
 
-``` r
-
-library(rtables)
-library(tern)
-my_template <- chevron_t(
-  main = "<your main function to build the table>",
-  preprocess = "<your pre function to process the data>",
-  postprocess = "<your post function to add custom sorting>"
-)
-
-run(my_template, syn_data)
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`rtables`](https://github.com/insightsengineering/rtables)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`tern`](https://insightsengineering.github.io/tern/)`)`` ``my_template`` ``<-`` `[`chevron_t`](https://insightsengineering.github.io/chevron/reference/chevron_tlg-class.md)`(`` `` main ``=`` ``"<your main function to build the table>"``,`` `` preprocess ``=`` ``"<your pre function to process the data>"``,`` `` postprocess ``=`` ``"<your post function to add custom sorting>"`` ``)`` `` `[`run`](https://insightsengineering.github.io/chevron/reference/run.md)`(``my_template``, ``syn_data``)`
 
 Note that to ensure the correct execution of the `run` function, the
 name of the first argument of the `main` function must be `adam_db`; the

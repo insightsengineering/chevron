@@ -58,7 +58,7 @@ dmt01
   statistics for numeric variables. If `default` is set, and parameter
   precision not specified, the value for `default` will be used. If
   neither are provided, auto determination is used. See
-  [`tern::format_auto`](https://insightsengineering.github.io/tern/latest-tag/reference/format_auto.html).
+  [`tern::format_auto`](https://rdrr.io/pkg/tern/man/format_auto.html).
 
 - ...:
 

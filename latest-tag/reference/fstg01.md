@@ -93,8 +93,8 @@ the preprocessing function returns a `list` of `data.frame`.
 - If the plot is too large to be rendered in the output, please provide
   `gp`, `width_row_names`, `width_columns` and `width_forest` manually
   to make it fit. See
-  [`tern::g_forest`](https://insightsengineering.github.io/tern/latest-tag/reference/g_forest.html)
-  for more details.
+  [`tern::g_forest`](https://rdrr.io/pkg/tern/man/g_forest.html) for
+  more details.
 
 ## Examples
 
