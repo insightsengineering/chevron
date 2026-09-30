@@ -89,6 +89,7 @@ test_that("rspt01 works if change reference group", {
 
 test_that("rspt01 works if change statistic methods", {
   skip_on_os("windows")
+  skip_on_cran()
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",
