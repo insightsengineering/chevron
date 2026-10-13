@@ -1,6 +1,10 @@
 # Changelog
 
-## chevron 0.2.14.9000
+## chevron 0.2.15
+
+CRAN release: 2026-09-30
+
+- Skip test to avoid cran check fails for tern.
 
 ## chevron 0.2.14
 

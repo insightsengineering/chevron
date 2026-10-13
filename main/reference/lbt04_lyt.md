@@ -46,7 +46,7 @@ lbt04_lyt(
 - variables:
 
   (`list`) see
-  [tern::count_abnormal](https://rdrr.io/pkg/tern/man/abnormal.html)
+  [tern::count_abnormal](https://pharmaverse.github.io/tern/latest-tag/reference/abnormal.html)
 
 - page_var:
 

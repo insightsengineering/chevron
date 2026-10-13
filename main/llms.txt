@@ -102,11 +102,14 @@ Catalog](https://insightsengineering.github.io/tlg-catalog/).
 `chevron` is available on CRAN and you can install the latest released
 version with:
 
+\
 [`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"chevron"``)`
 
 Alternatively, you might also use the development version.
 
-`# install.packages("pak")`` ``pak``::`[`pak`](https://pak.r-lib.org/reference/pak.html)`(``"insightsengineering/chevron"``)`
+\
+`# install.packages("pak")`\
+`pak``::`[`pak`](https://pak.r-lib.org/reference/pak.html)`(``"insightsengineering/chevron"``)`
 
 ## Usage
 
@@ -117,7 +120,11 @@ article, which provides multiple examples of code implementation.
 
 Below is the showcase of the example usage.
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`chevron`](https://insightsengineering.github.io/chevron/)`)`` `` `[`data`](https://rdrr.io/r/utils/data.html)`(``syn_data``)`` `[`run`](https://insightsengineering.github.io/chevron/reference/run.md)`(``aet02``, ``syn_data``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`chevron`](https://insightsengineering.github.io/chevron/)`)`\
+\
+[`data`](https://rdrr.io/r/utils/data.html)`(``syn_data``)`\
+[`run`](https://insightsengineering.github.io/chevron/reference/run.md)`(``aet02``, ``syn_data``)`
 
 which returns
 
