@@ -234,48 +234,69 @@
     Code
       cat(export_as_txt(res, lpp = 100))
     Output
-                                                                  A: Drug X          B: Placebo    
-                                                                    (N=15)             (N=15)      
-        ———————————————————————————————————————————————————————————————————————————————————————————
-        Responders                                                10 (66.7%)         9 (60.0%)     
-        95% CI (Wald, without correction)                        (42.8, 90.5)       (35.2, 84.8)   
-        Unstratified Analysis                                                                      
-          Difference in Response rate (%)                                               -6.7       
-            95% CI (Wald, without correction)                                      (-41.1, 27.7)   
-          p-value (Fisher's Exact Test)                                                1.0000      
-        Odds Ratio (95% CI)                                                      0.75 (0.17 - 3.33)
-        Stratified Analysis                                                                        
-          Difference in Response rate (%)                                               -6.7       
-            95% CI (Anderson-Hauck)                                                (-45.6, 32.3)   
-          p-value (Chi-Squared Test with Schouten Correction)                          0.8522      
-        Odds Ratio (95% CI)                                                      0.75 (0.17 - 3.33)
-        Complete Response (CR)                                    4 (26.7%)          4 (26.7%)     
-          95% CI (Wald, without correction)                     (4.29, 49.05)      (4.29, 49.05)   
-        Partial Response (PR)                                     6 (40.0%)          5 (33.3%)     
-          95% CI (Wald, without correction)                     (15.21, 64.79)     (9.48, 57.19)   
-        Stable Disease (SD)                                       5 (33.3%)          6 (40.0%)     
-          95% CI (Wald, without correction)                     (9.48, 57.19)      (15.21, 64.79)  
-      \s\n                                                            C: Combination  
-                                                                      (N=15)      
-        ——————————————————————————————————————————————————————————————————————————
-        Responders                                                  11 (73.3%)    
-        95% CI (Wald, without correction)                          (51.0, 95.7)   
-        Unstratified Analysis                                                     
-          Difference in Response rate (%)                              6.7        
-            95% CI (Wald, without correction)                     (-26.0, 39.4)   
-          p-value (Fisher's Exact Test)                               1.0000      
-        Odds Ratio (95% CI)                                     1.37 (0.29 - 6.60)
-        Stratified Analysis                                                       
-          Difference in Response rate (%)                              6.7        
-            95% CI (Anderson-Hauck)                               (-30.5, 43.9)   
-          p-value (Chi-Squared Test with Schouten Correction)         0.8447      
-        Odds Ratio (95% CI)                                     1.37 (0.29 - 6.60)
-        Complete Response (CR)                                      7 (46.7%)     
-          95% CI (Wald, without correction)                       (21.42, 71.91)  
-        Partial Response (PR)                                       4 (26.7%)     
-          95% CI (Wald, without correction)                       (4.29, 49.05)   
-        Stable Disease (SD)                                         4 (26.7%)     
-          95% CI (Wald, without correction)                       (4.29, 49.05)   
+                                                                                  A: Drug X   
+                                                                                    (N=15)    
+        ——————————————————————————————————————————————————————————————————————————————————————
+        Responders                                                                10 (66.7%)  
+        95% CI (Wald, without correction)                                        (42.8, 90.5) 
+        Unstratified Analysis                                                                 
+          Difference in Response rate (%)                                                     
+            95% CI (Wald, without correction)                                                 
+          p-value (Fisher's Exact Test)                                                       
+        Odds Ratio (95% CI)                                                                   
+        Stratified Analysis                                                                   
+          Difference in Response rate (%)                                                     
+            95% CI (CMH, Sato variance estimator)                                             
+          p-value (Cochran-Mantel-Haenszel Test with Sato Variance Estimator)                 
+        Odds Ratio (95% CI)                                                                   
+        Complete Response (CR)                                                    4 (26.7%)   
+          95% CI (Wald, without correction)                                     (4.29, 49.05) 
+        Partial Response (PR)                                                     6 (40.0%)   
+          95% CI (Wald, without correction)                                     (15.21, 64.79)
+        Stable Disease (SD)                                                       5 (33.3%)   
+          95% CI (Wald, without correction)                                     (9.48, 57.19) 
+      \s\n                                                                              B: Placebo    
+                                                                                      (N=15)      
+        ——————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                                                  9 (60.0%)     
+        95% CI (Wald, without correction)                                          (35.2, 84.8)   
+        Unstratified Analysis                                                                     
+          Difference in Response rate (%)                                              -6.7       
+            95% CI (Wald, without correction)                                     (-41.1, 27.7)   
+          p-value (Fisher's Exact Test)                                               1.0000      
+        Odds Ratio (95% CI)                                                     0.75 (0.17 - 3.33)
+        Stratified Analysis                                                                       
+          Difference in Response rate (%)                                              -7.7       
+            95% CI (CMH, Sato variance estimator)                                 (-41.7, 26.3)   
+          p-value (Cochran-Mantel-Haenszel Test with Sato Variance Estimator)         0.6576      
+        Odds Ratio (95% CI)                                                     0.75 (0.17 - 3.33)
+        Complete Response (CR)                                                      4 (26.7%)     
+          95% CI (Wald, without correction)                                       (4.29, 49.05)   
+        Partial Response (PR)                                                       5 (33.3%)     
+          95% CI (Wald, without correction)                                       (9.48, 57.19)   
+        Stable Disease (SD)                                                         6 (40.0%)     
+          95% CI (Wald, without correction)                                       (15.21, 64.79)  
+      \s\n                                                                            C: Combination  
+                                                                                      (N=15)      
+        ——————————————————————————————————————————————————————————————————————————————————————————
+        Responders                                                                  11 (73.3%)    
+        95% CI (Wald, without correction)                                          (51.0, 95.7)   
+        Unstratified Analysis                                                                     
+          Difference in Response rate (%)                                              6.7        
+            95% CI (Wald, without correction)                                     (-26.0, 39.4)   
+          p-value (Fisher's Exact Test)                                               1.0000      
+        Odds Ratio (95% CI)                                                     1.37 (0.29 - 6.60)
+        Stratified Analysis                                                                       
+          Difference in Response rate (%)                                              9.2        
+            95% CI (CMH, Sato variance estimator)                                 (-25.7, 44.1)   
+          p-value (Cochran-Mantel-Haenszel Test with Sato Variance Estimator)         0.6045      
+        Odds Ratio (95% CI)                                                     1.37 (0.29 - 6.60)
+        Complete Response (CR)                                                      7 (46.7%)     
+          95% CI (Wald, without correction)                                       (21.42, 71.91)  
+        Partial Response (PR)                                                       4 (26.7%)     
+          95% CI (Wald, without correction)                                       (4.29, 49.05)   
+        Stable Disease (SD)                                                         4 (26.7%)     
+          95% CI (Wald, without correction)                                       (4.29, 49.05)   
 
 # rspt01 works if change confidence interval
 

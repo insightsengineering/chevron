@@ -12,12 +12,23 @@
 #'
 #' @export
 #'
-rmpt03_main <- modify_default_args(
-  rmpt01_main,
-  summaryvars = "AGEGR1",
-  col_split_var = "SEX",
-  overall_col_lbl = "All Genders"
-)
+rmpt03_main <- function(adam_db,
+                        summaryvars = "AGEGR1",
+                        show_tot = TRUE,
+                        row_split_var = NULL,
+                        col_split_var = "SEX",
+                        overall_col_lbl = "All Genders",
+                        ...) {
+  rmpt01_main(
+    adam_db = adam_db,
+    summaryvars = summaryvars,
+    show_tot = show_tot,
+    row_split_var = row_split_var,
+    col_split_var = col_split_var,
+    overall_col_lbl = overall_col_lbl,
+    ...
+  )
+}
 
 #' @describeIn rmpt03 Preprocessing
 #'

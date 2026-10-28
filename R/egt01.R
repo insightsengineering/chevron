@@ -10,7 +10,33 @@
 #'
 #' @export
 #'
-egt01_main <- modify_default_args(cfbt01_main, dataset = "adeg", precision = quote(list(default = 0L)))
+egt01_main <- function(adam_db,
+                       dataset = "adeg",
+                       arm_var = "ACTARM",
+                       lbl_overall = NULL,
+                       row_split_var = NULL,
+                       summaryvars = c("AVAL", "CHG"),
+                       visitvar = "AVISIT",
+                       precision = list(default = 0L),
+                       page_var = "PARAMCD",
+                       .stats = c("n", "mean_sd", "median", "range"),
+                       skip = list(CHG = "BASELINE"),
+                       ...) {
+  cfbt01_main(
+    adam_db = adam_db,
+    dataset = dataset,
+    arm_var = arm_var,
+    lbl_overall = lbl_overall,
+    row_split_var = row_split_var,
+    summaryvars = summaryvars,
+    visitvar = visitvar,
+    precision = precision,
+    page_var = page_var,
+    .stats = .stats,
+    skip = skip,
+    ...
+  )
+}
 
 #' @describeIn egt01 Preprocessing
 #'

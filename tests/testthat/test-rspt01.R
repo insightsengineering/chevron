@@ -89,7 +89,6 @@ test_that("rspt01 works if change reference group", {
 
 test_that("rspt01 works if change statistic methods", {
   skip_on_os("windows")
-  skip_on_cran()
   filter_data <- dunlin::log_filter(syn_data, PARAMCD == "BESRSPI", "adrs")
   res <- expect_silent(run(rspt01, filter_data,
     dataset = "adrs",
@@ -105,13 +104,13 @@ test_that("rspt01 works if change statistic methods", {
     dataset = "adrs",
     odds_ratio = TRUE,
     perform_analysis = c("unstrat", "strat"),
-    strata = c("STRATA1", "STRATA2"),
+    strata = c("STRATA2"),
     methods = list(
       prop_conf_method = "wald",
       diff_conf_method = "wald",
-      strat_diff_conf_method = "ha",
+      strat_diff_conf_method = "cmh_sato",
       diff_pval_method = "fisher",
-      strat_diff_pval_method = "schouten"
+      strat_diff_pval_method = "cmh_sato"
     )
   ))
   expect_snapshot(cat(export_as_txt(res, lpp = 100)))

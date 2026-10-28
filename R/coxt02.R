@@ -8,7 +8,27 @@
 #'
 #' @export
 #'
-coxt02_main <- modify_default_args(coxt01_main, multivar = TRUE)
+coxt02_main <- function(adam_db,
+                        arm_var = "ARM",
+                        time_var = "AVAL",
+                        event_var = "EVENT",
+                        covariates = c("SEX", "RACE", "AAGE"),
+                        strata = NULL,
+                        lbl_vars = "Effect/Covariate Included in the Model",
+                        multivar = TRUE,
+                        ...) {
+  coxt01_main(
+    adam_db = adam_db,
+    arm_var = arm_var,
+    time_var = time_var,
+    event_var = event_var,
+    covariates = covariates,
+    strata = strata,
+    lbl_vars = lbl_vars,
+    multivar = multivar,
+    ...
+  )
+}
 
 #' `COXT02` Multi-Variable Cox Regression Model Table.
 #'

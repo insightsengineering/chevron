@@ -7,11 +7,23 @@
 #' @returns the main function returns an `rtables` object.
 #' @export
 #'
-cmt02_pt_main <- modify_default_args(
-  cmt01a_main,
-  row_split_var = NULL,
-  summary_labels = quote(list(TOTAL = cmt01_label))
-)
+cmt02_pt_main <- function(adam_db,
+                          arm_var = "ARM",
+                          lbl_overall = NULL,
+                          row_split_var = NULL,
+                          medname_var = "CMDECOD",
+                          summary_labels = list(TOTAL = cmt01_label),
+                          ...) {
+  cmt01a_main(
+    adam_db = adam_db,
+    arm_var = arm_var,
+    lbl_overall = lbl_overall,
+    row_split_var = row_split_var,
+    medname_var = medname_var,
+    summary_labels = summary_labels,
+    ...
+  )
+}
 
 #' @describeIn cmt02_pt Preprocessing
 #'

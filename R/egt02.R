@@ -124,7 +124,19 @@ egt02_1 <- chevron_t(
 #'
 #' @export
 #'
-egt02_2_main <- modify_default_args(egt02_1_main, exclude_base_abn = TRUE)
+egt02_2_main <- function(adam_db,
+                         arm_var = "ACTARM",
+                         lbl_overall = NULL,
+                         exclude_base_abn = TRUE,
+                         ...) {
+  egt02_1_main(
+    adam_db = adam_db,
+    arm_var = arm_var,
+    lbl_overall = lbl_overall,
+    exclude_base_abn = exclude_base_abn,
+    ...
+  )
+}
 
 #' `EGT02_2` ECG Abnormalities Table.
 #'

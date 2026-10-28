@@ -47,7 +47,7 @@ or unstratified analyses, or both, e.g. \code{c("unstrat", "strat")}. Only unstr
 \item{conf_level}{(\code{numeric}) the level of confidence interval, default is 0.95.}
 
 \item{methods}{(\code{list}) a named list, use a named list to control, for example:
-\code{methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "ha", diff_pval_method = "fisher", strat_diff_pval_method = "schouten")}
+\code{methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "cmh_sato", diff_pval_method = "fisher", strat_diff_pval_method = "cmh_sato")}
 \code{prop_conf_method} controls the methods of calculating proportion confidence interval,
 \code{diff_conf_method} controls the methods of calculating unstratified difference confidence interval,
 \code{strat_diff_conf_method} controls the methods of calculating stratified difference confidence interval,

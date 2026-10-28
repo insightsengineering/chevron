@@ -14,7 +14,23 @@
 #'
 #' @export
 #'
-rmpt05_main <- modify_default_args(rmpt01_main, summaryvars = "RACE")
+rmpt05_main <- function(adam_db,
+                        summaryvars = "RACE",
+                        show_tot = TRUE,
+                        row_split_var = NULL,
+                        col_split_var = NULL,
+                        overall_col_lbl = NULL,
+                        ...) {
+  rmpt01_main(
+    adam_db = adam_db,
+    summaryvars = summaryvars,
+    show_tot = show_tot,
+    row_split_var = row_split_var,
+    col_split_var = col_split_var,
+    overall_col_lbl = overall_col_lbl,
+    ...
+  )
+}
 
 #' @describeIn rmpt05 Preprocessing
 #'
