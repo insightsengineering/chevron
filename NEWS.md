@@ -5,7 +5,7 @@
 
 # chevron 0.2.15
 
-* Skip test to avoid cran check fails for tern.
+* Skip test to avoid CRAN check fails for tern.
 
 # chevron 0.2.14
 
