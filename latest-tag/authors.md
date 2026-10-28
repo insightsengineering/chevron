@@ -27,13 +27,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/insightsengineering/chevron/blob/v0.2.14/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/insightsengineering/chevron/blob/v0.2.15/DESCRIPTION)
 
 Li L, Falquet B, Duan X (2026). *chevron: Standard TLGs for Clinical
-Trials Reporting*. R package version 0.2.14,
+Trials Reporting*. R package version 0.2.15,
 <https://insightsengineering.github.io/chevron/>.
 
-@Manual{, title = {chevron: Standard TLGs for Clinical Trials
-Reporting}, author = {Liming Li and Benoit Falquet and Xiaoli Duan},
-year = {2026}, note = {R package version 0.2.14}, url =
-{https://insightsengineering.github.io/chevron/}, }
+@Manual{,\
+  title = {chevron: Standard TLGs for Clinical Trials Reporting},\
+  author = {Liming Li and Benoit Falquet and Xiaoli Duan},\
+  year = {2026},\
+  note = {R package version 0.2.15},\
+  url = {https://insightsengineering.github.io/chevron/},\
+}
