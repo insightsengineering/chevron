@@ -162,7 +162,7 @@ corresponding method: `main`, `lyt`, `preprocess` `postprocess` and
 `#>     tbl <- build_table(lyt, adam_db$adae, alt_counts_df = adam_db$adsl)`\
 `#>     tbl`\
 `#> }`\
-`#> <bytecode: 0x555cb30f0940>`\
+`#> <bytecode: 0x55b73383d0e8>`\
 `#> <environment: namespace:chevron>`
 
 These are standard functions that can be used on their own.

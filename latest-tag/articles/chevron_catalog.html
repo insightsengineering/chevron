@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">chevron</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.15</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.16</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,6 +51,7 @@
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/release-candidate">release-candidate</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.16">v0.2.16</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.15">v0.2.15</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.14">v0.2.14</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://insightsengineering.github.io/chevron/v0.2.13">v0.2.13</a>
@@ -114,7 +115,7 @@
       <img src="../logo.svg" class="logo" alt=""><h1>Chevron Catalog</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.15/vignettes/chevron_catalog.rmd" class="external-link"><code>vignettes/chevron_catalog.rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/insightsengineering/chevron/blob/v0.2.16/vignettes/chevron_catalog.rmd" class="external-link"><code>vignettes/chevron_catalog.rmd</code></a></small>
       <div class="d-none name"><code>chevron_catalog.rmd</code></div>
     </div>
 
@@ -4212,7 +4213,7 @@ p-value)</strong><a class="anchor" aria-label="anchor" href="#best-overall-respo
 <li>The methods to construct confidence interval and p-value are
 controlled by the argument <code>methods</code>. It is a named list with
 five optional sub-arguments. For example,
-<code>methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "ha", diff_pval_method = "fisher", strat_diff_pval_method = "schouten")</code>
+<code>methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "cmh_sato", diff_pval_method = "fisher", strat_diff_pval_method = "cmh_sato")</code>
 </li>
 </ol>
 <p>See table below for what each argument controls and the available
@@ -4255,7 +4256,9 @@ etc.</td>
 <td align="center"><code>strat_diff_conf_method</code></td>
 <td align="center">stratified difference confidence interval</td>
 <td align="center">
-<code>"cmh"</code> (default), <code>"ha"</code>
+<code>"cmh"</code> (default),
+<code>"cmh_sato"</code>, <code>"cmh_mn"</code>,
+<code>"strat_newcombe"</code>, <code>"strat_newcombecc"</code>
 </td>
 </tr>
 <tr class="odd">
@@ -4263,7 +4266,7 @@ etc.</td>
 <td align="center">stratified p-value for odds ratio</td>
 <td align="center">
 <code>"cmh"</code> (default),
-<code>"schouten"</code>
+<code>"cmh_sato"</code>, <code>"cmh_wh"</code>
 </td>
 </tr>
 </tbody>
