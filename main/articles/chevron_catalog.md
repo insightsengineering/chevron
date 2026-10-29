@@ -3645,7 +3645,7 @@ race output for the Risk Management Plan (`RMP`).
 2.  The methods to construct confidence interval and p-value are
     controlled by the argument `methods`. It is a named list with five
     optional sub-arguments. For example,
-    `methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "ha", diff_pval_method = "fisher", strat_diff_pval_method = "schouten")`
+    `methods = list(prop_conf_method = "wald", diff_conf_method = "wald", strat_diff_conf_method = "cmh_sato", diff_pval_method = "fisher", strat_diff_pval_method = "cmh_sato")`
 
 See table below for what each argument controls and the available method
 options:
@@ -3655,8 +3655,8 @@ options:
 | `prop_conf_method` | proportion confidence interval | `"waldcc"` (default), `"wald"`, etc. |
 | `diff_conf_method` | unstratified difference confidence interval | `"waldcc"` (default), `"wald"`, etc. |
 | `diff_pval_method` | unstratified p-value for odds ratio | `"chisq"` (default), `"fisher"` |
-| `strat_diff_conf_method` | stratified difference confidence interval | `"cmh"` (default), `"ha"` |
-| `strat_diff_pval_method` | stratified p-value for odds ratio | `"cmh"` (default), `"schouten"` |
+| `strat_diff_conf_method` | stratified difference confidence interval | `"cmh"` (default), `"cmh_sato"`, `"cmh_mn"`, `"strat_newcombe"`, `"strat_newcombecc"` |
+| `strat_diff_pval_method` | stratified p-value for odds ratio | `"cmh"` (default), `"cmh_sato"`, `"cmh_wh"` |
 
 See in the table below the method options for estimates of proportions
 and the associated statistical methods:

@@ -1,10 +1,23 @@
 # Changelog
 
+## chevron 0.2.16.9000
+
+## chevron 0.2.16
+
+- Updated `rspt01` tests and documentation for `tern` \>= 0.9.12, which
+  no longer accepts `"ha"` and `"schouten"` as stratified methods; the
+  examples now use `"cmh_sato"`.
+- Converted the derived `*_main` functions of `cmt02_pt`, `coxt02`,
+  `egt01`, `egt02_2`, `rmpt03`, `rmpt04`, `rmpt05`, `vst01` and `vst02`
+  from `modify_default_args()` wrappers into explicit forwarding
+  functions so their requirements are picked up by the test traceability
+  report (no change to output).
+
 ## chevron 0.2.15
 
 CRAN release: 2026-09-30
 
-- Skip test to avoid cran check fails for tern.
+- Skip test to avoid CRAN check fails for tern.
 
 ## chevron 0.2.14
 
