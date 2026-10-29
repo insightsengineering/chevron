@@ -1,3 +1,5 @@
+# chevron 0.2.16.9000
+
 # chevron 0.2.16
 
 * Updated `rspt01` tests and documentation for `tern` >= 0.9.12, which no longer accepts `"ha"` and `"schouten"` as stratified methods; the examples now use `"cmh_sato"`.
